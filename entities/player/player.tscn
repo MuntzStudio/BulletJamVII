@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://unw7qtyqa8t8" path="res://entities/player/controllers/audio_controller.gd" id="1_abrql"]
 [ext_resource type="Script" uid="uid://ccxc747y2xnhw" path="res://entities/player/player.gd" id="1_fkugw"]
+[ext_resource type="PackedScene" uid="uid://c7ov45jh4x1yy" path="res://entities/bullets/bullet.tscn" id="2_qiwj3"]
 [ext_resource type="Script" uid="uid://cfo08aq6hvyrt" path="res://entities/player/controllers/animation_controller.gd" id="2_sglur"]
 [ext_resource type="Script" uid="uid://d2j75k1inbudr" path="res://entities/player/states/idle_state.gd" id="5_qiwj3"]
 [ext_resource type="Script" uid="uid://cbic2p3k273wi" path="res://entities/player/states/move_state.gd" id="6_26q78"]
@@ -22,6 +23,7 @@ size = Vector3(0.5, 0.2, 0.5)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_fkugw")
+bullet_scene = ExtResource("2_qiwj3")
 
 [node name="Pivot" type="Node3D" parent="." unique_id=747183295]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

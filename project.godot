@@ -22,6 +22,10 @@ GameManager="*uid://dsmbhfbht3sgo"
 SignalManager="*uid://dxagnueqq0sr6"
 AudioManager="*uid://baqxn432oxoqc"
 
+[display]
+
+window/size/always_on_top=true
+
 [input]
 
 move_left={
