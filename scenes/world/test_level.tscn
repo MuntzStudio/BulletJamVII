@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dmdd8h0fx211o"]
+
+[ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="1_2x7fr"]
+[ext_resource type="Texture2D" uid="uid://b72wlekl31oad" path="res://assets/prototype/ProtoWall.png" id="1_7lndr"]
+[ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_locked.gd" id="2_swvrr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2x7fr"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_swvrr"]
+sky_material = SubResource("ProceduralSkyMaterial_2x7fr")
+
+[sub_resource type="Environment" id="Environment_7lndr"]
+background_mode = 2
+sky = SubResource("Sky_swvrr")
+tonemap_mode = 2
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_2x7fr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swvrr"]
+albedo_texture = ExtResource("1_7lndr")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7lndr"]
+radius = 0.2
+
+[node name="TestLevel" type="Node3D" unique_id=1187036097]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=550010793]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 6.16156, 13.284302)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1569863036]
+environment = SubResource("Environment_7lndr")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=789948927]
+navigation_mesh = SubResource("NavigationMesh_2x7fr")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1251184727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5017265, 0)
+use_collision = true
+size = Vector3(30, 1, 30)
+material = SubResource("StandardMaterial3D_swvrr")
+
+[node name="PlayerEntity" type="Node3D" parent="." unique_id=272726580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.653595, 0, 0)
+
+[node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("1_2x7fr")]
+
+[node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=554351378]
+script = ExtResource("2_swvrr")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerEntity/SpringArmPivot" unique_id=2018482159]
+transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.819152, 0, -0.819152, 0.5735764, 0, 0, 0)
+shape = SubResource("SphereShape3D_7lndr")
+spring_length = 12.0
+margin = 0.02
+
+[node name="Camera3D" type="Camera3D" parent="PlayerEntity/SpringArmPivot/SpringArm3D" unique_id=769424125]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+cull_mask = 1

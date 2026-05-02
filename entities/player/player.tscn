@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://dwvnjjgdkrdyg"]
+
+[ext_resource type="Script" uid="uid://unw7qtyqa8t8" path="res://entities/player/controllers/audio_controller.gd" id="1_abrql"]
+[ext_resource type="Script" uid="uid://ccxc747y2xnhw" path="res://entities/player/player.gd" id="1_fkugw"]
+[ext_resource type="Script" uid="uid://cfo08aq6hvyrt" path="res://entities/player/controllers/animation_controller.gd" id="2_sglur"]
+[ext_resource type="Script" uid="uid://d2j75k1inbudr" path="res://entities/player/states/idle_state.gd" id="5_qiwj3"]
+[ext_resource type="Script" uid="uid://cbic2p3k273wi" path="res://entities/player/states/move_state.gd" id="6_26q78"]
+[ext_resource type="Script" uid="uid://c5dh4jk85rfnf" path="res://entities/player/states/dodge_state.gd" id="7_bectd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bls4j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qiwj3"]
+albedo_color = Color(0.6292393, 0.33963987, 0.11237126, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_26q78"]
+material = SubResource("StandardMaterial3D_qiwj3")
+size = Vector3(0.5, 0.2, 0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bls4j"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1944527734 groups=["player"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_fkugw")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=747183295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" unique_id=1928588195]
+mesh = SubResource("CapsuleMesh_bls4j")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Pivot" unique_id=74660505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46362162, 0.34094238)
+mesh = SubResource("BoxMesh_26q78")
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Pivot" unique_id=2124714916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7269325, 0)
+pitch_scale = 0.8
+
+[node name="BulletSpawnPoint" type="Marker3D" parent="Pivot" unique_id=513906964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36517334, 0.24072266, 1.5049438)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=399078203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_bls4j")
+
+[node name="AudioController" type="Node" parent="." unique_id=1560394815]
+script = ExtResource("1_abrql")
+
+[node name="AnimationController" type="Node" parent="." unique_id=1433920750]
+script = ExtResource("2_sglur")
+
+[node name="LimboHSM" type="LimboHSM" parent="." unique_id=95075698]
+
+[node name="IdleState" type="LimboState" parent="LimboHSM" unique_id=1719559753]
+script = ExtResource("5_qiwj3")
+
+[node name="MoveState" type="LimboState" parent="LimboHSM" unique_id=1139881180]
+script = ExtResource("6_26q78")
+
+[node name="DodgeState" type="LimboState" parent="LimboHSM" unique_id=1769554304]
+script = ExtResource("7_bectd")
