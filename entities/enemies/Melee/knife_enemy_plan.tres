@@ -1,0 +1,17 @@
+[gd_resource type="BlackboardPlan" format=3 uid="uid://ceiq6u70vhs8f"]
+
+[resource]
+var/target/name = &"target"
+var/target/type = 24
+var/target/hint = 0
+var/target/hint_string = ""
+var/speed/name = &"speed"
+var/speed/type = 3
+var/speed/value = 5.0
+var/speed/hint = 0
+var/speed/hint_string = ""
+var/attack_range/name = &"attack_range"
+var/attack_range/type = 3
+var/attack_range/value = 4.0
+var/attack_range/hint = 0
+var/attack_range/hint_string = ""

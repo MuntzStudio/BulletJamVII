@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b72wlekl31oad"
 path.s3tc="res://.godot/imported/ProtoWall.png-5c88572de095ab0d0df22b81b8aebcc2.s3tc.ctex"
+path.etc2="res://.godot/imported/ProtoWall.png-5c88572de095ab0d0df22b81b8aebcc2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/prototype/ProtoWall.png"
-dest_files=["res://.godot/imported/ProtoWall.png-5c88572de095ab0d0df22b81b8aebcc2.s3tc.ctex"]
+dest_files=["res://.godot/imported/ProtoWall.png-5c88572de095ab0d0df22b81b8aebcc2.s3tc.ctex", "res://.godot/imported/ProtoWall.png-5c88572de095ab0d0df22b81b8aebcc2.etc2.ctex"]
 
 [params]
 
