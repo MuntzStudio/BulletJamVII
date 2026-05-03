@@ -8,13 +8,15 @@ extends Node3D
 @onready var player: Node = null
 
 var shake_strength: float = 0.0
-var shake_fade: float = 6.0
+var shake_fade: float = 12.0
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	Events.screen_shake.connect(_on_screen_shake)
 
-func _on_screen_shake(intensity: float) -> void:
+func _on_screen_shake(duration: float, intensity: float) -> void:
 	shake_strength = intensity
+	shake_fade = 1.0 / duration
 
 func _process(delta: float) -> void:
 	if not player:

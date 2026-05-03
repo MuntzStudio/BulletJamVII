@@ -1,45 +1,29 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://dk2dbch1c4ody"]
 
-[ext_resource type="BlackboardPlan" uid="uid://ceiq6u70vhs8f" path="res://entities/enemies/Melee/knife_enemy_plan.tres" id="1_bv0o2"]
+[ext_resource type="BlackboardPlan" uid="uid://ceiq6u70vhs8f" path="res://entities/enemies/Melee/melee_enemy_plan.tres" id="1_1ti7c"]
 [ext_resource type="Script" uid="uid://cg2pj2vo7nxgj" path="res://ai/tasks/enemy/get_first_in_group.gd" id="2_sbeja"]
-[ext_resource type="Script" uid="uid://cqaraqtoaguyy" path="res://ai/tasks/enemy/in_range.gd" id="3_0ttjd"]
-[ext_resource type="Script" uid="uid://dmmmrhligr5rg" path="res://ai/tasks/enemy/face_target.gd" id="4_oh8vg"]
 [ext_resource type="Script" uid="uid://dnuus4ch0mqyf" path="res://ai/tasks/enemy/navigate_to_target.gd" id="7_vliwn"]
 
 [sub_resource type="BTAction" id="BTAction_7mlxn"]
 script = ExtResource("2_sbeja")
 
-[sub_resource type="BTAction" id="BTAction_h7px6"]
-script = ExtResource("4_oh8vg")
-
-[sub_resource type="BTCondition" id="BTCondition_wgidt"]
-script = ExtResource("3_0ttjd")
-range_min = 0.0
-range_max = 30.0
-
-[sub_resource type="BTAction" id="BTAction_sommb"]
-script = ExtResource("4_oh8vg")
+[sub_resource type="BTRandomWait" id="BTRandomWait_1ti7c"]
 
 [sub_resource type="BTAction" id="BTAction_80yi4"]
 script = ExtResource("7_vliwn")
 stopping_distance = 5.0
-
-[sub_resource type="BTSequence" id="BTSequence_qulw4"]
-custom_name = "Chase"
-children = [SubResource("BTCondition_wgidt"), SubResource("BTAction_sommb"), SubResource("BTAction_80yi4")]
-
-[sub_resource type="BTCooldown" id="BTCooldown_h7px6"]
-duration = 2.0
-children = [SubResource("BTSequence_qulw4")]
-
-[sub_resource type="BTSelector" id="BTSelector_sc8cc"]
-custom_name = "Combat"
-children = [SubResource("BTCooldown_h7px6")]
+retarget_interval = 0.2
+separation_radius = 1.0
+use_stamina = true
+sprint_speed_multiplier = 1.2
+tired_speed_multiplier = 0.5
+sprint_duration = 5.0
+tired_duration = 1.0
 
 [sub_resource type="BTSequence" id="BTSequence_e2p1s"]
 custom_name = "Main"
-children = [SubResource("BTAction_7mlxn"), SubResource("BTAction_h7px6"), SubResource("BTSelector_sc8cc")]
+children = [SubResource("BTAction_7mlxn"), SubResource("BTRandomWait_1ti7c"), SubResource("BTAction_80yi4")]
 
 [resource]
-blackboard_plan = ExtResource("1_bv0o2")
+blackboard_plan = ExtResource("1_1ti7c")
 root_task = SubResource("BTSequence_e2p1s")

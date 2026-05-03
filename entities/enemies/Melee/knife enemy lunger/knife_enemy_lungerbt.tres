@@ -1,6 +1,6 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://dxs53j25w65n2"]
 
-[ext_resource type="BlackboardPlan" uid="uid://ceiq6u70vhs8f" path="res://entities/enemies/Melee/knife_enemy_plan.tres" id="1_ndx12"]
+[ext_resource type="BlackboardPlan" uid="uid://ceiq6u70vhs8f" path="res://entities/enemies/Melee/melee_enemy_plan.tres" id="1_rmrub"]
 [ext_resource type="Script" uid="uid://cg2pj2vo7nxgj" path="res://ai/tasks/enemy/get_first_in_group.gd" id="2_8yah5"]
 [ext_resource type="Script" uid="uid://cqaraqtoaguyy" path="res://ai/tasks/enemy/in_range.gd" id="3_osn6h"]
 [ext_resource type="Script" uid="uid://dmmmrhligr5rg" path="res://ai/tasks/enemy/face_target.gd" id="4_pw3ih"]
@@ -47,40 +47,21 @@ range_max = 20.0
 
 [sub_resource type="BTAction" id="BTAction_7kh8n"]
 script = ExtResource("7_bypa1")
+use_stamina = true
 
 [sub_resource type="BTSequence" id="BTSequence_hi8dq"]
 custom_name = "Chase"
 children = [SubResource("BTCondition_ndx12"), SubResource("BTAction_7kh8n")]
 metadata/_weight_ = 4.000000000000001
 
-[sub_resource type="BBNode" id="BBNode_ndx12"]
-saved_value = NodePath("AnimationPlayer")
-resource_name = "AnimationPlayer"
-
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_osn6h"]
-animation_player = SubResource("BBNode_ndx12")
-animation_name = &"idle"
-
-[sub_resource type="BTRandomWait" id="BTRandomWait_ndx12"]
-
-[sub_resource type="BTSequence" id="BTSequence_pw3ih"]
-custom_name = "Idle"
-children = [SubResource("BTPlayAnimation_osn6h"), SubResource("BTRandomWait_ndx12")]
-
-[sub_resource type="BTCooldown" id="BTCooldown_rmrub"]
-children = [SubResource("BTSequence_pw3ih")]
-
-[sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_rmrub"]
-children = [SubResource("BTSequence_hi8dq"), SubResource("BTCooldown_rmrub")]
-
 [sub_resource type="BTSelector" id="BTSelector_n3bhy"]
 custom_name = "Combat"
-children = [SubResource("BTCooldown_ndx12"), SubResource("BTProbabilitySelector_rmrub")]
+children = [SubResource("BTCooldown_ndx12"), SubResource("BTSequence_hi8dq")]
 
 [sub_resource type="BTSequence" id="BTSequence_e2p1s"]
 custom_name = "Main"
 children = [SubResource("BTAction_oqoyd"), SubResource("BTSelector_n3bhy")]
 
 [resource]
-blackboard_plan = ExtResource("1_ndx12")
+blackboard_plan = ExtResource("1_rmrub")
 root_task = SubResource("BTSequence_e2p1s")

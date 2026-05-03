@@ -1,13 +1,18 @@
 [gd_scene format=3 uid="uid://o35g241g04fh"]
 
-[ext_resource type="Script" uid="uid://bls1kcbd0xlh1" path="res://entities/enemies/Melee/knife_enemy.gd" id="1_4yiyo"]
+[ext_resource type="Script" uid="uid://bls1kcbd0xlh1" path="res://entities/enemies/Melee/melee_enemy.gd" id="1_4yiyo"]
 [ext_resource type="BehaviorTree" uid="uid://dxs53j25w65n2" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lungerbt.tres" id="2_x0mmq"]
+[ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="3_gme72"]
+[ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="4_44xyj"]
+[ext_resource type="PackedScene" uid="uid://c1mh1jvh8bmhd" path="res://assets/vfx/explosion_i.tscn" id="5_44xyj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akotg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyjgv"]
+resource_local_to_scene = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_akotg"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_kyjgv")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ecrc"]
@@ -78,11 +83,17 @@ _data = {
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_14y0h"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_j6f8p"]
+size = Vector3(1.0405273, 0.31396484, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mmn88"]
+
 [node name="KnifeEnemyLunger" type="CharacterBody3D" unique_id=110487065 groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_4yiyo")
 friction = 0.1
 acceleration = 1.0
+max_health = 100.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=989533886]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -105,3 +116,29 @@ libraries/ = SubResource("AnimationLibrary_gme72")
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=1966809227]
 behavior_tree = ExtResource("2_x0mmq")
 blackboard_plan = SubResource("BlackboardPlan_14y0h")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1589102337]
+visible = false
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("3_gme72")
+damage = 15.0
+hit_type = 2
+metadata/_custom_type_script = "uid://3u303es7vhe4"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=471821468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016546369, 1.2095764, -0.43700826)
+shape = SubResource("BoxShape3D_j6f8p")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1145555022]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("4_44xyj")
+hit_vfx = ExtResource("5_44xyj")
+metadata/_custom_type_script = "uid://cppim11crlu1t"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=865585887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9861353, 0)
+shape = SubResource("BoxShape3D_mmn88")

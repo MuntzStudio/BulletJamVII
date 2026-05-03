@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://c7ov45jh4x1yy"]
 
 [ext_resource type="Script" uid="uid://dpwsco6p65pjy" path="res://entities/bullets/bullet.gd" id="1_5hax7"]
+[ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="2_33ckv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5hax7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hax7"]
-albedo_color = Color(0.8522208, 0.4574563, 0.34246707, 1)
-emission_enabled = true
-emission = Color(0.6270879, 0.3708201, 0.2839203, 1)
+albedo_color = Color(2.8215299, 1.5767143, 1.2010896, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_5hax7"]
 material = SubResource("StandardMaterial3D_5hax7")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_33ckv"]
 
 [node name="Bullet" type="Area3D" unique_id=459478685 groups=["bullet"]]
 script = ExtResource("1_5hax7")
@@ -19,4 +20,17 @@ script = ExtResource("1_5hax7")
 shape = SubResource("SphereShape3D_5hax7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=981951860]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_5hax7")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=910296199]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("2_33ckv")
+damage = 1.0
+hit_type = 1
+metadata/_custom_type_script = "uid://3u303es7vhe4"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1741861491]
+shape = SubResource("SphereShape3D_33ckv")

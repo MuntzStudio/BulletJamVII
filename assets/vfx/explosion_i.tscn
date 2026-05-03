@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://c1mh1jvh8bmhd"]
+
+[ext_resource type="Texture2D" uid="uid://conke0y088r4g" path="res://assets/vfx/Explosion texture.png" id="1_7gaqk"]
+[ext_resource type="Script" uid="uid://2om0x7y0ka0i" path="res://assets/vfx/explosion_i.gd" id="1_comcm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gaqk"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(4, 2, 0, 1)
+albedo_texture = ExtResource("1_7gaqk")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_wwtdv"]
+lightmap_size_hint = Vector2i(4, 4)
+material = SubResource("StandardMaterial3D_7gaqk")
+
+[sub_resource type="Curve" id="Curve_wwtdv"]
+_limits = [0.0, 52.95043, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10.590086), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="Curve" id="Curve_7gaqk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_comcm"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_7gaqk")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_7gaqk"]
+lightmap_size_hint = Vector2i(4, 4)
+material = SubResource("StandardMaterial3D_comcm")
+
+[sub_resource type="Curve" id="Curve_comcm"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_7gaqk"]
+colors = PackedColorArray(1, 1, 1, 1, 0.471875, 0.471875, 0.471875, 0.5)
+
+[node name="ExplosionI" type="Node3D" unique_id=2080390735]
+script = ExtResource("1_comcm")
+
+[node name="Spark" type="CPUParticles3D" parent="." unique_id=519734990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 6
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+mesh = SubResource("QuadMesh_wwtdv")
+emission_shape = 1
+emission_sphere_radius = 0.75
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = 45.0
+angular_velocity_max = 480.0
+damping_max = 0.5
+damping_curve = SubResource("Curve_wwtdv")
+scale_amount_curve = SubResource("Curve_7gaqk")
+
+[node name="Smoke" type="CPUParticles3D" parent="." unique_id=465742014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 4
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+mesh = SubResource("QuadMesh_7gaqk")
+emission_shape = 1
+emission_sphere_radius = 0.75
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+angular_velocity_min = 45.0
+angular_velocity_max = 480.0
+damping_min = 1.0
+damping_max = 1.0
+damping_curve = SubResource("Curve_comcm")
+scale_amount_curve = SubResource("Curve_7gaqk")
+color_initial_ramp = SubResource("Gradient_7gaqk")

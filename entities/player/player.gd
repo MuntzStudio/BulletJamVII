@@ -10,12 +10,14 @@ const GRAVITY        := -20.0
 
 #region EXPORTS 
 @export var bullet_scene: PackedScene
-@export var fire_rate: float = 0.15
+@export var max_health : float = 100.0
+@export var fire_rate  : float = 0.15
 #endregion EXPORTS 
 
 #region NODE REFS 
-@onready var bullet_spawn: Marker3D = $Pivot/BulletSpawnPoint
+@onready var bullet_spawn : Marker3D = $Pivot/BulletSpawnPoint
 @onready var hsm          : LimboHSM = $LimboHSM
+@onready var hurtbox      : Hurtbox = $Hurtbox
 #endregion NODE REFS 
 
 #region STATES UNDER LIMBOHSM
@@ -24,12 +26,15 @@ const GRAVITY        := -20.0
 @onready var state_dodge : LimboState = $LimboHSM/DodgeState
 #endregion STATES UNDER LIMBOHSM
 
-#region VARIABLES
+#region GAME VARIABLES
+var knockback       : Vector3 = Vector3.ZERO
+var health          : float = max_health
 var fire_timer      : float = 0.0
 #endregion VARIABLES
 
 #region READY AND PROCESS
 func _ready() -> void:
+	hurtbox.damage_taken.connect(_on_damage_taken)
 	_setup_hsm()
 
 func _setup_hsm() -> void:
@@ -48,6 +53,11 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	
+	# Decay knockback
+	knockback = knockback.lerp(Vector3.ZERO, 10.0 * delta)
+	velocity.x += knockback.x
+	velocity.z += knockback.z
+	
 	# Shooting is global - works in any state
 	_handle_shooting(delta)
 	
@@ -55,6 +65,28 @@ func _physics_process(delta: float) -> void:
 	_face_mouse()
 
 #endregion LIFECYCLE
+
+#region DAMAGE HANDLING
+func _on_damage_taken(hitbox: Hitbox) -> void:
+	health -= hitbox.damage
+	
+	# Knockback
+	var knock_dir = (global_position - hitbox.global_position).normalized()
+	knock_dir.y = 0.0
+	knockback = knock_dir * hitbox.knockback_force
+	
+	# Invulnerability frames so bullets don't all hit at once
+	hurtbox.make_invulnerable(0.5)
+	
+	# Screenshake via Events autoload
+	Events.screen_shake.emit(0.2, 0.2)
+	
+	if health <= 0.0:
+		_die()
+
+func _die() -> void:
+	get_tree().reload_current_scene()  # TODO replace with death animation later
+#endregion DAMAGE HANDLING
 
 #region SHOOTING
 func _handle_shooting(delta: float) -> void:

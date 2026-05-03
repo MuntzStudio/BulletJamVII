@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://d2j75k1inbudr" path="res://entities/player/states/idle_state.gd" id="5_qiwj3"]
 [ext_resource type="Script" uid="uid://cbic2p3k273wi" path="res://entities/player/states/move_state.gd" id="6_26q78"]
 [ext_resource type="Script" uid="uid://c5dh4jk85rfnf" path="res://entities/player/states/dodge_state.gd" id="7_bectd"]
+[ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="8_26q78"]
+[ext_resource type="PackedScene" uid="uid://c1mh1jvh8bmhd" path="res://assets/vfx/explosion_i.tscn" id="9_bectd"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bls4j"]
 
@@ -18,6 +20,8 @@ material = SubResource("StandardMaterial3D_qiwj3")
 size = Vector3(0.5, 0.2, 0.5)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bls4j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bectd"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1944527734 groups=["player"]]
 collision_layer = 2
@@ -61,3 +65,15 @@ script = ExtResource("6_26q78")
 
 [node name="DodgeState" type="LimboState" parent="LimboHSM" unique_id=1769554304]
 script = ExtResource("7_bectd")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=455053431]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+script = ExtResource("8_26q78")
+hit_vfx = ExtResource("9_bectd")
+metadata/_custom_type_script = "uid://cppim11crlu1t"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1960761874]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9861353, 0)
+shape = SubResource("BoxShape3D_bectd")

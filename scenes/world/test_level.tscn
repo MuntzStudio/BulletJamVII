@@ -8,20 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="6_1rplp"]
 [ext_resource type="PackedScene" uid="uid://o35g241g04fh" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lunger.tscn" id="6_32mv2"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2x7fr"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gb1m8"]
 
 [sub_resource type="Sky" id="Sky_swvrr"]
-sky_material = SubResource("ProceduralSkyMaterial_2x7fr")
+sky_material = SubResource("PanoramaSkyMaterial_gb1m8")
 
 [sub_resource type="Environment" id="Environment_7lndr"]
-background_mode = 2
+background_mode = 1
+background_color = Color(0.596875, 0.596875, 0.596875, 1)
 sky = SubResource("Sky_swvrr")
 tonemap_mode = 2
 glow_enabled = true
-glow_intensity = 5.0
-glow_hdr_threshold = 1.5
+glow_intensity = 0.8
+glow_hdr_scale = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_swvrr"]
 albedo_texture = ExtResource("1_7lndr")
@@ -34,10 +33,6 @@ radius = 0.2
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7lndr"]
 
 [node name="TestLevel" type="Node3D" unique_id=1187036097]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=550010793]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 6.16156, 13.284302)
-shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1569863036]
 environment = SubResource("Environment_7lndr")
@@ -67,7 +62,7 @@ material = SubResource("StandardMaterial3D_swvrr")
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=272726580]
 
 [node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("1_2x7fr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.357751)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.175939)
 
 [node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=554351378]
 script = ExtResource("2_swvrr")
@@ -94,13 +89,8 @@ shape = SubResource("WorldBoundaryShape3D_7lndr")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=976467393]
 
-[node name="KnifeEnemyJobber" parent="Enemies" unique_id=203418636 instance=ExtResource("6_1rplp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0672436, 0, 4.5870905)
+[node name="KnifeEnemyJobber" parent="Enemies" unique_id=110487065 instance=ExtResource("6_1rplp")]
 
-[node name="KnifeEnemyLunger" parent="Enemies" unique_id=110487065 instance=ExtResource("6_32mv2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.066704)
-
-[node name="KnifeEnemyLunger2" parent="Enemies" unique_id=1315522307 instance=ExtResource("6_32mv2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.038845, 0, -12.948214)
+[node name="KnifeEnemyLunger" parent="Enemies" unique_id=992957494 instance=ExtResource("6_32mv2")]
 
 [connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]

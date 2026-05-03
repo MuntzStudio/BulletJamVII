@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Bullet Jam 7"
+config/name="BulletJamVII"
 config/version="0.0.1"
 run/main_scene="uid://dmdd8h0fx211o"
 config/features=PackedStringArray("4.6", "GL Compatibility")
@@ -19,8 +19,9 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 LoadManager="*uid://caq2oowq6eg36"
 GameManager="*uid://dsmbhfbht3sgo"
-SignalManager="*uid://dxagnueqq0sr6"
+Events="*uid://dxagnueqq0sr6"
 AudioManager="*uid://baqxn432oxoqc"
+VFX="*uid://dmnsl7o60ype3"
 
 [display]
 
@@ -80,8 +81,8 @@ shoot={
 
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
-3d_physics/layer_3="Enemy"
-3d_physics/layer_4="Bullets&PowerUps"
+3d_physics/layer_3="Enemy & Bullets"
+3d_physics/layer_4="Bullets & PowerUps"
 
 [physics]
 
@@ -93,3 +94,4 @@ rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+viewport/hdr_2d=true
