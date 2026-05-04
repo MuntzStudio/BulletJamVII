@@ -10,7 +10,7 @@ func _update(_delta: float) -> void:
 	if dir == Vector3.ZERO:
 		dispatch(&"move_stopped")
 		return
-	player.velocity.x = dir.x * player.SPEED
-	player.velocity.z = dir.z * player.SPEED
+	player.velocity.x = dir.x * player.current_speed
+	player.velocity.z = dir.z * player.current_speed
 	if Input.is_action_just_pressed("dodge"):
 		dispatch(&"dodge_started")

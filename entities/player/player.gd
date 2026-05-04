@@ -2,8 +2,12 @@ class_name Player
 extends CharacterBody3D
 
 #region CONSTANTS
-const SPEED          := 7.0
-const DODGE_SPEED    := 15.0
+const BASE_SPEED := 7.0
+var current_speed := BASE_SPEED
+
+const BASE_DODGE_SPEED := 15.0
+var current_dodge_speed := BASE_DODGE_SPEED
+
 const DODGE_DURATION := 0.3
 const GRAVITY        := -20.0
 #endregion CONSTANTS
@@ -12,6 +16,8 @@ const GRAVITY        := -20.0
 @export var bullet_scene: PackedScene
 @export var max_health : float = 100.0
 @export var fire_rate  : float = 0.15
+@export var max_bullets: int = 6
+var current_bullets: int = 6
 #endregion EXPORTS 
 
 #region NODE REFS 
@@ -95,16 +101,44 @@ func _handle_shooting(delta: float) -> void:
 		fire_timer = fire_rate
 		_shoot()
 
-func _shoot() -> void:
-	if bullet_scene == null:
+func _shoot():
+	if current_bullets <= 0:
 		return
+	
+	current_bullets -= 1
+	_update_scaling()
+
 	var bullet = bullet_scene.instantiate()
 	get_parent().add_child(bullet)
+
 	bullet.global_position = bullet_spawn.global_position
+
 	var dir := (_get_mouse_world_pos() - bullet_spawn.global_position).normalized()
 	dir.y = 0.0
-	bullet.direction = dir
+
+	bullet.velocity = dir * 25.0
+
+func collect_bullet(amount: int):
+	current_bullets = clamp(current_bullets + amount, 0, max_bullets)
+	_update_scaling()
+
+func _update_scaling():
+
+	var t = float(current_bullets) / float(max_bullets)
+
+	# More bullets --> bigger
+	var new_scale = lerp(0.4, 1.0, t)
+	self.scale = Vector3.ONE * new_scale
+
+	# Less bullets --> faster
+	var speed_multiplier = lerp(1.6, 1.0, t)
+
+	current_speed = BASE_SPEED * speed_multiplier
+	current_dodge_speed = BASE_DODGE_SPEED * speed_multiplier
+
 #endregion SHOOTING
+
+
 
 #region MOUSE AIMING
 func _face_mouse() -> void:

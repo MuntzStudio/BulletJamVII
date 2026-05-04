@@ -13,7 +13,12 @@ material = SubResource("StandardMaterial3D_5hax7")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_33ckv"]
 
-[node name="Bullet" type="Area3D" unique_id=459478685 groups=["bullet"]]
+[sub_resource type="SphereShape3D" id="SphereShape3D_a3f0k"]
+radius = 0.70135254
+
+[node name="Bullet" type="CharacterBody3D" unique_id=1932519837 groups=["bullet"]]
+collision_layer = 8
+collision_mask = 5
 script = ExtResource("1_5hax7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1319153479]
@@ -24,6 +29,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_5hax7")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=910296199]
+visible = false
 collision_layer = 0
 collision_mask = 4
 monitorable = false
@@ -34,3 +40,11 @@ metadata/_custom_type_script = "uid://3u303es7vhe4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1741861491]
 shape = SubResource("SphereShape3D_33ckv")
+
+[node name="PickupArea" type="Area3D" parent="." unique_id=544321634]
+collision_layer = 8
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PickupArea" unique_id=870179034]
+shape = SubResource("SphereShape3D_a3f0k")
