@@ -13,7 +13,7 @@ material = SubResource("StandardMaterial3D_5hax7")
 
 [node name="EnemyBullet" type="Area3D" unique_id=1325968805 groups=["bullet"]]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 3
 input_ray_pickable = false
 script = ExtResource("1_a2rgv")
 metadata/_custom_type_script = "uid://3u303es7vhe4"
