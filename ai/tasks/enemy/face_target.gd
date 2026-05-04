@@ -22,12 +22,12 @@ func _tick(_delta: float) -> Status:
 	if dir == Vector3.ZERO:
 		return SUCCESS
 
-	var target_basis: Basis = Basis.looking_at(dir)
+	var target_basis: Basis = Basis.looking_at(-dir)
 	agent.basis = agent.basis.slerp(target_basis, rotation_speed)
 
 	# Check how aligned we are using dot product
 	var current_forward: Vector3 = -agent.basis.z
-	if current_forward.dot(dir) >= alignment_threshold:
+	if current_forward.dot(-dir) >= alignment_threshold:
 		return SUCCESS
 
 	return RUNNING

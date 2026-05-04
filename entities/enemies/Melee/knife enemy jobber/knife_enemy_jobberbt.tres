@@ -11,9 +11,10 @@ script = ExtResource("2_sbeja")
 
 [sub_resource type="BTAction" id="BTAction_80yi4"]
 script = ExtResource("7_vliwn")
-stopping_distance = 5.0
-retarget_interval = 0.2
-separation_radius = 1.0
+stopping_distance = 3.0
+ring_min = 0.0
+ring_max = 0.0
+retarget_interval = 0.5
 use_stamina = true
 sprint_speed_multiplier = 1.2
 tired_speed_multiplier = 0.5

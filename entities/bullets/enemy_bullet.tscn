@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c7ov45jh4x1yy"]
+
+[ext_resource type="Script" uid="uid://dpwsco6p65pjy" path="res://entities/bullets/enemy_bullet.gd" id="1_a2rgv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5hax7"]
+radius = 0.2519101
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hax7"]
+albedo_color = Color(2.8215299, 1.5767143, 1.2010896, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_5hax7"]
+material = SubResource("StandardMaterial3D_5hax7")
+
+[node name="EnemyBullet" type="Area3D" unique_id=1325968805 groups=["bullet"]]
+collision_layer = 0
+collision_mask = 2
+input_ray_pickable = false
+script = ExtResource("1_a2rgv")
+metadata/_custom_type_script = "uid://3u303es7vhe4"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1319153479]
+shape = SubResource("SphereShape3D_5hax7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=981951860]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("SphereMesh_5hax7")

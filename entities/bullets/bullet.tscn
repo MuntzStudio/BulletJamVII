@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://c7ov45jh4x1yy"]
+[gd_scene format=3 uid="uid://jfqyhebsqi2o"]
 
-[ext_resource type="Script" uid="uid://dpwsco6p65pjy" path="res://entities/bullets/bullet.gd" id="1_5hax7"]
+[ext_resource type="Script" uid="uid://bw834i4vkj36u" path="res://entities/bullets/bullet.gd" id="1_5hax7"]
 [ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="2_33ckv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5hax7"]
@@ -24,12 +24,12 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_5hax7")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=910296199]
+visible = false
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 script = ExtResource("2_33ckv")
-damage = 1.0
-hit_type = 1
+damage = 5.0
 metadata/_custom_type_script = "uid://3u303es7vhe4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1741861491]

@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://ccka30q13srn4"]
 
-[ext_resource type="Texture2D" uid="uid://conke0y088r4g" path="res://assets/vfx/Explosion texture.png" id="1_3a1b1"]
+[ext_resource type="Texture2D" uid="uid://conke0y088r4g" path="res://assets/vfx/explosion_fx/Explosion texture.png" id="1_3a1b1"]
 
 [resource]
 transparency = 1

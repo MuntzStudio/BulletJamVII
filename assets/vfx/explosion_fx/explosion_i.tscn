@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://c1mh1jvh8bmhd"]
 
-[ext_resource type="Texture2D" uid="uid://conke0y088r4g" path="res://assets/vfx/Explosion texture.png" id="1_7gaqk"]
-[ext_resource type="Script" uid="uid://2om0x7y0ka0i" path="res://assets/vfx/explosion_i.gd" id="1_comcm"]
+[ext_resource type="Texture2D" uid="uid://conke0y088r4g" path="res://assets/vfx/explosion_fx/Explosion texture.png" id="1_7gaqk"]
+[ext_resource type="Script" uid="uid://2om0x7y0ka0i" path="res://assets/vfx/explosion_fx/explosion_i.gd" id="1_comcm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gaqk"]
 transparency = 1
+cull_mode = 2
+no_depth_test = true
 shading_mode = 0
 albedo_color = Color(4, 2, 0, 1)
 albedo_texture = ExtResource("1_7gaqk")
@@ -31,6 +33,8 @@ point_count = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_comcm"]
 transparency = 1
+cull_mode = 2
+no_depth_test = true
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_7gaqk")
@@ -57,11 +61,12 @@ colors = PackedColorArray(1, 1, 1, 1, 0.471875, 0.471875, 0.471875, 0.5)
 script = ExtResource("1_comcm")
 
 [node name="Spark" type="CPUParticles3D" parent="." unique_id=519734990]
+process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 emitting = false
 amount = 6
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.8
 fixed_fps = 60
 mesh = SubResource("QuadMesh_wwtdv")
 emission_shape = 1
@@ -78,12 +83,13 @@ damping_curve = SubResource("Curve_wwtdv")
 scale_amount_curve = SubResource("Curve_7gaqk")
 
 [node name="Smoke" type="CPUParticles3D" parent="." unique_id=465742014]
+process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 emitting = false
 amount = 4
 lifetime = 2.0
 one_shot = true
-explosiveness = 1.0
+explosiveness = 0.8
 fixed_fps = 60
 mesh = SubResource("QuadMesh_7gaqk")
 emission_shape = 1

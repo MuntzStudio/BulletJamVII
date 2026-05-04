@@ -12,6 +12,6 @@ var/speed/hint = 0
 var/speed/hint_string = ""
 var/attack_range/name = &"attack_range"
 var/attack_range/type = 3
-var/attack_range/value = 4.0
+var/attack_range/value = 10.0
 var/attack_range/hint = 0
 var/attack_range/hint_string = ""

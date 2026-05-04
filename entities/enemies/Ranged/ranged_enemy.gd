@@ -1,0 +1,2 @@
+class_name RangedEnemy
+extends MeleeEnemy

@@ -13,7 +13,7 @@ var _lunge_dir: Vector3 = Vector3.ZERO
 
 func _enter() -> void:
 	agent.anim_player.play("attack")
-	_lunge_dir = -agent.basis.z
+	_lunge_dir = agent.basis.z
 	_lunge_dir.y = 0.0
 	agent.velocity.x = _lunge_dir.x * lunge_speed
 	agent.velocity.z = _lunge_dir.z * lunge_speed

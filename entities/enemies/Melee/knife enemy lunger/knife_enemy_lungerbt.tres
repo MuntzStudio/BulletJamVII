@@ -13,7 +13,7 @@ script = ExtResource("2_8yah5")
 [sub_resource type="BTCondition" id="BTCondition_ucc2j"]
 script = ExtResource("3_osn6h")
 range_min = 0.0
-range_max = 10.0
+range_max = 8.0
 
 [sub_resource type="BTAction" id="BTAction_gjx0h"]
 script = ExtResource("4_pw3ih")
@@ -23,22 +23,17 @@ saved_value = NodePath("AnimationPlayer")
 resource_name = "AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_pw3ih"]
-await_completion = 1.1
+await_completion = 0.5
 animation_player = SubResource("BBNode_8yah5")
 animation_name = &"wait"
 
 [sub_resource type="BTAction" id="BTAction_4t5np"]
 script = ExtResource("6_btg7i")
-lunge_speed = 100.0
+lunge_speed = 120.0
 
 [sub_resource type="BTSequence" id="BTSequence_u5m3q"]
 custom_name = "Attack"
 children = [SubResource("BTCondition_ucc2j"), SubResource("BTAction_gjx0h"), SubResource("BTPlayAnimation_pw3ih"), SubResource("BTAction_4t5np")]
-
-[sub_resource type="BTCooldown" id="BTCooldown_ndx12"]
-duration = 2.0
-start_cooled = true
-children = [SubResource("BTSequence_u5m3q")]
 
 [sub_resource type="BTCondition" id="BTCondition_ndx12"]
 script = ExtResource("3_osn6h")
@@ -47,7 +42,10 @@ range_max = 20.0
 
 [sub_resource type="BTAction" id="BTAction_7kh8n"]
 script = ExtResource("7_bypa1")
-use_stamina = true
+stopping_distance = 5.0
+ring_min = 3.0
+ring_max = 8.0
+retarget_interval = 1.0
 
 [sub_resource type="BTSequence" id="BTSequence_hi8dq"]
 custom_name = "Chase"
@@ -56,7 +54,7 @@ metadata/_weight_ = 4.000000000000001
 
 [sub_resource type="BTSelector" id="BTSelector_n3bhy"]
 custom_name = "Combat"
-children = [SubResource("BTCooldown_ndx12"), SubResource("BTSequence_hi8dq")]
+children = [SubResource("BTSequence_u5m3q"), SubResource("BTSequence_hi8dq")]
 
 [sub_resource type="BTSequence" id="BTSequence_e2p1s"]
 custom_name = "Main"

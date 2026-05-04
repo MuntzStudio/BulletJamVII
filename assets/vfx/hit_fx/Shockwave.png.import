@@ -2,20 +2,22 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://conke0y088r4g"
-path="res://.godot/imported/Explosion texture.png-789e54c77c7c61a20d81151d5d117a6d.ctex"
+uid="uid://ch3kq5uxuwswr"
+path.s3tc="res://.godot/imported/Shockwave.png-a4b3480b1700f432856feed47d1746ba.s3tc.ctex"
+path.etc2="res://.godot/imported/Shockwave.png-a4b3480b1700f432856feed47d1746ba.etc2.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/vfx/Explosion texture.png"
-dest_files=["res://.godot/imported/Explosion texture.png-789e54c77c7c61a20d81151d5d117a6d.ctex"]
+source_file="res://assets/vfx/hit_fx/Shockwave.png"
+dest_files=["res://.godot/imported/Shockwave.png-a4b3480b1700f432856feed47d1746ba.s3tc.ctex", "res://.godot/imported/Shockwave.png-a4b3480b1700f432856feed47d1746ba.etc2.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -15,21 +15,15 @@ var knockback := Vector3.ZERO
 
 func _ready() -> void:
 	hurtbox.damage_taken.connect(_on_damage_taken)
+	GameManager.register_enemy(self)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta
 	
-	# Decay knockback
-	knockback = knockback.lerp(Vector3.ZERO, 10.0 * delta)
-	
 	# Apply friction to movement only
 	velocity.x = lerpf(velocity.x, 0.0, friction)
 	velocity.z = lerpf(velocity.z, 0.0, friction)
-	
-	# Knockback after friction
-	velocity.x += knockback.x
-	velocity.z += knockback.z
 	
 	move_and_slide()
 
@@ -38,7 +32,8 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 
 	var knock_dir = (global_position - hitbox.global_position).normalized()
 	knock_dir.y = 0.0
-	knockback = knock_dir * hitbox.knockback_force * hurtbox.knockback_multiplier
+	velocity.x = knock_dir.x * hitbox.knockback_force * hurtbox.knockback_multiplier
+	velocity.z = knock_dir.z * hitbox.knockback_force * hurtbox.knockback_multiplier
 
 	if health <= 0.0:
 		_die()

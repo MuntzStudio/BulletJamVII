@@ -85,7 +85,10 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 		_die()
 
 func _die() -> void:
-	get_tree().reload_current_scene()  # TODO replace with death animation later
+	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)  
+	hurtbox.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+	await get_tree().process_frame  
+	get_tree().reload_current_scene() # TODO replace with death animation later
 #endregion DAMAGE HANDLING
 
 #region SHOOTING
@@ -130,5 +133,17 @@ func get_input_dir() -> Vector3:
 		Input.get_axis("move_left",  "move_right"),
 		Input.get_axis("move_front",    "move_back")
 	)
-	return Vector3(input.x, 0.0, input.y).normalized()
+	var dir := Vector3(input.x, 0.0, input.y).normalized()
+	
+	# Rotate input relative to SpringArmPivot's Y rotation
+	var pivot := get_parent().get_node("SpringArmPivot")
+	if pivot:
+		var cam_y : float = pivot.target_rotation_y
+		dir = Vector3(
+			dir.x * cos(cam_y) + dir.z * sin(cam_y),
+			0.0,
+			-dir.x * sin(cam_y) + dir.z * cos(cam_y)
+		)
+	
+	return dir
 #endregion HELPERS
