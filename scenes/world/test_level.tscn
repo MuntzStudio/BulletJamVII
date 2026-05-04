@@ -4,6 +4,7 @@
 [ext_resource type="NavigationMesh" uid="uid://d1b67jj5qvu3v" path="res://scenes/world/test_level_navigation.tres" id="1_3soa3"]
 [ext_resource type="Texture2D" uid="uid://b72wlekl31oad" path="res://assets/prototype/ProtoWall.png" id="1_7lndr"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="2_swvrr"]
+[ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/boundary.gd" id="3_gb1m8"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/kill_zone.gd" id="4_7gmxp"]
 [ext_resource type="PackedScene" uid="uid://bhv5syxqdskb" path="res://entities/enemies/Ranged/ranged_enemy_kite.tscn" id="6_32mv2"]
 [ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="7_gb1m8"]
@@ -27,6 +28,9 @@ glow_hdr_scale = 0.5
 albedo_texture = ExtResource("1_7lndr")
 uv1_triplanar = true
 uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1rplp"]
+size = Vector3(31.851563, 8.982422, 33.03125)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7lndr"]
 radius = 0.2
@@ -54,11 +58,25 @@ use_collision = true
 size = Vector3(9, 3, 1)
 material = SubResource("StandardMaterial3D_swvrr")
 
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1936086927]
+transform = Transform3D(0.011518896, 0, 0.99993366, 0, 1, 0, -0.99993366, 0, 0.011518896, -14.511818, 1.3870064, -0.349684)
+use_collision = true
+size = Vector3(30.261837, 2.7774658, 1)
+material = SubResource("StandardMaterial3D_swvrr")
+
 [node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1729871081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.73709, 0.4982735, 0)
 use_collision = true
 size = Vector3(9.269028, 1, 1)
 material = SubResource("StandardMaterial3D_swvrr")
+
+[node name="Boundary" type="Area3D" parent="NavigationRegion3D" unique_id=1328195780]
+collision_mask = 8
+script = ExtResource("3_gb1m8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Boundary" unique_id=1219812061]
+shape = SubResource("BoxShape3D_1rplp")
+debug_color = Color(0.98829025, 0, 0.099605866, 1)
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=272726580]
 

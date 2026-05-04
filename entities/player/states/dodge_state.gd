@@ -13,7 +13,7 @@ func _enter() -> void:
 
 func _update(delta: float) -> void:
 	dodge_timer -= delta
-	player.velocity.x = dodge_direction.x * player.DODGE_SPEED
-	player.velocity.z = dodge_direction.z * player.DODGE_SPEED
+	player.velocity.x = dodge_direction.x * player.current_dodge_speed
+	player.velocity.z = dodge_direction.z * player.current_dodge_speed
 	if dodge_timer <= 0.0:
 		dispatch(&"dodge_finished")
