@@ -86,6 +86,7 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 	
 	# Screenshake via Events autoload
 	Events.screen_shake.emit(0.2, 0.2)
+	VFX.hitstop(0.3, 0.3)
 	
 	if health <= 0.0:
 		_die()

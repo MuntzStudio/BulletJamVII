@@ -28,8 +28,7 @@ range_max = 20.0
 [sub_resource type="BTAction" id="BTAction_wdq44"]
 script = ExtResource("2_n4gd4")
 bullet_scene = ExtResource("4_j8i6x")
-fire_rate = 0.05
-burst_count = 10
+fire_rate = 0.2
 
 [sub_resource type="BTWait" id="BTWait_mdx4i"]
 
@@ -38,7 +37,7 @@ custom_name = "Fire Cycle"
 children = [SubResource("BTCondition_j8i6x"), SubResource("BTAction_wdq44"), SubResource("BTWait_mdx4i")]
 
 [sub_resource type="BTRepeat" id="BTRepeat_ovte8"]
-times = 5
+times = 3
 children = [SubResource("BTSequence_pflie")]
 
 [sub_resource type="BTWait" id="BTWait_6o4qy"]

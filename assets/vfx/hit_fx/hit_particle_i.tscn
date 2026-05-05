@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://36snc0ndulya"]
 
 [ext_resource type="Texture2D" uid="uid://b6n840075pfdh" path="res://assets/vfx/hit_fx/Circle.png" id="1_qija2"]
+[ext_resource type="Script" uid="uid://tvs467otsbfb" path="res://assets/vfx/hit_fx/hit_particle_i.gd" id="1_ydl5g"]
 [ext_resource type="Texture2D" uid="uid://h7nt318okr7f" path="res://assets/vfx/hit_fx/Flare.png" id="2_bh7ef"]
 [ext_resource type="Texture2D" uid="uid://ch3kq5uxuwswr" path="res://assets/vfx/hit_fx/Shockwave.png" id="3_bas06"]
 
@@ -61,13 +62,14 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [node name="HitParticleI" type="Node3D" unique_id=1041478443]
+script = ExtResource("1_ydl5g")
 
 [node name="Flash" type="CPUParticles3D" parent="." unique_id=1090366297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 material_override = SubResource("StandardMaterial3D_vjhtr")
 emitting = false
 amount = 1
-lifetime = 0.1
+lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
 mesh = SubResource("QuadMesh_qija2")
@@ -75,7 +77,7 @@ gravity = Vector3(0, 0, 0)
 scale_amount_min = 6.0
 scale_amount_max = 6.0
 scale_amount_curve = SubResource("Curve_bas06")
-color = Color(2.732494, 1.7076137, 0.48618054, 1)
+color = Color(2.732, 0.48599988, 0.48599988, 1)
 color_ramp = SubResource("Gradient_bh7ef")
 
 [node name="Flare" type="CPUParticles3D" parent="." unique_id=541028]
@@ -91,7 +93,7 @@ gravity = Vector3(0, 0, 0)
 scale_amount_min = 4.0
 scale_amount_max = 6.0
 scale_amount_curve = SubResource("Curve_bas06")
-color = Color(3.1369078, 2.0185401, 0.58077997, 1)
+color = Color(2.732, 0.48599988, 0.48599988, 1)
 color_ramp = SubResource("Gradient_bas06")
 
 [node name="Shockwave" type="CPUParticles3D" parent="." unique_id=1511693038]
@@ -99,7 +101,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 material_override = SubResource("StandardMaterial3D_bh7ef")
 emitting = false
 amount = 1
-lifetime = 0.4
+lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
 mesh = SubResource("QuadMesh_bh7ef")
@@ -107,5 +109,5 @@ gravity = Vector3(0, 0, 0)
 scale_amount_min = 3.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_bas06")
-color = Color(3.1370003, 2.2111754, 0.5830001, 1)
+color = Color(2.732, 0.48599988, 0.48599988, 1)
 color_ramp = SubResource("Gradient_bas06")

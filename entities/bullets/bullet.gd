@@ -24,6 +24,7 @@ enum BulletState {
 # VARIABLES
 # =========================
 var state = BulletState.FLYING
+var _hit : bool = false
 
 # =========================
 # NODE REFERENCES
@@ -48,7 +49,7 @@ func _ready():
 # PHYSICS LOOP
 # =========================
 func _physics_process(delta):
-	print("STATE: ", state)
+	#print("STATE: ", state)
 
 	match state:
 		BulletState.FLYING:
@@ -78,20 +79,16 @@ func _handle_flying(delta):
 # COLLISION
 # =========================
 func _on_collision(collision: KinematicCollision3D):
-
-	var normal = collision.get_normal()
-
-	# Damage enemy
-	hitbox.activate(0.05)
-
-	# Slight push away (prevents sticking)
-	global_position += normal * 0.3
-
-	# Stop movement
+	if _hit:
+		return
+	_hit = true
+	var hit = collision.get_collider()
+	global_position += collision.get_normal() * 0.3
 	velocity = Vector3.ZERO
-
-	# Start falling
 	state = BulletState.FALLING
+	
+	if hit.is_in_group("enemy"):
+		hitbox.activate(0.05)
 
 
 # =========================
@@ -105,7 +102,7 @@ func _handle_falling(delta):
 	# Force drop after reaching near ground
 	if global_position.y < 0.5:
 		global_position.y = ground_y
-		print("FORCED DROP")
+		#print("FORCED DROP")
 		_drop()
 
 
@@ -134,10 +131,11 @@ func _drop():
 func _handle_dropped(delta):
 
 	var player = get_tree().get_first_node_in_group("player")
-	print("PLAYER FOUND: ", player)
+	#print("PLAYER FOUND: ", player)
 	
 	if player:
-		print("DIST: ", global_position.distance_to(player.global_position))
+		#print("DIST: ", global_position.distance_to(player.global_position))
+		pass
 	if not player:
 		return
 

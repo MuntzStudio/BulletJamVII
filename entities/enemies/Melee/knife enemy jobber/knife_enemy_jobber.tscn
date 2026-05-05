@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://ny26riyk4c1s"]
 
 [ext_resource type="Script" uid="uid://bls1kcbd0xlh1" path="res://entities/enemies/Melee/melee_enemy.gd" id="1_kt66h"]
+[ext_resource type="PackedScene" uid="uid://blpwpqgpxu1u1" path="res://assets/vfx/explosion_fx/explosion_ii.tscn" id="2_qe6p6"]
 [ext_resource type="BehaviorTree" uid="uid://dk2dbch1c4ody" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobberbt.tres" id="2_rvy6n"]
 [ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="3_sej5f"]
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="4_3e0it"]
-[ext_resource type="PackedScene" uid="uid://c1mh1jvh8bmhd" path="res://assets/vfx/explosion_fx/explosion_i.tscn" id="5_svub2"]
+[ext_resource type="PackedScene" uid="uid://c2gdsj4fui0n4" path="res://scripts/health_bar.tscn" id="6_o3sf3"]
+[ext_resource type="PackedScene" uid="uid://36snc0ndulya" path="res://assets/vfx/hit_fx/hit_particle_i.tscn" id="6_qe6p6"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akotg"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svub2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyjgv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svub2"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_akotg"]
-material = SubResource("StandardMaterial3D_kyjgv")
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o3sf3"]
+material = SubResource("StandardMaterial3D_svub2")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44xyj"]
 albedo_color = Color(1, 0.84375, 0, 1)
@@ -52,25 +54,27 @@ var/attack_range/value = 0.0
 var/attack_range/hint = 0
 var/attack_range/hint_string = ""
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_sej5f"]
-size = Vector3(0.81347656, 0.31396484, 1.3361816)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qe6p6"]
+height = 0.28100586
+radius = 0.70751953
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3e0it"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_qe6p6"]
+viewport_path = NodePath("SubViewport")
 
 [node name="KnifeEnemyJobber" type="CharacterBody3D" unique_id=110487065 groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_kt66h")
 friction = 0.01
 acceleration = 0.5
-max_health = 100.0
+death_vfx = ExtResource("2_qe6p6")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=989533886]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_akotg")
+shape = SubResource("CapsuleShape3D_svub2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=189031947]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("BoxMesh_akotg")
+mesh = SubResource("CapsuleMesh_o3sf3")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=214045611]
 transform = Transform3D(1, 0, 0, 0, -0.70710677, 0.7071068, 0, -0.7071068, -0.70710677, 0.0024986267, 1.8004284, 0.72291327)
@@ -89,7 +93,6 @@ behavior_tree = ExtResource("2_rvy6n")
 blackboard_plan = SubResource("BlackboardPlan_nqw3a")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=699750744]
-visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -100,9 +103,9 @@ hit_type = 2
 metadata/_custom_type_script = "uid://3u303es7vhe4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1821485198]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2095764, 0.13835227)
-shape = SubResource("BoxShape3D_sej5f")
-debug_color = Color(0, 0.6, 0.7019608, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0685852, 0.027199805)
+shape = SubResource("CylinderShape3D_qe6p6")
+debug_color = Color(0.34859782, 0.023593755, 0.471875, 1)
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=1876460349 node_paths=PackedStringArray("mesh") groups=["enemy"]]
 collision_layer = 4
@@ -110,11 +113,15 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("4_3e0it")
 mesh = NodePath("../MeshInstance3D")
-hit_vfx = ExtResource("5_svub2")
+hit_vfx = ExtResource("6_qe6p6")
 hit_color = Color(0.9312496, 0, 1, 1)
 knockback_multiplier = 0.5
 metadata/_custom_type_script = "uid://cppim11crlu1t"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1436230098]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9861353, 0)
-shape = SubResource("BoxShape3D_3e0it")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1512768893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_svub2")
+
+[node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("6_o3sf3")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
+texture = SubResource("ViewportTexture_qe6p6")

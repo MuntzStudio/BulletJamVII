@@ -1,19 +1,28 @@
 class_name MeleeEnemy
 extends CharacterBody3D
 
-const GRAVITY := 9.8
 @export var friction: float = 0.15
 @export var acceleration: float = 0.2
 @export var max_health := 50.0
+@export var death_vfx : PackedScene 
 
-var health := max_health
+const GRAVITY := 9.8
+
+var health: float
 var knockback := Vector3.ZERO
+var _is_dying: bool = false
 
+
+@onready var bt_player: BTPlayer = $BTPlayer
+@onready var health_bar: HealthBar = $HealthBar/SubViewport/Panel/HealthBar
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var hurtbox: Hurtbox = $Hurtbox
 
 func _ready() -> void:
+	health = max_health
+	health_bar.init_health(max_health)
+	print("health: ", health, " max: ", max_health)
 	hurtbox.damage_taken.connect(_on_damage_taken)
 	GameManager.register_enemy(self)
 
@@ -28,7 +37,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _on_damage_taken(hitbox: Hitbox) -> void:
+	if _is_dying:
+		return
+	
+	
 	health -= hitbox.damage
+	health_bar._on_health_changed(health, max_health)
+	VFX.hitstop(0.2, 0.3)
 
 	var knock_dir = (global_position - hitbox.global_position).normalized()
 	knock_dir.y = 0.0
@@ -36,10 +51,20 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 	velocity.z = knock_dir.z * hitbox.knockback_force * hurtbox.knockback_multiplier
 
 	if health <= 0.0:
+		_is_dying = true
 		_die()
 
 func _die() -> void:
-	queue_free()  # replace with death animation later
+	hurtbox.make_invulnerable(1)
+	set_physics_process(false)
+	bt_player.set_active(false)
+	var hitbox = get_node_or_null("Hitbox")
+	if hitbox:
+		hitbox.set_active(false)
+	if death_vfx:
+		VFX.spawn(death_vfx, self)
+	await get_tree().create_timer(1.0).timeout
+	queue_free()
 
 func move(desired_velocity: Vector3) -> void:
 	velocity.x = lerpf(velocity.x, desired_velocity.x, acceleration)

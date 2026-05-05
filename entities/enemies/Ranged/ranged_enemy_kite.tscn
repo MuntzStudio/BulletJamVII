@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://hjwrlh2lg4i5" path="res://entities/enemies/Ranged/ranged_enemy.gd" id="1_uy27c"]
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="2_8b2ox"]
 [ext_resource type="PackedScene" uid="uid://c1mh1jvh8bmhd" path="res://assets/vfx/explosion_fx/explosion_i.tscn" id="3_cgugl"]
+[ext_resource type="PackedScene" uid="uid://36snc0ndulya" path="res://assets/vfx/hit_fx/hit_particle_i.tscn" id="4_cgugl"]
 [ext_resource type="BehaviorTree" uid="uid://bkra5iil0mp4h" path="res://entities/enemies/Ranged/ranged_enemy_kite.tres" id="4_uy27c"]
+[ext_resource type="PackedScene" uid="uid://c2gdsj4fui0n4" path="res://scripts/health_bar.tscn" id="5_8b2ox"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r0a57"]
 
@@ -17,8 +19,6 @@ top_radius = 0.0
 bottom_radius = 0.2
 height = 0.5
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rw4vo"]
-
 [sub_resource type="Animation" id="Animation_gamjh"]
 resource_name = "idle"
 
@@ -29,11 +29,15 @@ _data = {
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_uy27c"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_cgugl"]
+viewport_path = NodePath("SubViewport")
+
 [node name="RangedEnemyKite" type="CharacterBody3D" unique_id=63386032 groups=["enemy"]]
 collision_layer = 4
 script = ExtResource("1_uy27c")
 friction = 0.1
 acceleration = 0.7
+death_vfx = ExtResource("3_cgugl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1380756014]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -63,13 +67,13 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("2_8b2ox")
 mesh = NodePath("../Armature/MeshInstance3D")
-hit_vfx = ExtResource("3_cgugl")
+hit_vfx = ExtResource("4_cgugl")
 hit_color = Color(0.9312496, 0, 1, 1)
 metadata/_custom_type_script = "uid://cppim11crlu1t"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=2027238462]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9861353, 0)
-shape = SubResource("BoxShape3D_rw4vo")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1010291274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_r0a57")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=729395448]
 libraries/ = SubResource("AnimationLibrary_uy27c")
@@ -77,3 +81,7 @@ libraries/ = SubResource("AnimationLibrary_uy27c")
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=694465931]
 behavior_tree = ExtResource("4_uy27c")
 blackboard_plan = SubResource("BlackboardPlan_uy27c")
+
+[node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("5_8b2ox")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
+texture = SubResource("ViewportTexture_cgugl")

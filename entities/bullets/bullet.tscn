@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="2_33ckv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5hax7"]
+radius = 0.25183606
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hax7"]
 albedo_color = Color(2.8215299, 1.5767143, 1.2010896, 1)
@@ -12,6 +13,7 @@ albedo_color = Color(2.8215299, 1.5767143, 1.2010896, 1)
 material = SubResource("StandardMaterial3D_5hax7")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_33ckv"]
+radius = 0.58807635
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a3f0k"]
 radius = 0.70135254
@@ -22,6 +24,7 @@ collision_mask = 5
 script = ExtResource("1_5hax7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1319153479]
+visible = false
 shape = SubResource("SphereShape3D_5hax7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=981951860]
@@ -29,18 +32,19 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("SphereMesh_5hax7")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=910296199]
-visible = false
 collision_layer = 0
 collision_mask = 4
+monitoring = false
 monitorable = false
 script = ExtResource("2_33ckv")
-damage = 5.0
 metadata/_custom_type_script = "uid://3u303es7vhe4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1741861491]
 shape = SubResource("SphereShape3D_33ckv")
+debug_color = Color(0.68002445, 0, 0.70196074, 0.41960785)
 
 [node name="PickupArea" type="Area3D" parent="." unique_id=544321634]
+visible = false
 collision_layer = 8
 collision_mask = 2
 monitoring = false
