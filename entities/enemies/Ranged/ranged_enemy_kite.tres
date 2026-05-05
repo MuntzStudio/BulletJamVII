@@ -1,11 +1,11 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://bkra5iil0mp4h"]
 
-[ext_resource type="Script" uid="uid://bnhnirfbd8bpd" path="res://ai/tasks/enemy/back_away.gd" id="1_1j20i"]
+[ext_resource type="Script" path="res://ai/tasks/enemy/back_away.gd" id="1_1j20i"]
 [ext_resource type="BlackboardPlan" uid="uid://ceiq6u70vhs8f" path="res://entities/enemies/Melee/melee_enemy_plan.tres" id="1_gexpw"]
 [ext_resource type="Script" uid="uid://cg2pj2vo7nxgj" path="res://ai/tasks/enemy/get_first_in_group.gd" id="1_n4gd4"]
 [ext_resource type="Script" uid="uid://5k8aql14su2b" path="res://ai/tasks/enemy/shoot.gd" id="2_n4gd4"]
 [ext_resource type="Script" uid="uid://dmmmrhligr5rg" path="res://ai/tasks/enemy/face_target.gd" id="3_j8i6x"]
-[ext_resource type="PackedScene" uid="uid://c7ov45jh4x1yy" path="res://entities/bullets/enemy_bullet.tscn" id="4_j8i6x"]
+[ext_resource type="PackedScene" uid="uid://negmobx436c4" path="res://entities/bullets/enemy_bullet.tscn" id="4_j8i6x"]
 [ext_resource type="Script" uid="uid://cqaraqtoaguyy" path="res://ai/tasks/enemy/in_range.gd" id="4_r54s6"]
 [ext_resource type="Script" uid="uid://dnuus4ch0mqyf" path="res://ai/tasks/enemy/navigate_to_target.gd" id="7_mdx4i"]
 

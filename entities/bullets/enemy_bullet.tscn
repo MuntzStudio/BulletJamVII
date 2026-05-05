@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://c7ov45jh4x1yy"]
+[gd_scene format=3 uid="uid://negmobx436c4"]
 
-[ext_resource type="Script" uid="uid://dpwsco6p65pjy" path="res://entities/bullets/enemy_bullet.gd" id="1_a2rgv"]
+[ext_resource type="Script" path="res://entities/bullets/enemy_bullet.gd" id="1_tirjj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5hax7"]
 radius = 0.2519101
@@ -15,7 +15,7 @@ material = SubResource("StandardMaterial3D_5hax7")
 collision_layer = 0
 collision_mask = 3
 input_ray_pickable = false
-script = ExtResource("1_a2rgv")
+script = ExtResource("1_tirjj")
 metadata/_custom_type_script = "uid://3u303es7vhe4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1319153479]
