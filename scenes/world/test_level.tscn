@@ -9,8 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bhv5syxqdskb" path="res://entities/enemies/Ranged/ranged_enemy_kite.tscn" id="6_32mv2"]
 [ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="7_gb1m8"]
 [ext_resource type="PackedScene" uid="uid://o35g241g04fh" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lunger.tscn" id="8_hskxw"]
-[ext_resource type="PackedScene" uid="uid://d03jwnugmxmkx" path="res://assets/models and textures/BulletBoy.blend" id="10_k461a"]
-[ext_resource type="PackedScene" uid="uid://lielddb6m5mr" path="res://assets/models and textures/BulletBoy.glb" id="11_ocnay"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gb1m8"]
 
@@ -122,11 +120,5 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1
 
 [node name="RangedEnemyKite2" parent="Enemies" unique_id=1890060648 instance=ExtResource("6_32mv2")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -2.5859299)
-
-[node name="BulletBoy" parent="." unique_id=1198538726 instance=ExtResource("10_k461a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1856422, 0.06377268, 2.756161)
-
-[node name="BulletBoy2" parent="." unique_id=1199129089 instance=ExtResource("11_ocnay")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4818087, 0.0637722, 3.6461658)
 
 [connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
