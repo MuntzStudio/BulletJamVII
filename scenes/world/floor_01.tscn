@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://o35g241g04fh" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lunger.tscn" id="6_mrpq7"]
 [ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="7_7sxwm"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="9_clh36"]
-[ext_resource type="PackedScene" uid="uid://07h1onwhcv3b" path="res://scenes/ui/spring_arm_pivot.tscn" id="10_es6r5"]
+[ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="10_8i2al"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/kill_zone.gd" id="11_agmiw"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ntfmh"]
@@ -28,13 +28,16 @@ glow_enabled = true
 glow_intensity = 0.8
 glow_hdr_scale = 0.5
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_l4n5r"]
+size = Vector3(31.851563, 8.982422, 33)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svnt0"]
 albedo_texture = ExtResource("3_3boyv")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_l4n5r"]
-size = Vector3(31.851563, 8.982422, 33)
+[sub_resource type="SphereShape3D" id="SphereShape3D_es6r5"]
+radius = 0.2
 
 [node name="Floor01" type="Node3D" unique_id=1187036097]
 
@@ -54,6 +57,16 @@ environment = SubResource("Environment_mrpq7")
 [node name="Room1" type="Node3D" parent="." unique_id=1381049443 node_paths=PackedStringArray("doors")]
 script = ExtResource("1_qf3yd")
 doors = [NodePath("Door")]
+
+[node name="Boundary" type="Area3D" parent="Room1" unique_id=523234198]
+collision_mask = 14
+monitorable = false
+script = ExtResource("4_ylf5x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/Boundary" unique_id=1622471572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.015625)
+shape = SubResource("BoxShape3D_l4n5r")
+debug_color = Color(0.98829025, 0, 0.099605866, 1)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Room1" unique_id=1415303655]
 navigation_mesh = ExtResource("2_es6r5")
@@ -110,25 +123,26 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.103241, 0, -5.1325254)
 
 [node name="KnifeEnemyJobber" parent="Room1" unique_id=783121951 instance=ExtResource("7_7sxwm")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.103241, 0, -5.1325254)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.890771, 0, -5.1325254)
 
 [node name="KnifeEnemyJobber2" parent="Room1" unique_id=1900215082 instance=ExtResource("7_7sxwm")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.896759, 0, -5.1325254)
-
-[node name="Boundary" type="Area3D" parent="Room1" unique_id=523234198]
-collision_mask = 14
-monitorable = false
-script = ExtResource("4_ylf5x")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/Boundary" unique_id=1622471572]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.015625)
-shape = SubResource("BoxShape3D_l4n5r")
-debug_color = Color(0.98829025, 0, 0.099605866, 1)
 
 [node name="Room2" type="Node3D" parent="." unique_id=518174832 node_paths=PackedStringArray("doors")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61)
 script = ExtResource("1_qf3yd")
 doors = [NodePath("Door")]
+
+[node name="Boundary" type="Area3D" parent="Room2" unique_id=1956357035]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_mask = 14
+monitorable = false
+script = ExtResource("4_ylf5x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room2/Boundary" unique_id=825818213]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.015625)
+shape = SubResource("BoxShape3D_l4n5r")
+debug_color = Color(0.98829025, 0, 0.099605866, 1)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Room2" unique_id=1717253489]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -182,17 +196,6 @@ material = SubResource("StandardMaterial3D_svnt0")
 [node name="Door" parent="Room2" unique_id=72289896 instance=ExtResource("5_3boyv")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -18)
 
-[node name="Boundary" type="Area3D" parent="Room2" unique_id=1956357035]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-collision_mask = 14
-monitorable = false
-script = ExtResource("4_ylf5x")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room2/Boundary" unique_id=825818213]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.015625)
-shape = SubResource("BoxShape3D_l4n5r")
-debug_color = Color(0.98829025, 0, 0.099605866, 1)
-
 [node name="KnifeEnemyLunger2" parent="Room2" unique_id=1098496725 instance=ExtResource("6_mrpq7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9999995, 0, 6)
 
@@ -202,12 +205,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.371127e-07, 0, -5)
 [node name="KnifeEnemyLunger" parent="Room2" unique_id=2019989765 instance=ExtResource("6_mrpq7")]
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=158692642]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 17)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.661297)
 
 [node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("9_clh36")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
-[node name="SpringArmPivot" parent="PlayerEntity" unique_id=793836662 instance=ExtResource("10_es6r5")]
+[node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=107952706 groups=["camera"]]
+script = ExtResource("10_8i2al")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerEntity/SpringArmPivot" unique_id=993235603]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 0, 0)
+collision_mask = 0
+shape = SubResource("SphereShape3D_es6r5")
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="PlayerEntity/SpringArmPivot/SpringArm3D" unique_id=2135416531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+cull_mask = 1
 
 [node name="DialogBox" type="CanvasLayer" parent="." unique_id=1690873290]
 

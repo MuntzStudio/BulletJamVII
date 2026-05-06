@@ -7,7 +7,13 @@
 [sub_resource type="BTAction" id="BTAction_7mlxn"]
 script = ExtResource("2_sbeja")
 
-[sub_resource type="BTRandomWait" id="BTRandomWait_1ti7c"]
+[sub_resource type="BTRandomWait" id="BTRandomWait_h7px6"]
+
+[sub_resource type="BTRunLimit" id="BTRunLimit_wgidt"]
+children = [SubResource("BTRandomWait_h7px6")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_sommb"]
+children = [SubResource("BTRunLimit_wgidt")]
 
 [sub_resource type="BTAction" id="BTAction_80yi4"]
 script = ExtResource("7_vliwn")
@@ -23,7 +29,7 @@ tired_duration = 1.0
 
 [sub_resource type="BTSequence" id="BTSequence_e2p1s"]
 custom_name = "Main"
-children = [SubResource("BTAction_7mlxn"), SubResource("BTRandomWait_1ti7c"), SubResource("BTAction_80yi4")]
+children = [SubResource("BTAction_7mlxn"), SubResource("BTAlwaysSucceed_sommb"), SubResource("BTAction_80yi4")]
 
 [resource]
 blackboard_plan = ExtResource("1_1ti7c")

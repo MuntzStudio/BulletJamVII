@@ -56,11 +56,11 @@ children = [SubResource("BTRepeat_ovte8"), SubResource("BTWait_6o4qy")]
 [sub_resource type="BTCondition" id="BTCondition_mdx4i"]
 script = ExtResource("4_r54s6")
 range_min = 0.0
-range_max = 12.0
+range_max = 8.0
 
 [sub_resource type="BTAction" id="BTAction_gexpw"]
 script = ExtResource("1_1j20i")
-safe_distance = 12.0
+safe_distance = 8.0
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_mdx4i"]
 custom_name = "Back Away"

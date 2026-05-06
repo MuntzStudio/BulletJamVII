@@ -11,6 +11,14 @@
 [sub_resource type="BTAction" id="BTAction_oqoyd"]
 script = ExtResource("2_8yah5")
 
+[sub_resource type="BTRandomWait" id="BTRandomWait_ndx12"]
+
+[sub_resource type="BTRunLimit" id="BTRunLimit_8yah5"]
+children = [SubResource("BTRandomWait_ndx12")]
+
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_osn6h"]
+children = [SubResource("BTRunLimit_8yah5")]
+
 [sub_resource type="BTCondition" id="BTCondition_ucc2j"]
 script = ExtResource("3_osn6h")
 range_min = 0.0
@@ -62,7 +70,7 @@ children = [SubResource("BTSequence_u5m3q"), SubResource("BTSequence_hi8dq")]
 
 [sub_resource type="BTSequence" id="BTSequence_e2p1s"]
 custom_name = "Main"
-children = [SubResource("BTAction_oqoyd"), SubResource("BTDynamicSelector_ndx12")]
+children = [SubResource("BTAction_oqoyd"), SubResource("BTAlwaysSucceed_osn6h"), SubResource("BTDynamicSelector_ndx12")]
 
 [resource]
 blackboard_plan = ExtResource("1_rmrub")
