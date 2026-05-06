@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cx5f52mvdcqcf"]
+
+[ext_resource type="PackedScene" uid="uid://d0r00s2pr1m41" path="res://assets/models and textures/Bullet.blend" id="1_muaf6"]
+
+[node name="Bullet" unique_id=890272238 instance=ExtResource("1_muaf6")]
+
+[node name="Cube" parent="." index="0" unique_id=759140112]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=449412953]
+autoplay = &"Neutral"
