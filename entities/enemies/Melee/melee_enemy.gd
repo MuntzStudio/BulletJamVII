@@ -15,7 +15,7 @@ var _is_dying: bool = false
 
 @onready var bt_player: BTPlayer = $BTPlayer
 @onready var health_bar: HealthBar = $HealthBar/SubViewport/Panel/HealthBar
-@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var anim_player: AnimationPlayer = find_child("AnimationPlayer")
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var hurtbox: Hurtbox = $Hurtbox
 

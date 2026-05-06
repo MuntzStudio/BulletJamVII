@@ -30,27 +30,52 @@ script = ExtResource("4_ndx12")
 [sub_resource type="BTAction" id="BTAction_gjx0h"]
 script = ExtResource("4_pw3ih")
 
-[sub_resource type="BBNode" id="BBNode_8yah5"]
-saved_value = NodePath("AnimationPlayer")
-resource_name = "AnimationPlayer"
+[sub_resource type="BBNode" id="BBNode_ndx12"]
+saved_value = NodePath("KnifeBoy/AnimationPlayer")
+resource_name = "KnifeBoy/AnimationPlayer"
 
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_pw3ih"]
-await_completion = 0.5
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_8yah5"]
+await_completion = 1.0
+animation_player = SubResource("BBNode_ndx12")
+animation_name = &"Charge"
+blend = 0.1
+
+[sub_resource type="BBNode" id="BBNode_8yah5"]
+saved_value = NodePath("KnifeBoy/AnimationPlayer")
+resource_name = "KnifeBoy/AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_osn6h"]
+await_completion = 1.0
 animation_player = SubResource("BBNode_8yah5")
-animation_name = &"wait"
+animation_name = &"Throw"
+blend = 0.1
 
 [sub_resource type="BTAction" id="BTAction_4t5np"]
 script = ExtResource("6_btg7i")
-lunge_speed = 120.0
+
+[sub_resource type="BTParallel" id="BTParallel_pw3ih"]
+num_successes_required = 2
+num_failures_required = 0
+children = [SubResource("BTPlayAnimation_osn6h"), SubResource("BTAction_4t5np")]
 
 [sub_resource type="BTSequence" id="BTSequence_u5m3q"]
 custom_name = "Attack"
-children = [SubResource("BTCondition_ucc2j"), SubResource("BTCondition_8yah5"), SubResource("BTAction_gjx0h"), SubResource("BTPlayAnimation_pw3ih"), SubResource("BTAction_4t5np")]
+children = [SubResource("BTCondition_ucc2j"), SubResource("BTCondition_8yah5"), SubResource("BTAction_gjx0h"), SubResource("BTPlayAnimation_8yah5"), SubResource("BTParallel_pw3ih")]
 
 [sub_resource type="BTCondition" id="BTCondition_ndx12"]
 script = ExtResource("3_osn6h")
 range_min = 0.0
 range_max = 20.0
+
+[sub_resource type="BBNode" id="BBNode_osn6h"]
+saved_value = NodePath("KnifeBoy/AnimationPlayer")
+resource_name = "KnifeBoy/AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_pw3ih"]
+await_completion = 1.0
+animation_player = SubResource("BBNode_osn6h")
+animation_name = &"RunForward"
+blend = 0.1
 
 [sub_resource type="BTAction" id="BTAction_7kh8n"]
 script = ExtResource("7_bypa1")
@@ -59,9 +84,14 @@ ring_min = 0.0
 ring_max = 5.0
 retarget_interval = 1.0
 
+[sub_resource type="BTParallel" id="BTParallel_kchdg"]
+num_successes_required = 2
+num_failures_required = 0
+children = [SubResource("BTPlayAnimation_pw3ih"), SubResource("BTAction_7kh8n")]
+
 [sub_resource type="BTSequence" id="BTSequence_hi8dq"]
 custom_name = "Chase"
-children = [SubResource("BTCondition_ndx12"), SubResource("BTAction_7kh8n")]
+children = [SubResource("BTCondition_ndx12"), SubResource("BTParallel_kchdg")]
 metadata/_weight_ = 4.000000000000001
 
 [sub_resource type="BTDynamicSelector" id="BTDynamicSelector_ndx12"]

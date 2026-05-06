@@ -35,7 +35,7 @@ func _tick(delta: float) -> Status:
 	bullet.global_position = spawn.global_position
 	var dir := (target.global_position - spawn.global_position).normalized()
 	dir.y = 0.0
-	bullet.direction = dir
+	bullet.launch(dir)
 	_shots_fired += 1
 
 	if _shots_fired >= burst_count:

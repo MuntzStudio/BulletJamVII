@@ -28,12 +28,13 @@ func make_invulnerable(duration : float = 1.0)-> void:
 	pass
 
 func _flash_color() -> void:
-	var mat: StandardMaterial3D = mesh.get_active_material(0).duplicate()
-	mat.albedo_color = hit_color
-	mesh.set_surface_override_material(0, mat)
-	
-	var timer := get_tree().create_timer(flash_duration, true, false, true)
-	timer.timeout.connect(_on_flash_done)
+	#var mat: StandardMaterial3D = mesh.get_active_material(0).duplicate()
+	#mat.albedo_color = hit_color
+	#mesh.set_surface_override_material(0, mat)
+	#
+	#var timer := get_tree().create_timer(flash_duration, true, false, true)
+	#timer.timeout.connect(_on_flash_done)
+	pass
 
 func _on_flash_done() -> void:
 	mesh.set_surface_override_material(0, null)
