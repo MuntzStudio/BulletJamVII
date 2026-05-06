@@ -3,13 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://lag6s0eg2gqi" path="res://assets/models and textures/BowBoy.blend" id="1_mu6qf"]
 [ext_resource type="Script" uid="uid://b2ecx7t2wrm4t" path="res://enemy_Eye.gd" id="2_wftub"]
 
-[node name="BowBoy" unique_id=1975205137 instance=ExtResource("1_mu6qf")]
+[node name="BowBoy" unique_id=1163754692 instance=ExtResource("1_mu6qf")]
 script = ExtResource("2_wftub")
 
-[node name="Armature" parent="." index="0" unique_id=650102424]
+[node name="Armature" parent="." index="0" unique_id=353200096]
 transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Armature" index="0" unique_id=1053886155]
+[node name="Skeleton3D" parent="Armature" index="0" unique_id=1204038676]
 bones/0/position = Vector3(-1.4210855e-14, 1.1331697, 0.5801018)
 bones/0/rotation = Quaternion(-0.46731746, 1.0038264e-07, -6.429755e-08, 0.8840896)
 bones/1/rotation = Quaternion(0.6435775, 5.0283195e-09, 1.55458e-07, 0.76538104)
@@ -85,6 +85,9 @@ bones/67/position = Vector3(-1.0397208, 0.553487, -0.58950067)
 bones/67/rotation = Quaternion(0.10808601, -0.28738397, -0.02581232, 0.95134723)
 bones/70/rotation = Quaternion(0.81834364, -2.0887904e-07, -2.8121346e-07, 0.57472926)
 bones/72/rotation = Quaternion(-0.2581146, -0.06456606, -0.06902716, 0.9614797)
+
+[node name="BowMain" parent="Armature/Skeleton3D" index="0" unique_id=1335414375]
+transform = Transform3D(1, -1.7672761e-09, 1.3997824e-07, 1.2849787e-07, 0.40834057, -0.9128295, -5.5545648e-08, 0.9128295, 0.40834057, 6.818724e-08, 4.1955824, -1.2475622)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
