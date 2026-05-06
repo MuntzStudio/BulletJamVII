@@ -1,4 +1,3 @@
-@tool
 extends Node3D
 
 @export var normal_length: float = 10.0
@@ -77,6 +76,7 @@ func _process(delta: float) -> void:
 	spring_arm.position = shake_offset
 
 func zoom_out() -> void:
+	print(self, "zoomed out")
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(spring_arm, "spring_length", pan_length, zoom_speed)\
 		.set_ease(Tween.EASE_OUT)\
@@ -86,6 +86,7 @@ func zoom_out() -> void:
 		.set_trans(Tween.TRANS_CUBIC)
 
 func zoom_in() -> void:
+	print(self, "zoomed in")
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(spring_arm, "spring_length", normal_length, zoom_speed)\
 		.set_ease(Tween.EASE_IN)\

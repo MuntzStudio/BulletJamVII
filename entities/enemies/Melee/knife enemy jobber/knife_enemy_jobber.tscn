@@ -90,7 +90,6 @@ libraries/ = SubResource("AnimationLibrary_3e0it")
 
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=1966809227]
 behavior_tree = ExtResource("2_rvy6n")
-active = false
 blackboard_plan = SubResource("BlackboardPlan_nqw3a")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=699750744]

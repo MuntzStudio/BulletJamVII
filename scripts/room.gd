@@ -1,4 +1,3 @@
-@tool
 class_name Room
 extends Node3D
 
@@ -29,7 +28,7 @@ func _ready() -> void:
 func _on_player_entered() -> void:
 	if _active or _cleared:
 		return
-	camera.zoom_in()
+	camera.zoom_out()
 	_active = true
 	_lock_doors()
 	
