@@ -85,7 +85,7 @@ debug_color = Color(0.98829025, 0, 0.099605866, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.175939)
 
 [node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=554351378]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -360.9844, 0, 669.1294)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1338.2595, 0, 844.51044)
 script = ExtResource("2_swvrr")
 pan_length = 8.0
 zoom_speed = 0.5
@@ -115,7 +115,6 @@ shape = SubResource("WorldBoundaryShape3D_7lndr")
 
 [node name="EnemySpawner" parent="." unique_id=1233706339 instance=ExtResource("11_2b8qx")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, -14.509583)
-spawn_interval = 1.0
 enemy_scenes = Array[PackedScene]([ExtResource("6_32mv2"), ExtResource("8_hskxw"), ExtResource("7_gb1m8")])
 
 [node name="DialogBox" type="CanvasLayer" parent="." unique_id=498254453]

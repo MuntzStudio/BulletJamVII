@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dix573tcuj5bf"]
+
+[ext_resource type="PackedScene" uid="uid://gdmoo0mt8elv" path="res://assets/models and textures/Arrow.blend" id="1_sb8m5"]
+
+[node name="Arrow" unique_id=2035061417 instance=ExtResource("1_sb8m5")]
+
+[node name="Cube" parent="." index="0" unique_id=1129727002]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
