@@ -3,13 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://dv3f3u6qp7chq" path="res://assets/models and textures/KnifeBoy.blend" id="1_t5y2v"]
 [ext_resource type="Script" uid="uid://b2ecx7t2wrm4t" path="res://enemy_Eye.gd" id="2_hfpw3"]
 
-[node name="KnifeBoy" unique_id=759945875 instance=ExtResource("1_t5y2v")]
+[node name="KnifeBoy" unique_id=1080791561 instance=ExtResource("1_t5y2v")]
 script = ExtResource("2_hfpw3")
 
-[node name="Armature" parent="." index="0" unique_id=1122792329]
+[node name="Armature" parent="." index="0" unique_id=1324836202]
 transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Armature" index="0" unique_id=646995809]
+[node name="Skeleton3D" parent="Armature" index="0" unique_id=1109055123]
 bones/0/position = Vector3(-7.1054274e-15, 2.0642846, -0.18128179)
 bones/0/rotation = Quaternion(-0.15553209, -0.00033114976, 0.0016227218, 0.98782945)
 bones/1/rotation = Quaternion(1.6697754e-13, 4.367351e-11, -1.15505834e-10, 1)
@@ -73,8 +73,11 @@ bones/54/rotation = Quaternion(0, -0.15724915, 0, 0.98755896)
 bones/57/rotation = Quaternion(0.81834364, -2.0051307e-07, -2.9846956e-07, 0.57472926)
 bones/59/rotation = Quaternion(0, 1.4901161e-08, 0, 1)
 
-[node name="ClosedEyes" parent="Armature/Skeleton3D" index="0" unique_id=966892410]
+[node name="ClosedEyes" parent="Armature/Skeleton3D" index="0" unique_id=124040624]
 visible = false
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1739485092]
+autoplay = &"Idle1"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

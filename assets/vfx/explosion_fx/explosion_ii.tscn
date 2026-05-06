@@ -58,6 +58,7 @@ point_count = 2
 colors = PackedColorArray(1, 1, 1, 1, 0.471875, 0.471875, 0.471875, 0.5)
 
 [node name="ExplosionII" type="Node3D" unique_id=2080390735]
+process_mode = 3
 script = ExtResource("1_y10b7")
 
 [node name="Spark" type="CPUParticles3D" parent="." unique_id=519734990]

@@ -1,8 +1,11 @@
 extends Node3D
 
-@export var normal_length: float = 3.0
-@export var hidden_length: float = 5.0
-@export var zoom_speed: float = 3.0
+@export var normal_length: float = 10.0
+@export var pan_length: float = 12.0
+@export var normal_rotation_x: float = -45.0  
+@export var pan_rotation_x: float = -55.0 
+@export var zoom_speed: float = 1.0
+
 
 # Camera rotation
 @export var rotation_speed: float = 10.0  # lerp speed for snapping
@@ -33,6 +36,7 @@ func _input(event: InputEvent) -> void:
 		target_rotation_y += PI / 2.0
 	if event.is_action_pressed("cam_rotate_right"):
 		target_rotation_y -= PI / 2.0
+
 
 func _process(delta: float) -> void:
 	if not player:
@@ -70,3 +74,23 @@ func _process(delta: float) -> void:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
 
 	spring_arm.position = shake_offset
+
+func zoom_out() -> void:
+	print(self, "zoomed out")
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(spring_arm, "spring_length", pan_length, zoom_speed)\
+		.set_ease(Tween.EASE_OUT)\
+		.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(spring_arm, "rotation_degrees:x", pan_rotation_x, zoom_speed)\
+		.set_ease(Tween.EASE_OUT)\
+		.set_trans(Tween.TRANS_CUBIC)
+
+func zoom_in() -> void:
+	print(self, "zoomed in")
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(spring_arm, "spring_length", normal_length, zoom_speed)\
+		.set_ease(Tween.EASE_IN)\
+		.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(spring_arm, "rotation_degrees:x", normal_rotation_x, zoom_speed)\
+		.set_ease(Tween.EASE_IN)\
+		.set_trans(Tween.TRANS_CUBIC)

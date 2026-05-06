@@ -4,10 +4,11 @@
 [ext_resource type="BlackboardPlan" uid="uid://ceiq6u70vhs8f" path="res://entities/enemies/Melee/melee_enemy_plan.tres" id="1_gexpw"]
 [ext_resource type="Script" uid="uid://cg2pj2vo7nxgj" path="res://ai/tasks/enemy/get_first_in_group.gd" id="1_n4gd4"]
 [ext_resource type="Script" uid="uid://5k8aql14su2b" path="res://ai/tasks/enemy/shoot.gd" id="2_n4gd4"]
-[ext_resource type="Script" uid="uid://dmmmrhligr5rg" path="res://ai/tasks/enemy/face_target.gd" id="3_j8i6x"]
 [ext_resource type="PackedScene" uid="uid://negmobx436c4" path="res://entities/bullets/enemy_bullet.tscn" id="4_j8i6x"]
 [ext_resource type="Script" uid="uid://cqaraqtoaguyy" path="res://ai/tasks/enemy/in_range.gd" id="4_r54s6"]
+[ext_resource type="Script" uid="uid://c8p0thkpj2j5t" path="res://ai/tasks/enemy/has_line_of_sight.gd" id="4_wdq44"]
 [ext_resource type="Script" uid="uid://dnuus4ch0mqyf" path="res://ai/tasks/enemy/navigate_to_target.gd" id="7_mdx4i"]
+[ext_resource type="Script" uid="uid://ds2e6kyx764x5" path="res://ai/tasks/enemy/strafe.gd" id="9_6o4qy"]
 
 [sub_resource type="BTAction" id="BTAction_r54s6"]
 script = ExtResource("1_n4gd4")
@@ -23,7 +24,11 @@ children = [SubResource("BTRunLimit_j8i6x")]
 [sub_resource type="BTCondition" id="BTCondition_j8i6x"]
 script = ExtResource("4_r54s6")
 range_min = 0.0
-range_max = 20.0
+range_max = 25.0
+
+[sub_resource type="BTCondition" id="BTCondition_6o4qy"]
+script = ExtResource("4_wdq44")
+ray_offset = Vector3(0, 1, 0)
 
 [sub_resource type="BTAction" id="BTAction_wdq44"]
 script = ExtResource("2_n4gd4")
@@ -33,10 +38,11 @@ burst_count = 5
 max_boomerangs = null
 
 [sub_resource type="BTWait" id="BTWait_mdx4i"]
+duration = 0.6
 
 [sub_resource type="BTSequence" id="BTSequence_pflie"]
 custom_name = "Fire Cycle"
-children = [SubResource("BTCondition_j8i6x"), SubResource("BTAction_wdq44"), SubResource("BTWait_mdx4i")]
+children = [SubResource("BTCondition_j8i6x"), SubResource("BTCondition_6o4qy"), SubResource("BTAction_wdq44"), SubResource("BTWait_mdx4i")]
 
 [sub_resource type="BTRepeat" id="BTRepeat_ovte8"]
 times = 3
@@ -52,11 +58,11 @@ children = [SubResource("BTRepeat_ovte8"), SubResource("BTWait_6o4qy")]
 [sub_resource type="BTCondition" id="BTCondition_mdx4i"]
 script = ExtResource("4_r54s6")
 range_min = 0.0
-range_max = 12.0
+range_max = 8.0
 
 [sub_resource type="BTAction" id="BTAction_gexpw"]
 script = ExtResource("1_1j20i")
-safe_distance = 12.0
+safe_distance = 8.0
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_mdx4i"]
 custom_name = "Back Away"
@@ -67,12 +73,13 @@ script = ExtResource("4_r54s6")
 range_min = 12.0
 range_max = 18.0
 
-[sub_resource type="BTAction" id="BTAction_6o4qy"]
-script = ExtResource("3_j8i6x")
+[sub_resource type="BTAction" id="BTAction_pflie"]
+script = ExtResource("9_6o4qy")
+pause_duration = 1.0
 
 [sub_resource type="BTSequence" id="BTSequence_mdx4i"]
 custom_name = "Stay"
-children = [SubResource("BTCondition_pflie"), SubResource("BTAction_6o4qy")]
+children = [SubResource("BTCondition_pflie"), SubResource("BTAction_pflie")]
 
 [sub_resource type="BTAction" id="BTAction_j8i6x"]
 script = ExtResource("7_mdx4i")

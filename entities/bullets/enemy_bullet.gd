@@ -12,6 +12,11 @@ func _ready():
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
 
+func launch(dir: Vector3) -> void:
+	direction = dir
+	if dir != Vector3.ZERO:
+		look_at(global_position - dir)
+
 func _process(delta):
 	position += direction * speed * delta
 

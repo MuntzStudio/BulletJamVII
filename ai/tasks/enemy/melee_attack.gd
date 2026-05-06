@@ -12,7 +12,6 @@ extends BTAction
 var _lunge_dir: Vector3 = Vector3.ZERO
 
 func _enter() -> void:
-	agent.anim_player.play("attack")
 	_lunge_dir = agent.basis.z
 	_lunge_dir.y = 0.0
 	agent.velocity.x = _lunge_dir.x * lunge_speed
@@ -24,9 +23,6 @@ func _tick(_delta: float) -> Status:
 		return FAILURE
 	# Let enemy.friction handle slowdown naturally
 	agent.apply_friction()
-	var anim_player: AnimationPlayer = agent.get_node("AnimationPlayer")
-	if anim_player.is_playing():
-		return RUNNING
 	if target.has_method("take_damage"):
 		target.take_damage(damage)
 	return SUCCESS

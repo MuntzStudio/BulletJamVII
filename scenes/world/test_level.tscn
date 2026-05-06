@@ -4,19 +4,20 @@
 [ext_resource type="NavigationMesh" uid="uid://d1b67jj5qvu3v" path="res://scenes/world/test_level_navigation.tres" id="1_3soa3"]
 [ext_resource type="Texture2D" uid="uid://b72wlekl31oad" path="res://assets/prototype/ProtoWall.png" id="1_7lndr"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="2_swvrr"]
+[ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="2_swvrr"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/boundary.gd" id="3_gb1m8"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/kill_zone.gd" id="4_7gmxp"]
 [ext_resource type="PackedScene" uid="uid://bhv5syxqdskb" path="res://entities/enemies/Ranged/boomerang_shooter_enemy.tscn" id="6_32mv2"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gb1m8"]
 
-[sub_resource type="Sky" id="Sky_swvrr"]
+[sub_resource type="Sky" id="Sky_hskxw"]
 sky_material = SubResource("PanoramaSkyMaterial_gb1m8")
 
 [sub_resource type="Environment" id="Environment_7lndr"]
 background_mode = 1
 background_color = Color(0.603125, 0.5201953, 0.5201953, 1)
-sky = SubResource("Sky_swvrr")
+sky = SubResource("Sky_hskxw")
 tonemap_mode = 2
 glow_enabled = true
 glow_intensity = 0.8
@@ -94,10 +95,13 @@ debug_color = Color(0.98829025, 0, 0.099605866, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.175939)
 
 [node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=554351378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1338.2595, 0, 844.51044)
 script = ExtResource("2_swvrr")
+pan_length = 8.0
+zoom_speed = 0.5
 
 [node name="SpringArm3D" type="SpringArm3D" parent="PlayerEntity/SpringArmPivot" unique_id=2018482159]
-transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.819152, 0, -0.819152, 0.5735764, 0, 0, -10.934586)
+transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.819152, 0, -0.819152, 0.5735764, 0, 0, 0)
 collision_mask = 0
 shape = SubResource("SphereShape3D_7lndr")
 spring_length = 12.0
@@ -119,7 +123,25 @@ shape = SubResource("WorldBoundaryShape3D_7lndr")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=976467393]
 
-[node name="boomerang_shooter_enemy" parent="Enemies" unique_id=63386032 instance=ExtResource("6_32mv2")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -5.58593)
+[node name="EnemySpawner" parent="." unique_id=1233706339 instance=ExtResource("11_2b8qx")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, -14.509583)
+enemy_scenes = Array[PackedScene]([ExtResource("6_32mv2"), ExtResource("8_hskxw"), ExtResource("7_gb1m8")])
+
+[node name="DialogBox" type="CanvasLayer" parent="." unique_id=498254453]
+
+[node name="Label" type="Label" parent="DialogBox" unique_id=347482287]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 160.0
+offset_right = 63.5
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Get rekked bozo"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]

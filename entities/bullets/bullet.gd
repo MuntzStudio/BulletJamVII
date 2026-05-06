@@ -32,7 +32,6 @@ var _hit : bool = false
 @onready var hitbox: Hitbox = $Hitbox
 @onready var pickup_area: Area3D = $PickupArea
 
-
 # =========================
 # READY
 # =========================
@@ -95,7 +94,6 @@ func _on_collision(collision: KinematicCollision3D):
 		var hurtbox = hit.get_node("Hurtbox")
 		if hurtbox:
 			hurtbox.take_damage(hitbox)
-
 
 # =========================
 # FALLING
