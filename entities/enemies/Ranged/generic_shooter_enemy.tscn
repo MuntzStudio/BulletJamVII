@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://cqfjxdee56yl8"]
+
+[ext_resource type="Script" uid="uid://hjwrlh2lg4i5" path="res://entities/enemies/Ranged/ranged_enemy.gd" id="1_cwf6w"]
+[ext_resource type="PackedScene" uid="uid://c1mh1jvh8bmhd" path="res://assets/vfx/explosion_fx/explosion_i.tscn" id="2_8urac"]
+[ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="3_4pecg"]
+[ext_resource type="PackedScene" uid="uid://36snc0ndulya" path="res://assets/vfx/hit_fx/hit_particle_i.tscn" id="4_301wg"]
+[ext_resource type="BehaviorTree" uid="uid://bkra5iil0mp4h" path="res://entities/enemies/Ranged/generic_shooter_enemy.tres" id="5_ooukl"]
+[ext_resource type="PackedScene" uid="uid://c2gdsj4fui0n4" path="res://scripts/health_bar.tscn" id="6_6sflm"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r0a57"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0a57"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_nq441"]
+material = SubResource("StandardMaterial3D_r0a57")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i37uu"]
+top_radius = 0.0
+bottom_radius = 0.2
+height = 0.5
+
+[sub_resource type="Animation" id="Animation_gamjh"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uy27c"]
+_data = {
+&"idle": SubResource("Animation_gamjh")
+}
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_uy27c"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8urac"]
+viewport_path = NodePath("SubViewport")
+
+[node name="generic_shooter_enemy" type="CharacterBody3D" unique_id=63386032 groups=["enemy"]]
+collision_layer = 4
+script = ExtResource("1_cwf6w")
+friction = 0.1
+acceleration = 0.7
+death_vfx = ExtResource("2_8urac")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1380756014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_r0a57")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=840516822]
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.49019608, 0.48713237, 0, 1)
+
+[node name="Armature" type="Node3D" parent="." unique_id=1244815875]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Armature" unique_id=1801829987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_nq441")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Armature" unique_id=351470292]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.37744546, 1.1443505, 0.62857413)
+mesh = SubResource("CylinderMesh_i37uu")
+
+[node name="BulletSpawn" type="Marker3D" parent="Armature/MeshInstance3D2" unique_id=1950188936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5434398, 0)
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=174862086 node_paths=PackedStringArray("mesh") groups=["enemy"]]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("3_4pecg")
+mesh = NodePath("../Armature/MeshInstance3D")
+hit_vfx = ExtResource("4_301wg")
+hit_color = Color(0.9312496, 0, 1, 1)
+metadata/_custom_type_script = "uid://cppim11crlu1t"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1010291274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_r0a57")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=729395448]
+libraries/ = SubResource("AnimationLibrary_uy27c")
+
+[node name="BTPlayer" type="BTPlayer" parent="." unique_id=694465931]
+behavior_tree = ExtResource("5_ooukl")
+blackboard_plan = SubResource("BlackboardPlan_uy27c")
+
+[node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("6_6sflm")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
+texture = SubResource("ViewportTexture_8urac")

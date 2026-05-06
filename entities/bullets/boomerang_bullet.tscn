@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://cjf0lghrtdj13"]
+
+[ext_resource type="Script" uid="uid://bd6a4yc7wbf8w" path="res://entities/bullets/boomerang_bullet.gd" id="1_tj6yx"]
+[ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="2_7g7ha"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5hax7"]
+radius = 0.2519101
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tj6yx"]
+albedo_color = Color(1, 0.57254905, 0, 1)
+emission_enabled = true
+emission = Color(0.7490196, 0.5372549, 0, 1)
+emission_energy_multiplier = 1.5
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tj6yx"]
+material = SubResource("StandardMaterial3D_tj6yx")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rukgb"]
+radius = 0.2631836
+height = 0.99902344
+
+[node name="BoomerangBullet" type="CharacterBody3D" unique_id=748919217 groups=["bullet"]]
+collision_layer = 0
+collision_mask = 3
+input_ray_pickable = false
+script = ExtResource("1_tj6yx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1319153479]
+shape = SubResource("SphereShape3D_5hax7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=981951860]
+transform = Transform3D(-9.4242205e-09, -0.64410627, 0, 0.21560104, -2.815478e-08, 0, 0, 0, 0.21532224, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_tj6yx")
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1450447317]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("2_7g7ha")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hitbox" unique_id=385863030]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_rukgb")

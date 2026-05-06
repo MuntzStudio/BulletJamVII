@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://negmobx436c4"]
 
-[ext_resource type="Script" path="res://entities/bullets/enemy_bullet.gd" id="1_tirjj"]
+[ext_resource type="Script" uid="uid://dpwsco6p65pjy" path="res://entities/bullets/enemy_bullet.gd" id="1_tirjj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5hax7"]
 radius = 0.2519101

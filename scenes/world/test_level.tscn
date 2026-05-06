@@ -3,13 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="1_2x7fr"]
 [ext_resource type="NavigationMesh" uid="uid://d1b67jj5qvu3v" path="res://scenes/world/test_level_navigation.tres" id="1_3soa3"]
 [ext_resource type="Texture2D" uid="uid://b72wlekl31oad" path="res://assets/prototype/ProtoWall.png" id="1_7lndr"]
-[ext_resource type="Script" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="2_swvrr"]
+[ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="2_swvrr"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/boundary.gd" id="3_gb1m8"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/kill_zone.gd" id="4_7gmxp"]
-[ext_resource type="PackedScene" uid="uid://bhv5syxqdskb" path="res://entities/enemies/Ranged/ranged_enemy_kite.tscn" id="6_32mv2"]
-[ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="7_gb1m8"]
-[ext_resource type="PackedScene" uid="uid://o35g241g04fh" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lunger.tscn" id="8_hskxw"]
-[ext_resource type="PackedScene" uid="uid://cbcbvvbfgpnq" path="res://scenes/world/enemy_spawner.tscn" id="11_2b8qx"]
+[ext_resource type="PackedScene" uid="uid://bhv5syxqdskb" path="res://entities/enemies/Ranged/boomerang_shooter_enemy.tscn" id="6_32mv2"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gb1m8"]
 
@@ -53,14 +50,26 @@ use_collision = true
 size = Vector3(30, 1, 30)
 material = SubResource("StandardMaterial3D_swvrr")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1200212856]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.767492, 1.4982735, 0)
-use_collision = true
-size = Vector3(9, 3, 1)
-material = SubResource("StandardMaterial3D_swvrr")
-
 [node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1936086927]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15, 1.5, 0)
+use_collision = true
+size = Vector3(30, 3, 1)
+material = SubResource("StandardMaterial3D_swvrr")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1382697727]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.87438774, 1.500001, -14.787449)
+use_collision = true
+size = Vector3(30, 3, 1)
+material = SubResource("StandardMaterial3D_swvrr")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1618646042]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.87438774, 1.500001, 14.527773)
+use_collision = true
+size = Vector3(30, 3, 1)
+material = SubResource("StandardMaterial3D_swvrr")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1681939385]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 14.44656, 1.5, 0)
 use_collision = true
 size = Vector3(30, 3, 1)
 material = SubResource("StandardMaterial3D_swvrr")
@@ -110,19 +119,7 @@ shape = SubResource("WorldBoundaryShape3D_7lndr")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=976467393]
 
-[node name="RangedEnemyKite" parent="Enemies" unique_id=63386032 instance=ExtResource("6_32mv2")]
+[node name="boomerang_shooter_enemy" parent="Enemies" unique_id=63386032 instance=ExtResource("6_32mv2")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -5.58593)
-
-[node name="KnifeEnemyLunger" parent="Enemies" unique_id=226929559 instance=ExtResource("8_hskxw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.083143, 0, 0.8293252)
-
-[node name="KnifeEnemyJobber" parent="Enemies" unique_id=110487065 instance=ExtResource("7_gb1m8")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.103241, 0, -5.1325254)
-
-[node name="RangedEnemyKite2" parent="Enemies" unique_id=1890060648 instance=ExtResource("6_32mv2")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -2.5859299)
-
-[node name="EnemySpawner" parent="." unique_id=1233706339 instance=ExtResource("11_2b8qx")]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, -14.509583)
 
 [connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
