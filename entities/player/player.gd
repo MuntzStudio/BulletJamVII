@@ -21,7 +21,7 @@ var current_bullets: int = 6
 #endregion EXPORTS 
 
 #region NODE REFS 
-@onready var bullet_spawn : Marker3D = $Pivot/BulletSpawnPoint
+@onready var bullet_spawn : Marker3D = $Pivot/BulletSpawn
 @onready var hsm          : LimboHSM = $LimboHSM
 @onready var hurtbox      : Hurtbox = $Hurtbox
 #endregion NODE REFS 
@@ -141,8 +141,6 @@ func _update_scaling():
 	current_dodge_speed = BASE_DODGE_SPEED * speed_multiplier
 
 #endregion SHOOTING
-
-
 
 #region MOUSE AIMING
 func _face_mouse() -> void:

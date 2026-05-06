@@ -12,7 +12,7 @@ config_version=5
 
 config/name="BulletJamVII"
 config/version="0.0.1"
-run/main_scene="uid://dmdd8h0fx211o"
+run/main_scene="uid://b11tac7gh5078"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
 [autoload]

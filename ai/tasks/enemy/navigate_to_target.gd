@@ -72,12 +72,7 @@ func _tick(delta: float) -> Status:
 		_roll_ring_point(b)
 
 	var dist_sq := Vector2(a.x - b.x, a.z - b.z).length_squared()
-	var attack_range: float = blackboard.get_var("attack_range", 2.0)
 
-# Stop moving if inside attack range
-	if dist_sq <= attack_range * attack_range:
-		agent.move(agent.velocity.lerp(Vector3.ZERO, 0.2)) 
-		return SUCCESS 
 
 	# Phase 2: approach after reaching ring (melee only)
 	if _at_ring and approach_after_offset:

@@ -9,18 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://bhv5syxqdskb" path="res://entities/enemies/Ranged/ranged_enemy_kite.tscn" id="6_32mv2"]
 [ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="7_gb1m8"]
 [ext_resource type="PackedScene" uid="uid://o35g241g04fh" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lunger.tscn" id="8_hskxw"]
-[ext_resource type="PackedScene" uid="uid://d03jwnugmxmkx" path="res://assets/models and textures/BulletBoy.blend" id="10_k461a"]
-[ext_resource type="PackedScene" uid="uid://lielddb6m5mr" path="res://assets/models and textures/BulletBoy.glb" id="11_ocnay"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gb1m8"]
 
-[sub_resource type="Sky" id="Sky_swvrr"]
+[sub_resource type="Sky" id="Sky_hskxw"]
 sky_material = SubResource("PanoramaSkyMaterial_gb1m8")
 
 [sub_resource type="Environment" id="Environment_7lndr"]
 background_mode = 1
 background_color = Color(0.603125, 0.5201953, 0.5201953, 1)
-sky = SubResource("Sky_swvrr")
+sky = SubResource("Sky_hskxw")
 tonemap_mode = 2
 glow_enabled = true
 glow_intensity = 0.8
@@ -87,6 +85,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.175939)
 
 [node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=554351378]
 script = ExtResource("2_swvrr")
+pan_length = 8.0
+zoom_speed = 0.5
 
 [node name="SpringArm3D" type="SpringArm3D" parent="PlayerEntity/SpringArmPivot" unique_id=2018482159]
 transform = Transform3D(1, 0, 0, 0, 0.5735764, 0.819152, 0, -0.819152, 0.5735764, 0, 0, -10.934586)
@@ -115,18 +115,26 @@ shape = SubResource("WorldBoundaryShape3D_7lndr")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -5.58593)
 
 [node name="KnifeEnemyLunger" parent="Enemies" unique_id=226929559 instance=ExtResource("8_hskxw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.083143, 0, 0.8293252)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.083143, 0, 6.829325)
 
-[node name="KnifeEnemyJobber" parent="Enemies" unique_id=110487065 instance=ExtResource("7_gb1m8")]
+[node name="KnifeEnemyJobber" parent="Enemies" unique_id=1478862454 instance=ExtResource("7_gb1m8")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.103241, 0, -5.1325254)
 
-[node name="RangedEnemyKite2" parent="Enemies" unique_id=1890060648 instance=ExtResource("6_32mv2")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, 0, -2.5859299)
+[node name="DialogBox" type="CanvasLayer" parent="." unique_id=498254453]
 
-[node name="BulletBoy" parent="." unique_id=1198538726 instance=ExtResource("10_k461a")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1856422, 0.06377268, 2.756161)
-
-[node name="BulletBoy2" parent="." unique_id=1199129089 instance=ExtResource("11_ocnay")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4818087, 0.0637722, 3.6461658)
+[node name="Label" type="Label" parent="DialogBox" unique_id=347482287]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 160.0
+offset_right = 63.5
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Get rekked bozo"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]

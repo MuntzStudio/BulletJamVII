@@ -3,6 +3,7 @@
 [ext_resource type="BlackboardPlan" uid="uid://ceiq6u70vhs8f" path="res://entities/enemies/Melee/melee_enemy_plan.tres" id="1_rmrub"]
 [ext_resource type="Script" uid="uid://cg2pj2vo7nxgj" path="res://ai/tasks/enemy/get_first_in_group.gd" id="2_8yah5"]
 [ext_resource type="Script" uid="uid://cqaraqtoaguyy" path="res://ai/tasks/enemy/in_range.gd" id="3_osn6h"]
+[ext_resource type="Script" uid="uid://c8p0thkpj2j5t" path="res://ai/tasks/enemy/has_line_of_sight.gd" id="4_ndx12"]
 [ext_resource type="Script" uid="uid://dmmmrhligr5rg" path="res://ai/tasks/enemy/face_target.gd" id="4_pw3ih"]
 [ext_resource type="Script" uid="uid://dvqemhh4pku1d" path="res://ai/tasks/enemy/melee_attack.gd" id="6_btg7i"]
 [ext_resource type="Script" uid="uid://dnuus4ch0mqyf" path="res://ai/tasks/enemy/navigate_to_target.gd" id="7_bypa1"]
@@ -14,6 +15,9 @@ script = ExtResource("2_8yah5")
 script = ExtResource("3_osn6h")
 range_min = 0.0
 range_max = 8.0
+
+[sub_resource type="BTCondition" id="BTCondition_8yah5"]
+script = ExtResource("4_ndx12")
 
 [sub_resource type="BTAction" id="BTAction_gjx0h"]
 script = ExtResource("4_pw3ih")
@@ -33,7 +37,7 @@ lunge_speed = 120.0
 
 [sub_resource type="BTSequence" id="BTSequence_u5m3q"]
 custom_name = "Attack"
-children = [SubResource("BTCondition_ucc2j"), SubResource("BTAction_gjx0h"), SubResource("BTPlayAnimation_pw3ih"), SubResource("BTAction_4t5np")]
+children = [SubResource("BTCondition_ucc2j"), SubResource("BTCondition_8yah5"), SubResource("BTAction_gjx0h"), SubResource("BTPlayAnimation_pw3ih"), SubResource("BTAction_4t5np")]
 
 [sub_resource type="BTCondition" id="BTCondition_ndx12"]
 script = ExtResource("3_osn6h")
@@ -43,8 +47,8 @@ range_max = 20.0
 [sub_resource type="BTAction" id="BTAction_7kh8n"]
 script = ExtResource("7_bypa1")
 stopping_distance = 5.0
-ring_min = 3.0
-ring_max = 8.0
+ring_min = 0.0
+ring_max = 5.0
 retarget_interval = 1.0
 
 [sub_resource type="BTSequence" id="BTSequence_hi8dq"]
@@ -52,13 +56,13 @@ custom_name = "Chase"
 children = [SubResource("BTCondition_ndx12"), SubResource("BTAction_7kh8n")]
 metadata/_weight_ = 4.000000000000001
 
-[sub_resource type="BTSelector" id="BTSelector_n3bhy"]
+[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_ndx12"]
 custom_name = "Combat"
 children = [SubResource("BTSequence_u5m3q"), SubResource("BTSequence_hi8dq")]
 
 [sub_resource type="BTSequence" id="BTSequence_e2p1s"]
 custom_name = "Main"
-children = [SubResource("BTAction_oqoyd"), SubResource("BTSelector_n3bhy")]
+children = [SubResource("BTAction_oqoyd"), SubResource("BTDynamicSelector_ndx12")]
 
 [resource]
 blackboard_plan = ExtResource("1_rmrub")

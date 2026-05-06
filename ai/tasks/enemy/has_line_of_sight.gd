@@ -4,7 +4,7 @@ extends BTCondition
 ## Returns FAILURE if target is invalid or blocked by wall.
 
 @export var target_var: StringName = &"target"
-@export var ray_offset: Vector3 = Vector3(0, 1, 0)  # shoot from chest height
+@export var ray_offset: Vector3 = Vector3(0, 0.5, 0)  # shoot from chest height
 
 func _generate_name() -> String:
 	return "HasLineOfSight to %s" % LimboUtility.decorate_var(target_var)

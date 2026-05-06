@@ -61,8 +61,8 @@ mesh = SubResource("BoxMesh_26q78")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7269325, 0)
 pitch_scale = 0.8
 
-[node name="BulletSpawnPoint" type="Marker3D" parent="Pivot" unique_id=513906964]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36517334, 0.24072266, 1.5049438)
+[node name="BulletSpawn" type="Marker3D" parent="Pivot" unique_id=513906964]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36517334, 0.24072266, 1.2104895)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=399078203]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

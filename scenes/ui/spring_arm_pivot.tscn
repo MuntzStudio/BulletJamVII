@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://07h1onwhcv3b"]
+
+[ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="1_d5rhp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_k7adv"]
+radius = 0.2
+
+[node name="SpringArmPivot" type="Node3D" unique_id=793836662 groups=["camera"]]
+script = ExtResource("1_d5rhp")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=317773431]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 0, -10.934586)
+collision_mask = 8
+shape = SubResource("SphereShape3D_k7adv")
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1181006372]
+cull_mask = 1
