@@ -39,10 +39,6 @@ folder_colors={
 "res://scenes/": "pink"
 }
 
-[global_group]
-
-enemy=""
-
 [input]
 
 ui_accept={

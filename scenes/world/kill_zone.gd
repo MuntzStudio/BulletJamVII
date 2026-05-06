@@ -18,7 +18,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy"):
 		await get_tree().create_timer(1.5).timeout
-		body.queue_free()
+		body._die()
 		# TODO: give points to player maybe
 	
 	elif body.is_in_group("player"):
@@ -26,5 +26,5 @@ func _on_body_entered(body: Node3D) -> void:
 		label.text = random_text
 		label.show()
 		await get_tree().create_timer(1.5).timeout
+		body._die()
 		label.hide()
-		get_tree().reload_current_scene()

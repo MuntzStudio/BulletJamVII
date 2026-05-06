@@ -14,6 +14,7 @@ extends StaticBody3D
 var enemies_spawned: int = 0
 
 func _ready() -> void:
+	$MeshInstance3D.hide()
 	timer.wait_time = spawn_interval
 	timer.timeout.connect(_on_timer_timeout)
 
@@ -61,6 +62,7 @@ func launch_enemy(enemy, direction: Vector3):
 	var d = direction.length()
 	var g = 9.8*2
 	var speed = sqrt((d*g)/sin(2*launch_angle))
+
 	# var launch_angle = .5 * arcsin((g*d)/speed)
 	var v0 = Vector3(speed * cos(launch_angle) * dir.x, speed * sin(launch_angle), speed * cos(launch_angle) * dir.x)
 	

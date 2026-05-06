@@ -52,12 +52,6 @@ func _on_player_exited() -> void:
 func _check_cleared() -> void:
 	if not _active:
 		return
-
-	print("spawner done: ", spawner.is_done() if spawner else "no spawner")
-	@warning_ignore("incompatible_ternary")
-	print("alive: ", get_node_or_null("Enemies").get_child_count() if get_node_or_null("Enemies") else "no enemies node")
-
-
 	# Wait for spawner to finish first
 	if spawner and not spawner.is_done():
 		return
@@ -66,7 +60,6 @@ func _check_cleared() -> void:
 	
 	# Filters only enemies that belong to this room
 	var mine := enemies.filter(func(e): return e.get_parent() == self or e.get_parent() == get_node_or_null("Enemies"))
-	print("mine count: ", mine.size())
 	if mine.size() == 0:
 		_on_cleared()
 

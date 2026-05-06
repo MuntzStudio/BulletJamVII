@@ -8,6 +8,7 @@ radius = 0.5053709
 [sub_resource type="SphereMesh" id="SphereMesh_ocnay"]
 
 [node name="EnemySpawner" type="StaticBody3D" unique_id=707684176]
+collision_layer = 0
 script = ExtResource("1_2s8lo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1664152757]

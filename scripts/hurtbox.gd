@@ -13,8 +13,7 @@ func  _ready() -> void:
 	monitoring = false
 
 func take_damage(hitbox: Hitbox) -> void:
-	print("took damage: ", hitbox.damage)
-	damage_taken.emit(hitbox)   # owner gets full hitbox data
+	damage_taken.emit(hitbox)   # ownerw gets full hitbox data
 	if audio:
 		AudioManager.play_spatial_sound(audio, global_position)
 	

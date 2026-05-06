@@ -36,6 +36,14 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+func move(desired_velocity: Vector3) -> void:
+	velocity.x = lerpf(velocity.x, desired_velocity.x, acceleration)
+	velocity.z = lerpf(velocity.z, desired_velocity.z, acceleration)
+
+func apply_friction() -> void:
+	velocity.x = lerpf(velocity.x, 0.0, friction)
+	velocity.z = lerpf(velocity.z, 0.0, friction)
+
 func _on_damage_taken(hitbox: Hitbox) -> void:
 	if _is_dying:
 		return
@@ -55,21 +63,31 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 		_die()
 
 func _die() -> void:
-	hurtbox.make_invulnerable(1)
+	hurtbox.make_invulnerable()
 	set_physics_process(false)
 	bt_player.set_active(false)
+	if health_bar:
+		health_bar.hide()
 	var hitbox = get_node_or_null("Hitbox")
 	if hitbox:
 		hitbox.set_active(false)
 	if death_vfx:
 		VFX.spawn(death_vfx, self)
-	await get_tree().create_timer(1.0).timeout
+	await _launch_goofy()
 	queue_free()
 
-func move(desired_velocity: Vector3) -> void:
-	velocity.x = lerpf(velocity.x, desired_velocity.x, acceleration)
-	velocity.z = lerpf(velocity.z, desired_velocity.z, acceleration)
-
-func apply_friction() -> void:
-	velocity.x = lerpf(velocity.x, 0.0, friction)
-	velocity.z = lerpf(velocity.z, 0.0, friction)
+func _launch_goofy() -> void:
+	var rand_dir := Vector3(randf_range(-1.0, 1.0), 0.5, randf_range(-1.0, 1.0)).normalized()
+	var launch_force := randf_range(10.0, 10.0)
+	
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(self, "global_position",
+		global_position + rand_dir * launch_force, 1.0)
+	tween.tween_property(self, "rotation",
+		rotation + Vector3(randf_range(-5.0, 5.0), randf_range(-5.0, 5.0), randf_range(-5.0, 5.0)), 1.0)
+	
+	# Fade any mesh found in children
+	for child in find_children("*", "MeshInstance3D", true):
+		tween.tween_property(child, "transparency", 1.0, 1.0)
+	
+	await tween.finished

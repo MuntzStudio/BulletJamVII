@@ -15,15 +15,13 @@
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ntfmh"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_es6r5"]
-
 [sub_resource type="Sky" id="Sky_swvrr"]
-sky_material = SubResource("PanoramaSkyMaterial_es6r5")
 
 [sub_resource type="Environment" id="Environment_mrpq7"]
-background_mode = 1
-background_color = Color(0.603125, 0.5201953, 0.5201953, 1)
+background_mode = 2
 sky = SubResource("Sky_swvrr")
+ambient_light_source = 2
+ambient_light_color = Color(0.43124998, 0.41191113, 0.32074216, 1)
 tonemap_mode = 2
 glow_enabled = true
 glow_intensity = 0.8
@@ -206,6 +204,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.661297)
 [node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("9_clh36")]
 
 [node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=107952706 groups=["camera"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1249.3372, 0, 910.26965)
 script = ExtResource("10_8i2al")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="PlayerEntity/SpringArmPivot" unique_id=993235603]

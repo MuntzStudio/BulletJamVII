@@ -13,6 +13,5 @@ func _on_body_exited(body):
 	if body.is_in_group("player"):
 		get_parent()._on_player_exited()
 	
-	print("EXIT DETECTED: ", body.name)
 	if body.has_method("on_out_of_bounds"):
 		body.on_out_of_bounds(self)
