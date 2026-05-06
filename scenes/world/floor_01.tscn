@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bhv5syxqdskb" path="res://entities/enemies/Ranged/ranged_enemy_kite.tscn" id="5_es6r5"]
 [ext_resource type="PackedScene" uid="uid://o35g241g04fh" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lunger.tscn" id="6_mrpq7"]
 [ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="7_7sxwm"]
+[ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/enemy_spawner.tscn" id="7_ea6u0"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="9_clh36"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="10_8i2al"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/kill_zone.gd" id="11_agmiw"]
@@ -119,14 +120,10 @@ material = SubResource("StandardMaterial3D_svnt0")
 [node name="Door" parent="Room1" unique_id=1117087749 instance=ExtResource("5_3boyv")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 18)
 
-[node name="KnifeEnemyLunger" parent="Room1" unique_id=110487065 instance=ExtResource("6_mrpq7")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.103241, 0, -5.1325254)
+[node name="Enemies" type="Node3D" parent="Room1" unique_id=1127079401]
 
-[node name="KnifeEnemyJobber" parent="Room1" unique_id=783121951 instance=ExtResource("7_7sxwm")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.890771, 0, -5.1325254)
-
-[node name="KnifeEnemyJobber2" parent="Room1" unique_id=1900215082 instance=ExtResource("7_7sxwm")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5.896759, 0, -5.1325254)
+[node name="EnemySpawner" parent="Room1" unique_id=707684176 instance=ExtResource("7_ea6u0")]
+enemy_scenes = Array[PackedScene]([ExtResource("7_7sxwm"), ExtResource("6_mrpq7")])
 
 [node name="Room2" type="Node3D" parent="." unique_id=518174832 node_paths=PackedStringArray("doors")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61)
@@ -196,13 +193,12 @@ material = SubResource("StandardMaterial3D_svnt0")
 [node name="Door" parent="Room2" unique_id=72289896 instance=ExtResource("5_3boyv")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -18)
 
-[node name="KnifeEnemyLunger2" parent="Room2" unique_id=1098496725 instance=ExtResource("6_mrpq7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9999995, 0, 6)
+[node name="Enemies" type="Node3D" parent="Room2" unique_id=872199785]
 
-[node name="RangedEnemyKite" parent="Room2" unique_id=63386032 instance=ExtResource("5_es6r5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.371127e-07, 0, -5)
-
-[node name="KnifeEnemyLunger" parent="Room2" unique_id=2019989765 instance=ExtResource("6_mrpq7")]
+[node name="EnemySpawner" parent="Room2" unique_id=1596448902 instance=ExtResource("7_ea6u0")]
+enemies_to_spawn = 7
+maintain_count = 4
+enemy_scenes = Array[PackedScene]([ExtResource("6_mrpq7"), ExtResource("5_es6r5")])
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=158692642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.661297)

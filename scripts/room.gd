@@ -1,3 +1,4 @@
+@tool
 class_name Room
 extends Node3D
 
@@ -6,6 +7,7 @@ signal room_cleared
 @export var doors: Array[Door] = []
 @export var enemy_group: StringName = &"enemy"
 @onready var camera: Node3D = get_tree().get_first_node_in_group("camera")
+@onready var spawner = get_node_or_null("EnemySpawner")
 
 var _active: bool = false
 var _cleared: bool = false
@@ -23,19 +25,22 @@ func _ready() -> void:
 	timer.timeout.connect(_check_cleared)
 	add_child(timer)
 
+
 func _on_player_entered() -> void:
 	if _active or _cleared:
 		return
-	camera.zoom_out()
-	
+	camera.zoom_in()
 	_active = true
 	_lock_doors()
 	
+	# Unfreeze pre-placed enemies
 	for enemy in get_children():
 		if enemy.is_in_group("enemy"):
 			enemy.process_mode = Node.PROCESS_MODE_INHERIT
 	
-	# TODO spawner launches enemies
+	# Launch spawner if present
+	if spawner:
+		spawner.activate()
 
 
 func _on_player_exited() -> void:
@@ -43,12 +48,25 @@ func _on_player_exited() -> void:
 		return  # room not cleared!!? no transition for you!
 	camera.zoom_in()
 
+
 func _check_cleared() -> void:
 	if not _active:
 		return
+
+	print("spawner done: ", spawner.is_done() if spawner else "no spawner")
+	@warning_ignore("incompatible_ternary")
+	print("alive: ", get_node_or_null("Enemies").get_child_count() if get_node_or_null("Enemies") else "no enemies node")
+
+
+	# Wait for spawner to finish first
+	if spawner and not spawner.is_done():
+		return
+	
 	var enemies := get_tree().get_nodes_in_group(enemy_group)
+	
 	# Filters only enemies that belong to this room
-	var mine := enemies.filter(func(e): return e.get_parent() == self)
+	var mine := enemies.filter(func(e): return e.get_parent() == self or e.get_parent() == get_node_or_null("Enemies"))
+	print("mine count: ", mine.size())
 	if mine.size() == 0:
 		_on_cleared()
 
