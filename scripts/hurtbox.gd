@@ -8,12 +8,15 @@ signal damage_taken(hitbox)
 @export var hit_color: Color = Color.WHITE     # flash color
 @export var flash_duration: float = 0.1
 @export var knockback_multiplier: float = 1.0  # enemies can resist knockback
+@export var is_invulnerable := false
 
 func  _ready() -> void:
 	monitoring = false
 
 func take_damage(hitbox: Hitbox) -> void:
-	damage_taken.emit(hitbox)   # ownerw gets full hitbox data
+	if is_invulnerable:
+		return
+	damage_taken.emit(hitbox)   # owner gets full hitbox data
 	if audio:
 		AudioManager.play_spatial_sound(audio, global_position)
 	
@@ -22,10 +25,9 @@ func take_damage(hitbox: Hitbox) -> void:
 	_flash_color()
 
 func make_invulnerable(duration : float = 1.0)-> void:
-	process_mode = Node.PROCESS_MODE_DISABLED
+	is_invulnerable = true
 	await get_tree().create_timer(duration).timeout
-	process_mode = Node.PROCESS_MODE_INHERIT
-	pass
+	is_invulnerable = false
 
 func _flash_color() -> void:
 	#var mat: StandardMaterial3D = mesh.get_active_material(0).duplicate()
@@ -36,5 +38,6 @@ func _flash_color() -> void:
 	#timer.timeout.connect(_on_flash_done)
 	pass
 
-func _on_flash_done() -> void:
-	mesh.set_surface_override_material(0, null)
+#func _on_flash_done() -> void:
+	#mesh.set_surface_override_material(0, null)
+	#pass

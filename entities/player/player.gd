@@ -8,22 +8,30 @@ var current_speed := BASE_SPEED
 const BASE_DODGE_SPEED := 15.0
 var current_dodge_speed := BASE_DODGE_SPEED
 
-const DODGE_DURATION := 0.3
+const DODGE_DURATION := 0.5
 const GRAVITY        := -20.0
 #endregion CONSTANTS
 
+#region SIGNALS
+signal hit_taken
+signal shot_fired
+#endregion SIGNALS
+
 #region EXPORTS 
 @export var bullet_scene: PackedScene
-@export var max_health : float = 100.0
-@export var fire_rate  : float = 0.15
+@export var max_health : float = 30.0
+@export var fire_rate  : float = 0.7
 @export var max_bullets: int = 6
 var current_bullets: int = 6
 #endregion EXPORTS 
 
 #region NODE REFS 
-@onready var bullet_spawn : Node3D = $BulletBoy/Armature/Skeleton3D/Nose/BulletSpawnPoint
+@onready var bullet_spawn : Node3D = $BulletBoy/Armature/Skeleton3D/Nose/BulletSpawn
 @onready var hsm          : LimboHSM = $LimboHSM
 @onready var hurtbox      : Hurtbox = $Hurtbox
+@onready var anim_controller: Node = $AnimController
+@onready var audio_controller: Node = $AudioController
+@onready var bullet_boy: Node3D = $BulletBoy
 #endregion NODE REFS 
 
 #region STATES UNDER LIMBOHSM
@@ -75,6 +83,7 @@ func _physics_process(delta: float) -> void:
 #region DAMAGE HANDLING
 func _on_damage_taken(hitbox: Hitbox) -> void:
 	health -= hitbox.damage
+	hit_taken.emit()
 	
 	# Knockback
 	var knock_dir = (global_position - hitbox.global_position).normalized()
@@ -108,38 +117,41 @@ func _handle_shooting(delta: float) -> void:
 func _shoot():
 	if current_bullets <= 0:
 		return
+	shot_fired.emit()
+	# tweak this to match the fire frame
+	await get_tree().create_timer(0.25).timeout  
 	
 	current_bullets -= 1
 	_update_scaling()
+	bullet_boy.update_bullets(current_bullets)
 
 	var bullet = bullet_scene.instantiate()
 	get_parent().add_child(bullet)
 
 	bullet.global_position = bullet_spawn.global_position
 
-	var dir := (_get_mouse_world_pos() - bullet_spawn.global_position).normalized()
+	var dir := _get_mouse_world_pos() - bullet_spawn.global_position
 	dir.y = 0.0
+	dir = dir.normalized()
 
 	bullet.velocity = dir * 25.0
+	bullet.look_at(bullet.global_position + dir, Vector3.UP)
 
 func collect_bullet(amount: int):
 	current_bullets = clamp(current_bullets + amount, 0, max_bullets)
 	_update_scaling()
+	bullet_boy.update_bullets(current_bullets)
 
 func _update_scaling():
-
 	var t = float(current_bullets) / float(max_bullets)
-
-	# More bullets --> bigger
 	var new_scale = lerp(0.4, 1.0, t)
-	self.scale = Vector3.ONE * new_scale
-
-	# Less bullets --> faster
+	
 	var speed_multiplier = lerp(1.6, 1.0, t)
-
 	current_speed = BASE_SPEED * speed_multiplier
 	current_dodge_speed = BASE_DODGE_SPEED * speed_multiplier
-
+	
+	bullet_boy._scale_Boy(new_scale)
+	pass
 #endregion SHOOTING
 
 #region MOUSE AIMING
@@ -180,3 +192,13 @@ func get_input_dir() -> Vector3:
 	
 	return dir
 #endregion HELPERS
+
+#region DEBUG
+func _input(event: InputEvent) -> void:
+	if not OS.is_debug_build():
+		return
+	
+	if event.is_action_pressed("ui_cancel") and not event.echo:
+		hurtbox.is_invulnerable = !hurtbox.is_invulnerable
+		print("HULK SMASH? : ", hurtbox.is_invulnerable)
+#endregion DEBUG

@@ -24,7 +24,6 @@ func _ready() -> void:
 	health_bar.init_health(max_health)
 	print("health: ", health, " max: ", max_health)
 	hurtbox.damage_taken.connect(_on_damage_taken)
-	GameManager.register_enemy(self)
 
 
 func _physics_process(delta: float) -> void:

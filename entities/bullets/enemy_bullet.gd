@@ -13,9 +13,9 @@ func _ready():
 	queue_free()
 
 func launch(dir: Vector3) -> void:
-	direction = dir
-	if dir != Vector3.ZERO:
-		look_at(global_position - dir)
+	direction = dir.normalized()
+	if direction != Vector3.ZERO:
+		look_at(global_position - direction)
 
 func _process(delta):
 	position += direction * speed * delta

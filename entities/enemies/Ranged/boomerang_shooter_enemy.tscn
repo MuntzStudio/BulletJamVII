@@ -31,7 +31,7 @@ debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(0.49019608, 0.48713237, 0, 1)
 
-[node name="BowBoy" parent="." unique_id=1163754692 instance=ExtResource("3_l0aa2")]
+[node name="BowBoy" parent="." unique_id=447102159 instance=ExtResource("3_l0aa2")]
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=174862086 groups=["enemy"]]
 collision_layer = 4
@@ -52,4 +52,5 @@ blackboard_plan = SubResource("BlackboardPlan_uy27c")
 
 [node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("5_8b2ox")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
+visible = false
 texture = SubResource("ViewportTexture_mqy2i")

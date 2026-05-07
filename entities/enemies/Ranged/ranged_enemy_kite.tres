@@ -10,39 +10,40 @@
 [ext_resource type="Script" uid="uid://cqaraqtoaguyy" path="res://ai/tasks/enemy/in_range.gd" id="4_r54s6"]
 [ext_resource type="Script" uid="uid://c8p0thkpj2j5t" path="res://ai/tasks/enemy/has_line_of_sight.gd" id="4_wdq44"]
 [ext_resource type="Script" uid="uid://dnuus4ch0mqyf" path="res://ai/tasks/enemy/navigate_to_target.gd" id="7_mdx4i"]
+[ext_resource type="Script" uid="uid://d0lc102u33tb4" path="res://ai/tasks/enemy/set_anim_tree_param.gd" id="7_wicvo"]
 [ext_resource type="Script" uid="uid://ds2e6kyx764x5" path="res://ai/tasks/enemy/strafe.gd" id="9_6o4qy"]
+[ext_resource type="Script" uid="uid://bwfrghui6nodp" path="res://ai/tasks/enemy/set_anim_state.gd" id="11_ovte8"]
 
-[sub_resource type="BTAction" id="BTAction_r54s6"]
+[sub_resource type="BTAction" id="BTAction_tq22l"]
+script = ExtResource("11_ovte8")
+state = "Idle1"
+
+[sub_resource type="BTAction" id="BTAction_qw462"]
 script = ExtResource("1_n4gd4")
 
-[sub_resource type="BTRandomWait" id="BTRandomWait_mdx4i"]
+[sub_resource type="BTRandomWait" id="BTRandomWait_foky5"]
 
-[sub_resource type="BTRunLimit" id="BTRunLimit_j8i6x"]
-children = [SubResource("BTRandomWait_mdx4i")]
+[sub_resource type="BTRunLimit" id="BTRunLimit_d74hl"]
+children = [SubResource("BTRandomWait_foky5")]
 
-[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_wdq44"]
-children = [SubResource("BTRunLimit_j8i6x")]
+[sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_tq22l"]
+children = [SubResource("BTRunLimit_d74hl")]
+
+[sub_resource type="BTParallel" id="BTParallel_lx220"]
+num_successes_required = 3
+num_failures_required = 0
+custom_name = "Summon"
+children = [SubResource("BTAction_tq22l"), SubResource("BTAction_qw462"), SubResource("BTAlwaysSucceed_tq22l")]
 
 [sub_resource type="BTCondition" id="BTCondition_wicvo"]
 script = ExtResource("3_pflie")
 
 [sub_resource type="BTAction" id="BTAction_pu6fi"]
 script = ExtResource("4_ovte8")
-reaction_duration = 0.0
-
-[sub_resource type="BBNode" id="BBNode_pflie"]
-saved_value = NodePath("BowBoy/AnimationPlayer")
-resource_name = "BowBoy/AnimationPlayer"
-
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_qw462"]
-await_completion = 0.5
-animation_player = SubResource("BBNode_pflie")
-animation_name = &"Hit"
-blend = 0.1
 
 [sub_resource type="BTSequence" id="BTSequence_foky5"]
 custom_name = "Hit reaction"
-children = [SubResource("BTCondition_wicvo"), SubResource("BTAction_pu6fi"), SubResource("BTPlayAnimation_qw462")]
+children = [SubResource("BTCondition_wicvo"), SubResource("BTAction_pu6fi")]
 
 [sub_resource type="BTCondition" id="BTCondition_j8i6x"]
 script = ExtResource("4_r54s6")
@@ -53,25 +54,43 @@ range_max = 25.0
 script = ExtResource("4_wdq44")
 ray_offset = Vector3(0, 1, 0)
 
+[sub_resource type="BTAction" id="BTAction_foky5"]
+script = ExtResource("7_wicvo")
+
+[sub_resource type="BTAction" id="BTAction_d74hl"]
+script = ExtResource("11_ovte8")
+state_machine_param = "parameters/Shoot/playback"
+state = "Draw"
+
+[sub_resource type="BTWait" id="BTWait_mdx4i"]
+duration = 0.9
+
 [sub_resource type="BTAction" id="BTAction_wdq44"]
 script = ExtResource("2_n4gd4")
 bullet_scene = ExtResource("4_j8i6x")
 fire_rate = 0.2
 burst_count = 1
 
-[sub_resource type="BTWait" id="BTWait_mdx4i"]
+[sub_resource type="BTWait" id="BTWait_wicvo"]
 duration = 0.6
+
+[sub_resource type="BTSequence" id="BTSequence_tq22l"]
+children = [SubResource("BTAction_d74hl"), SubResource("BTWait_mdx4i"), SubResource("BTAction_wdq44"), SubResource("BTWait_wicvo")]
+
+[sub_resource type="BTParallel" id="BTParallel_ux3tq"]
+num_failures_required = 0
+children = [SubResource("BTAction_foky5"), SubResource("BTSequence_tq22l")]
 
 [sub_resource type="BTSequence" id="BTSequence_pflie"]
 custom_name = "Fire Cycle"
-children = [SubResource("BTCondition_j8i6x"), SubResource("BTCondition_6o4qy"), SubResource("BTAction_wdq44"), SubResource("BTWait_mdx4i")]
+children = [SubResource("BTCondition_j8i6x"), SubResource("BTCondition_6o4qy"), SubResource("BTParallel_ux3tq")]
 
 [sub_resource type="BTRepeat" id="BTRepeat_ovte8"]
 times = 3
 children = [SubResource("BTSequence_pflie")]
 
 [sub_resource type="BTWait" id="BTWait_6o4qy"]
-duration = 3.0
+duration = 2.0
 
 [sub_resource type="BTSequence" id="BTSequence_j8i6x"]
 custom_name = "Fire Cycle"
@@ -80,28 +99,50 @@ children = [SubResource("BTRepeat_ovte8"), SubResource("BTWait_6o4qy")]
 [sub_resource type="BTCondition" id="BTCondition_mdx4i"]
 script = ExtResource("4_r54s6")
 range_min = 0.0
-range_max = 8.0
+range_max = 12.0
+
+[sub_resource type="BTAction" id="BTAction_ovte8"]
+script = ExtResource("11_ovte8")
+state = "RunForward"
 
 [sub_resource type="BTAction" id="BTAction_gexpw"]
 script = ExtResource("1_1j20i")
-safe_distance = 8.0
+safe_distance = 12.0
+
+[sub_resource type="BTParallel" id="BTParallel_tq22l"]
+num_successes_required = 2
+num_failures_required = 0
+children = [SubResource("BTAction_ovte8"), SubResource("BTAction_gexpw")]
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_mdx4i"]
 custom_name = "Back Away"
-children = [SubResource("BTCondition_mdx4i"), SubResource("BTAction_gexpw")]
+children = [SubResource("BTCondition_mdx4i"), SubResource("BTParallel_tq22l")]
 
 [sub_resource type="BTCondition" id="BTCondition_pflie"]
 script = ExtResource("4_r54s6")
 range_min = 12.0
 range_max = 18.0
 
+[sub_resource type="BTAction" id="BTAction_ux3tq"]
+script = ExtResource("11_ovte8")
+state = "RunForward"
+
 [sub_resource type="BTAction" id="BTAction_pflie"]
 script = ExtResource("9_6o4qy")
 pause_duration = 1.0
 
+[sub_resource type="BTParallel" id="BTParallel_e1f2h"]
+num_successes_required = 2
+num_failures_required = 0
+children = [SubResource("BTAction_ux3tq"), SubResource("BTAction_pflie")]
+
 [sub_resource type="BTSequence" id="BTSequence_mdx4i"]
 custom_name = "Stay"
-children = [SubResource("BTCondition_pflie"), SubResource("BTAction_pflie")]
+children = [SubResource("BTCondition_pflie"), SubResource("BTParallel_e1f2h")]
+
+[sub_resource type="BTAction" id="BTAction_wicvo"]
+script = ExtResource("11_ovte8")
+state = "RunForward"
 
 [sub_resource type="BTAction" id="BTAction_j8i6x"]
 script = ExtResource("7_mdx4i")
@@ -111,9 +152,15 @@ ring_max = 18.0
 approach_after_offset = false
 metadata/_weight_ = 9.000000000000002
 
+[sub_resource type="BTParallel" id="BTParallel_y2cue"]
+num_successes_required = 2
+num_failures_required = 0
+custom_name = "Chase"
+children = [SubResource("BTAction_wicvo"), SubResource("BTAction_j8i6x")]
+
 [sub_resource type="BTSelector" id="BTSelector_ovte8"]
 custom_name = "Move"
-children = [SubResource("BTDynamicSequence_mdx4i"), SubResource("BTSequence_mdx4i"), SubResource("BTAction_j8i6x")]
+children = [SubResource("BTDynamicSequence_mdx4i"), SubResource("BTSequence_mdx4i"), SubResource("BTParallel_y2cue")]
 
 [sub_resource type="BTParallel" id="BTParallel_wicvo"]
 num_successes_required = 2
@@ -126,7 +173,7 @@ children = [SubResource("BTSequence_foky5"), SubResource("BTParallel_wicvo")]
 
 [sub_resource type="BTSequence" id="BTSequence_wdq44"]
 custom_name = "Main"
-children = [SubResource("BTAction_r54s6"), SubResource("BTAlwaysSucceed_wdq44"), SubResource("BTDynamicSelector_d74hl")]
+children = [SubResource("BTParallel_lx220"), SubResource("BTDynamicSelector_d74hl")]
 
 [resource]
 blackboard_plan = ExtResource("1_gexpw")

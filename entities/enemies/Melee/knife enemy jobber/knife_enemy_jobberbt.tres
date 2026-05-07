@@ -27,6 +27,7 @@ children = [SubResource("BTRunLimit_wgidt")]
 [sub_resource type="BTParallel" id="BTParallel_sommb"]
 num_successes_required = 3
 num_failures_required = 0
+custom_name = "Summon"
 children = [SubResource("BTPlayAnimation_wgidt"), SubResource("BTAction_7mlxn"), SubResource("BTAlwaysSucceed_sommb")]
 
 [sub_resource type="BTAction" id="BTAction_80yi4"]
@@ -62,6 +63,7 @@ blend = 0.1
 speed = 1.3
 
 [sub_resource type="BTParallel" id="BTParallel_7mlxn"]
+custom_name = "fast"
 children = [SubResource("BTCheckVar_h7px6"), SubResource("BTPlayAnimation_h7px6")]
 
 [sub_resource type="BBVariant" id="BBVariant_80yi4"]
@@ -85,6 +87,7 @@ blend = 0.1
 speed = 0.5
 
 [sub_resource type="BTParallel" id="BTParallel_4d8ug"]
+custom_name = "slow"
 children = [SubResource("BTCheckVar_qulw4"), SubResource("BTPlayAnimation_gf08d")]
 
 [sub_resource type="BTSelector" id="BTSelector_w5jml"]
@@ -94,6 +97,7 @@ children = [SubResource("BTParallel_7mlxn"), SubResource("BTParallel_4d8ug")]
 [sub_resource type="BTParallel" id="BTParallel_wgidt"]
 num_successes_required = 2
 repeat = true
+custom_name = "Combat"
 children = [SubResource("BTAction_80yi4"), SubResource("BTSelector_w5jml")]
 
 [sub_resource type="BTSequence" id="BTSequence_e2p1s"]

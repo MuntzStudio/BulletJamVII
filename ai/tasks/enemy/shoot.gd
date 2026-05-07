@@ -52,7 +52,7 @@ func _tick(delta: float) -> Status:
 	# ==================================================
 	# SPAWN POINT
 	# ==================================================
-	var spawn: Node3D = agent.find_child("ArrowSpawn")
+	var spawn: Node3D = agent.find_child("BulletSpawn")
 
 	if spawn == null:
 		return FAILURE
@@ -146,21 +146,15 @@ func _tick(delta: float) -> Status:
 
 		var bullet = bullet_scene.instantiate()
 
-		agent.get_tree().current_scene.add_child(
-			bullet
-		)
+		agent.get_tree().current_scene.add_child(bullet)
 
 		bullet.global_position = spawn.global_position
 
-		var dir := (
-			target.global_position
-			- spawn.global_position
-		).normalized()
-
+		var dir := target.global_position - spawn.global_position
 		dir.y = 0.0
+		dir = dir.normalized()
 
-		bullet.direction = dir
-
+		bullet.launch(dir)
 
 	# ==================================================
 	# BURST TRACKING
