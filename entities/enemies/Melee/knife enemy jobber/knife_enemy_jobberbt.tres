@@ -41,6 +41,16 @@ tired_speed_multiplier = 0.5
 sprint_duration = 5.0
 tired_duration = 1.0
 
+[sub_resource type="BBVariant" id="BBVariant_1ti7c"]
+type = 3
+saved_value = 1.0
+resource_name = "1.0"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_h7px6"]
+variable = &"anim_speed"
+check_type = 3
+value = SubResource("BBVariant_1ti7c")
+
 [sub_resource type="BBNode" id="BBNode_1ti7c"]
 saved_value = NodePath("KnifeBoy/AnimationPlayer")
 resource_name = "KnifeBoy/AnimationPlayer"
@@ -49,9 +59,42 @@ resource_name = "KnifeBoy/AnimationPlayer"
 animation_player = SubResource("BBNode_1ti7c")
 animation_name = &"RunForward"
 blend = 0.1
+speed = 1.3
+
+[sub_resource type="BTParallel" id="BTParallel_7mlxn"]
+children = [SubResource("BTCheckVar_h7px6"), SubResource("BTPlayAnimation_h7px6")]
+
+[sub_resource type="BBVariant" id="BBVariant_80yi4"]
+type = 3
+saved_value = 1.0
+resource_name = "1.0"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_qulw4"]
+variable = &"anim_speed"
+check_type = 2
+value = SubResource("BBVariant_80yi4")
+
+[sub_resource type="BBNode" id="BBNode_0m2kc"]
+saved_value = NodePath("KnifeBoy/AnimationPlayer")
+resource_name = "KnifeBoy/AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_gf08d"]
+animation_player = SubResource("BBNode_0m2kc")
+animation_name = &"RunForward"
+blend = 0.1
+speed = 0.5
+
+[sub_resource type="BTParallel" id="BTParallel_4d8ug"]
+children = [SubResource("BTCheckVar_qulw4"), SubResource("BTPlayAnimation_gf08d")]
+
+[sub_resource type="BTSelector" id="BTSelector_w5jml"]
+custom_name = "Run"
+children = [SubResource("BTParallel_7mlxn"), SubResource("BTParallel_4d8ug")]
 
 [sub_resource type="BTParallel" id="BTParallel_wgidt"]
-children = [SubResource("BTAction_80yi4"), SubResource("BTPlayAnimation_h7px6")]
+num_successes_required = 2
+repeat = true
+children = [SubResource("BTAction_80yi4"), SubResource("BTSelector_w5jml")]
 
 [sub_resource type="BTSequence" id="BTSequence_e2p1s"]
 custom_name = "Main"

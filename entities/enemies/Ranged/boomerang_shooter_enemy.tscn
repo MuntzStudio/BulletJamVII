@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bhv5syxqdskb"]
+[gd_scene format=3 uid="uid://cs5p2da550xgv"]
 
 [ext_resource type="Script" uid="uid://hjwrlh2lg4i5" path="res://entities/enemies/Ranged/ranged_enemy.gd" id="1_uy27c"]
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="2_8b2ox"]
@@ -6,28 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://43lef5fhxpsf" path="res://assets/models and textures/bow_boy.tscn" id="3_l0aa2"]
 [ext_resource type="PackedScene" uid="uid://36snc0ndulya" path="res://assets/vfx/hit_fx/hit_particle_i.tscn" id="4_cgugl"]
 [ext_resource type="PackedScene" uid="uid://c2gdsj4fui0n4" path="res://scripts/health_bar.tscn" id="5_8b2ox"]
-[ext_resource type="BehaviorTree" uid="uid://cvfyofks360yg" path="res://entities/enemies/Ranged/boomerang_shooter_enemy.tres" id="5_yuwvs"]
+[ext_resource type="BehaviorTree" uid="uid://dbi88u1mf3vea" path="res://entities/enemies/Ranged/boomerang_shooter_enemy.tres" id="5_yuwvs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r0a57"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0a57"]
-albedo_color = Color(1, 0.46666667, 0.0627451, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_nq441"]
-material = SubResource("StandardMaterial3D_r0a57")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_i37uu"]
-top_radius = 0.0
-bottom_radius = 0.2
-height = 0.5
-
-[sub_resource type="Animation" id="Animation_gamjh"]
-resource_name = "idle"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uy27c"]
-_data = {
-&"idle": SubResource("Animation_gamjh")
-}
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_uy27c"]
 
@@ -52,91 +33,11 @@ debug_path_custom_color = Color(0.49019608, 0.48713237, 0, 1)
 
 [node name="BowBoy" parent="." unique_id=1163754692 instance=ExtResource("3_l0aa2")]
 
-[node name="Skeleton3D" parent="BowBoy/Armature" parent_id_path=PackedInt32Array(1163754692, 1989798630) index="0" unique_id=169497306]
-bones/0/position = Vector3(0, 2.0038574, 0)
-bones/0/rotation = Quaternion(-2.9802326e-08, 1.1920928e-07, -2.5243543e-29, 1)
-bones/1/rotation = Quaternion(0.46976095, 6.437809e-09, 9.7707776e-08, 0.8827938)
-bones/2/position = Vector3(-1.8663521, -1.3440448, -1.1335354)
-bones/2/rotation = Quaternion(-2.6822002e-07, 0.9351297, 0.35430548, -5.1650494e-07)
-bones/3/rotation = Quaternion(-0.318597, 0.41374344, -0.4488725, 0.72513855)
-bones/4/rotation = Quaternion(9.443399e-06, -4.4920614e-07, 0.81889385, 0.57394505)
-bones/6/rotation = Quaternion(7.4505815e-09, 1.8626451e-09, -7.450581e-09, 1)
-bones/7/position = Vector3(2.0861626e-07, 0.98964435, -0.0055107474)
-bones/7/rotation = Quaternion(-0.7800745, -1.6714452e-07, 1.4326672e-07, 0.6256867)
-bones/8/rotation = Quaternion(-0.7800745, -1.4326675e-07, 1.6714453e-07, 0.6256867)
-bones/9/position = Vector3(0.29035985, 0.99148196, 0.002756162)
-bones/9/rotation = Quaternion(-0.7800745, -1.6236896e-07, 1.337156e-07, 0.6256867)
-bones/10/rotation = Quaternion(-0.7800744, -1.7669569e-07, 1.5759346e-07, 0.62568676)
-bones/11/position = Vector3(-0.28189063, 0.9914816, 0.0027555404)
-bones/11/rotation = Quaternion(-0.7800745, -1.6714452e-07, 1.4326672e-07, 0.6256867)
-bones/12/rotation = Quaternion(-0.7800745, -1.4326675e-07, 1.6714453e-07, 0.6256867)
-bones/13/rotation = Quaternion(-0.02668257, -0.096458465, 0.48859102, 0.8667542)
-bones/14/rotation = Quaternion(-0.44386733, 0.110992596, -0.21570787, 0.8626313)
-bones/15/rotation = Quaternion(-0.4575338, -0.00064134423, 0.0012463972, 0.8891912)
-bones/16/position = Vector3(0.21706247, 3.6381092, -0.797824)
-bones/17/position = Vector3(2.3469172, 2.851, -4.791965)
-bones/17/rotation = Quaternion(-6.6731104e-07, 3.6765967e-14, 1, -3.9316295e-14)
-bones/18/position = Vector3(1.8663528, -1.3440453, -1.1335349)
-bones/18/rotation = Quaternion(-2.6822056e-07, 0.9351294, 0.3543064, -5.165048e-07)
-bones/19/rotation = Quaternion(-0.36736584, -0.45913976, 0.6620062, 0.46473753)
-bones/19/scale = Vector3(0.9999998, 1, 0.99999994)
-bones/20/rotation = Quaternion(-1.1636997e-06, -1.114031e-07, -0.66089594, 0.75047755)
-bones/22/rotation = Quaternion(9.313226e-09, -3.7252894e-09, 9.313224e-09, 1)
-bones/23/rotation = Quaternion(-0.7688636, -1.7503248e-07, 5.45084e-08, 0.6394128)
-bones/24/rotation = Quaternion(-0.7688636, -1.767359e-07, 6.662136e-08, 0.6394128)
-bones/25/rotation = Quaternion(-0.7688636, -1.7503247e-07, 5.2085802e-08, 0.6394128)
-bones/26/rotation = Quaternion(-0.7688636, -1.6437684e-07, 7.267786e-08, 0.6394128)
-bones/27/rotation = Quaternion(-0.7688636, -1.7503248e-07, 5.45084e-08, 0.6394128)
-bones/28/rotation = Quaternion(-0.7688636, -1.767359e-07, 6.662136e-08, 0.6394128)
-bones/29/rotation = Quaternion(-0.017710982, 0.22190264, -0.52960753, 0.8185117)
-bones/30/rotation = Quaternion(-0.46074978, -0.115213275, 0.21348318, 0.8537333)
-bones/31/rotation = Quaternion(-0.47493684, 0.0006650256, -0.0012338848, 0.88001883)
-bones/32/position = Vector3(-1.0545659, 2.8581574, -2.171315)
-bones/32/scale = Vector3(1, 0.99999994, 0.9999997)
-bones/33/position = Vector3(0.8821678, -1.2655761, -3.888471e-06)
-bones/33/scale = Vector3(1, 0.9999997, 0.99999994)
-bones/34/rotation = Quaternion(0.6612367, -0.6612366, -0.25053176, -0.25053188)
-bones/35/position = Vector3(-2.2895148, 0.062400937, -1.8289367)
-bones/36/rotation = Quaternion(0.7663624, -0.46081156, 0.17713709, -0.41105217)
-bones/37/rotation = Quaternion(0.2945302, 0.01024303, -0.011707474, 0.9555156)
-bones/38/rotation = Quaternion(-0.6393778, 0.14160654, 0.063967764, 0.7530284)
-bones/39/rotation = Quaternion(5.209695e-07, 2.997702e-09, -3.5227285e-07, 1)
-bones/40/rotation = Quaternion(0.6612365, 0.66123664, 0.25053185, -0.25053173)
-bones/41/position = Vector3(1.4047589, 0.36771935, -1.9460349)
-bones/42/rotation = Quaternion(0.7141927, 0.41734177, -0.31246427, -0.46703398)
-bones/43/rotation = Quaternion(0.3609575, -0.009995451, 0.014348024, 0.9324184)
-bones/44/rotation = Quaternion(-0.79138356, -0.050133344, -0.061987024, 0.60609925)
-bones/45/rotation = Quaternion(2.3288299e-06, 1.4843136e-09, 7.9674635e-07, 1)
-bones/48/rotation = Quaternion(-0.29893115, -1.1012737e-14, -7.127075e-08, 0.9542748)
-bones/50/rotation = Quaternion(0.3141854, -4.7739594e-15, 7.490761e-08, 0.94936174)
-bones/51/position = Vector3(1.45454795e-08, -3.0675662, -0.09633146)
-bones/51/rotation = Quaternion(1, -8.881791e-16, 1.9470718e-07, -2.98204e-21)
-bones/52/rotation = Quaternion(1, 4.553814e-14, -7.54979e-08, -3.0991475e-07)
-bones/53/position = Vector3(1.4974466e-06, 2.9327426, -6.2807474)
-bones/53/rotation = Quaternion(0.93512976, -1.8415694e-14, 2.2295234e-07, -0.35430545)
-bones/54/position = Vector3(-4.87634e-07, -4.381845, 2.0452855)
-bones/54/rotation = Quaternion(0.9351298, -1.2248114e-14, 2.2295237e-07, -0.3543055)
-bones/55/rotation = Quaternion(0.6733041, 1.0295198e-07, 6.6774895e-08, -0.7393657)
-bones/57/rotation = Quaternion(-0.9937022, 1.4928903e-08, -1.0452595e-07, -0.112054)
-bones/58/rotation = Quaternion(7.41799e-08, 0.89033055, -0.45531476, -6.7218096e-08)
-bones/59/rotation = Quaternion(0.7071069, -3.090862e-08, 1.3767877e-07, 0.70710665)
-bones/60/position = Vector3(1.5242018, 0.0053335875, -0.90011644)
-bones/60/rotation = Quaternion(0, 0.12142059, 0, 0.9926012)
-bones/63/rotation = Quaternion(0.81834364, 2.0553969e-07, 2.926632e-07, 0.57472926)
-bones/67/position = Vector3(-1.2863505, 0.0053335875, -2.2026324)
-bones/67/rotation = Quaternion(0, -0.15664774, 0, 0.9876545)
-bones/70/rotation = Quaternion(0.81834364, -2.0553969e-07, -2.926632e-07, 0.57472926)
-bones/72/rotation = Quaternion(0, 0, 0, 1)
-
-[node name="BowMain" parent="BowBoy/Armature/Skeleton3D" index="0" unique_id=755980067]
-transform = Transform3D(1, 2.2062537e-08, 1.2872326e-07, 1.305052e-07, -0.13120663, -0.9913549, -4.982489e-09, 0.9913549, -0.13120663, 4.766426e-08, 5.8286147, 1.2637521)
-
-[node name="Hurtbox" type="Area3D" parent="." unique_id=174862086 node_paths=PackedStringArray("mesh") groups=["enemy"]]
+[node name="Hurtbox" type="Area3D" parent="." unique_id=174862086 groups=["enemy"]]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("2_8b2ox")
-mesh = NodePath("")
 hit_vfx = ExtResource("4_cgugl")
 hit_color = Color(0.9312496, 0, 1, 1)
 metadata/_custom_type_script = "uid://cppim11crlu1t"

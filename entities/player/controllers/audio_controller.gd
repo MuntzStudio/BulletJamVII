@@ -1,7 +1,7 @@
 extends Node
 
 @export var dodge_sounds: Array[AudioStream] = []
-@onready var footstep_player: AudioStreamPlayer3D = $"../Pivot/FootstepPlayer"
+@onready var footstep_player: AudioStreamPlayer3D = $"../BulletBoy/Armature/Skeleton3D/Shoes/FootstepPlayer"
 
 func _ready() -> void:
 	footstep_player.finished.connect(_on_footstep_finished)

@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://cjf0lghrtdj13"]
+[gd_scene format=3 uid="uid://bmjwxvr6dmt0b"]
 
-[ext_resource type="Script" uid="uid://bd6a4yc7wbf8w" path="res://entities/bullets/boomerang_bullet.gd" id="1_tj6yx"]
+[ext_resource type="Script" path="res://entities/bullets/boomerang_bullet.gd" id="1_tj6yx"]
 [ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="2_7g7ha"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5hax7"]

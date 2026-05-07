@@ -1,16 +1,11 @@
 [gd_scene format=3 uid="uid://jfqyhebsqi2o"]
 
-[ext_resource type="Script" uid="uid://bw834i4vkj36u" path="res://entities/bullets/bullet.gd" id="1_5hax7"]
-[ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="2_33ckv"]
+[ext_resource type="Script" uid="uid://bw834i4vkj36u" path="res://entities/bullets/bullet.gd" id="1_sek1o"]
+[ext_resource type="PackedScene" uid="uid://cx5f52mvdcqcf" path="res://assets/models and textures/bullet.tscn" id="2_u6q3n"]
+[ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="3_qf7n0"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5hax7"]
 radius = 0.25183606
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hax7"]
-albedo_color = Color(2.8215299, 1.5767143, 1.2010896, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_5hax7"]
-material = SubResource("StandardMaterial3D_5hax7")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_33ckv"]
 radius = 0.58807635
@@ -18,25 +13,23 @@ radius = 0.58807635
 [sub_resource type="SphereShape3D" id="SphereShape3D_a3f0k"]
 radius = 0.70135254
 
-[node name="Bullet" type="CharacterBody3D" unique_id=1932519837 groups=["bullet"]]
+[node name="PlayerBullet" type="CharacterBody3D" unique_id=1932519837 groups=["bullet"]]
 collision_layer = 8
 collision_mask = 5
-script = ExtResource("1_5hax7")
+script = ExtResource("1_sek1o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1319153479]
 visible = false
 shape = SubResource("SphereShape3D_5hax7")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=981951860]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-mesh = SubResource("SphereMesh_5hax7")
+[node name="Bullet" parent="." unique_id=890272238 instance=ExtResource("2_u6q3n")]
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=910296199]
 collision_layer = 0
 collision_mask = 4
 monitoring = false
 monitorable = false
-script = ExtResource("2_33ckv")
+script = ExtResource("3_qf7n0")
 metadata/_custom_type_script = "uid://3u303es7vhe4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1741861491]

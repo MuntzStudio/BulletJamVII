@@ -21,7 +21,7 @@ var current_bullets: int = 6
 #endregion EXPORTS 
 
 #region NODE REFS 
-@onready var bullet_spawn : Marker3D = $Pivot/BulletSpawn
+@onready var bullet_spawn : Node3D = $BulletBoy/Armature/Skeleton3D/Nose/BulletSpawnPoint
 @onready var hsm          : LimboHSM = $LimboHSM
 @onready var hurtbox      : Hurtbox = $Hurtbox
 #endregion NODE REFS 

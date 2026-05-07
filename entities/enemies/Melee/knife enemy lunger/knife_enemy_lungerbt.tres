@@ -3,6 +3,8 @@
 [ext_resource type="BlackboardPlan" uid="uid://ceiq6u70vhs8f" path="res://entities/enemies/Melee/melee_enemy_plan.tres" id="1_rmrub"]
 [ext_resource type="Script" uid="uid://cg2pj2vo7nxgj" path="res://ai/tasks/enemy/get_first_in_group.gd" id="2_8yah5"]
 [ext_resource type="Script" uid="uid://cqaraqtoaguyy" path="res://ai/tasks/enemy/in_range.gd" id="3_osn6h"]
+[ext_resource type="Script" uid="uid://cb6ckirrwukq5" path="res://ai/tasks/enemy/is_hit.gd" id="3_pw3ih"]
+[ext_resource type="Script" uid="uid://c3aljkf3ygbmn" path="res://ai/tasks/enemy/play_hit_reaction.gd" id="4_kchdg"]
 [ext_resource type="Script" uid="uid://c8p0thkpj2j5t" path="res://ai/tasks/enemy/has_line_of_sight.gd" id="4_ndx12"]
 [ext_resource type="Script" uid="uid://dmmmrhligr5rg" path="res://ai/tasks/enemy/face_target.gd" id="4_pw3ih"]
 [ext_resource type="Script" uid="uid://dvqemhh4pku1d" path="res://ai/tasks/enemy/melee_attack.gd" id="6_btg7i"]
@@ -19,6 +21,27 @@ children = [SubResource("BTRandomWait_ndx12")]
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_osn6h"]
 children = [SubResource("BTRunLimit_8yah5")]
 
+[sub_resource type="BTCondition" id="BTCondition_btg7i"]
+script = ExtResource("3_pw3ih")
+
+[sub_resource type="BTAction" id="BTAction_bypa1"]
+script = ExtResource("4_kchdg")
+reaction_duration = 0.0
+
+[sub_resource type="BBNode" id="BBNode_bueay"]
+saved_value = NodePath("KnifeBoy/AnimationPlayer")
+resource_name = "KnifeBoy/AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_6twm5"]
+await_completion = 0.5
+animation_player = SubResource("BBNode_bueay")
+animation_name = &"Hit"
+blend = 0.1
+
+[sub_resource type="BTSequence" id="BTSequence_kskqn"]
+custom_name = "Hit reaction"
+children = [SubResource("BTCondition_btg7i"), SubResource("BTAction_bypa1"), SubResource("BTPlayAnimation_6twm5")]
+
 [sub_resource type="BTCondition" id="BTCondition_ucc2j"]
 script = ExtResource("3_osn6h")
 range_min = 0.0
@@ -29,13 +52,15 @@ script = ExtResource("4_ndx12")
 
 [sub_resource type="BTAction" id="BTAction_gjx0h"]
 script = ExtResource("4_pw3ih")
+rotation_speed = 0.2
+alignment_threshold = 0.9
 
 [sub_resource type="BBNode" id="BBNode_ndx12"]
 saved_value = NodePath("KnifeBoy/AnimationPlayer")
 resource_name = "KnifeBoy/AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_8yah5"]
-await_completion = 1.0
+await_completion = 0.5
 animation_player = SubResource("BBNode_ndx12")
 animation_name = &"Charge"
 blend = 0.1
@@ -45,37 +70,64 @@ saved_value = NodePath("KnifeBoy/AnimationPlayer")
 resource_name = "KnifeBoy/AnimationPlayer"
 
 [sub_resource type="BTPlayAnimation" id="BTPlayAnimation_osn6h"]
-await_completion = 1.0
 animation_player = SubResource("BBNode_8yah5")
 animation_name = &"Throw"
 blend = 0.1
 
 [sub_resource type="BTAction" id="BTAction_4t5np"]
 script = ExtResource("6_btg7i")
+lunge_speed = 150.0
+lunge_duration = 1.0
 
 [sub_resource type="BTParallel" id="BTParallel_pw3ih"]
 num_successes_required = 2
 num_failures_required = 0
 children = [SubResource("BTPlayAnimation_osn6h"), SubResource("BTAction_4t5np")]
 
+[sub_resource type="BBNode" id="BBNode_kchdg"]
+saved_value = NodePath("KnifeBoy/AnimationPlayer")
+resource_name = "KnifeBoy/AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_btg7i"]
+animation_player = SubResource("BBNode_kchdg")
+animation_name = &"Idle1"
+blend = 0.1
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_osn6h"]
+min_duration = 0.3
+max_duration = 0.7
+
+[sub_resource type="BTParallel" id="BTParallel_bueay"]
+num_successes_required = 2
+num_failures_required = 0
+children = [SubResource("BTPlayAnimation_btg7i"), SubResource("BTRandomWait_osn6h")]
+
 [sub_resource type="BTSequence" id="BTSequence_u5m3q"]
 custom_name = "Attack"
-children = [SubResource("BTCondition_ucc2j"), SubResource("BTCondition_8yah5"), SubResource("BTAction_gjx0h"), SubResource("BTPlayAnimation_8yah5"), SubResource("BTParallel_pw3ih")]
+children = [SubResource("BTCondition_ucc2j"), SubResource("BTCondition_8yah5"), SubResource("BTAction_gjx0h"), SubResource("BTPlayAnimation_8yah5"), SubResource("BTParallel_pw3ih"), SubResource("BTParallel_bueay")]
+
+[sub_resource type="BBNode" id="BBNode_pw3ih"]
+saved_value = NodePath("KnifeBoy/AnimationPlayer")
+resource_name = "KnifeBoy/AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_kchdg"]
+animation_player = SubResource("BBNode_pw3ih")
+animation_name = &"Idle1"
+blend = 0.1
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_8yah5"]
+
+[sub_resource type="BTParallel" id="BTParallel_bypa1"]
+num_successes_required = 2
+num_failures_required = 0
+custom_name = "Idle"
+children = [SubResource("BTPlayAnimation_kchdg"), SubResource("BTRandomWait_8yah5")]
+metadata/_weight_ = 1.0
 
 [sub_resource type="BTCondition" id="BTCondition_ndx12"]
 script = ExtResource("3_osn6h")
 range_min = 0.0
-range_max = 20.0
-
-[sub_resource type="BBNode" id="BBNode_osn6h"]
-saved_value = NodePath("KnifeBoy/AnimationPlayer")
-resource_name = "KnifeBoy/AnimationPlayer"
-
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_pw3ih"]
-await_completion = 1.0
-animation_player = SubResource("BBNode_osn6h")
-animation_name = &"RunForward"
-blend = 0.1
+range_max = 30.0
 
 [sub_resource type="BTAction" id="BTAction_7kh8n"]
 script = ExtResource("7_bypa1")
@@ -84,23 +136,38 @@ ring_min = 0.0
 ring_max = 5.0
 retarget_interval = 1.0
 
+[sub_resource type="BBNode" id="BBNode_osn6h"]
+saved_value = NodePath("KnifeBoy/AnimationPlayer")
+resource_name = "KnifeBoy/AnimationPlayer"
+
+[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_pw3ih"]
+animation_player = SubResource("BBNode_osn6h")
+animation_name = &"RunForward"
+blend = 0.1
+
 [sub_resource type="BTParallel" id="BTParallel_kchdg"]
 num_successes_required = 2
 num_failures_required = 0
-children = [SubResource("BTPlayAnimation_pw3ih"), SubResource("BTAction_7kh8n")]
+children = [SubResource("BTAction_7kh8n"), SubResource("BTPlayAnimation_pw3ih")]
 
 [sub_resource type="BTSequence" id="BTSequence_hi8dq"]
 custom_name = "Chase"
 children = [SubResource("BTCondition_ndx12"), SubResource("BTParallel_kchdg")]
 metadata/_weight_ = 4.000000000000001
 
+[sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_ndx12"]
+children = [SubResource("BTParallel_bypa1"), SubResource("BTSequence_hi8dq")]
+
 [sub_resource type="BTDynamicSelector" id="BTDynamicSelector_ndx12"]
 custom_name = "Combat"
-children = [SubResource("BTSequence_u5m3q"), SubResource("BTSequence_hi8dq")]
+children = [SubResource("BTSequence_u5m3q"), SubResource("BTProbabilitySelector_ndx12")]
+
+[sub_resource type="BTDynamicSelector" id="BTDynamicSelector_52k7j"]
+children = [SubResource("BTSequence_kskqn"), SubResource("BTDynamicSelector_ndx12")]
 
 [sub_resource type="BTSequence" id="BTSequence_e2p1s"]
 custom_name = "Main"
-children = [SubResource("BTAction_oqoyd"), SubResource("BTAlwaysSucceed_osn6h"), SubResource("BTDynamicSelector_ndx12")]
+children = [SubResource("BTAction_oqoyd"), SubResource("BTAlwaysSucceed_osn6h"), SubResource("BTDynamicSelector_52k7j")]
 
 [resource]
 blackboard_plan = ExtResource("1_rmrub")

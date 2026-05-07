@@ -52,7 +52,7 @@ func _tick(delta: float) -> Status:
 	# ==================================================
 	# SPAWN POINT
 	# ==================================================
-	var spawn: Marker3D = agent.find_child("BulletSpawn")
+	var spawn: Node3D = agent.find_child("ArrowSpawn")
 
 	if spawn == null:
 		return FAILURE

@@ -26,6 +26,7 @@ func _ready() -> void:
 	hurtbox.damage_taken.connect(_on_damage_taken)
 	GameManager.register_enemy(self)
 
+
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta
@@ -48,6 +49,7 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 	if _is_dying:
 		return
 	
+	bt_player.blackboard.set_var(&"is_hit", true)
 	
 	health -= hitbox.damage
 	health_bar._on_health_changed(health, max_health)

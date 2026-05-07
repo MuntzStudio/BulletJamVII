@@ -2,40 +2,14 @@
 
 [ext_resource type="Script" uid="uid://unw7qtyqa8t8" path="res://entities/player/controllers/audio_controller.gd" id="1_abrql"]
 [ext_resource type="Script" uid="uid://ccxc747y2xnhw" path="res://entities/player/player.gd" id="1_fkugw"]
-[ext_resource type="PackedScene" uid="uid://jfqyhebsqi2o" path="res://entities/bullets/bullet.tscn" id="2_qiwj3"]
+[ext_resource type="PackedScene" uid="uid://jfqyhebsqi2o" path="res://entities/bullets/player_bullet.tscn" id="2_qiwj3"]
 [ext_resource type="Script" uid="uid://cfo08aq6hvyrt" path="res://entities/player/controllers/animation_controller.gd" id="2_sglur"]
 [ext_resource type="Script" uid="uid://d2j75k1inbudr" path="res://entities/player/states/idle_state.gd" id="5_qiwj3"]
 [ext_resource type="Script" uid="uid://cbic2p3k273wi" path="res://entities/player/states/move_state.gd" id="6_26q78"]
 [ext_resource type="Script" uid="uid://c5dh4jk85rfnf" path="res://entities/player/states/dodge_state.gd" id="7_bectd"]
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="8_26q78"]
 [ext_resource type="PackedScene" uid="uid://c1mh1jvh8bmhd" path="res://assets/vfx/explosion_fx/explosion_i.tscn" id="9_bectd"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvtmh"]
-render_priority = 1
-transparency = 1
-no_depth_test = true
-shading_mode = 0
-albedo_color = Color(0.36862743, 1, 0.9171324, 1)
-stencil_mode = 3
-stencil_flags = 1
-stencil_compare = 5
-metadata/_stencil_owned = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bectd"]
-next_pass = SubResource("StandardMaterial3D_wvtmh")
-stencil_mode = 2
-stencil_flags = 2
-stencil_color = Color(0.36862743, 1, 0.9171324, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_bls4j"]
-material = SubResource("StandardMaterial3D_bectd")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qiwj3"]
-albedo_color = Color(0.6292393, 0.33963987, 0.11237126, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_26q78"]
-material = SubResource("StandardMaterial3D_qiwj3")
-size = Vector3(0.5, 0.2, 0.5)
+[ext_resource type="PackedScene" uid="uid://dyvoskgmn0gaj" path="res://assets/models and textures/bullet_boy.tscn" id="10_wvtmh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bls4j"]
 
@@ -47,26 +21,81 @@ collision_mask = 13
 script = ExtResource("1_fkugw")
 bullet_scene = ExtResource("2_qiwj3")
 
-[node name="Pivot" type="Node3D" parent="." unique_id=747183295]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" unique_id=1928588195]
-mesh = SubResource("CapsuleMesh_bls4j")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Pivot" unique_id=74660505]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46362162, 0.34094238)
-mesh = SubResource("BoxMesh_26q78")
-
-[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="Pivot" unique_id=2124714916]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7269325, 0)
-pitch_scale = 0.8
-
-[node name="BulletSpawn" type="Marker3D" parent="Pivot" unique_id=513906964]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36517334, 0.24072266, 1.2104895)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=399078203]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_bls4j")
+
+[node name="BulletBoy" parent="." unique_id=82300208 instance=ExtResource("10_wvtmh")]
+
+[node name="Skeleton3D" parent="BulletBoy/Armature" parent_id_path=PackedInt32Array(82300208, 139084248) index="0" unique_id=1581974164]
+bones/0/position = Vector3(0, 2.0038571, 0)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/2/position = Vector3(-2, 2.5000029, -1.7577318)
+bones/2/rotation = Quaternion(-4.7485358e-07, 0.70710677, 0.70710677, -4.7485358e-07)
+bones/3/rotation = Quaternion(4.8821164e-07, 6.848443e-07, -0.72699827, 0.6866393)
+bones/4/rotation = Quaternion(7.789217e-07, -8.4052897e-07, 0.06651655, 0.99778533)
+bones/6/rotation = Quaternion(0, 2.1175822e-22, -2.1752418e-28, 1)
+bones/7/position = Vector3(0, 0.9965148, 0)
+bones/7/rotation = Quaternion(0, 1.2621775e-29, -2.175242e-28, 1)
+bones/8/rotation = Quaternion(0, 0, -2.175242e-28, 1)
+bones/9/position = Vector3(0.29035988, 0.98804617, 3.0198066e-14)
+bones/9/rotation = Quaternion(0, 1.2621774e-29, -2.175242e-28, 1)
+bones/10/rotation = Quaternion(0, 7.523164e-37, -8.881784e-16, 1)
+bones/11/position = Vector3(-0.28189102, 0.98804617, -2.9309888e-14)
+bones/11/rotation = Quaternion(0, 1.2621775e-29, -2.175242e-28, 1)
+bones/12/rotation = Quaternion(0, 0, -2.175242e-28, 1)
+bones/13/rotation = Quaternion(-3.8231056e-14, -1.4753845e-14, 0.43269408, 0.9015408)
+bones/14/rotation = Quaternion(2.080407e-14, 1.3356761e-14, -0.2425884, 0.9701293)
+bones/15/rotation = Quaternion(-1.3944959e-16, -4.7318275e-17, 0.0014017985, 0.999999)
+bones/16/position = Vector3(4, 1.757732, 2.3364864e-06)
+bones/17/position = Vector3(2, 0.8036719, -3.4969116e-07)
+bones/18/position = Vector3(2, 2.5000029, -1.7577318)
+bones/18/rotation = Quaternion(-4.7485392e-07, 0.70710605, 0.7071075, -4.7485307e-07)
+bones/19/rotation = Quaternion(1.6069346e-07, -9.847951e-07, 0.72699827, 0.6866393)
+bones/20/rotation = Quaternion(-1.10717714e-07, -1.2008093e-07, -0.06651655, 0.99778533)
+bones/22/rotation = Quaternion(-6.4547416e-29, 0, 7.881395e-21, 1)
+bones/23/position = Vector3(0, 0.9965148, 1.7763568e-15)
+bones/23/rotation = Quaternion(6.777408e-36, 0, 1.8804168e-22, 1)
+bones/24/rotation = Quaternion(0, 0, 1.8804249e-22, 1)
+bones/25/position = Vector3(-0.29035988, 0.98804617, -2.4361242e-09)
+bones/25/rotation = Quaternion(0, 0, 1.8804249e-22, 1)
+bones/26/rotation = Quaternion(-1.6940659e-21, 0, 8.881786e-16, 1)
+bones/27/position = Vector3(0.28189102, 0.98804617, 2.3650744e-09)
+bones/27/rotation = Quaternion(0, 0, 1.8804249e-22, 1)
+bones/28/rotation = Quaternion(6.777409e-36, 0, 1.8804168e-22, 1)
+bones/29/rotation = Quaternion(2.9506542e-09, -1.4161265e-09, -0.43269408, 0.9015408)
+bones/30/rotation = Quaternion(3.447291e-07, 9.866918e-07, 0.2425884, 0.9701293)
+bones/31/rotation = Quaternion(-5.7379344e-07, -8.7286094e-07, -0.0014017985, 0.999999)
+bones/32/position = Vector3(-4, 1.757732, -4.7206718e-06)
+bones/33/position = Vector3(-1.9999999, 0.8036719, -3.846215e-06)
+bones/33/rotation = Quaternion(-6.7154434e-07, -8.563503e-19, 1, 1.2752349e-12)
+bones/35/position = Vector3(-0.9623812, 1.3071628, -2.0045836)
+bones/36/rotation = Quaternion(-0.58195305, 0.58195305, -0.38839957, 0.4144962)
+bones/37/rotation = Quaternion(0.39244005, 0.009857865, -0.015599339, 0.9195925)
+bones/38/rotation = Quaternion(-0.77766556, 3.0662655e-09, 2.311535e-09, 0.6286782)
+bones/39/rotation = Quaternion(7.450581e-09, 2.6367788e-15, -2.220446e-16, 1)
+bones/41/position = Vector3(0.9623812, 1.3071628, -2.0045836)
+bones/42/rotation = Quaternion(0.58195305, 0.58195305, -0.3883995, -0.4144963)
+bones/43/rotation = Quaternion(0.3924401, -0.009857868, 0.015599394, 0.9195925)
+bones/44/rotation = Quaternion(-0.7776655, -3.5130165e-09, -4.345554e-09, 0.62867826)
+bones/45/rotation = Quaternion(-7.450581e-09, -2.7755567e-15, -5.0496457e-23, 1)
+bones/47/rotation = Quaternion(3.090862e-08, 0.70710677, 0.70710677, 3.090862e-08)
+bones/49/position = Vector3(1.4562448, 0.0053335875, -1.7054567)
+bones/49/rotation = Quaternion(0, 0, 0, 1)
+bones/52/rotation = Quaternion(0.8183437, 2.0553972e-07, 2.926632e-07, 0.5747292)
+bones/56/position = Vector3(-1.4562448, 0.0053335875, -1.7054567)
+bones/56/rotation = Quaternion(0, 0, 0, 1)
+bones/59/rotation = Quaternion(0.8183437, -2.0553972e-07, -2.926632e-07, 0.5747292)
+
+[node name="Nose" parent="BulletBoy/Armature/Skeleton3D" index="0" unique_id=1849918661]
+transform = Transform3D(-1, 0, 8.7422784e-08, 8.7422784e-08, 0, 1, 0, 1, 0, 4.4071585e-16, 4.0190496, 1.9416598)
+
+[node name="BulletRoot" parent="BulletBoy/Armature/Skeleton3D" index="1" unique_id=1614540317]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 4.003857, 0)
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="BulletBoy/Armature/Skeleton3D/Shoes" parent_id_path=PackedInt32Array(82300208, 1556120144) index="0" unique_id=2124714916]
+transform = Transform3D(2.6315792, 0, 0, 0, 2.6315792, 0, 0, 0, 2.6315792, 0, 0.71859866, 0)
+pitch_scale = 0.8
 
 [node name="AudioController" type="Node" parent="." unique_id=1560394815]
 script = ExtResource("1_abrql")
@@ -85,12 +114,11 @@ script = ExtResource("6_26q78")
 [node name="DodgeState" type="LimboState" parent="LimboHSM" unique_id=1769554304]
 script = ExtResource("7_bectd")
 
-[node name="Hurtbox" type="Area3D" parent="." unique_id=455053431 node_paths=PackedStringArray("mesh")]
+[node name="Hurtbox" type="Area3D" parent="." unique_id=455053431]
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 script = ExtResource("8_26q78")
-mesh = NodePath("../Pivot/MeshInstance3D")
 hit_vfx = ExtResource("9_bectd")
 hit_color = Color(1, 0, 0.9937496, 1)
 metadata/_custom_type_script = "uid://cppim11crlu1t"
@@ -98,3 +126,5 @@ metadata/_custom_type_script = "uid://cppim11crlu1t"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1960761874]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9861353, 0)
 shape = SubResource("CapsuleShape3D_bectd")
+
+[editable path="BulletBoy"]

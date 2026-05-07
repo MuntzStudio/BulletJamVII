@@ -3,13 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://dv3f3u6qp7chq" path="res://assets/models and textures/KnifeBoy.blend" id="1_t5y2v"]
 [ext_resource type="Script" uid="uid://b2ecx7t2wrm4t" path="res://scripts/enemy_Eye.gd" id="2_hfpw3"]
 
-[node name="KnifeBoy" unique_id=1080791561 instance=ExtResource("1_t5y2v")]
+[node name="KnifeBoy" unique_id=384132466 instance=ExtResource("1_t5y2v")]
 script = ExtResource("2_hfpw3")
 
-[node name="Armature" parent="." index="0" unique_id=1324836202]
+[node name="Armature" parent="." index="0" unique_id=2135167477]
 transform = Transform3D(0.33, 0, 0, 0, 0.33, 0, 0, 0, 0.33, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Armature" index="0" unique_id=1109055123]
+[node name="Skeleton3D" parent="Armature" index="0" unique_id=686482578]
 bones/0/position = Vector3(-7.1054274e-15, 2.0642846, -0.18128179)
 bones/0/rotation = Quaternion(-0.15553209, -0.00033114976, 0.0016227218, 0.98782945)
 bones/1/rotation = Quaternion(1.6697754e-13, 4.367351e-11, -1.15505834e-10, 1)
@@ -21,13 +21,13 @@ bones/3/rotation = Quaternion(-0.27567175, 0.0355997, -0.94959277, -0.14495327)
 bones/4/rotation = Quaternion(9.618382e-06, -4.626375e-07, 0.82879657, 0.55955)
 bones/7/position = Vector3(-1.04308114e-07, 0.98964417, -0.0055108666)
 bones/7/rotation = Quaternion(-0.7800745, -1.7072617e-07, 1.5998117e-07, 0.6256867)
-bones/8/rotation = Quaternion(-0.7800744, -1.8744063e-07, 1.7669565e-07, 0.62568676)
+bones/8/rotation = Quaternion(-0.7800744, -1.7072621e-07, 1.6714452e-07, 0.62568676)
 bones/9/position = Vector3(0.2903597, 0.9914819, 0.0027561581)
 bones/9/rotation = Quaternion(-0.7800745, -1.671445e-07, 1.5938423e-07, 0.6256867)
-bones/10/rotation = Quaternion(-0.7800745, -1.7788955e-07, 1.6654758e-07, 0.6256867)
+bones/10/rotation = Quaternion(-0.7800744, -1.7072621e-07, 1.5699646e-07, 0.62568676)
 bones/11/position = Vector3(-0.28189126, 0.9914817, 0.0027556634)
 bones/11/rotation = Quaternion(-0.7800745, -1.7072617e-07, 1.5998117e-07, 0.6256867)
-bones/12/rotation = Quaternion(-0.7800744, -1.8744063e-07, 1.7669565e-07, 0.62568676)
+bones/12/rotation = Quaternion(-0.7800744, -1.7072621e-07, 1.6714452e-07, 0.62568676)
 bones/13/rotation = Quaternion(-0.026682582, -0.09645847, 0.4885909, 0.86675423)
 bones/14/rotation = Quaternion(-0.4438674, 0.11099256, -0.21570773, 0.8626312)
 bones/15/rotation = Quaternion(-0.4575338, -0.0006413384, 0.0012464217, 0.8891912)
@@ -73,11 +73,8 @@ bones/54/rotation = Quaternion(0, -0.15724915, 0, 0.98755896)
 bones/57/rotation = Quaternion(0.81834364, -2.0051307e-07, -2.9846956e-07, 0.57472926)
 bones/59/rotation = Quaternion(0, 1.4901161e-08, 0, 1)
 
-[node name="ClosedEyes" parent="Armature/Skeleton3D" index="0" unique_id=124040624]
+[node name="ClosedEyes" parent="Armature/Skeleton3D" index="0" unique_id=738593442]
 visible = false
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=1739485092]
+[node name="AnimationPlayer" parent="." index="1" unique_id=821493043]
 autoplay = &"Idle1"
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
-[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

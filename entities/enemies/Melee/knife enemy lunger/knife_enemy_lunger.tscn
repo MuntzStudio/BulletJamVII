@@ -3,13 +3,16 @@
 [ext_resource type="Script" uid="uid://bls1kcbd0xlh1" path="res://entities/enemies/Melee/melee_enemy.gd" id="1_4yiyo"]
 [ext_resource type="PackedScene" uid="uid://blpwpqgpxu1u1" path="res://assets/vfx/explosion_fx/explosion_ii.tscn" id="2_mmn88"]
 [ext_resource type="BehaviorTree" uid="uid://dxs53j25w65n2" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lungerbt.tres" id="2_x0mmq"]
-[ext_resource type="PackedScene" path="res://assets/models and textures/knife_boy.tscn" id="3_4f0jk"]
+[ext_resource type="PackedScene" uid="uid://dsts8v3bewoj0" path="res://assets/models and textures/knife_boy.tscn" id="3_4f0jk"]
 [ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="3_gme72"]
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="4_44xyj"]
 [ext_resource type="PackedScene" uid="uid://36snc0ndulya" path="res://assets/vfx/hit_fx/hit_particle_i.tscn" id="5_j6f8p"]
 [ext_resource type="PackedScene" uid="uid://c2gdsj4fui0n4" path="res://scripts/health_bar.tscn" id="6_j6f8p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akotg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j6f8p"]
+size = Vector3(0.50878906, 3.1742249, 1.0566711)
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_14y0h"]
 var/attack_range/name = &"attack_range"
@@ -18,12 +21,9 @@ var/attack_range/value = 5.0
 var/attack_range/hint = 0
 var/attack_range/hint_string = ""
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_j6f8p"]
-size = Vector3(1.0405273, 0.31396484, 1.8887329)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j6f8p"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mmn88"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4f0jk"]
 viewport_path = NodePath("SubViewport")
 
 [node name="KnifeEnemyLunger" type="CharacterBody3D" unique_id=110487065 groups=["enemy"]]
@@ -31,27 +31,89 @@ collision_layer = 4
 script = ExtResource("1_4yiyo")
 friction = 0.1
 acceleration = 1.0
+max_health = 30.0
 death_vfx = ExtResource("2_mmn88")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=989533886]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_akotg")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=900290344]
 debug_enabled = true
 
-[node name="KnifeBoy" parent="." unique_id=759945875 instance=ExtResource("3_4f0jk")]
+[node name="KnifeBoy" parent="." unique_id=384132466 instance=ExtResource("3_4f0jk")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="Skeleton3D" parent="KnifeBoy/Armature" parent_id_path=PackedInt32Array(759945875, 1924116442) index="0" unique_id=1028615508]
-bones/8/rotation = Quaternion(-0.7800744, -1.7072621e-07, 1.6714452e-07, 0.62568676)
-bones/10/rotation = Quaternion(-0.7800744, -1.7072621e-07, 1.5699646e-07, 0.62568676)
-bones/12/rotation = Quaternion(-0.7800744, -1.7072621e-07, 1.6714452e-07, 0.62568676)
+[node name="Skeleton3D" parent="KnifeBoy/Armature" parent_id_path=PackedInt32Array(384132466, 297561496) index="0" unique_id=1666632892]
+bones/0/position = Vector3(-1.4210855e-14, 1.1331697, 0.5801018)
+bones/0/rotation = Quaternion(-0.46731746, 1.0038264e-07, -6.429755e-08, 0.8840896)
+bones/1/rotation = Quaternion(0.2724481, 5.413137e-09, 6.4730735e-08, 0.9621705)
+bones/1/scale = Vector3(1, 1.0000001, 1.0000001)
+bones/2/rotation = Quaternion(-5.8238356e-07, 0.70710665, 0.7071069, -3.905598e-07)
+bones/2/scale = Vector3(1, 1, 1.0000002)
+bones/3/rotation = Quaternion(0.27281195, -0.06831871, -0.95906764, -0.03309789)
+bones/4/rotation = Quaternion(1.021738e-05, -3.935614e-07, 0.8821871, 0.47089908)
+bones/7/position = Vector3(-3.7252903e-07, 0.98961097, -0.0055035353)
+bones/7/rotation = Quaternion(-0.78189737, -5.5981978e-08, 1.90577e-08, 0.6234072)
+bones/8/rotation = Quaternion(-0.7818973, -4.615536e-08, 4.5437088e-15, 0.6234073)
+bones/9/position = Vector3(0.29035985, 0.9914969, 0.0027522242)
+bones/9/rotation = Quaternion(-0.78189737, -5.5386423e-08, 1.90577e-08, 0.6234072)
+bones/10/rotation = Quaternion(-0.7818973, -4.675092e-08, 5.062205e-09, 0.6234073)
+bones/11/position = Vector3(-0.28189123, 0.99149716, 0.0027520275)
+bones/11/rotation = Quaternion(-0.78189737, -5.5386423e-08, 1.90577e-08, 0.6234072)
+bones/12/rotation = Quaternion(-0.7818973, -4.675092e-08, 5.062205e-09, 0.6234073)
+bones/13/rotation = Quaternion(-0.08225758, -0.2359604, 0.53290516, 0.80843586)
+bones/14/rotation = Quaternion(-0.47978103, 0.119972974, -0.21084502, 0.84318507)
+bones/15/rotation = Quaternion(-0.49455327, -0.0006932591, 0.001218382, 0.8691463)
+bones/16/position = Vector3(0.9434037, 0.572526, 0.7913159)
+bones/17/position = Vector3(-0.8636925, -1.2471011, -4.074932e-06)
+bones/17/rotation = Quaternion(-6.87975e-07, 3.7951917e-15, 1, 6.2625487e-15)
+bones/18/position = Vector3(1.8663528, -0.04167795, -1.7577317)
+bones/18/rotation = Quaternion(-5.823842e-07, 0.707106, 0.70710754, -3.9055945e-07)
+bones/18/scale = Vector3(1, 1.0000001, 1.0000002)
+bones/19/rotation = Quaternion(-0.32404542, -0.0498091, 0.9365865, -0.12377149)
+bones/20/rotation = Quaternion(-1.3388047e-06, -8.2995754e-08, -0.74258524, 0.6697516)
+bones/22/rotation = Quaternion(0.22672439, 0.59174687, -0.17822565, 0.7527731)
+bones/23/rotation = Quaternion(0.154118, 1.0368425e-08, 3.2990426e-09, 0.9880525)
+bones/24/rotation = Quaternion(0.15411802, 5.6555027e-09, 1.7909098e-08, 0.9880525)
+bones/25/rotation = Quaternion(0.15640701, -0.008128966, 0.051262632, 0.986328)
+bones/26/rotation = Quaternion(0.15640706, -0.008128996, 0.051262643, 0.986328)
+bones/27/rotation = Quaternion(0.15393698, 0.0074677486, -0.047875885, 0.98689187)
+bones/28/rotation = Quaternion(0.15393697, 0.007467718, -0.04787588, 0.98689187)
+bones/29/rotation = Quaternion(-2.5364916e-08, 2.0438144e-08, -0.43269414, 0.9015408)
+bones/30/rotation = Quaternion(0.10811482, 0.027035836, 0.24107718, 0.9640861)
+bones/31/rotation = Quaternion(0.11144273, -0.00015714057, -0.0013930401, 0.99376994)
+bones/32/position = Vector3(-0.64800215, -0.32353568, -0.95089567)
+bones/33/position = Vector3(0.88216794, -1.2655766, -4.299596e-06)
+bones/33/rotation = Quaternion(-6.879751e-07, 1.02382106e-13, 1, 1.3007453e-12)
+bones/34/scale = Vector3(1, 0.9999998, 1.0000002)
+bones/35/position = Vector3(-2.2895148, 0.0624007, -1.828936)
+bones/36/rotation = Quaternion(0.71667796, -0.35392183, -0.17855398, -0.5737862)
+bones/37/rotation = Quaternion(0.002184147, 0.010719158, -8.682837e-05, 0.9999402)
+bones/38/rotation = Quaternion(-0.30205142, 0.53243256, 0.12330091, 0.7810745)
+bones/39/rotation = Quaternion(-0.31866962, -2.364084e-08, -0.06733057, 0.94547147)
+bones/40/scale = Vector3(1, 0.99999976, 1.0000002)
+bones/41/position = Vector3(1.4047594, 0.3677196, -1.9460349)
+bones/42/rotation = Quaternion(0.88167536, 0.082076654, 0.32918748, -0.3279447)
+bones/43/rotation = Quaternion(0.71724075, -0.0074631996, 0.02851019, 0.6962021)
+bones/44/rotation = Quaternion(-0.4421864, -0.56569695, 0.4032374, 0.56732506)
+bones/45/rotation = Quaternion(-0.2554584, 0, 0.08696835, 0.9629006)
+bones/46/rotation = Quaternion(0.9579385, -6.1567507e-09, 1.7957377e-07, 0.28697386)
+bones/47/position = Vector3(1.5242008, -1.3963145, 3.5478468)
+bones/47/rotation = Quaternion(-0.71969956, 0.083620094, -0.08803779, 0.6835858)
+bones/50/rotation = Quaternion(0.81834364, 2.0003452e-07, 2.9738308e-07, 0.57472926)
+bones/54/position = Vector3(-1.039721, 0.553487, -0.5895009)
+bones/54/rotation = Quaternion(0.10808599, -0.28738388, -0.025812322, 0.9513473)
+bones/57/rotation = Quaternion(0.81834364, -2.1145625e-07, -2.70299e-07, 0.57472926)
+bones/59/rotation = Quaternion(-0.2581146, -0.06456605, -0.06902716, 0.9614797)
 
-[node name="BTPlayer" type="BTPlayer" parent="." unique_id=1966809227]
-behavior_tree = ExtResource("2_x0mmq")
-blackboard_plan = SubResource("BlackboardPlan_14y0h")
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" index="5" unique_id=1068246538]
+transform = Transform3D(1, 1.9868459e-08, 2.3758928e-07, -1.1515383e-07, 0.91282976, 0.40834045, -2.0876543e-07, -0.40834045, 0.91282976, 5.9079895e-08, 2.8079588, -1.876946)
+bone_name = "ScaleBone"
+bone_idx = 1
 
-[node name="Hitbox" type="Area3D" parent="." unique_id=1589102337]
+[node name="Hitbox" type="Area3D" parent="KnifeBoy/Armature/Skeleton3D/BoneAttachment3D" unique_id=1589102337]
+transform = Transform3D(2.5252528, 5.4236544e-08, -2.0653204e-08, -2.5381063e-08, 2.5242338, 0.071698666, -1.0719879e-07, -0.071698576, 2.5242338, -0.036027797, 0.649055, 0.07306981)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -60,17 +122,20 @@ damage = 15.0
 hit_type = 2
 metadata/_custom_type_script = "uid://3u303es7vhe4"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=471821468]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016546369, 1.2095764, 0.43562937)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KnifeBoy/Armature/Skeleton3D/BoneAttachment3D/Hitbox" unique_id=471821468]
+transform = Transform3D(1, 6.2350125e-13, 1.2647661e-12, -6.039613e-14, 1, 0, 0, 0, 1, 9.313226e-10, 1.5059547, -0.00061665475)
 shape = SubResource("BoxShape3D_j6f8p")
-debug_color = Color(0.3904654, 0, 0.70196074, 0.41960785)
+debug_color = Color(0.3882353, 0, 0.7019608, 1)
 
-[node name="Hurtbox" type="Area3D" parent="." unique_id=1145555022 node_paths=PackedStringArray("mesh") groups=["enemy"]]
+[node name="BTPlayer" type="BTPlayer" parent="." unique_id=1966809227]
+behavior_tree = ExtResource("2_x0mmq")
+blackboard_plan = SubResource("BlackboardPlan_14y0h")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1145555022 groups=["enemy"]]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("4_44xyj")
-mesh = NodePath("")
 hit_vfx = ExtResource("5_j6f8p")
 hit_color = Color(0.875, 0, 1, 1)
 metadata/_custom_type_script = "uid://cppim11crlu1t"
@@ -81,6 +146,7 @@ shape = SubResource("CapsuleShape3D_j6f8p")
 
 [node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("6_j6f8p")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
-texture = SubResource("ViewportTexture_mmn88")
+visible = false
+texture = SubResource("ViewportTexture_4f0jk")
 
 [editable path="KnifeBoy"]

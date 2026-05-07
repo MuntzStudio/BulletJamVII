@@ -5,11 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://b72wlekl31oad" path="res://assets/prototype/ProtoWall.png" id="3_3boyv"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/boundary.gd" id="4_ylf5x"]
 [ext_resource type="PackedScene" uid="uid://t8f7dhhvhttw" path="res://scenes/world/door.tscn" id="5_3boyv"]
-[ext_resource type="PackedScene" uid="uid://bhv5syxqdskb" path="res://entities/enemies/Ranged/ranged_enemy_kite.tscn" id="5_es6r5"]
+[ext_resource type="PackedScene" uid="uid://vwpquu77p65u" path="res://entities/enemies/Ranged/ranged_enemy_kite.tscn" id="5_es6r5"]
 [ext_resource type="PackedScene" uid="uid://o35g241g04fh" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lunger.tscn" id="6_mrpq7"]
 [ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="7_7sxwm"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/enemy_spawner.tscn" id="7_ea6u0"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="9_clh36"]
+[ext_resource type="PackedScene" uid="uid://cs5p2da550xgv" path="res://entities/enemies/Ranged/boomerang_shooter_enemy.tscn" id="10_7sxwm"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="10_8i2al"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/kill_zone.gd" id="11_agmiw"]
 
@@ -21,7 +22,8 @@
 background_mode = 2
 sky = SubResource("Sky_swvrr")
 ambient_light_source = 2
-ambient_light_color = Color(0.43124998, 0.41191113, 0.32074216, 1)
+ambient_light_color = Color(0.6375, 0.6375, 0.6375, 1)
+ambient_light_energy = 4.0
 tonemap_mode = 2
 glow_enabled = true
 glow_intensity = 0.8
@@ -121,8 +123,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 [node name="Enemies" type="Node3D" parent="Room1" unique_id=1127079401]
 
 [node name="EnemySpawner" parent="Room1" unique_id=707684176 instance=ExtResource("7_ea6u0")]
-enemies_to_spawn = 3
-enemy_scenes = Array[PackedScene]([ExtResource("7_7sxwm"), ExtResource("6_mrpq7")])
+enemy_scenes = Array[PackedScene]([ExtResource("7_7sxwm"), ExtResource("10_7sxwm")])
 
 [node name="Room2" type="Node3D" parent="." unique_id=518174832 node_paths=PackedStringArray("doors")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61)

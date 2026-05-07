@@ -8,6 +8,8 @@ extends BTAction
 
 @export var target_var: StringName = &"target"
 @export var speed_var: StringName = &"speed"
+## Blackboard var that PlayAnimation reads for its speed property
+@export var anim_speed_var: StringName = &"anim_speed"
 @export var stopping_distance: float = 2.0
 @export var rotation_speed: float = 0.1
 @export var ring_min: float = 5.0
@@ -23,11 +25,20 @@ extends BTAction
 var _stamina_timer: float = 0.0
 var _is_tired: bool = false
 var _time_since_retarget: float = 0.0
-var _at_ring: bool = false  # reached the ring point
+var _at_ring: bool = false
 var _ring_point: Vector3 = Vector3.ZERO
 
 func _enter() -> void:
-	pass  # persist state across re-entries
+	# Always start fresh - clears stale path from previous run
+	_at_ring = false
+	_ring_point = Vector3.ZERO
+	_time_since_retarget = retarget_interval 
+	# Reset anim speed to full on entry
+	blackboard.set_var(anim_speed_var, sprint_speed_multiplier if use_stamina else 1.0)
+
+func _exit() -> void:
+	# Reset anim speed when leaving 
+	blackboard.set_var(anim_speed_var, 1.0)
 
 func _roll_ring_point(target_pos: Vector3) -> void:
 	var angle := randf() * TAU
@@ -41,13 +52,17 @@ func _update_stamina(delta: float) -> float:
 	if not use_stamina:
 		return 1.0
 	_stamina_timer += delta
+	var multiplier: float
 	if not _is_tired and _stamina_timer >= sprint_duration:
 		_is_tired = true
 		_stamina_timer = 0.0
 	elif _is_tired and _stamina_timer >= tired_duration + randf() * 0.5:
 		_is_tired = false
 		_stamina_timer = 0.0
-	return tired_speed_multiplier if _is_tired else sprint_speed_multiplier
+	multiplier = tired_speed_multiplier if _is_tired else sprint_speed_multiplier
+	# Writes to blackboard every tick so PlayAnimation stays in sync
+	blackboard.set_var(anim_speed_var, multiplier)
+	return multiplier
 
 func _tick(delta: float) -> Status:
 	var target: Node3D = blackboard.get_var(target_var, null)
@@ -73,7 +88,6 @@ func _tick(delta: float) -> Status:
 
 	var dist_sq := Vector2(a.x - b.x, a.z - b.z).length_squared()
 
-
 	# Phase 2: approach after reaching ring (melee only)
 	if _at_ring and approach_after_offset:
 		agent.navigation_agent.target_position = b
@@ -94,7 +108,7 @@ func _tick(delta: float) -> Status:
 		if to_ring_sq <= 1.0:
 			_at_ring = true
 			if not approach_after_offset:
-				return SUCCESS  # ranged: hold here, let fire cycle do its thing
+				return SUCCESS  # ranged: hold here
 		else:
 			var next_pos: Vector3 = agent.navigation_agent.get_next_path_position()
 			var dir: Vector3 = a.direction_to(next_pos)
