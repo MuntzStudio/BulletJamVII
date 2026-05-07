@@ -36,6 +36,7 @@ var _hit : bool = false
 # READY
 # =========================
 func _ready():
+	hitbox.set_active(false)
 	pickup_area.monitoring = true  # needed for overlap queries
 
 	# Prevent collision with player
@@ -86,8 +87,13 @@ func _on_collision(collision: KinematicCollision3D):
 	velocity = Vector3.ZERO
 	state = BulletState.FALLING
 	
-	if hit.is_in_group("enemy"):
-		hitbox.activate(0.05)
+	if hit is Hurtbox:
+		hit.take_damage(hitbox)
+
+	elif hit.has_node("Hurtbox"):
+		var hurtbox = hit.get_node("Hurtbox")
+		if hurtbox:
+			hurtbox.take_damage(hitbox)
 
 # =========================
 # FALLING
