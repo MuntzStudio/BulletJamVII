@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqc2ofs1s2g8n"
-path.s3tc="res://.godot/imported/Colour.png-888f64ec548364e818f582f1c4cbc237.s3tc.ctex"
-path.etc2="res://.godot/imported/Colour.png-888f64ec548364e818f582f1c4cbc237.etc2.ctex"
+uid="uid://dke3nxq8ai6bc"
+path.s3tc="res://.godot/imported/RoomEmptyBake_Colour.png-480c5665a91241c6477703a60e75a3c9.s3tc.ctex"
+path.etc2="res://.godot/imported/RoomEmptyBake_Colour.png-480c5665a91241c6477703a60e75a3c9.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "1e51c34b9309cb83236873545eeecaf5"
+}
 
 [deps]
 
-source_file="res://assets/models and textures/textures/Colour.png"
-dest_files=["res://.godot/imported/Colour.png-888f64ec548364e818f582f1c4cbc237.s3tc.ctex", "res://.godot/imported/Colour.png-888f64ec548364e818f582f1c4cbc237.etc2.ctex"]
+source_file="res://assets/models and textures/RoomEmptyBake_Colour.png"
+dest_files=["res://.godot/imported/RoomEmptyBake_Colour.png-480c5665a91241c6477703a60e75a3c9.s3tc.ctex", "res://.godot/imported/RoomEmptyBake_Colour.png-480c5665a91241c6477703a60e75a3c9.etc2.ctex"]
 
 [params]
 

@@ -18,12 +18,12 @@
 ground_bottom_color = Color(0.13448244, 0.6519895, 0.915625, 1)
 ground_horizon_color = Color(0.70400393, 0.747461, 0.834375, 1)
 
-[sub_resource type="Sky" id="Sky_swvrr"]
+[sub_resource type="Sky" id="Sky_f6sku"]
 sky_material = SubResource("ProceduralSkyMaterial_7sxwm")
 
 [sub_resource type="Environment" id="Environment_mrpq7"]
 background_mode = 2
-sky = SubResource("Sky_swvrr")
+sky = SubResource("Sky_f6sku")
 ambient_light_source = 2
 ambient_light_color = Color(0.6375, 0.6375, 0.6375, 1)
 ambient_light_energy = 4.0
@@ -43,7 +43,7 @@ uv1_world_triplanar = true
 [sub_resource type="SphereShape3D" id="SphereShape3D_es6r5"]
 radius = 0.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_clh36"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f00m5"]
 render_priority = 0
 shader = ExtResource("13_7sxwm")
 shader_parameter/WATER_COL = Color(0.039215695, 0.5637255, 0.8784314, 1)
@@ -56,7 +56,7 @@ shader_parameter/wave_size = Vector2(2, 2)
 shader_parameter/wave_speed = 1.5
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_mrpq7"]
-material = SubResource("ShaderMaterial_clh36")
+material = SubResource("ShaderMaterial_f00m5")
 size = Vector2(256, 256)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ntfmh"]

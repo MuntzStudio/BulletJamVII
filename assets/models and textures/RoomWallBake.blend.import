@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://coqj5nc3fhfic"
-path="res://.godot/imported/RoomEmpty.blend-d0aac0de89b95ed92cd066bf3c5dddcc.scn"
+uid="uid://bxfmhx1s81lby"
+path="res://.godot/imported/RoomWallBake.blend-f6c2d47bc3672b806df218495e7efaa9.scn"
 
 [deps]
 
-source_file="res://assets/models and textures/RoomEmpty.blend"
-dest_files=["res://.godot/imported/RoomEmpty.blend-d0aac0de89b95ed92cd066bf3c5dddcc.scn"]
+source_file="res://assets/models and textures/RoomWallBake.blend"
+dest_files=["res://.godot/imported/RoomWallBake.blend-f6c2d47bc3672b806df218495e7efaa9.scn"]
 
 [params]
 

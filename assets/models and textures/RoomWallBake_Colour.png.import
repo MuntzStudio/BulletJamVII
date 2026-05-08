@@ -2,18 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqc2ofs1s2g8n"
-path.s3tc="res://.godot/imported/Colour.png-888f64ec548364e818f582f1c4cbc237.s3tc.ctex"
-path.etc2="res://.godot/imported/Colour.png-888f64ec548364e818f582f1c4cbc237.etc2.ctex"
+uid="uid://jqsnl0udqf8l"
+path.s3tc="res://.godot/imported/RoomWallBake_Colour.png-3e523abaa9cb07e6e2f4abf9aa896960.s3tc.ctex"
+path.etc2="res://.godot/imported/RoomWallBake_Colour.png-3e523abaa9cb07e6e2f4abf9aa896960.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "ad2d772609c3eec97d837181c5fe44dc"
+}
 
 [deps]
 
-source_file="res://assets/models and textures/textures/Colour.png"
-dest_files=["res://.godot/imported/Colour.png-888f64ec548364e818f582f1c4cbc237.s3tc.ctex", "res://.godot/imported/Colour.png-888f64ec548364e818f582f1c4cbc237.etc2.ctex"]
+source_file="res://assets/models and textures/RoomWallBake_Colour.png"
+dest_files=["res://.godot/imported/RoomWallBake_Colour.png-3e523abaa9cb07e6e2f4abf9aa896960.s3tc.ctex", "res://.godot/imported/RoomWallBake_Colour.png-3e523abaa9cb07e6e2f4abf9aa896960.etc2.ctex"]
 
 [params]
 

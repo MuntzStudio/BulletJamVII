@@ -58,11 +58,13 @@ custom_name = "Hit reaction"
 children = [SubResource("BTCondition_btg7i"), SubResource("BTAction_bypa1"), SubResource("BTPlayAnimation_6twm5")]
 
 [sub_resource type="BTCondition" id="BTCondition_ucc2j"]
+resource_local_to_scene = true
 script = ExtResource("3_osn6h")
 range_min = 0.0
 range_max = 8.0
 
 [sub_resource type="BTCondition" id="BTCondition_8yah5"]
+resource_local_to_scene = true
 script = ExtResource("4_ndx12")
 
 [sub_resource type="BTAction" id="BTAction_gjx0h"]
@@ -89,6 +91,7 @@ animation_name = &"Throw"
 blend = 0.1
 
 [sub_resource type="BTAction" id="BTAction_4t5np"]
+resource_local_to_scene = true
 script = ExtResource("6_btg7i")
 lunge_speed = 150.0
 lunge_duration = 1.0
@@ -146,6 +149,7 @@ range_min = 0.0
 range_max = 30.0
 
 [sub_resource type="BTAction" id="BTAction_7kh8n"]
+resource_local_to_scene = true
 script = ExtResource("7_bypa1")
 stopping_distance = 5.0
 ring_min = 0.0
