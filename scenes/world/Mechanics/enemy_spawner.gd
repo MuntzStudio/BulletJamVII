@@ -3,7 +3,7 @@ extends StaticBody3D
 
 @export var enemies_to_spawn: int = 5     # total budget
 @export var maintain_count: int = 3         # keep this many alive at once
-@export var spawn_interval: float = 1.0     # how fast it refills
+@export var spawn_interval: float = 2.0     # how fast it refills
 @export var enemy_scenes: Array[PackedScene] = [] 
 
 @onready var spawn_point = $Marker3D
@@ -30,11 +30,10 @@ func _on_timer_timeout() -> void:
 	# Count how many are currently alive
 	var alive := enemies.get_child_count()
 	var to_spawn := maintain_count - alive
-	for i in to_spawn:
-		if enemies_spawned >= enemies_to_spawn:
-			break
-		spawn_enemy()
-		enemies_spawned += 1
+	if enemies_spawned >= enemies_to_spawn or to_spawn <= 0:
+		return
+	spawn_enemy()
+	enemies_spawned += 1
 
 
 func spawn_enemy():
