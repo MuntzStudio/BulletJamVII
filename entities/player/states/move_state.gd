@@ -12,5 +12,5 @@ func _update(_delta: float) -> void:
 		return
 	player.velocity.x = dir.x * player.current_speed
 	player.velocity.z = dir.z * player.current_speed
-	if Input.is_action_just_pressed("dodge"):
+	if Input.is_action_just_pressed("dodge") and player.dodge_cooldown_timer <= 0.0:
 		dispatch(&"dodge_started")

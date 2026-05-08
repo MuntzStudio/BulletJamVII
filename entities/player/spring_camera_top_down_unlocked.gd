@@ -24,6 +24,8 @@ var shake_fade: float = 12.0
 var target_rotation_y: float = 0.0
 var current_mouse_offset: Vector3 = Vector3.ZERO
 var can_follow := true
+var return_speed := 5.0
+var is_returning := false
 
 
 func _ready() -> void:
@@ -42,7 +44,23 @@ func _input(event: InputEvent) -> void:
 		target_rotation_y -= PI / 2.0
 
 func _process(delta: float) -> void:
-	if not player or not can_follow:
+	if not player:
+		return
+
+	if is_returning:
+		current_mouse_offset = current_mouse_offset.lerp(Vector3.ZERO, mouse_offset_speed * delta)
+		global_position = global_position.lerp(
+			player.global_position,
+			return_speed * delta
+		) + current_mouse_offset
+		if global_position.distance_to(player.global_position) < 0.1:
+			is_returning = false
+			can_follow = true
+			current_mouse_offset = Vector3.ZERO
+			player.waiting_for_mouse_input = true
+		return
+
+	if not can_follow:
 		return
 
 	# Smoothly lerp camera Y rotation toward target
@@ -77,6 +95,11 @@ func _process(delta: float) -> void:
 		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
 
 	spring_arm.position = shake_offset
+
+# Camera stops following
+func stop_following() -> void:
+	is_returning = false
+	can_follow = false
 
 func zoom_out() -> void:
 	print(self, "zoomed out")

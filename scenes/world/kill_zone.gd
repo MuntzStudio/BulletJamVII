@@ -23,7 +23,7 @@ func _on_body_entered(body: Node3D) -> void:
 		# TODO: give points to player maybe
 	
 	elif body.is_in_group("player"):
-		pivot.can_follow = false
+		pivot.stop_following()
 		var random_text = dialogs.pick_random()
 		label.text = random_text
 		await get_tree().create_timer(1.0).timeout

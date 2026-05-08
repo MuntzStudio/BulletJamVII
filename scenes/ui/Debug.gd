@@ -11,14 +11,12 @@ var pressed_color := Color("ff6666")
 var normal_color := Color("ffffff")
 
 func _input(event: InputEvent) -> void:
+	if not OS.is_debug_build(): return
+	
 	if event is InputEventKey:
-		
 		var key_name := event.as_text()
-		
 		if key_name in ["W", "A", "S", "D", "Space", "Shift"]:
-			
 			var key_node = key_status.get_node_or_null(key_name)
-			
 			if key_node:
 				if event.pressed:
 					key_node.modulate = pressed_color

@@ -10,6 +10,7 @@ var player: CharacterBody3D
 
 func _enter() -> void:
 	player = agent as CharacterBody3D
+	player.dodge_cooldown_timer = player.DODGE_COOLDOWN
 	dodge_started.emit()
 	player.can_rotate_to_mouse= false
 	dodge_timer     = player.DODGE_DURATION

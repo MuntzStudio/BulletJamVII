@@ -2,12 +2,9 @@ class_name Player
 extends CharacterBody3D
 
 #region CONSTANTS
+const DODGE_COOLDOWN := 1.0
 const BASE_SPEED := 7.0
-var current_speed := BASE_SPEED
-
 const BASE_DODGE_SPEED := 15.0
-var current_dodge_speed := BASE_DODGE_SPEED
-
 const DODGE_DURATION := 0.5
 const GRAVITY        := -20.0
 #endregion CONSTANTS
@@ -21,8 +18,8 @@ signal shot_fired
 @export var bullet_scene: PackedScene
 @export var max_health : float = 30.0
 @export var fire_rate  : float = 0.7
-@export var max_bullets: int = 6
-var current_bullets: int = 6
+@export var max_bullets: int = 8
+@export var current_bullets: int = 6
 #endregion EXPORTS 
 
 #region NODE REFS 
@@ -42,19 +39,23 @@ var current_bullets: int = 6
 #endregion STATES UNDER LIMBOHSM
 
 #region GAME VARIABLES / BOOlS
-var last_safe_position  : Vector3
-var knockback           : Vector3 = Vector3.ZERO
-var health              : float = max_health
-var fire_timer          : float = 0.0
-var can_rotate_to_mouse : bool = true
+var dodge_cooldown_timer    : float = 0.0
+var current_speed           : float = BASE_SPEED
+var current_dodge_speed     : float= BASE_DODGE_SPEED
+var waiting_for_mouse_input : bool = false
+var last_safe_position      : Vector3
+var knockback               : Vector3 = Vector3.ZERO
+var health                  : float = max_health
+var fire_timer              : float = 0.0
+var can_rotate_to_mouse     : bool = true
 #endregion VARIABLES
 
 #region READY AND PROCESS
 func _ready() -> void:
 	hurtbox.damage_taken.connect(_on_damage_taken)
-	_setup_hsm()
 	last_safe_position = global_position
-
+	_setup_hsm()
+	_update_scaling() 
 
 func _setup_hsm() -> void:
 	# Transitions only 
@@ -68,6 +69,7 @@ func _setup_hsm() -> void:
 	hsm.set_active(true)
 
 func _physics_process(delta: float) -> void:
+	print(waiting_for_mouse_input, " ", can_rotate_to_mouse)
 	# Gravity
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -83,6 +85,10 @@ func _physics_process(delta: float) -> void:
 	
 	# Shooting is global - works in any state
 	_handle_shooting(delta)
+	
+	# Dodge timer
+	if dodge_cooldown_timer > 0.0:
+		dodge_cooldown_timer -= delta
 	
 	move_and_slide()
 	_face_mouse()
@@ -114,10 +120,12 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 		_die()
 
 func respawn():
+	waiting_for_mouse_input = true
+	can_rotate_to_mouse = false
 	set_physics_process(false)
 	global_position = last_safe_position
 	velocity = Vector3.ZERO
-	pivot.can_follow = true
+	pivot.is_returning = true 
 	await get_tree().physics_frame
 	set_physics_process(true)
 
@@ -164,28 +172,33 @@ func collect_bullet(amount: int):
 	bullet_boy.update_bullets(current_bullets)
 
 func _update_scaling():
-	var t = float(current_bullets) / float(max_bullets)
-	var new_scale = lerp(0.4, 1.0, t)
-	
-	var speed_multiplier = lerp(1.6, 1.0, t)
+	var speed_multiplier = lerp(1.5, 1.0, float(current_bullets) / float(max_bullets))
 	current_speed = BASE_SPEED * speed_multiplier
 	current_dodge_speed = BASE_DODGE_SPEED * speed_multiplier
-	
-	bullet_boy._scale_Boy(new_scale)
+	bullet_boy.update_bullets(current_bullets)
+	bullet_boy._scale_Boy(bullet_boy.bulletSize[current_bullets])
 	pass
 #endregion SHOOTING
 
 #region MOUSE AIMING
 func _face_mouse() -> void:
+	if waiting_for_mouse_input:
+		return
 	if not can_rotate_to_mouse:
 		return
 	
 	var dir := _get_mouse_world_pos() - global_position
 	dir.y = 0.0
 	if dir.length_squared() > 0.01:
-		rotation.y = atan2(dir.x, dir.z)
+		var target_rotation := atan2(dir.x, dir.z)
+		rotation.y = lerp_angle(
+			rotation.y,
+			target_rotation,
+			12.0 * get_process_delta_time()
+		)
 
 func _get_mouse_world_pos() -> Vector3:
+	
 	var camera    := get_viewport().get_camera_3d()
 	var mouse_pos := get_viewport().get_mouse_position()
 	var ray_origin := camera.project_ray_origin(mouse_pos)
@@ -216,12 +229,16 @@ func get_input_dir() -> Vector3:
 	return dir
 #endregion HELPERS
 
-#region DEBUG
+#region INPUT NORMAL / DEBUG
 func _input(event: InputEvent) -> void:
+	if waiting_for_mouse_input and event is InputEventMouseMotion:
+		waiting_for_mouse_input = false
+		can_rotate_to_mouse = true
+
 	if not OS.is_debug_build():
 		return
 	
 	if event.is_action_pressed("ui_cancel") and not event.echo:
 		hurtbox.is_invulnerable = !hurtbox.is_invulnerable
 		print("HULK SMASH? : ", hurtbox.is_invulnerable)
-#endregion DEBUG
+#endregion INPUT DEBUG
