@@ -53,7 +53,7 @@ bone_idx = 1
 
 [node name="Hitbox" type="Area3D" parent="KnifeBoy/Armature/Skeleton3D/BoneAttachment3D" unique_id=699750744]
 transform = Transform3D(3.030303, -2.1316282e-14, -1.1368684e-13, -1.4210855e-14, 3.0303035, -2.9802322e-08, 0, 2.9802322e-08, 3.0303035, 1.4306872e-07, -2.89453, -0.03556621)
-collision_layer = 0
+collision_layer = 4
 collision_mask = 2
 monitorable = false
 script = ExtResource("3_sej5f")
