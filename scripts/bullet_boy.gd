@@ -18,13 +18,27 @@ var scaler = 1.0
 
 
 func _ready() -> void:
-	bullets = [$Armature/Skeleton3D/BulletRoot/Bullet_001,$Armature/Skeleton3D/BulletRoot/Bullet_002,$Armature/Skeleton3D/BulletRoot/Bullet_003,$Armature/Skeleton3D/BulletRoot/Bullet_004,$Armature/Skeleton3D/BulletRoot/Bullet_005,$Armature/Skeleton3D/BulletRoot/Bullet_006,$Armature/Skeleton3D/BulletRoot/Bullet_007,$Armature/Skeleton3D/BulletRoot/Bullet_008]
+	bullets = [
+		$Armature/Skeleton3D/BulletRoot/Bullet_001,
+		$Armature/Skeleton3D/BulletRoot/Bullet_002,
+		$Armature/Skeleton3D/BulletRoot/Bullet_003,
+		$Armature/Skeleton3D/BulletRoot/Bullet_004,
+		$Armature/Skeleton3D/BulletRoot/Bullet_005,
+		$Armature/Skeleton3D/BulletRoot/Bullet_006,
+		$Armature/Skeleton3D/BulletRoot/Bullet_007,
+		$Armature/Skeleton3D/BulletRoot/Bullet_008]
 	bulletSize = [0.635,0.75,0.875,1.0,1.125,1.25,1.375,1.5]
 	
 	scaleton = $Armature/Skeleton3D
 	scaleBone = scaleton.find_bone("ScaleBone")
-	parentBone = [scaleton.find_bone("Shoulder.R"),scaleton.find_bone("Shoulder.L"),scaleton.find_bone("Hip.R"),scaleton.find_bone("Hip.L"),scaleton.find_bone("Eyes_2"),scaleton.find_bone("BulletRoot")]
-	
+	parentBone = [
+		scaleton.find_bone("Shoulder.R"),
+		scaleton.find_bone("Shoulder.L"),
+		scaleton.find_bone("Hip.R"),
+		scaleton.find_bone("Hip.L"),
+		scaleton.find_bone("Eyes_2"),
+		scaleton.find_bone("BulletRoot"),
+	]
 	openEyes = $Armature/Skeleton3D/Eyes
 	closedEyes = $"Armature/Skeleton3D/ClosedEyes"
 
@@ -32,11 +46,10 @@ func _ready() -> void:
 ##this scales the main body and scales all the limbs and face inversely to keep them the same size, while still positioned on the main body
 ##this lets all the animations run fine regardless of scale (as long as bullet boy's feet are touching the ground at least)
 
-func _scale_Boy(scalef:float) -> void:
-	scaleton.set_bone_pose_scale(scaleBone,Vector3(scalef,scalef,scalef))
+func _scale_Boy(scalef: float) -> void:
+	scaleton.set_bone_pose_scale(scaleBone, Vector3(scalef, scalef, scalef))
 	for i in parentBone:
-		scaleton.set_bone_pose_scale(i,Vector3(1.0/scalef,1.0/scalef,1.0/scalef))
-
+		scaleton.set_bone_pose_scale(i, Vector3(1.0/scalef, 1.0/scalef, 1.0/scalef))
 
 func update_bullets(current_bullets: int) -> void:
 	for i in bullets.size():

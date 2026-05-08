@@ -1,4 +1,4 @@
-# LoadManager — Autoload Singleton
+## LoadManager - Autoload Singleton
 extends CanvasLayer
 
 var target_scene := ""

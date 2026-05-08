@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://c0ujdr87ul7no"]
+
+[ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="1_0q37b"]
+[ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="2_x6l7d"]
+[ext_resource type="NavigationMesh" uid="uid://031kl026naxm" path="res://scenes/world/floors/floor_01nav.tres" id="3_4goh1"]
+[ext_resource type="Texture2D" uid="uid://b72wlekl31oad" path="res://assets/prototype/ProtoWall.png" id="4_xj4nf"]
+[ext_resource type="PackedScene" uid="uid://t8f7dhhvhttw" path="res://scenes/world/Mechanics/door.tscn" id="5_0arq4"]
+[ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="6_o64hx"]
+[ext_resource type="PackedScene" uid="uid://vwpquu77p65u" path="res://entities/enemies/Ranged/ranged_enemy_kite.tscn" id="9_elwu4"]
+[ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="10_yjcn8"]
+[ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="11_jcqbo"]
+[ext_resource type="Shader" uid="uid://da8er8tggovkv" path="res://shaders/Wind waker water (procedural).gdshader" id="12_o40yj"]
+[ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="13_fkqcj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7sxwm"]
+ground_bottom_color = Color(0.13448244, 0.6519895, 0.915625, 1)
+ground_horizon_color = Color(0.70400393, 0.747461, 0.834375, 1)
+
+[sub_resource type="Sky" id="Sky_swvrr"]
+sky_material = SubResource("ProceduralSkyMaterial_7sxwm")
+
+[sub_resource type="Environment" id="Environment_mrpq7"]
+background_mode = 2
+sky = SubResource("Sky_swvrr")
+ambient_light_source = 2
+ambient_light_color = Color(0.6375, 0.6375, 0.6375, 1)
+ambient_light_energy = 4.0
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.8
+glow_hdr_scale = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l4n5r"]
+size = Vector3(31.851563, 8.982422, 33)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svnt0"]
+albedo_color = Color(0.928125, 0.4582617, 0.4582617, 1)
+albedo_texture = ExtResource("4_xj4nf")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_es6r5"]
+radius = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_clh36"]
+render_priority = 0
+shader = ExtResource("12_o40yj")
+shader_parameter/WATER_COL = Color(0.039215695, 0.5637255, 0.8784314, 1)
+shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
+shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(128, 128)
+shader_parameter/height = 2.0
+shader_parameter/wave_size = Vector2(2, 2)
+shader_parameter/wave_speed = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mrpq7"]
+material = SubResource("ShaderMaterial_clh36")
+size = Vector2(256, 256)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ntfmh"]
+
+[node name="Floor02" type="Node3D" unique_id=1187036097]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=17548043]
+environment = SubResource("Environment_mrpq7")
+
+[node name="Room" type="Node3D" parent="." unique_id=518174832 node_paths=PackedStringArray("doors")]
+script = ExtResource("1_0q37b")
+doors = [NodePath("Door")]
+
+[node name="Boundary" type="Area3D" parent="Room" unique_id=1956357035]
+collision_mask = 14
+monitorable = false
+script = ExtResource("2_x6l7d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Boundary" unique_id=825818213]
+shape = SubResource("BoxShape3D_l4n5r")
+debug_color = Color(0.98829025, 0, 0.099605866, 1)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Room" unique_id=1717253489]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+navigation_mesh = ExtResource("3_4goh1")
+metadata/_edit_lock_ = true
+
+[node name="GroundPivot" type="Node3D" parent="Room/NavigationRegion3D" unique_id=1757377577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=1528152438]
+use_collision = true
+size = Vector3(30, 1, 30)
+material = SubResource("StandardMaterial3D_svnt0")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=1412919697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0)
+use_collision = true
+size = Vector3(8, 3, 1)
+material = SubResource("StandardMaterial3D_svnt0")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=569108329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2837155e-06, 0, -24.5)
+use_collision = true
+size = Vector3(3, 1, 19)
+material = SubResource("StandardMaterial3D_svnt0")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=1846780186]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 2, 0)
+use_collision = true
+size = Vector3(30, 3, 2)
+material = SubResource("StandardMaterial3D_svnt0")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=1299735453]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, 2, 0)
+use_collision = true
+size = Vector3(30, 3, 2)
+material = SubResource("StandardMaterial3D_svnt0")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=2084105172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7975289e-06, 2, 16)
+use_collision = true
+size = Vector3(30, 3, 2)
+material = SubResource("StandardMaterial3D_svnt0")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=1409544096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0)
+use_collision = true
+size = Vector3(8, 1, 1)
+material = SubResource("StandardMaterial3D_svnt0")
+
+[node name="Door" parent="Room" unique_id=72289896 instance=ExtResource("5_0arq4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 19)
+
+[node name="Enemies" type="Node3D" parent="Room" unique_id=872199785]
+
+[node name="EnemySpawner" parent="Room" unique_id=1596448902 instance=ExtResource("6_o64hx")]
+maintain_count = 4
+enemy_scenes = Array[PackedScene]([ExtResource("9_elwu4")])
+
+[node name="PlayerEntity" type="Node3D" parent="." unique_id=158692642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25.443611)
+
+[node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("10_yjcn8")]
+transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, 0, 0, 0)
+
+[node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=107952706 groups=["camera"]]
+script = ExtResource("11_jcqbo")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerEntity/SpringArmPivot" unique_id=993235603]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 0, 0)
+collision_mask = 0
+shape = SubResource("SphereShape3D_es6r5")
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="PlayerEntity/SpringArmPivot/SpringArm3D" unique_id=2135416531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+cull_mask = 1
+
+[node name="DialogBox" type="CanvasLayer" parent="." unique_id=1690873290]
+
+[node name="Label" type="Label" parent="DialogBox" unique_id=675592571]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 160.0
+offset_right = 63.5
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Get rekked bozo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=1857898498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+mesh = SubResource("PlaneMesh_mrpq7")
+
+[node name="KillZone" type="Area3D" parent="Water" unique_id=1111400563 node_paths=PackedStringArray("label", "pivot")]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("13_fkqcj")
+label = NodePath("../../DialogBox/Label")
+pivot = NodePath("../../PlayerEntity/SpringArmPivot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/KillZone" unique_id=1446418737]
+shape = SubResource("WorldBoundaryShape3D_ntfmh")
+
+[connection signal="body_entered" from="Water/KillZone" to="Water/KillZone" method="_on_body_entered"]

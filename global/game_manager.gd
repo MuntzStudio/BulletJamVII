@@ -1,4 +1,4 @@
-# GameManager — Autoload Singleton
+## GameManager - Autoload Singleton
 extends Node
 
 var enemies: Array = []

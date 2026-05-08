@@ -45,7 +45,6 @@ func spawn_enemy():
 	enemy.global_position = spawn_point.global_position
 	var target_position = NavigationServer3D.region_get_random_point(nav_region.get_region_rid(), 1, true)
 	var direction = (target_position - enemy.global_position)
-	print(target_position)
 	launch_enemy(enemy, direction)
 
 

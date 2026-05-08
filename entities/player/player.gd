@@ -52,6 +52,12 @@ var can_rotate_to_mouse     : bool = true
 
 #region READY AND PROCESS
 func _ready() -> void:
+	# On Load
+	current_bullets = SaveManager.get_value("bullets", max_bullets)
+	bullet_boy.update_bullets(current_bullets)
+	bullet_boy._scale_Boy(bullet_boy.bulletSize[current_bullets - 1])
+	
+	# On general
 	hurtbox.damage_taken.connect(_on_damage_taken)
 	last_safe_position = global_position
 	_setup_hsm()
@@ -69,7 +75,6 @@ func _setup_hsm() -> void:
 	hsm.set_active(true)
 
 func _physics_process(delta: float) -> void:
-	print(waiting_for_mouse_input, " ", can_rotate_to_mouse)
 	# Gravity
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
@@ -95,10 +100,6 @@ func _physics_process(delta: float) -> void:
 
 #endregion LIFECYCLE
 
-#region SIGNAL CONNECTIONS
-
-#endregion SIGNAL CONNECTIONS
-
 #region DAMAGE/ DEATH/ RESPAWN HANDLING
 func _on_damage_taken(hitbox: Hitbox) -> void:
 	health -= hitbox.damage
@@ -119,7 +120,16 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 	if health <= 0.0:
 		_die()
 
+func take_chip_damage(amount: float) -> void:
+	health -= amount
+	hit_taken.emit()
+	hurtbox.make_invulnerable(0.5)
+	Events.screen_shake.emit(0.1, 0.1)  # lighter shake for chip
+	if health <= 0.0:
+		_die()
+
 func respawn():
+	print(health)
 	waiting_for_mouse_input = true
 	can_rotate_to_mouse = false
 	set_physics_process(false)
@@ -133,10 +143,11 @@ func _die() -> void:
 	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)  
 	hurtbox.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 	await get_tree().process_frame  
-	get_tree().reload_current_scene() # TODO replace with death animation later
+	SaveManager.delete_save()
+	get_tree().reload_current_scene() # TODO replace with GAMEOVER
 #endregion DAMAGE HANDLING
 
-#region SHOOTING
+#region SHOOTING / SCALING
 func _handle_shooting(delta: float) -> void:
 	fire_timer -= delta
 	if Input.is_action_pressed("shoot") and fire_timer <= 0.0:
@@ -147,22 +158,18 @@ func _shoot():
 	if current_bullets <= 0:
 		return
 	shot_fired.emit()
-	# tweak this to match the fire frame
 	await get_tree().create_timer(0.25).timeout  
 	
 	current_bullets -= 1
 	_update_scaling()
-	bullet_boy.update_bullets(current_bullets)
-
-	var bullet = bullet_scene.instantiate()
-	get_parent().add_child(bullet)
-
-	bullet.global_position = bullet_spawn.global_position
-
-	var dir := _get_mouse_world_pos() - bullet_spawn.global_position
+	
+	var dir := (_get_mouse_world_pos() - global_position)
 	dir.y = 0.0
 	dir = dir.normalized()
-
+	
+	var bullet = bullet_scene.instantiate()
+	get_parent().add_child(bullet)
+	bullet.global_position = bullet_spawn.global_position
 	bullet.velocity = dir * 25.0
 	bullet.look_at(bullet.global_position + dir, Vector3.UP)
 
@@ -176,7 +183,8 @@ func _update_scaling():
 	current_speed = BASE_SPEED * speed_multiplier
 	current_dodge_speed = BASE_DODGE_SPEED * speed_multiplier
 	bullet_boy.update_bullets(current_bullets)
-	bullet_boy._scale_Boy(bullet_boy.bulletSize[current_bullets])
+	if current_bullets > 0:
+		bullet_boy._scale_Boy(bullet_boy.bulletSize[current_bullets - 1])
 	pass
 #endregion SHOOTING
 
@@ -198,14 +206,13 @@ func _face_mouse() -> void:
 		)
 
 func _get_mouse_world_pos() -> Vector3:
-	
-	var camera    := get_viewport().get_camera_3d()
+	var camera := get_viewport().get_camera_3d()
 	var mouse_pos := get_viewport().get_mouse_position()
 	var ray_origin := camera.project_ray_origin(mouse_pos)
-	var ray_dir    := camera.project_ray_normal(mouse_pos)
+	var ray_dir := camera.project_ray_normal(mouse_pos)
 	if abs(ray_dir.y) < 0.0001:
 		return global_position
-	var t := -ray_origin.y / ray_dir.y
+	var t := (global_position.y - ray_origin.y) / ray_dir.y  # use player's y not 0
 	return ray_origin + ray_dir * t
 #endregion MOUSE AIMING
 

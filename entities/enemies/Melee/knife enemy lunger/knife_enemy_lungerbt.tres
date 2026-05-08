@@ -67,8 +67,7 @@ script = ExtResource("4_ndx12")
 
 [sub_resource type="BTAction" id="BTAction_gjx0h"]
 script = ExtResource("4_pw3ih")
-rotation_speed = 0.2
-alignment_threshold = 0.9
+rotation_speed = 1.0
 
 [sub_resource type="BBNode" id="BBNode_ndx12"]
 saved_value = NodePath("KnifeBoy/AnimationPlayer")

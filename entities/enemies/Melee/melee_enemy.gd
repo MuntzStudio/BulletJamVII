@@ -22,7 +22,6 @@ var _is_dying: bool = false
 func _ready() -> void:
 	health = max_health
 	health_bar.init_health(max_health)
-	print("health: ", health, " max: ", max_health)
 	hurtbox.damage_taken.connect(_on_damage_taken)
 
 

@@ -2,7 +2,7 @@
 extends BTAction
 ## Sets an AnimationTree parameter to on_value on enter, resets to off_value on exit.
 ## Useful for blending in/out animation layers (shoot, hit etc).
-## Returns RUNNING forever — pair it in a Parallel with the action that should own the duration.
+## Returns RUNNING forever - pair it in a Parallel with the action that should own the duration.
 
 @export var anim_tree_path: NodePath = ^"AnimationTree"
 @export var parameter: String = "parameters/Blend2/blend_amount"

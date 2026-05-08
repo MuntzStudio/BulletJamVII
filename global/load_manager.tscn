@@ -58,19 +58,28 @@ _data = {
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyfnw"]
 bg_color = Color(1, 1, 1, 1)
-skew = Vector2(0.72, 0)
 border_width_left = 3
 border_width_top = 3
+border_width_right = 3
 border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vrrn"]
-bg_color = Color(0.4509804, 0, 0.11764706, 1)
-skew = Vector2(0.7, 0)
+bg_color = Color(0.590625, 0.4318945, 0.4318945, 1)
 border_width_left = 3
 border_width_top = 3
+border_width_right = 3
 border_width_bottom = 3
-border_color = Color(1, 1, 1, 1)
+border_color = Color(0.8001019, 0.8001019, 0.8001019, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
 
 [node name="LoadManager" type="CanvasLayer" unique_id=684294159]
 layer = 2
@@ -89,18 +98,15 @@ grow_vertical = 2
 color = Color(0.0035191667, 0.0035191681, 0.0035191672, 1)
 
 [node name="LoadingBar" type="ProgressBar" parent="." unique_id=79599740]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -207.0
-offset_top = -15.0
-offset_right = 207.0
-offset_bottom = 15.0
+anchors_preset = -1
+anchor_left = 0.33828124
+anchor_top = 0.47916666
+anchor_right = 0.6617187
+anchor_bottom = 0.5208333
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_iyfnw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3vrrn")
-value = 42.0
+value = 97.32
 show_percentage = false
+metadata/_edit_use_anchors_ = true

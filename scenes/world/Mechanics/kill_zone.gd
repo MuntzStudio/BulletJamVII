@@ -14,7 +14,8 @@ var dialogs = [
 
 func _ready() -> void:
 	randomize()
-	label.hide()
+	if label:
+		label.hide()
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy"):
@@ -24,6 +25,7 @@ func _on_body_entered(body: Node3D) -> void:
 	
 	elif body.is_in_group("player"):
 		pivot.stop_following()
+		body.take_chip_damage(5.0)
 		var random_text = dialogs.pick_random()
 		label.text = random_text
 		await get_tree().create_timer(1.0).timeout

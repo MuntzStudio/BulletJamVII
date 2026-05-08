@@ -2,8 +2,8 @@ extends CharacterBody3D
 
 @export var is_boomerang := true
 
-@export var throw_speed: float = 42.0
-@export var return_speed: float = 40.0
+@export var throw_speed: float = 20.0
+@export var return_speed: float = 22.0
 
 # Strong curve after initial attack
 @export var curve_force: float = 45.0

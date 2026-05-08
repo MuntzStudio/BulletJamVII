@@ -1,5 +1,6 @@
 extends Node3D
 
+#region NON FUNCTION
 # Tweakables
 @export var normal_length: float = 10.0
 @export var pan_length: float = 12.0
@@ -26,7 +27,7 @@ var current_mouse_offset: Vector3 = Vector3.ZERO
 var can_follow := true
 var return_speed := 5.0
 var is_returning := false
-
+#endregion NON FUNCTION
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -43,6 +44,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cam_rotate_right"):
 		target_rotation_y -= PI / 2.0
 
+#region CAMERA FOLLOW
 func _process(delta: float) -> void:
 	if not player:
 		return
@@ -100,7 +102,9 @@ func _process(delta: float) -> void:
 func stop_following() -> void:
 	is_returning = false
 	can_follow = false
+#endregion CAMERA FOLLOW
 
+#region ZOOM
 func zoom_out() -> void:
 	print(self, "zoomed out")
 	var tween := create_tween().set_parallel(true)
@@ -120,3 +124,4 @@ func zoom_in() -> void:
 	tween.tween_property(spring_arm, "rotation_degrees:x", normal_rotation_x, zoom_speed)\
 		.set_ease(Tween.EASE_IN)\
 		.set_trans(Tween.TRANS_CUBIC)
+#endregion ZOOM

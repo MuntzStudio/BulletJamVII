@@ -1,4 +1,4 @@
-# VFXManager — Autoload Singleton
+## VFXManager - Autoload Singleton
 extends Node
 
 func spawn(scene: PackedScene, emitter: Node3D) -> void:
