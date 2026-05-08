@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dsts8v3bewoj0" path="res://assets/models and textures/knife_boy.tscn" id="8_edgxb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svub2"]
+radius = 1.2148438
+height = 4.5646973
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qe6p6"]
 height = 4.1286316
@@ -44,7 +46,7 @@ debug_path_custom_color = Color(2.2140146e-06, 0.48953462, 0.48982888, 1)
 
 [node name="KnifeBoy" parent="." unique_id=384132466 instance=ExtResource("8_edgxb")]
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 835099683) index="5" unique_id=1297624662]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 914027470) index="5" unique_id=1297624662]
 transform = Transform3D(0.9999945, -0.0031029352, -0.0011590092, 0.0033089535, 0.95161414, 0.30727723, 0.00014946835, -0.30727938, 0.9516192, -0.009226737, 4.8939576, -1.0949928)
 bone_name = "ScaleBone"
 bone_idx = 1
@@ -55,7 +57,7 @@ collision_layer = 4
 collision_mask = 2
 monitorable = false
 script = ExtResource("3_sej5f")
-damage = 5.0
+damage = 2.0
 knockback_force = 20.0
 hit_type = 2
 metadata/_custom_type_script = "uid://3u303es7vhe4"
@@ -65,7 +67,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 1.4901161e-08, 2.842171e-14, 0, 
 shape = SubResource("CylinderShape3D_qe6p6")
 debug_color = Color(0.34859782, 0.023593755, 0.471875, 1)
 
-[node name="AnimationPlayer" parent="KnifeBoy" index="1" unique_id=1703011212]
+[node name="AnimationPlayer" parent="KnifeBoy" index="1" unique_id=1999566224]
 autoplay = &""
 
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=1966809227]
@@ -83,7 +85,7 @@ knockback_multiplier = 0.5
 metadata/_custom_type_script = "uid://cppim11crlu1t"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1512768893]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2823486, -0.079248905)
 shape = SubResource("CapsuleShape3D_svub2")
 
 [node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("6_o3sf3")]

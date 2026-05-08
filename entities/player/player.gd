@@ -18,7 +18,7 @@ signal shot_fired
 @export var base_radius := 0.8
 @export var base_height := 3.0
 @export var bullet_scene: PackedScene
-@export var max_health : float = 30.0
+@export var max_health : int = 6
 @export var fire_rate  : float = 0.2
 @export var max_bullets: int = 8
 @export var current_bullets: int = 6
@@ -47,7 +47,7 @@ var current_dodge_speed     : float= BASE_DODGE_SPEED
 var waiting_for_mouse_input : bool = false
 var last_safe_position      : Vector3
 var knockback               : Vector3 = Vector3.ZERO
-var health                  : float = max_health
+var health                  : int = max_health
 var fire_timer              : float = 0.0
 var can_rotate_to_mouse     : bool = true
 #endregion VARIABLES
@@ -61,7 +61,18 @@ func _ready() -> void:
 	hurtbox.damage_taken.connect(_on_damage_taken)
 	last_safe_position = global_position
 	_setup_hsm()
-	_update_scaling() 
+	_update_scaling()
+	
+	await get_tree().process_frame
+
+	var hud = get_tree().get_first_node_in_group(
+		"health_hud"
+	)
+
+	print(hud)
+
+	if hud:
+		hud.update_hearts(health, max_health)
 
 func _on_load()-> void:
 	current_bullets = SaveManager.get_value("bullets", max_bullets) as int
@@ -112,6 +123,14 @@ func _physics_process(delta: float) -> void:
 #region DAMAGE/ DEATH/ RESPAWN HANDLING
 func _on_damage_taken(hitbox: Hitbox) -> void:
 	health -= hitbox.damage
+	
+	var hud = get_tree().get_first_node_in_group(
+	"health_hud"
+	)
+
+	if hud:
+		hud.update_hearts(health, max_health)
+	
 	hit_taken.emit()
 	
 	# Knockback

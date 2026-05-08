@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="13_f6sku"]
 [ext_resource type="Texture2D" uid="uid://d3tvpofljsbxd" path="res://shaders/shader texture/PerlinNoise.png" id="14_cdfud"]
 [ext_resource type="PackedScene" uid="uid://c0ujdr87ul7no" path="res://scenes/world/floors/floor_02.tscn" id="14_f00m5"]
+[ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="15_lmaod"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7sxwm"]
 ground_bottom_color = Color(0.13448244, 0.6519895, 0.915625, 1)
@@ -205,5 +206,7 @@ pivot = NodePath("../../PlayerEntity/SpringArmPivot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Water/KillZone" unique_id=1446418737]
 shape = SubResource("WorldBoundaryShape3D_ntfmh")
+
+[node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("15_lmaod")]
 
 [connection signal="body_entered" from="Water/KillZone" to="Water/KillZone" method="_on_body_entered"]
