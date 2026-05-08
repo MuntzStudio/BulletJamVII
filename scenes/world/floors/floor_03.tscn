@@ -7,10 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://t8f7dhhvhttw" path="res://scenes/world/Mechanics/door.tscn" id="5_7chu1"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="6_dju42"]
 [ext_resource type="PackedScene" uid="uid://cs5p2da550xgv" path="res://entities/enemies/Ranged/boomerang_shooter_enemy.tscn" id="8_5fsal"]
+[ext_resource type="Shader" uid="uid://celn587u26xuj" path="res://shaders/beach-water-shader.gdshader" id="10_nerxp"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="10_syk4s"]
+[ext_resource type="Texture2D" uid="uid://d3tvpofljsbxd" path="res://shaders/shader texture/PerlinNoise.png" id="11_opj21"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="11_ppha6"]
+[ext_resource type="Texture2D" uid="uid://d0dt4kq3h4wjf" path="res://shaders/shader texture/WaterDistortion.png" id="12_8dq7e"]
 [ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="12_dd5tc"]
-[ext_resource type="Shader" uid="uid://da8er8tggovkv" path="res://shaders/Wind waker water (procedural).gdshader" id="12_xy0b5"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="13_hdjv0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8dq7e"]
@@ -43,20 +45,27 @@ uv1_world_triplanar = true
 [sub_resource type="SphereShape3D" id="SphereShape3D_fdufd"]
 radius = 0.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_clh36"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opj21"]
 render_priority = 0
-shader = ExtResource("12_xy0b5")
-shader_parameter/WATER_COL = Color(0.039215695, 0.5637255, 0.8784314, 1)
-shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
-shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
-shader_parameter/distortion_speed = 2.0
-shader_parameter/tile = Vector2(128, 128)
-shader_parameter/height = 2.0
-shader_parameter/wave_size = Vector2(2, 2)
-shader_parameter/wave_speed = 1.5
+shader = ExtResource("10_nerxp")
+shader_parameter/surfaceNoise = ExtResource("11_opj21")
+shader_parameter/distortNoise = ExtResource("12_8dq7e")
+shader_parameter/beer_factor = 2.0
+shader_parameter/foam_distance = 0.01
+shader_parameter/foam_max_distance = 0.1
+shader_parameter/foam_min_distance = 0.04
+shader_parameter/foam_color = Color(1, 1, 1, 1)
+shader_parameter/surface_noise_tiling = Vector2(1, 4)
+shader_parameter/surface_noise_scroll = Vector3(0.03, 0.03, 0)
+shader_parameter/surface_noise_cutoff = 0.777
+shader_parameter/surface_distortion_amount = 0.27
+shader_parameter/_DepthGradientShallow = Color(0.3254902, 0.80784315, 0.972549, 1)
+shader_parameter/_DepthGradientDeep = Color(0.08627451, 0.40784314, 1, 1)
+shader_parameter/_DepthMaxDistance = 1.0
+shader_parameter/_DepthFactor = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5fsal"]
-material = SubResource("ShaderMaterial_clh36")
+material = SubResource("ShaderMaterial_opj21")
 size = Vector2(256, 256)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7bn8o"]
@@ -178,7 +187,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Water" type="MeshInstance3D" parent="." unique_id=93065345]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("PlaneMesh_5fsal")
 
 [node name="KillZone" type="Area3D" parent="Water" unique_id=1195824143 node_paths=PackedStringArray("label", "pivot")]
@@ -186,8 +195,8 @@ collision_layer = 0
 collision_mask = 6
 monitorable = false
 script = ExtResource("13_hdjv0")
-label = NodePath("")
-pivot = NodePath("")
+label = NodePath("../../DialogBox/Label")
+pivot = NodePath("../../PlayerEntity/SpringArmPivot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Water/KillZone" unique_id=114649244]
 shape = SubResource("WorldBoundaryShape3D_7bn8o")
