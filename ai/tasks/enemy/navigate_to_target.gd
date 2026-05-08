@@ -19,38 +19,22 @@ extends BTAction
 @export var use_stamina: bool = false
 @export var sprint_speed_multiplier: float = 1.5
 @export var tired_speed_multiplier: float = 0.3
-@export var sprint_duration_min: float = 3.0
-@export var sprint_duration_max: float = 8.0
-@export var tired_duration_min : float = 1.0
-@export var tired_duration_max : float = 2.0
+@export var sprint_duration: float = 3.0
+@export var tired_duration: float = 1.5
 
-var sprint_duration: float 
-var tired_duration : float
 var _stamina_timer: float = 0.0
 var _is_tired: bool = false
 var _time_since_retarget: float = 0.0
 var _at_ring: bool = false
 var _ring_point: Vector3 = Vector3.ZERO
 
-
 func _enter() -> void:
-	sprint_duration = randf_range(
-		sprint_duration_min,
-		sprint_duration_max
-	)
-
-	tired_duration = randf_range(
-		tired_duration_min,
-		tired_duration_max
-	)
 	# Always start fresh - clears stale path from previous run
 	_at_ring = false
 	_ring_point = Vector3.ZERO
 	_time_since_retarget = retarget_interval 
-	
 	# Reset anim speed to full on entry
 	blackboard.set_var(anim_speed_var, sprint_speed_multiplier if use_stamina else 1.0)
-
 
 func _exit() -> void:
 	# Reset anim speed when leaving 
@@ -69,23 +53,12 @@ func _update_stamina(delta: float) -> float:
 		return 1.0
 	_stamina_timer += delta
 	var multiplier: float
-	
 	if not _is_tired and _stamina_timer >= sprint_duration:
 		_is_tired = true
 		_stamina_timer = 0.0
-		tired_duration = randf_range(
-			tired_duration_min,
-			tired_duration_max
-		)
-	
-	elif _is_tired and _stamina_timer >= tired_duration:
+	elif _is_tired and _stamina_timer >= tired_duration + randf() * 0.5:
 		_is_tired = false
 		_stamina_timer = 0.0
-		sprint_duration = randf_range(
-			sprint_duration_min,
-			sprint_duration_max
-		)
-	
 	multiplier = tired_speed_multiplier if _is_tired else sprint_speed_multiplier
 	# Writes to blackboard every tick so PlayAnimation stays in sync
 	blackboard.set_var(anim_speed_var, multiplier)

@@ -14,11 +14,8 @@ signal damage_taken(hitbox)
 var _overlapping_hitboxes: Array = []
 var _tick_timer: float = 0.0
 
-func _ready() -> void:
-	monitoring = true  
-	monitorable = true  
-	area_entered.connect(_on_area_entered)
-	area_exited.connect(_on_area_exited)
+func  _ready() -> void:
+	monitoring = false
 
 func _process(delta: float) -> void:
 	if _overlapping_hitboxes.is_empty():
@@ -32,9 +29,7 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area3D) -> void:
 	if area is Hitbox:
 		_overlapping_hitboxes.append(area)
-		print(_overlapping_hitboxes)
 		take_damage(area) 
-		print(area)
 
 func _on_area_exited(area: Area3D) -> void:
 	if area is Hitbox:
@@ -45,7 +40,7 @@ func take_damage(hitbox: Hitbox) -> void:
 		return
 	damage_taken.emit(hitbox)   # owner gets full hitbox data
 	if audio:
-		Audio.play_spatial_sound(audio, global_position)
+		AudioManager.play_spatial_sound(audio, global_position)
 	if hit_vfx:
 		VFX.spawn(hit_vfx, self)
 	_flash_color()

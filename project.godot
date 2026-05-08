@@ -19,9 +19,9 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 LoadManager="*uid://caq2oowq6eg36"
 GameManager="*uid://dsmbhfbht3sgo"
-SaveManager="*uid://06up86cfmp3e"
 Events="*uid://dxagnueqq0sr6"
-Audio="*uid://baqxn432oxoqc"
+AudioManager="*uid://baqxn432oxoqc"
+SaveManager="*uid://06up86cfmp3e"
 VFX="*uid://dmnsl7o60ype3"
 
 [display]

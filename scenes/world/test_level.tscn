@@ -4,8 +4,9 @@
 [ext_resource type="NavigationMesh" uid="uid://d1b67jj5qvu3v" path="res://scenes/world/test_level_navigation.tres" id="1_3soa3"]
 [ext_resource type="Texture2D" uid="uid://b72wlekl31oad" path="res://assets/prototype/ProtoWall.png" id="1_7lndr"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="2_swvrr"]
-[ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="3_gb1m8"]
-[ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="4_7gmxp"]
+[ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/boundary.gd" id="3_gb1m8"]
+[ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/kill_zone.gd" id="4_7gmxp"]
+[ext_resource type="PackedScene" uid="uid://bhv5syxqdskb" path="res://entities/enemies/Ranged/boomerang_shooter_enemy.tscn" id="6_32mv2"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gb1m8"]
 

@@ -31,15 +31,16 @@ custom_name = "Summon"
 children = [SubResource("BTPlayAnimation_wgidt"), SubResource("BTAction_7mlxn"), SubResource("BTAlwaysSucceed_sommb")]
 
 [sub_resource type="BTAction" id="BTAction_80yi4"]
-resource_local_to_scene = true
 script = ExtResource("7_vliwn")
 stopping_distance = 3.0
 ring_min = 0.0
-ring_max = 4.0
+ring_max = 0.0
 retarget_interval = 0.5
 use_stamina = true
 sprint_speed_multiplier = 1.2
 tired_speed_multiplier = 0.5
+sprint_duration = 5.0
+tired_duration = 1.0
 
 [sub_resource type="BBVariant" id="BBVariant_1ti7c"]
 type = 3

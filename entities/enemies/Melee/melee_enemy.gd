@@ -52,7 +52,6 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 	health -= hitbox.damage
 	health_bar._on_health_changed(health, max_health)
 	VFX.hitstop(0.2, 0.3)
-	Events.screen_shake.emit(0.1, 0.2)
 
 	var knock_dir = (global_position - hitbox.global_position).normalized()
 	knock_dir.y = 0.0
@@ -66,10 +65,12 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 func _die() -> void:
 	hurtbox.make_invulnerable()
 	set_physics_process(false)
-	set_process(false) 
 	bt_player.set_active(false)
 	if health_bar:
 		health_bar.hide()
+	var hitbox = get_node_or_null("Hitbox")
+	if hitbox:
+		hitbox.set_active(false)
 	if death_vfx:
 		VFX.spawn(death_vfx, self)
 	await _launch_goofy()

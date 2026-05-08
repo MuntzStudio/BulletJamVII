@@ -7,7 +7,8 @@ enum HitType { NORMAL, EXPLOSION, PIERCE, FIRE }
 
 func _ready() -> void:
 	area_entered.connect( _on_area_entered )
-	monitorable = true
+	
+	monitorable = false
 
 
 func _on_area_entered(body : Node3D) -> void:
@@ -22,7 +23,6 @@ func activate(duration: float = 0.1) -> void:
 
 func set_active(value: bool = true) -> void:
 	monitoring = value
-	monitorable = value
 	visible = value
 	pass
 

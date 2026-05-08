@@ -15,6 +15,8 @@ var closedEyes
 var eyes_closed_reasons := 0
 var scaler = 1.0
 
+
+
 func _ready() -> void:
 	bullets = [
 		$Armature/Skeleton3D/BulletRoot/Bullet_001,
@@ -25,7 +27,7 @@ func _ready() -> void:
 		$Armature/Skeleton3D/BulletRoot/Bullet_006,
 		$Armature/Skeleton3D/BulletRoot/Bullet_007,
 		$Armature/Skeleton3D/BulletRoot/Bullet_008]
-	bulletSize = [0.75,0.875,1.0,1.0,1.25,1.25,1.5,1.5]
+	bulletSize = [0.635,0.75,0.875,1.0,1.125,1.25,1.375,1.5]
 	
 	scaleton = $Armature/Skeleton3D
 	scaleBone = scaleton.find_bone("ScaleBone")
@@ -46,7 +48,6 @@ func _ready() -> void:
 
 func _scale_Boy(scalef: float) -> void:
 	scaleton.set_bone_pose_scale(scaleBone, Vector3(scalef, scalef, scalef))
-	print(scalef)
 	for i in parentBone:
 		scaleton.set_bone_pose_scale(i, Vector3(1.0/scalef, 1.0/scalef, 1.0/scalef))
 
