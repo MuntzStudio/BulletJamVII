@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://cgkqv3o7ucgyv"]
+
+[ext_resource type="PackedScene" uid="uid://d3f5yndhys71q" path="res://assets/models and textures/BoomerangBoy.blend" id="1_unyl0"]
+[ext_resource type="Script" uid="uid://b2ecx7t2wrm4t" path="res://scripts/enemy_Eye.gd" id="2_vdrdy"]
+
+[node name="BoomerangBoy" unique_id=906929532 instance=ExtResource("1_unyl0")]
+script = ExtResource("2_vdrdy")
+
+[node name="Armature" parent="." index="0" unique_id=499908860]
+transform = Transform3D(0.375, 0, 0, 0, 0.375, 0, 0, 0, 0.375, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Armature" index="0" unique_id=259507525]
+bones/0/position = Vector3(0.906409, 2.2220666, 2.9318391e-08)
+bones/0/rotation = Quaternion(-2.3020487e-08, 5.491345e-08, 0.23928167, 0.9709503)
+bones/1/rotation = Quaternion(0.0569551, -0.032842048, -0.49845222, 0.86442053)
+bones/2/position = Vector3(0.39899337, -0.49547297, -1.859654)
+bones/2/rotation = Quaternion(-0.19638751, 0.6792878, 0.6792879, -0.1963874)
+bones/3/rotation = Quaternion(0.3656062, 0.80801845, -0.4465525, 0.11844544)
+bones/4/rotation = Quaternion(6.467505e-06, -6.8912715e-07, 0.5580668, 0.8297961)
+bones/7/position = Vector3(-2.9802294e-08, 0.9896438, -0.0055105686)
+bones/7/rotation = Quaternion(-0.7800745, -1.6721913e-07, 1.7192006e-07, 0.6256867)
+bones/8/rotation = Quaternion(-0.7800745, -1.7102467e-07, 1.3252172e-07, 0.6256867)
+bones/9/position = Vector3(0.29035947, 0.9914822, 0.0027560878)
+bones/9/rotation = Quaternion(-0.7800745, -1.7841184e-07, 1.4804228e-07, 0.6256867)
+bones/10/rotation = Quaternion(-0.7800745, -2.140047e-07, 1.4326673e-07, 0.6256867)
+bones/11/position = Vector3(-0.28189117, 0.99148214, 0.002755495)
+bones/11/rotation = Quaternion(-0.7800745, -1.6721913e-07, 1.7192006e-07, 0.6256867)
+bones/12/rotation = Quaternion(-0.7800745, -1.7102467e-07, 1.3252172e-07, 0.6256867)
+bones/13/rotation = Quaternion(-0.026682567, -0.096458465, 0.48859102, 0.8667542)
+bones/14/rotation = Quaternion(-0.44386733, 0.110992596, -0.21570782, 0.8626312)
+bones/15/rotation = Quaternion(-0.4575338, -0.00064130966, 0.0012463965, 0.8891912)
+bones/16/scale = Vector3(0.9999999, 1, 1)
+bones/17/position = Vector3(2.7722423, 1.9400867, -0.9107437)
+bones/18/position = Vector3(1.622609, 3.1586533, -2.3582184)
+bones/18/rotation = Quaternion(-6.5553473e-07, -6.1124994e-10, 1, -1.0403536e-09)
+bones/19/position = Vector3(1.5383502, 0.26276088, -1.6963878)
+bones/19/rotation = Quaternion(-0.19638735, 0.67928714, 0.67928857, -0.19638765)
+bones/20/rotation = Quaternion(0.40114433, -0.8095598, 0.4239206, 0.0631465)
+bones/21/rotation = Quaternion(-1.0620303e-06, -8.2966864e-08, -0.5711824, 0.82082325)
+bones/23/rotation = Quaternion(5.5879354e-09, -1.7695129e-08, 8.881784e-16, 1)
+bones/24/position = Vector3(2.9802322e-08, 0.99651486, 2.0861631e-07)
+bones/24/rotation = Quaternion(-0.7688636, -1.7298842e-07, 7.025526e-08, 0.6394129)
+bones/25/rotation = Quaternion(-0.7688636, -1.8108899e-07, 3.0282447e-08, 0.6394129)
+bones/26/position = Vector3(-0.29035974, 0.98804647, 2.6996386e-07)
+bones/26/rotation = Quaternion(-0.7688636, -1.7298842e-07, 7.025526e-08, 0.6394129)
+bones/27/rotation = Quaternion(-0.7688636, -1.8108899e-07, 3.0282447e-08, 0.6394129)
+bones/28/position = Vector3(0.28189117, 0.98804593, 1.0391996e-07)
+bones/28/rotation = Quaternion(-0.7688636, -1.7298842e-07, 7.025526e-08, 0.6394129)
+bones/29/rotation = Quaternion(-0.7688636, -1.8108899e-07, 3.0282447e-08, 0.6394129)
+bones/30/rotation = Quaternion(-0.017710961, 0.22190268, -0.52960765, 0.81851166)
+bones/31/rotation = Quaternion(-0.4607498, -0.11521335, 0.21348321, 0.8537333)
+bones/32/rotation = Quaternion(-0.47493684, 0.00066503184, -0.0012339711, 0.88001883)
+bones/33/scale = Vector3(1.0000001, 1, 1)
+bones/34/position = Vector3(-2.721193, 1.7222434, -0.9818378)
+bones/35/position = Vector3(-1.9632347, 3.3228948, -2.5617294)
+bones/35/rotation = Quaternion(-7.15081e-07, -2.4861828e-08, 1, 1.2166815e-08)
+bones/36/rotation = Quaternion(0.6191958, -0.3414625, -0.61919564, -0.34146264)
+bones/37/position = Vector3(-2.289515, 0.06240046, -1.8289367)
+bones/38/rotation = Quaternion(0.7637794, -0.4618402, 0.18986496, -0.40901846)
+bones/39/rotation = Quaternion(0.2998457, 0.010225226, -0.011918765, 0.9538585)
+bones/40/rotation = Quaternion(-0.64186776, 0.1278368, 0.06590984, 0.75320613)
+bones/41/rotation = Quaternion(-1.199202e-06, 7.2759676e-10, 3.555325e-07, 1)
+bones/43/position = Vector3(1.4047595, 0.3677199, -1.9460344)
+bones/44/rotation = Quaternion(0.7081515, 0.41450375, -0.32088172, -0.4730149)
+bones/45/rotation = Quaternion(0.35758656, -0.010009441, 0.014214021, 0.93371814)
+bones/46/rotation = Quaternion(-0.7907529, -0.052883793, -0.054037858, 0.60744804)
+bones/47/rotation = Quaternion(2.6425694e-06, -5.5297145e-09, -6.3190237e-07, 1)
+bones/48/rotation = Quaternion(0.6865655, -0.16919766, -0.16919756, 0.68656546)
+bones/49/position = Vector3(1.5797709, 0.0053335875, -0.8030705)
+bones/49/rotation = Quaternion(0, 0.08635964, 0, 0.99626404)
+bones/52/rotation = Quaternion(0.81834364, 2.0661022e-07, 2.9418746e-07, 0.57472926)
+bones/56/position = Vector3(-1.1321653, 0.0053335875, -2.2979453)
+bones/56/rotation = Quaternion(0, -0.1913615, 0, 0.98151964)
+bones/59/rotation = Quaternion(0.81834364, -2.0446916e-07, -2.9113892e-07, 0.57472926)
+
+[node name="Boomerang_L" parent="Armature/Skeleton3D" index="0" unique_id=1164669010]
+transform = Transform3D(-0.9199018, 0.3410168, 0.19361767, 0.21416935, 0.8504903, -0.48041382, -0.3284991, -0.4004665, -0.85540307, -5.092891, 4.6895084, -0.77204394)
+
+[node name="Boomerang_R" parent="Armature/Skeleton3D" index="1" unique_id=1157021923]
+transform = Transform3D(-0.9284341, -0.32318088, -0.18320572, -0.1772894, 0.81882375, -0.54598147, 0.32646403, -0.47442713, -0.81752044, 4.5221224, 4.5760636, -0.34688345)
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=53441459]
+autoplay = &"Idle1"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]
