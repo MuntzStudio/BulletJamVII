@@ -30,6 +30,7 @@ var current_bullets: int = 6
 @onready var hsm          : LimboHSM = $LimboHSM
 @onready var hurtbox      : Hurtbox = $Hurtbox
 @onready var anim_controller: Node = $AnimController
+@onready var pivot: Node3D = get_parent().get_node("SpringArmPivot")
 @onready var audio_controller: Node = $AudioController
 @onready var bullet_boy: Node3D = $BulletBoy
 #endregion NODE REFS 
@@ -40,16 +41,20 @@ var current_bullets: int = 6
 @onready var state_dodge : LimboState = $LimboHSM/DodgeState
 #endregion STATES UNDER LIMBOHSM
 
-#region GAME VARIABLES
-var knockback       : Vector3 = Vector3.ZERO
-var health          : float = max_health
-var fire_timer      : float = 0.0
+#region GAME VARIABLES / BOOlS
+var last_safe_position  : Vector3
+var knockback           : Vector3 = Vector3.ZERO
+var health              : float = max_health
+var fire_timer          : float = 0.0
+var can_rotate_to_mouse : bool = true
 #endregion VARIABLES
 
 #region READY AND PROCESS
 func _ready() -> void:
 	hurtbox.damage_taken.connect(_on_damage_taken)
 	_setup_hsm()
+	last_safe_position = global_position
+
 
 func _setup_hsm() -> void:
 	# Transitions only 
@@ -67,6 +72,10 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta
 	
+	# Floor check
+	if is_on_floor():
+		last_safe_position = global_position
+	
 	# Decay knockback
 	knockback = knockback.lerp(Vector3.ZERO, 10.0 * delta)
 	velocity.x += knockback.x
@@ -80,7 +89,11 @@ func _physics_process(delta: float) -> void:
 
 #endregion LIFECYCLE
 
-#region DAMAGE HANDLING
+#region SIGNAL CONNECTIONS
+
+#endregion SIGNAL CONNECTIONS
+
+#region DAMAGE/ DEATH/ RESPAWN HANDLING
 func _on_damage_taken(hitbox: Hitbox) -> void:
 	health -= hitbox.damage
 	hit_taken.emit()
@@ -99,6 +112,14 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 	
 	if health <= 0.0:
 		_die()
+
+func respawn():
+	set_physics_process(false)
+	global_position = last_safe_position
+	velocity = Vector3.ZERO
+	pivot.can_follow = true
+	await get_tree().physics_frame
+	set_physics_process(true)
 
 func _die() -> void:
 	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)  
@@ -156,6 +177,9 @@ func _update_scaling():
 
 #region MOUSE AIMING
 func _face_mouse() -> void:
+	if not can_rotate_to_mouse:
+		return
+	
 	var dir := _get_mouse_world_pos() - global_position
 	dir.y = 0.0
 	if dir.length_squared() > 0.01:
@@ -181,7 +205,6 @@ func get_input_dir() -> Vector3:
 	var dir := Vector3(input.x, 0.0, input.y).normalized()
 	
 	# Rotate input relative to SpringArmPivot's Y rotation
-	var pivot := get_parent().get_node("SpringArmPivot")
 	if pivot:
 		var cam_y : float = pivot.target_rotation_y
 		dir = Vector3(

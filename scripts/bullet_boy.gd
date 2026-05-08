@@ -16,6 +16,7 @@ var eyes_closed_reasons := 0
 var scaler = 1.0
 
 
+
 func _ready() -> void:
 	bullets = [$Armature/Skeleton3D/BulletRoot/Bullet_001,$Armature/Skeleton3D/BulletRoot/Bullet_002,$Armature/Skeleton3D/BulletRoot/Bullet_003,$Armature/Skeleton3D/BulletRoot/Bullet_004,$Armature/Skeleton3D/BulletRoot/Bullet_005,$Armature/Skeleton3D/BulletRoot/Bullet_006,$Armature/Skeleton3D/BulletRoot/Bullet_007,$Armature/Skeleton3D/BulletRoot/Bullet_008]
 	bulletSize = [0.635,0.75,0.875,1.0,1.125,1.25,1.375,1.5]

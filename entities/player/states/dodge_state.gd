@@ -11,6 +11,7 @@ var player: CharacterBody3D
 func _enter() -> void:
 	player = agent as CharacterBody3D
 	dodge_started.emit()
+	player.can_rotate_to_mouse= false
 	dodge_timer     = player.DODGE_DURATION
 	dodge_direction = player.get_input_dir()
 	player.hurtbox.make_invulnerable(player.DODGE_DURATION)
@@ -24,4 +25,5 @@ func _update(delta: float) -> void:
 	player.velocity.z = dodge_direction.z * player.current_dodge_speed
 	if dodge_timer <= 0.0:
 		dispatch(&"dodge_finished")
+		player.can_rotate_to_mouse = true
 		dodge_finished.emit()

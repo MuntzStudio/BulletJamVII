@@ -14,8 +14,6 @@
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/kill_zone.gd" id="11_agmiw"]
 [ext_resource type="Shader" uid="uid://da8er8tggovkv" path="res://shaders/Wind waker water (procedural).gdshader" id="13_7sxwm"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ntfmh"]
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7sxwm"]
 
 [sub_resource type="Sky" id="Sky_swvrr"]
@@ -59,17 +57,9 @@ shader_parameter/wave_speed = 1.0
 material = SubResource("ShaderMaterial_clh36")
 size = Vector2(256, 256)
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ntfmh"]
+
 [node name="Floor01" type="Node3D" unique_id=1187036097]
-
-[node name="KillZone" type="Area3D" parent="." unique_id=1111400563]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16, 0)
-collision_layer = 0
-collision_mask = 6
-monitorable = false
-script = ExtResource("11_agmiw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone" unique_id=1446418737]
-shape = SubResource("WorldBoundaryShape3D_ntfmh")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=17548043]
 environment = SubResource("Environment_mrpq7")
@@ -259,4 +249,15 @@ vertical_alignment = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 mesh = SubResource("PlaneMesh_mrpq7")
 
-[connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
+[node name="KillZone" type="Area3D" parent="Water" unique_id=1111400563 node_paths=PackedStringArray("label", "pivot")]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("11_agmiw")
+label = NodePath("../../DialogBox/Label")
+pivot = NodePath("../../PlayerEntity/SpringArmPivot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/KillZone" unique_id=1446418737]
+shape = SubResource("WorldBoundaryShape3D_ntfmh")
+
+[connection signal="body_entered" from="Water/KillZone" to="Water/KillZone" method="_on_body_entered"]

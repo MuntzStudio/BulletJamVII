@@ -25,5 +25,5 @@ func _input(event: InputEvent) -> void:
 				else:
 					key_node.modulate = normal_color
 	
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()

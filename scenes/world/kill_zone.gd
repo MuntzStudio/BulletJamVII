@@ -1,7 +1,8 @@
 @tool
 extends Area3D
 
-@onready var label: Label = $"../DialogBox/Label"
+@export var label: Label
+@export var pivot : Node3D
 
 var dialogs = [
 	"You fell off bozo!",
@@ -22,9 +23,11 @@ func _on_body_entered(body: Node3D) -> void:
 		# TODO: give points to player maybe
 	
 	elif body.is_in_group("player"):
+		pivot.can_follow = false
 		var random_text = dialogs.pick_random()
 		label.text = random_text
+		await get_tree().create_timer(1.0).timeout
 		label.show()
 		await get_tree().create_timer(1.5).timeout
-		body._die()
+		body.respawn()
 		label.hide()

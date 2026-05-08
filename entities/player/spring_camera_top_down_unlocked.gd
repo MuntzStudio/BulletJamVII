@@ -1,26 +1,30 @@
 extends Node3D
 
+# Tweakables
 @export var normal_length: float = 10.0
 @export var pan_length: float = 12.0
-@export var normal_rotation_x: float = -45.0  
-@export var pan_rotation_x: float = -55.0 
+@export var normal_rotation_x: float = -45.0
+@export var pan_rotation_x: float = -55.0
 @export var zoom_speed: float = 1.0
-
 
 # Camera rotation
 @export var rotation_speed: float = 10.0  # lerp speed for snapping
 @export var mouse_offset_strength: float = 2.0  # how far camera leans toward mouse
 @export var mouse_offset_speed: float = 5.0     # how fast it'll lerp to offset
 
+# Absolute refs
 @onready var spring_arm: SpringArm3D = $SpringArm3D
 @onready var player: Node = null
 
+# Shake variables
 var shake_strength: float = 0.0
 var shake_fade: float = 12.0
 
-# Camera rotation state
+# Camera variables
 var target_rotation_y: float = 0.0
 var current_mouse_offset: Vector3 = Vector3.ZERO
+var can_follow := true
+
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -37,9 +41,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("cam_rotate_right"):
 		target_rotation_y -= PI / 2.0
 
-
 func _process(delta: float) -> void:
-	if not player:
+	if not player or not can_follow:
 		return
 
 	# Smoothly lerp camera Y rotation toward target

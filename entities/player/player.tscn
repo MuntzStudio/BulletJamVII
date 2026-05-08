@@ -160,13 +160,13 @@ shape = SubResource("CapsuleShape3D_bls4j")
 
 [node name="BulletBoy" parent="." unique_id=82300208 instance=ExtResource("10_wvtmh")]
 
-[node name="Skeleton3D" parent="BulletBoy/Armature" parent_id_path=PackedInt32Array(82300208, 2091796978) index="0" unique_id=678329381]
-bones/0/position = Vector3(0, 1.7379766, 0)
+[node name="Skeleton3D" parent="BulletBoy/Armature" parent_id_path=PackedInt32Array(82300208, 1557668132) index="0" unique_id=1534581600]
+bones/0/position = Vector3(0, 1.921465, 0)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/1/rotation = Quaternion(0.06574557, 0, 0, 0.9978364)
 bones/2/position = Vector3(-1.8663524, 0.9318719, -1.7577319)
-bones/3/rotation = Quaternion(-0.1936626, 0.019130452, -0.9647771, -0.177014)
-bones/4/rotation = Quaternion(9.80283e-06, -4.3209025e-07, 0.83773077, 0.5460835)
+bones/3/rotation = Quaternion(-0.2519833, 0.02992603, -0.95464534, -0.15575983)
+bones/4/rotation = Quaternion(9.718281e-06, -4.332319e-07, 0.8323069, 0.5543151)
 bones/6/rotation = Quaternion(8.396455e-09, 9.313226e-10, -8.271806e-25, 1)
 bones/7/position = Vector3(-1.1175871e-07, 0.9896443, -0.0055105947)
 bones/7/rotation = Quaternion(-0.7800745, -1.7012923e-07, 1.5251938e-07, 0.6256867)
@@ -180,12 +180,12 @@ bones/12/rotation = Quaternion(-0.7800744, -1.6908459e-07, 1.5222092e-07, 0.6256
 bones/13/rotation = Quaternion(-0.026682518, -0.096458465, 0.48859084, 0.8667542)
 bones/14/rotation = Quaternion(-0.4438674, 0.110992536, -0.21570772, 0.8626312)
 bones/15/rotation = Quaternion(-0.4575338, -0.0006413763, 0.0012463777, 0.8891912)
-bones/16/position = Vector3(0.6995995, -0.008447409, -0.47926995)
+bones/16/position = Vector3(0.69959974, 0.014190793, -0.6503173)
 bones/17/position = Vector3(-0.8636925, -1.2471013, -3.152803e-06)
 bones/17/rotation = Quaternion(-6.7154434e-07, 0, 1, 0)
 bones/18/position = Vector3(1.8663526, 0.9318726, -1.7577318)
-bones/19/rotation = Quaternion(-0.19478343, -0.04082845, 0.9770702, -0.07567353)
-bones/20/rotation = Quaternion(-1.3340341e-06, -7.797188e-08, -0.80762166, 0.5897011)
+bones/19/rotation = Quaternion(-0.23906493, -0.05477912, 0.96778846, -0.056857914)
+bones/20/rotation = Quaternion(-1.3323457e-06, -6.3786565e-08, -0.7989717, 0.6013686)
 bones/22/rotation = Quaternion(3.492464e-10, -4.6566134e-10, -9.313226e-10, 1)
 bones/23/position = Vector3(-2.9802322e-08, 0.9965148, -9.201467e-07)
 bones/23/rotation = Quaternion(-0.7688636, -1.7079294e-07, 6.904397e-08, 0.6394128)
@@ -199,18 +199,18 @@ bones/28/rotation = Quaternion(-0.7688636, -1.6534212e-07, 7.1012316e-08, 0.6394
 bones/29/rotation = Quaternion(-0.017710984, 0.22190262, -0.5296076, 0.81851166)
 bones/30/rotation = Quaternion(-0.4607498, -0.11521332, 0.21348315, 0.8537333)
 bones/31/rotation = Quaternion(-0.47493693, 0.00066496176, -0.0012339499, 0.88001883)
-bones/32/position = Vector3(-1.0545688, 0.046916008, -0.6318824)
+bones/32/position = Vector3(-1.0545685, 0.069554925, -0.80293)
 bones/33/position = Vector3(0.88216746, -1.2655761, -4.1475337e-06)
 bones/33/rotation = Quaternion(-6.7154434e-07, -8.495606e-19, 1, 1.2651241e-12)
 bones/35/position = Vector3(-2.2895148, 0.06240022, -1.8289366)
-bones/36/rotation = Quaternion(-0.79848045, 0.47753572, -0.13175116, 0.34209692)
-bones/37/rotation = Quaternion(0.46023914, 0.009514419, -0.018294329, 0.88755554)
-bones/38/rotation = Quaternion(-0.70409685, 0.1468935, 0.052979354, 0.6927216)
+bones/36/rotation = Quaternion(-0.7791824, 0.46764177, -0.16025497, 0.3853627)
+bones/37/rotation = Quaternion(0.3593894, 0.010001849, -0.014285609, 0.93302476)
+bones/38/rotation = Quaternion(-0.6651884, 0.1436538, 0.05978948, 0.730283)
 bones/39/rotation = Quaternion(1.6892957e-07, -5.675148e-10, -9.697396e-07, 1)
 bones/41/position = Vector3(1.404759, 0.3677196, -1.9460347)
-bones/42/rotation = Quaternion(0.74098915, 0.44240004, -0.28880084, -0.4145014)
-bones/43/rotation = Quaternion(0.5053358, -0.009247341, 0.020086968, 0.8626394)
-bones/44/rotation = Quaternion(-0.8447304, -0.045159318, -0.060627222, 0.52982605)
+bones/42/rotation = Quaternion(0.7247882, 0.42672914, -0.30338755, -0.44781733)
+bones/43/rotation = Quaternion(0.4155975, -0.009748032, 0.0165199, 0.9093464)
+bones/44/rotation = Quaternion(-0.8117139, -0.0487485, -0.06130324, 0.5787799)
 bones/45/rotation = Quaternion(4.2597824e-07, 7.5670004e-10, 4.2514876e-07, 1)
 bones/46/rotation = Quaternion(0, 0, 0, 1)
 bones/49/position = Vector3(1.5242015, 0.0053335875, -0.77237993)
@@ -220,16 +220,16 @@ bones/56/position = Vector3(-1.2863511, 0.0053335875, -2.0748963)
 bones/56/rotation = Quaternion(0, -0.1566477, 0, 0.9876546)
 bones/59/rotation = Quaternion(0.81834364, -2.0446916e-07, -2.9113892e-07, 0.57472926)
 
-[node name="Nose" parent="BulletBoy/Armature/Skeleton3D" index="0" unique_id=184442633]
-transform = Transform3D(-1, 0, 8.7422784e-08, 8.666702e-08, -0.13120665, 0.99135506, 1.147045e-08, 0.99135506, 0.13120665, 4.4071585e-16, 3.498279, 1.9268677)
+[node name="Nose" parent="BulletBoy/Armature/Skeleton3D" index="0" unique_id=1859904245]
+transform = Transform3D(-1, 0, 8.7422784e-08, 8.666702e-08, -0.13120665, 0.99135506, 1.147045e-08, 0.99135506, 0.13120665, 4.4071585e-16, 3.6817675, 1.9268677)
 
-[node name="BulletRoot" parent="BulletBoy/Armature/Skeleton3D" index="1" unique_id=1287154586]
-transform = Transform3D(1, 0, 0, 0, 0.13120665, 0.99135506, 0, -0.99135506, 0.13120665, 0, 3.7379766, 0)
+[node name="BulletRoot" parent="BulletBoy/Armature/Skeleton3D" index="1" unique_id=594527475]
+transform = Transform3D(1, 0, 0, 0, 0.13120665, 0.99135506, 0, -0.99135506, 0.13120665, 0, 3.921465, 0)
 
-[node name="ClosedEyes" parent="BulletBoy/Armature/Skeleton3D" index="2" unique_id=506211298]
+[node name="ClosedEyes" parent="BulletBoy/Armature/Skeleton3D" index="2" unique_id=231841445]
 visible = false
 
-[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="BulletBoy/Armature/Skeleton3D/Shoes" parent_id_path=PackedInt32Array(82300208, 238395186) index="0" unique_id=2124714916]
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="BulletBoy/Armature/Skeleton3D/Shoes" parent_id_path=PackedInt32Array(82300208, 1757773762) index="0" unique_id=2124714916]
 transform = Transform3D(2.6315792, 0, 0, 0, 2.6315792, 0, 0, 0, 2.6315792, 0, 0.71859866, 0)
 pitch_scale = 0.8
 
