@@ -14,6 +14,7 @@
 [ext_resource type="Shader" uid="uid://da8er8tggovkv" path="res://shaders/Wind waker water (procedural).gdshader" id="13_7sxwm"]
 [ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="13_f6sku"]
 [ext_resource type="PackedScene" uid="uid://c0ujdr87ul7no" path="res://scenes/world/floors/floor_02.tscn" id="14_f00m5"]
+[ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="15_lmaod"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7sxwm"]
 ground_bottom_color = Color(0.13448244, 0.6519895, 0.915625, 1)
@@ -195,5 +196,7 @@ shape = SubResource("WorldBoundaryShape3D_ntfmh")
 [node name="SceneTrigger" parent="." unique_id=1971274356 instance=ExtResource("13_f6sku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -28.487785)
 next_scene = ExtResource("14_f00m5")
+
+[node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("15_lmaod")]
 
 [connection signal="body_entered" from="Water/KillZone" to="Water/KillZone" method="_on_body_entered"]

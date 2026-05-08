@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="11_ppha6"]
 [ext_resource type="Shader" uid="uid://da8er8tggovkv" path="res://shaders/Wind waker water (procedural).gdshader" id="12_xy0b5"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="13_hdjv0"]
+[ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="14_opj21"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7sxwm"]
 ground_bottom_color = Color(0.13448244, 0.6519895, 0.915625, 1)
@@ -261,5 +262,7 @@ pivot = NodePath("../../PlayerEntity/SpringArmPivot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Water/KillZone" unique_id=1446418737]
 shape = SubResource("WorldBoundaryShape3D_ntfmh")
+
+[node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("14_opj21")]
 
 [connection signal="body_entered" from="Water/KillZone" to="Water/KillZone" method="_on_body_entered"]
