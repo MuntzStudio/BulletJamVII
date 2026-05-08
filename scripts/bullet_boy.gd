@@ -46,6 +46,7 @@ func _ready() -> void:
 
 func _scale_Boy(scalef: float) -> void:
 	scaleton.set_bone_pose_scale(scaleBone, Vector3(scalef, scalef, scalef))
+	print(scalef)
 	for i in parentBone:
 		scaleton.set_bone_pose_scale(i, Vector3(1.0/scalef, 1.0/scalef, 1.0/scalef))
 
