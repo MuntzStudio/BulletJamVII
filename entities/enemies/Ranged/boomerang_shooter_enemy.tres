@@ -47,8 +47,7 @@ ray_offset = Vector3(0, 1, 0)
 script = ExtResource("5_1d6c5")
 bullet_scene = ExtResource("4_yqkld")
 fire_rate = 0.5
-burst_count = 1
-max_boomerangs = 2
+burst_count = 2
 
 [sub_resource type="BTWait" id="BTWait_mdx4i"]
 

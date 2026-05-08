@@ -7,25 +7,25 @@
 [ext_resource type="PackedScene" uid="uid://t8f7dhhvhttw" path="res://scenes/world/Mechanics/door.tscn" id="5_3boyv"]
 [ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="7_7sxwm"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="7_ea6u0"]
-[ext_resource type="PackedScene" uid="uid://o35g241g04fh" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lunger.tscn" id="8_f00m5"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="9_clh36"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="10_8i2al"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="11_agmiw"]
-[ext_resource type="Shader" uid="uid://da8er8tggovkv" path="res://shaders/Wind waker water (procedural).gdshader" id="13_7sxwm"]
+[ext_resource type="Shader" uid="uid://celn587u26xuj" path="res://shaders/beach-water-shader.gdshader" id="12_lmaod"]
+[ext_resource type="Texture2D" uid="uid://d0dt4kq3h4wjf" path="res://shaders/shader texture/WaterDistortion.png" id="13_e7u35"]
 [ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="13_f6sku"]
+[ext_resource type="Texture2D" uid="uid://d3tvpofljsbxd" path="res://shaders/shader texture/PerlinNoise.png" id="14_cdfud"]
 [ext_resource type="PackedScene" uid="uid://c0ujdr87ul7no" path="res://scenes/world/floors/floor_02.tscn" id="14_f00m5"]
-[ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="15_lmaod"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7sxwm"]
 ground_bottom_color = Color(0.13448244, 0.6519895, 0.915625, 1)
 ground_horizon_color = Color(0.70400393, 0.747461, 0.834375, 1)
 
-[sub_resource type="Sky" id="Sky_swvrr"]
+[sub_resource type="Sky" id="Sky_f6sku"]
 sky_material = SubResource("ProceduralSkyMaterial_7sxwm")
 
 [sub_resource type="Environment" id="Environment_mrpq7"]
 background_mode = 2
-sky = SubResource("Sky_swvrr")
+sky = SubResource("Sky_f6sku")
 ambient_light_source = 2
 ambient_light_color = Color(0.6375, 0.6375, 0.6375, 1)
 ambient_light_energy = 4.0
@@ -45,20 +45,27 @@ uv1_world_triplanar = true
 [sub_resource type="SphereShape3D" id="SphereShape3D_es6r5"]
 radius = 0.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_clh36"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opj21"]
 render_priority = 0
-shader = ExtResource("13_7sxwm")
-shader_parameter/WATER_COL = Color(0.039215695, 0.5637255, 0.8784314, 1)
-shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
-shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
-shader_parameter/distortion_speed = 2.0
-shader_parameter/tile = Vector2(128, 128)
-shader_parameter/height = 2.0
-shader_parameter/wave_size = Vector2(2, 2)
-shader_parameter/wave_speed = 1.5
+shader = ExtResource("12_lmaod")
+shader_parameter/surfaceNoise = ExtResource("14_cdfud")
+shader_parameter/distortNoise = ExtResource("13_e7u35")
+shader_parameter/beer_factor = 2.0
+shader_parameter/foam_distance = 0.01
+shader_parameter/foam_max_distance = 0.1
+shader_parameter/foam_min_distance = 0.04
+shader_parameter/foam_color = Color(1, 1, 1, 1)
+shader_parameter/surface_noise_tiling = Vector2(1, 4)
+shader_parameter/surface_noise_scroll = Vector3(0.03, 0.03, 0)
+shader_parameter/surface_noise_cutoff = 0.777
+shader_parameter/surface_distortion_amount = 0.27
+shader_parameter/_DepthGradientShallow = Color(0.3254902, 0.80784315, 0.972549, 1)
+shader_parameter/_DepthGradientDeep = Color(0.08627451, 0.40784314, 1, 1)
+shader_parameter/_DepthMaxDistance = 1.0
+shader_parameter/_DepthFactor = 1.0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_mrpq7"]
-material = SubResource("ShaderMaterial_clh36")
+[sub_resource type="PlaneMesh" id="PlaneMesh_qsdem"]
+material = SubResource("ShaderMaterial_opj21")
 size = Vector2(256, 256)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ntfmh"]
@@ -140,7 +147,8 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 [node name="Enemies" type="Node3D" parent="Room" unique_id=1127079401]
 
 [node name="EnemySpawner" parent="Room" unique_id=707684176 instance=ExtResource("7_ea6u0")]
-enemy_scenes = Array[PackedScene]([ExtResource("7_7sxwm"), ExtResource("8_f00m5")])
+enemies_to_spawn = 3
+enemy_scenes = Array[PackedScene]([ExtResource("7_7sxwm")])
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=158692642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.555918)
@@ -178,11 +186,16 @@ text = "Get rekked bozo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Water" type="MeshInstance3D" parent="." unique_id=1857898498]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-mesh = SubResource("PlaneMesh_mrpq7")
+[node name="SceneTrigger" parent="." unique_id=1971274356 instance=ExtResource("13_f6sku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -28.487785)
+next_scene = ExtResource("14_f00m5")
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=552789682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_qsdem")
 
 [node name="KillZone" type="Area3D" parent="Water" unique_id=1111400563 node_paths=PackedStringArray("label", "pivot")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 collision_layer = 0
 collision_mask = 6
 monitorable = false
@@ -192,11 +205,5 @@ pivot = NodePath("../../PlayerEntity/SpringArmPivot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Water/KillZone" unique_id=1446418737]
 shape = SubResource("WorldBoundaryShape3D_ntfmh")
-
-[node name="SceneTrigger" parent="." unique_id=1971274356 instance=ExtResource("13_f6sku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -28.487785)
-next_scene = ExtResource("14_f00m5")
-
-[node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("15_lmaod")]
 
 [connection signal="body_entered" from="Water/KillZone" to="Water/KillZone" method="_on_body_entered"]

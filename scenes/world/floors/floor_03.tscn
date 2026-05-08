@@ -6,23 +6,23 @@
 [ext_resource type="Texture2D" uid="uid://b72wlekl31oad" path="res://assets/prototype/ProtoWall.png" id="4_jh6yf"]
 [ext_resource type="PackedScene" uid="uid://t8f7dhhvhttw" path="res://scenes/world/Mechanics/door.tscn" id="5_7chu1"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="6_dju42"]
-[ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="7_fdufd"]
 [ext_resource type="PackedScene" uid="uid://cs5p2da550xgv" path="res://entities/enemies/Ranged/boomerang_shooter_enemy.tscn" id="8_5fsal"]
-[ext_resource type="PackedScene" uid="uid://vwpquu77p65u" path="res://entities/enemies/Ranged/ranged_enemy_kite.tscn" id="9_7bn8o"]
+[ext_resource type="Shader" uid="uid://celn587u26xuj" path="res://shaders/beach-water-shader.gdshader" id="10_nerxp"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="10_syk4s"]
+[ext_resource type="Texture2D" uid="uid://d3tvpofljsbxd" path="res://shaders/shader texture/PerlinNoise.png" id="11_opj21"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="11_ppha6"]
-[ext_resource type="Shader" uid="uid://da8er8tggovkv" path="res://shaders/Wind waker water (procedural).gdshader" id="12_xy0b5"]
+[ext_resource type="Texture2D" uid="uid://d0dt4kq3h4wjf" path="res://shaders/shader texture/WaterDistortion.png" id="12_8dq7e"]
+[ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="12_dd5tc"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="13_hdjv0"]
-[ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="14_opj21"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7sxwm"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8dq7e"]
 ground_bottom_color = Color(0.13448244, 0.6519895, 0.915625, 1)
 ground_horizon_color = Color(0.70400393, 0.747461, 0.834375, 1)
 
 [sub_resource type="Sky" id="Sky_swvrr"]
-sky_material = SubResource("ProceduralSkyMaterial_7sxwm")
+sky_material = SubResource("ProceduralSkyMaterial_8dq7e")
 
-[sub_resource type="Environment" id="Environment_mrpq7"]
+[sub_resource type="Environment" id="Environment_jh6yf"]
 background_mode = 2
 sky = SubResource("Sky_swvrr")
 ambient_light_source = 2
@@ -33,207 +33,145 @@ glow_enabled = true
 glow_intensity = 0.8
 glow_hdr_scale = 0.5
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_l4n5r"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_7chu1"]
 size = Vector3(31.851563, 8.982422, 33)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svnt0"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dju42"]
+albedo_color = Color(0.13437498, 1, 0.52931654, 1)
 albedo_texture = ExtResource("4_jh6yf")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_es6r5"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_fdufd"]
 radius = 0.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_clh36"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_opj21"]
 render_priority = 0
-shader = ExtResource("12_xy0b5")
-shader_parameter/WATER_COL = Color(0.039215695, 0.5637255, 0.8784314, 1)
-shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
-shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
-shader_parameter/distortion_speed = 2.0
-shader_parameter/tile = Vector2(128, 128)
-shader_parameter/height = 2.0
-shader_parameter/wave_size = Vector2(2, 2)
-shader_parameter/wave_speed = 1.5
+shader = ExtResource("10_nerxp")
+shader_parameter/surfaceNoise = ExtResource("11_opj21")
+shader_parameter/distortNoise = ExtResource("12_8dq7e")
+shader_parameter/beer_factor = 2.0
+shader_parameter/foam_distance = 0.01
+shader_parameter/foam_max_distance = 0.1
+shader_parameter/foam_min_distance = 0.04
+shader_parameter/foam_color = Color(1, 1, 1, 1)
+shader_parameter/surface_noise_tiling = Vector2(1, 4)
+shader_parameter/surface_noise_scroll = Vector3(0.03, 0.03, 0)
+shader_parameter/surface_noise_cutoff = 0.777
+shader_parameter/surface_distortion_amount = 0.27
+shader_parameter/_DepthGradientShallow = Color(0.3254902, 0.80784315, 0.972549, 1)
+shader_parameter/_DepthGradientDeep = Color(0.08627451, 0.40784314, 1, 1)
+shader_parameter/_DepthMaxDistance = 1.0
+shader_parameter/_DepthFactor = 1.0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_mrpq7"]
-material = SubResource("ShaderMaterial_clh36")
+[sub_resource type="PlaneMesh" id="PlaneMesh_5fsal"]
+material = SubResource("ShaderMaterial_opj21")
 size = Vector2(256, 256)
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ntfmh"]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7bn8o"]
 
 [node name="Floor01" type="Node3D" unique_id=1187036097]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=17548043]
-environment = SubResource("Environment_mrpq7")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=474507678]
+environment = SubResource("Environment_jh6yf")
 
-[node name="Room1" type="Node3D" parent="." unique_id=1381049443 node_paths=PackedStringArray("doors")]
+[node name="Room" type="Node3D" parent="." unique_id=1733835938 node_paths=PackedStringArray("doors")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 script = ExtResource("1_dd5tc")
-doors = [NodePath("Door")]
+doors = [NodePath("Door"), NodePath("Door2")]
 
-[node name="Boundary" type="Area3D" parent="Room1" unique_id=523234198]
+[node name="Boundary" type="Area3D" parent="Room" unique_id=1319612379]
 collision_mask = 14
 monitorable = false
 script = ExtResource("2_opj21")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/Boundary" unique_id=1622471572]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Boundary" unique_id=1475466753]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.015625)
-shape = SubResource("BoxShape3D_l4n5r")
+shape = SubResource("BoxShape3D_7chu1")
 debug_color = Color(0.98829025, 0, 0.099605866, 1)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Room1" unique_id=1415303655]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Room" unique_id=2146296626]
 navigation_mesh = ExtResource("3_8dq7e")
 metadata/_edit_lock_ = true
 
-[node name="GroundPivot" type="Node3D" parent="Room1/NavigationRegion3D" unique_id=1753468862]
+[node name="GroundPivot" type="Node3D" parent="Room/NavigationRegion3D" unique_id=1041048832]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Room1/NavigationRegion3D/GroundPivot" unique_id=715204623]
+[node name="CSGBox3D" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=2088760069]
 use_collision = true
 size = Vector3(30, 1, 30)
-material = SubResource("StandardMaterial3D_svnt0")
+material = SubResource("StandardMaterial3D_dju42")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Room1/NavigationRegion3D/GroundPivot" unique_id=1211541011]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0)
+[node name="CSGBox3D2" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=671733574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -6)
 use_collision = true
 size = Vector3(8, 3, 1)
-material = SubResource("StandardMaterial3D_svnt0")
+material = SubResource("StandardMaterial3D_dju42")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Room1/NavigationRegion3D/GroundPivot" unique_id=1840779268]
+[node name="CSGBox3D5" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=1177609918]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21)
 use_collision = true
 size = Vector3(3, 1, 12)
-material = SubResource("StandardMaterial3D_svnt0")
+material = SubResource("StandardMaterial3D_dju42")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Room1/NavigationRegion3D/GroundPivot" unique_id=1017733147]
+[node name="CSGBox3D6" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=187119506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
+use_collision = true
+size = Vector3(3, 1, 12)
+material = SubResource("StandardMaterial3D_dju42")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=179933778]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 2, 0)
 use_collision = true
 size = Vector3(30, 3, 2)
-material = SubResource("StandardMaterial3D_svnt0")
+material = SubResource("StandardMaterial3D_dju42")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Room1/NavigationRegion3D/GroundPivot" unique_id=2054044058]
+[node name="CSGBox3D7" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=305453418]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, 2, 0)
 use_collision = true
 size = Vector3(30, 3, 2)
-material = SubResource("StandardMaterial3D_svnt0")
+material = SubResource("StandardMaterial3D_dju42")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Room1/NavigationRegion3D/GroundPivot" unique_id=901535806]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -16)
-use_collision = true
-size = Vector3(30, 3, 2)
-material = SubResource("StandardMaterial3D_svnt0")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="Room1/NavigationRegion3D/GroundPivot" unique_id=387059564]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0)
-use_collision = true
-size = Vector3(8, 1, 1)
-material = SubResource("StandardMaterial3D_svnt0")
-
-[node name="Door" parent="Room1" unique_id=1117087749 instance=ExtResource("5_7chu1")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 18)
-
-[node name="Enemies" type="Node3D" parent="Room1" unique_id=1127079401]
-
-[node name="EnemySpawner" parent="Room1" unique_id=707684176 instance=ExtResource("6_dju42")]
-enemy_scenes = Array[PackedScene]([ExtResource("7_fdufd"), ExtResource("8_5fsal")])
-
-[node name="Room2" type="Node3D" parent="." unique_id=518174832 node_paths=PackedStringArray("doors")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 61)
-script = ExtResource("1_dd5tc")
-doors = [NodePath("Door")]
-
-[node name="Boundary" type="Area3D" parent="Room2" unique_id=1956357035]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-collision_mask = 14
-monitorable = false
-script = ExtResource("2_opj21")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room2/Boundary" unique_id=825818213]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.015625)
-shape = SubResource("BoxShape3D_l4n5r")
-debug_color = Color(0.98829025, 0, 0.099605866, 1)
-
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Room2" unique_id=1717253489]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
-navigation_mesh = ExtResource("3_8dq7e")
-metadata/_edit_lock_ = true
-
-[node name="GroundPivot" type="Node3D" parent="Room2/NavigationRegion3D" unique_id=1757377577]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Room2/NavigationRegion3D/GroundPivot" unique_id=1528152438]
-use_collision = true
-size = Vector3(30, 1, 30)
-material = SubResource("StandardMaterial3D_svnt0")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Room2/NavigationRegion3D/GroundPivot" unique_id=1412919697]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, 0)
+[node name="CSGBox3D3" type="CSGBox3D" parent="Room/NavigationRegion3D/GroundPivot" unique_id=1464478324]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 1)
 use_collision = true
 size = Vector3(8, 3, 1)
-material = SubResource("StandardMaterial3D_svnt0")
+material = SubResource("StandardMaterial3D_dju42")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Room2/NavigationRegion3D/GroundPivot" unique_id=569108329]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24.5)
-use_collision = true
-size = Vector3(3, 1, 19)
-material = SubResource("StandardMaterial3D_svnt0")
+[node name="Door" parent="Room" unique_id=1117087749 instance=ExtResource("5_7chu1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 20)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Room2/NavigationRegion3D/GroundPivot" unique_id=1846780186]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 2, 0)
-use_collision = true
-size = Vector3(30, 3, 2)
-material = SubResource("StandardMaterial3D_svnt0")
+[node name="Door2" parent="Room" unique_id=387050277 instance=ExtResource("5_7chu1")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -21)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Room2/NavigationRegion3D/GroundPivot" unique_id=1299735453]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, 2, 0)
-use_collision = true
-size = Vector3(30, 3, 2)
-material = SubResource("StandardMaterial3D_svnt0")
+[node name="Enemies" type="Node3D" parent="Room" unique_id=215244922]
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Room2/NavigationRegion3D/GroundPivot" unique_id=2084105172]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -16)
-use_collision = true
-size = Vector3(30, 3, 2)
-material = SubResource("StandardMaterial3D_svnt0")
+[node name="EnemySpawner" parent="Room" unique_id=707684176 instance=ExtResource("6_dju42")]
+enemies_to_spawn = 3
+enemy_scenes = Array[PackedScene]([ExtResource("8_5fsal")])
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Room2/NavigationRegion3D/GroundPivot" unique_id=1409544096]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 0)
-use_collision = true
-size = Vector3(8, 1, 1)
-material = SubResource("StandardMaterial3D_svnt0")
-
-[node name="Door" parent="Room2" unique_id=72289896 instance=ExtResource("5_7chu1")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -18)
-
-[node name="Enemies" type="Node3D" parent="Room2" unique_id=872199785]
-
-[node name="EnemySpawner" parent="Room2" unique_id=1596448902 instance=ExtResource("6_dju42")]
-enemies_to_spawn = 7
-maintain_count = 4
-enemy_scenes = Array[PackedScene]([ExtResource("9_7bn8o")])
-
-[node name="PlayerEntity" type="Node3D" parent="." unique_id=158692642]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 34.661297)
+[node name="PlayerEntity" type="Node3D" parent="." unique_id=384623855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.555918)
 
 [node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("10_syk4s")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=107952706 groups=["camera"]]
+[node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=1684567543 groups=["camera"]]
 script = ExtResource("11_ppha6")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="PlayerEntity/SpringArmPivot" unique_id=993235603]
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerEntity/SpringArmPivot" unique_id=79717463]
 transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 0, 0)
 collision_mask = 0
-shape = SubResource("SphereShape3D_es6r5")
+shape = SubResource("SphereShape3D_fdufd")
 spring_length = 10.0
 
-[node name="Camera3D" type="Camera3D" parent="PlayerEntity/SpringArmPivot/SpringArm3D" unique_id=2135416531]
+[node name="Camera3D" type="Camera3D" parent="PlayerEntity/SpringArmPivot/SpringArm3D" unique_id=148764600]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 cull_mask = 1
 
-[node name="DialogBox" type="CanvasLayer" parent="." unique_id=1690873290]
+[node name="DialogBox" type="CanvasLayer" parent="." unique_id=188954343]
 
-[node name="Label" type="Label" parent="DialogBox" unique_id=675592571]
+[node name="Label" type="Label" parent="DialogBox" unique_id=589477836]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5
@@ -248,11 +186,11 @@ text = "Get rekked bozo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Water" type="MeshInstance3D" parent="." unique_id=1857898498]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-mesh = SubResource("PlaneMesh_mrpq7")
+[node name="Water" type="MeshInstance3D" parent="." unique_id=93065345]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_5fsal")
 
-[node name="KillZone" type="Area3D" parent="Water" unique_id=1111400563 node_paths=PackedStringArray("label", "pivot")]
+[node name="KillZone" type="Area3D" parent="Water" unique_id=1195824143 node_paths=PackedStringArray("label", "pivot")]
 collision_layer = 0
 collision_mask = 6
 monitorable = false
@@ -260,9 +198,10 @@ script = ExtResource("13_hdjv0")
 label = NodePath("../../DialogBox/Label")
 pivot = NodePath("../../PlayerEntity/SpringArmPivot")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/KillZone" unique_id=1446418737]
-shape = SubResource("WorldBoundaryShape3D_ntfmh")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/KillZone" unique_id=114649244]
+shape = SubResource("WorldBoundaryShape3D_7bn8o")
 
-[node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("14_opj21")]
+[node name="SceneTrigger" parent="." unique_id=1971274356 instance=ExtResource("12_dd5tc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -28.487785)
 
 [connection signal="body_entered" from="Water/KillZone" to="Water/KillZone" method="_on_body_entered"]

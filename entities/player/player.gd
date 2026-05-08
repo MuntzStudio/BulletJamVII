@@ -15,9 +15,11 @@ signal shot_fired
 #endregion SIGNALS
 
 #region EXPORTS 
+@export var base_radius := 0.8
+@export var base_height := 3.0
 @export var bullet_scene: PackedScene
-@export var max_health : int = 6
-@export var fire_rate  : float = 0.7
+@export var max_health : float = 30.0
+@export var fire_rate  : float = 0.2
 @export var max_bullets: int = 8
 @export var current_bullets: int = 6
 #endregion EXPORTS 
@@ -45,34 +47,30 @@ var current_dodge_speed     : float= BASE_DODGE_SPEED
 var waiting_for_mouse_input : bool = false
 var last_safe_position      : Vector3
 var knockback               : Vector3 = Vector3.ZERO
-var health                  : int = max_health
+var health                  : float = max_health
 var fire_timer              : float = 0.0
 var can_rotate_to_mouse     : bool = true
 #endregion VARIABLES
 
 #region READY AND PROCESS
 func _ready() -> void:
-	# On Load
-	current_bullets = SaveManager.get_value("bullets", max_bullets)
-	bullet_boy.update_bullets(current_bullets)
-	bullet_boy._scale_Boy(bullet_boy.bulletSize[current_bullets - 1])
+	# Loaded by SaveManager
+	_on_load() 
 	
 	# On general
 	hurtbox.damage_taken.connect(_on_damage_taken)
 	last_safe_position = global_position
 	_setup_hsm()
-	_update_scaling()
+	_update_scaling() 
+
+func _on_load()-> void:
+	current_bullets = SaveManager.get_value("bullets", max_bullets) as int
+	bullet_boy.update_bullets(current_bullets)
 	
-	await get_tree().process_frame
-
-	var hud = get_tree().get_first_node_in_group(
-		"health_hud"
-	)
-
-	print(hud)
-
-	if hud:
-		hud.update_hearts(health, max_health)
+	if current_bullets > 0:
+		bullet_boy._scale_Boy(bullet_boy.bulletSize[current_bullets - 1])
+	else:
+		bullet_boy._scale_Boy(bullet_boy.bulletSize[0]) 
 
 func _setup_hsm() -> void:
 	# Transitions only 
@@ -114,14 +112,6 @@ func _physics_process(delta: float) -> void:
 #region DAMAGE/ DEATH/ RESPAWN HANDLING
 func _on_damage_taken(hitbox: Hitbox) -> void:
 	health -= hitbox.damage
-	
-	var hud = get_tree().get_first_node_in_group(
-	"health_hud"
-	)
-
-	if hud:
-		hud.update_hearts(health, max_health)
-	
 	hit_taken.emit()
 	
 	# Knockback
@@ -177,7 +167,7 @@ func _shoot():
 	if current_bullets <= 0:
 		return
 	shot_fired.emit()
-	await get_tree().create_timer(0.25).timeout  
+	await get_tree().create_timer(0.1).timeout  
 	
 	current_bullets -= 1
 	_update_scaling()
@@ -203,7 +193,11 @@ func _update_scaling():
 	current_dodge_speed = BASE_DODGE_SPEED * speed_multiplier
 	bullet_boy.update_bullets(current_bullets)
 	if current_bullets > 0:
-		bullet_boy._scale_Boy(bullet_boy.bulletSize[current_bullets - 1])
+		var s = bullet_boy.bulletSize[current_bullets-1]
+		bullet_boy._scale_Boy(s)
+		var shape : CapsuleShape3D = hurtbox.get_node("CollisionShape3D").shape
+		shape.radius = base_radius * s
+		shape.height = base_height * (1.0 + ((s - 1.0) * 0.25))
 	pass
 #endregion SHOOTING
 

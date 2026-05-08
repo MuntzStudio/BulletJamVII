@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="2_7g7ha"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5hax7"]
-radius = 0.2519101
+radius = 0.12517661
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tj6yx"]
 albedo_color = Color(1, 0.57254905, 0, 1)
@@ -16,18 +16,14 @@ emission_energy_multiplier = 1.5
 material = SubResource("StandardMaterial3D_tj6yx")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rukgb"]
-radius = 0.2631836
-height = 0.99902344
+radius = 0.12109375
+height = 1.2568359
 
 [node name="BoomerangBullet" type="CharacterBody3D" unique_id=748919217 groups=["bullet"]]
 collision_layer = 0
 collision_mask = 3
 input_ray_pickable = false
 script = ExtResource("1_tj6yx")
-throw_speed = 15.0
-attack_time = 0.6
-outward_time = 1.5
-max_bounces = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1319153479]
 shape = SubResource("SphereShape3D_5hax7")
@@ -40,8 +36,8 @@ mesh = SubResource("CapsuleMesh_tj6yx")
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("2_7g7ha")
-damage = 1.0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hitbox" unique_id=385863030]
-transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.00390625, 1.7074764e-10, 0)
 shape = SubResource("CapsuleShape3D_rukgb")
+debug_color = Color(0.70196074, 0, 0.51330864, 1)
