@@ -40,6 +40,10 @@ folder_colors={
 "res://scenes/": "pink"
 }
 
+[global_group]
+
+health_hud=""
+
 [input]
 
 ui_accept={

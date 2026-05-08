@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://c2gdsj4fui0n4" path="res://scripts/health_bar.tscn" id="5_8b2ox"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r0a57"]
+radius = 1.1166992
+height = 4.084717
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_l0aa2"]
 filter_enabled = true
@@ -119,13 +121,13 @@ bones/4/rotation = Quaternion(9.11608e-06, -5.046932e-07, 0.7888911, 0.6145331)
 bones/6/rotation = Quaternion(7.4505815e-09, 1.8626451e-09, -7.450581e-09, 1)
 bones/7/position = Vector3(2.0861626e-07, 0.98964435, -0.0055107474)
 bones/7/rotation = Quaternion(-0.7800745, -1.6714452e-07, 1.4326672e-07, 0.6256867)
-bones/8/rotation = Quaternion(-0.7800745, -1.4326675e-07, 1.6714453e-07, 0.6256867)
+bones/8/rotation = Quaternion(-0.7800745, -1.5281789e-07, 1.6714453e-07, 0.6256867)
 bones/9/position = Vector3(0.29035985, 0.99148196, 0.002756162)
 bones/9/rotation = Quaternion(-0.7800745, -1.6236896e-07, 1.337156e-07, 0.6256867)
-bones/10/rotation = Quaternion(-0.7800744, -1.7669569e-07, 1.5759346e-07, 0.62568676)
+bones/10/rotation = Quaternion(-0.7800745, -1.9579788e-07, 1.575934e-07, 0.6256867)
 bones/11/position = Vector3(-0.28189063, 0.9914816, 0.0027555404)
 bones/11/rotation = Quaternion(-0.7800745, -1.6714452e-07, 1.4326672e-07, 0.6256867)
-bones/12/rotation = Quaternion(-0.7800745, -1.4326675e-07, 1.6714453e-07, 0.6256867)
+bones/12/rotation = Quaternion(-0.7800745, -1.5281789e-07, 1.6714453e-07, 0.6256867)
 bones/13/rotation = Quaternion(-0.02668257, -0.096458465, 0.48859102, 0.8667542)
 bones/14/rotation = Quaternion(-0.44386733, 0.110992596, -0.21570787, 0.8626313)
 bones/15/rotation = Quaternion(-0.4575338, -0.00064134423, 0.0012463972, 0.8891912)
@@ -173,15 +175,16 @@ bones/54/rotation = Quaternion(0.9351298, -1.2248114e-14, 2.2295237e-07, -0.3543
 bones/55/rotation = Quaternion(0.6733041, 1.0295198e-07, 6.6774895e-08, -0.7393657)
 bones/57/rotation = Quaternion(-0.9937022, 1.4928903e-08, -1.0452595e-07, -0.112054)
 bones/58/rotation = Quaternion(7.41799e-08, 0.89033055, -0.45531476, -6.7218096e-08)
-bones/60/position = Vector3(1.5242018, 0.0053335875, -0.90011644)
-bones/60/rotation = Quaternion(0, 0.12142059, 0, 0.9926012)
-bones/67/position = Vector3(-1.2863505, 0.0053335875, -2.2026324)
-bones/67/rotation = Quaternion(0, -0.15664774, 0, 0.9876545)
+bones/60/position = Vector3(1.5242016, 0.0053335875, -0.9001163)
+bones/60/rotation = Quaternion(0, 0.121420644, 0, 0.99260116)
+bones/67/position = Vector3(-1.2863508, 0.0053335875, -2.2026327)
+bones/67/rotation = Quaternion(0, -0.1566477, 0, 0.9876546)
+bones/70/rotation = Quaternion(0.81834364, -2.0446916e-07, -2.9113892e-07, 0.57472926)
 
 [node name="BowMain" parent="BowBoy/Armature/Skeleton3D" index="0" unique_id=1551759503]
 transform = Transform3D(1, 2.2062537e-08, 1.2872326e-07, 1.305052e-07, -0.13120663, -0.9913549, -4.982489e-09, 0.9913549, -0.13120663, 4.766426e-08, 5.669992, 1.2637521)
 
-[node name="ClosedEyes" parent="BowBoy/Armature/Skeleton3D" index="3" unique_id=1505240710]
+[node name="ClosedEyes" parent="BowBoy/Armature/Skeleton3D" index="3" unique_id=276141620]
 visible = false
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1763576182]
@@ -201,7 +204,7 @@ hit_vfx = ExtResource("4_cgugl")
 metadata/_custom_type_script = "uid://cppim11crlu1t"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1010291274]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0423584, 0)
 shape = SubResource("CapsuleShape3D_r0a57")
 
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=694465931]

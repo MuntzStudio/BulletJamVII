@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://d0dt4kq3h4wjf" path="res://shaders/shader texture/WaterDistortion.png" id="12_8dq7e"]
 [ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="12_dd5tc"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="13_hdjv0"]
+[ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="14_opj21"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8dq7e"]
 ground_bottom_color = Color(0.13448244, 0.6519895, 0.915625, 1)
@@ -203,5 +204,7 @@ shape = SubResource("WorldBoundaryShape3D_7bn8o")
 
 [node name="SceneTrigger" parent="." unique_id=1971274356 instance=ExtResource("12_dd5tc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -28.487785)
+
+[node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("14_opj21")]
 
 [connection signal="body_entered" from="Water/KillZone" to="Water/KillZone" method="_on_body_entered"]
