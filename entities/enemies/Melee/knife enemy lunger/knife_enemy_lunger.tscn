@@ -44,7 +44,7 @@ debug_enabled = true
 [node name="KnifeBoy" parent="." unique_id=384132466 instance=ExtResource("3_4f0jk")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 835099683) index="5" unique_id=1068246538]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 914027470) index="5" unique_id=1068246538]
 transform = Transform3D(0.9999945, -0.0031029352, -0.0011590092, 0.0033089535, 0.95161414, 0.30727723, 0.00014946835, -0.30727938, 0.9516192, -0.009226737, 4.8939576, -1.0949928)
 bone_name = "ScaleBone"
 bone_idx = 1
@@ -54,7 +54,7 @@ transform = Transform3D(2.5252528, 5.4236544e-08, -2.0653204e-08, -2.5381063e-08
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("3_gme72")
-damage = 15.0
+damage = 2.0
 hit_type = 2
 metadata/_custom_type_script = "uid://3u303es7vhe4"
 
