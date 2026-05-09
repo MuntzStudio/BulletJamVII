@@ -3,13 +3,19 @@ extends StaticBody3D
 
 @export var enemies_to_spawn: int = 5     # total budget
 @export var maintain_count: int = 3         # keep this many alive at once
-@export var spawn_interval: float = 1.0     # how fast it refills
-@export var enemy_scenes: Array[PackedScene] = [] 
+@export var spawn_interval: float = 2.0     # how fast it refills
+@export var spawn_percentages  = PackedFloat32Array([])
 
 @onready var spawn_point = $Marker3D
 @onready var nav_region = get_parent().get_node("NavigationRegion3D")
 @onready var enemies = get_parent().get_node("Enemies")
 @onready var timer: Timer = $Timer
+@onready var rng = RandomNumberGenerator.new()
+
+var knife_enemy_jobber = load("res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn")
+var ranged_enemy_kite = load("res://entities/enemies/Ranged/ranged_enemy_kite.tscn")
+var knife_enemy_lunger = load("res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lunger.tscn")
+var boomerang_shooter_enemy = load("res://entities/enemies/Ranged/boomerang_shooter_enemy.tscn")
 
 var enemies_spawned: int = 0
 
@@ -30,11 +36,10 @@ func _on_timer_timeout() -> void:
 	# Count how many are currently alive
 	var alive := enemies.get_child_count()
 	var to_spawn := maintain_count - alive
-	for i in to_spawn:
-		if enemies_spawned >= enemies_to_spawn:
-			break
-		spawn_enemy()
-		enemies_spawned += 1
+	if enemies_spawned >= enemies_to_spawn or to_spawn <= 0:
+		return
+	spawn_enemy()
+	enemies_spawned += 1
 
 
 func spawn_enemy():
@@ -49,9 +54,15 @@ func spawn_enemy():
 
 
 func get_random_enemy():
-	if enemy_scenes.is_empty():
-		return null
-	return enemy_scenes[randi() % enemy_scenes.size()].instantiate()
+	match rng.rand_weighted(spawn_percentages):
+		0:
+			return knife_enemy_lunger.instantiate()
+		1:
+			return ranged_enemy_kite.instantiate()
+		2:
+			return knife_enemy_jobber.instantiate()
+		3:
+			return boomerang_shooter_enemy.instantiate()
 
 
 func launch_enemy(enemy, direction: Vector3):
