@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dhy7oik1dwpih"]
+
+[ext_resource type="Texture2D" uid="uid://ckvfu3sd240vh" path="res://assets/ui/Heart Bar/Heart Stage 1.png" id="1_eegdi"]
+[ext_resource type="Script" uid="uid://8vvlmcsbhnj3" path="res://assets/ui/Heart Bar/heart_UI.gd" id="1_o060d"]
+[ext_resource type="Texture2D" uid="uid://b6qoubgc7srmw" path="res://assets/ui/Heart Bar/Heart Stage 3.png" id="3_x5qkn"]
+[ext_resource type="Texture2D" uid="uid://b57n8bnhgw0vu" path="res://assets/ui/Heart Bar/Heart Stage 5.png" id="4_aopvi"]
+
+[node name="HeartUI" type="TextureRect" unique_id=373278714]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_eegdi")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_o060d")
+full_texture = ExtResource("1_eegdi")
+half_texture = ExtResource("3_x5qkn")
+empty_texture = ExtResource("4_aopvi")
