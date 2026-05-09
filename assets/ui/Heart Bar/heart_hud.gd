@@ -14,7 +14,7 @@ func update_hearts(
 	current_health: int,
 	max_health: int
 ) -> void:
-	print("UPDATING HEARTS")
+	#print("UPDATING HEARTS")
 	# Safety
 	if hearts_container == null:
 		return
@@ -33,7 +33,7 @@ func update_hearts(
 	for i in range(total_hearts):
 
 		var heart = heart_scene.instantiate()
-		print(heart)
+		#print(heart)
 		hearts_container.add_child(heart)
 
 

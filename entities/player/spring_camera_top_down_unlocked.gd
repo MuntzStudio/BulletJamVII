@@ -49,6 +49,15 @@ func _process(delta: float) -> void:
 	if not player:
 		return
 
+	#region Screen shake (offset, not position overwrite)
+	var shake_offset = Vector3.ZERO
+	if shake_strength > 0:
+		shake_offset.x = randf_range(-1, 1) * shake_strength
+		shake_offset.y = randf_range(-1, 1) * shake_strength
+		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
+	spring_arm.position = shake_offset
+	#endregion
+	
 	if is_returning:
 		current_mouse_offset = current_mouse_offset.lerp(Vector3.ZERO, mouse_offset_speed * delta)
 		global_position = global_position.lerp(
@@ -85,18 +94,8 @@ func _process(delta: float) -> void:
 	)
 
 	current_mouse_offset = current_mouse_offset.lerp(offset_world, mouse_offset_speed * delta)
-
 	global_position = player.global_position + current_mouse_offset
 
-	# Screen shake (offset, not position overwrite)
-	var shake_offset = Vector3.ZERO
-
-	if shake_strength > 0:
-		shake_offset.x = randf_range(-1, 1) * shake_strength
-		shake_offset.y = randf_range(-1, 1) * shake_strength
-		shake_strength = lerp(shake_strength, 0.0, shake_fade * delta)
-
-	spring_arm.position = shake_offset
 
 # Camera stops following
 func stop_following() -> void:
@@ -106,7 +105,7 @@ func stop_following() -> void:
 
 #region ZOOM
 func zoom_out() -> void:
-	print(self, "zoomed out")
+	#print(self, "zoomed out")
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(spring_arm, "spring_length", pan_length, zoom_speed)\
 		.set_ease(Tween.EASE_OUT)\
@@ -116,7 +115,7 @@ func zoom_out() -> void:
 		.set_trans(Tween.TRANS_CUBIC)
 
 func zoom_in() -> void:
-	print(self, "zoomed in")
+	#print(self, "zoomed in")
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(spring_arm, "spring_length", normal_length, zoom_speed)\
 		.set_ease(Tween.EASE_IN)\

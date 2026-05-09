@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://d0dt4kq3h4wjf" path="res://shaders/shader texture/WaterDistortion.png" id="14_0arq4"]
 [ext_resource type="Texture2D" uid="uid://d3tvpofljsbxd" path="res://shaders/shader texture/PerlinNoise.png" id="15_o64hx"]
 [ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="16_xj4nf"]
+[ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="17_0arq4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7sxwm"]
 ground_bottom_color = Color(0.13448244, 0.6519895, 0.915625, 1)
@@ -167,23 +168,6 @@ spring_length = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 cull_mask = 1
 
-[node name="DialogBox" type="CanvasLayer" parent="." unique_id=1690873290]
-
-[node name="Label" type="Label" parent="DialogBox" unique_id=675592571]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -63.5
-offset_top = 160.0
-offset_right = 63.5
-offset_bottom = 183.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 30
-text = "Get rekked bozo"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="SceneTrigger" parent="." unique_id=1971274356 instance=ExtResource("12_ldagw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 32.512215)
 next_scene = ExtResource("13_0q37b")
@@ -205,5 +189,25 @@ pivot = NodePath("../../PlayerEntity/SpringArmPivot")
 shape = SubResource("WorldBoundaryShape3D_ntfmh")
 
 [node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("16_xj4nf")]
+
+[node name="DialogBox" type="CanvasLayer" parent="." unique_id=1690873290]
+
+[node name="Label" type="Label" parent="DialogBox" unique_id=675592571]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 160.0
+offset_right = 63.5
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Get rekked bozo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseMenu" parent="." unique_id=1369771253 instance=ExtResource("17_0arq4")]
+visible = false
 
 [connection signal="body_entered" from="Water/KillZone" to="Water/KillZone" method="_on_body_entered"]

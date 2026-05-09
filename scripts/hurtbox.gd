@@ -32,9 +32,7 @@ func _process(delta: float) -> void:
 func _on_area_entered(area: Area3D) -> void:
 	if area is Hitbox:
 		_overlapping_hitboxes.append(area)
-		print(_overlapping_hitboxes)
 		take_damage(area) 
-		print(area)
 
 func _on_area_exited(area: Area3D) -> void:
 	if area is Hitbox:

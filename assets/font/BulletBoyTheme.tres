@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://byl8xpb6p1vvy"]
+
+[ext_resource type="FontFile" uid="uid://d0btsupvineqj" path="res://assets/font/Batolah.otf" id="1_jeg7s"]
+
+[resource]
+default_font = ExtResource("1_jeg7s")

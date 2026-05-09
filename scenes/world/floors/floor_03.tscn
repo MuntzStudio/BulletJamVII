@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="12_dd5tc"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="13_hdjv0"]
 [ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="15_8dq7e"]
+[ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="16_jh6yf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8dq7e"]
 ground_bottom_color = Color(0.13448244, 0.6519895, 0.915625, 1)
@@ -170,23 +171,6 @@ spring_length = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 cull_mask = 1
 
-[node name="DialogBox" type="CanvasLayer" parent="." unique_id=188954343]
-
-[node name="Label" type="Label" parent="DialogBox" unique_id=589477836]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -63.5
-offset_top = 160.0
-offset_right = 63.5
-offset_bottom = 183.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 30
-text = "Get rekked bozo"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Water" type="MeshInstance3D" parent="." unique_id=93065345]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("PlaneMesh_5fsal")
@@ -206,5 +190,25 @@ shape = SubResource("WorldBoundaryShape3D_7bn8o")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -28.487785)
 
 [node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("15_8dq7e")]
+
+[node name="DialogBox" type="CanvasLayer" parent="." unique_id=188954343]
+
+[node name="Label" type="Label" parent="DialogBox" unique_id=589477836]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 160.0
+offset_right = 63.5
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Get rekked bozo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseMenu" parent="." unique_id=1369771253 instance=ExtResource("16_jh6yf")]
+visible = false
 
 [connection signal="body_entered" from="Water/KillZone" to="Water/KillZone" method="_on_body_entered"]
