@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://c3aljkf3ygbmn" path="res://ai/tasks/enemy/play_hit_reaction.gd" id="4_pch13"]
 [ext_resource type="PackedScene" uid="uid://bmjwxvr6dmt0b" path="res://entities/bullets/boomerang_bullet.tscn" id="4_yqkld"]
 [ext_resource type="Script" uid="uid://5k8aql14su2b" path="res://ai/tasks/enemy/shoot.gd" id="5_1d6c5"]
-[ext_resource type="Script" uid="uid://bnhnirfbd8bpd" path="res://ai/tasks/enemy/back_away.gd" id="6_pch13"]
+[ext_resource type="Script" path="res://ai/tasks/enemy/back_away.gd" id="6_pch13"]
 [ext_resource type="Script" uid="uid://ds2e6kyx764x5" path="res://ai/tasks/enemy/strafe.gd" id="8_hs50e"]
 [ext_resource type="Script" uid="uid://dnuus4ch0mqyf" path="res://ai/tasks/enemy/navigate_to_target.gd" id="8_lysta"]
 
