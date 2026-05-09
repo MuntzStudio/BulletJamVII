@@ -6,10 +6,10 @@
 [node name="BoomerangBoy" unique_id=906929532 instance=ExtResource("1_unyl0")]
 script = ExtResource("2_vdrdy")
 
-[node name="Armature" parent="." index="0" unique_id=1934425]
+[node name="Armature" parent="." index="0" unique_id=1904316136]
 transform = Transform3D(0.375, 0, 0, 0, 0.375, 0, 0, 0, 0.375, 0, 0, 0)
 
-[node name="Skeleton3D" parent="Armature" index="0" unique_id=1570862869]
+[node name="Skeleton3D" parent="Armature" index="0" unique_id=1999482568]
 bones/0/position = Vector3(1.3109838, 1.4510826, 0.5801018)
 bones/0/rotation = Quaternion(-0.453742, -0.11182042, 0.21154633, 0.85840696)
 bones/1/rotation = Quaternion(0.23602042, -0.13609675, -0.48063582, 0.8335234)
@@ -73,13 +73,13 @@ bones/56/rotation = Quaternion(0.10996268, -0.61914295, 0.016033374, 0.7773758)
 bones/59/rotation = Quaternion(0.81834364, -2.043238e-07, -2.957932e-07, 0.57472926)
 bones/61/rotation = Quaternion(-0.2581146, -0.06456605, -0.06902718, 0.9614797)
 
-[node name="Boomerang_L" parent="Armature/Skeleton3D" index="0" unique_id=1450037652]
+[node name="Boomerang_L" parent="Armature/Skeleton3D" index="0" unique_id=1453640354]
 transform = Transform3D(-0.92413044, -0.30476815, 0.23043261, 0.231486, 0.033204168, 0.97227114, -0.30396882, 0.95184743, 0.03986455, -1.700502, 2.785587, -5.0844035)
 
-[node name="Boomerang_R" parent="Armature/Skeleton3D" index="1" unique_id=846442551]
+[node name="Boomerang_R" parent="Armature/Skeleton3D" index="1" unique_id=1861658030]
 transform = Transform3D(-0.42845997, -0.5984404, -0.6769717, -0.023380175, -0.74163294, 0.670398, -0.90325826, 0.3030664, 0.30376822, 5.171136, 2.2385163, -0.2539094)
 
-[node name="AnimationPlayer" parent="." index="1" unique_id=2073807037]
+[node name="AnimationPlayer" parent="." index="1" unique_id=238826665]
 autoplay = &"Idle1"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

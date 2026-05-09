@@ -145,7 +145,7 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 	if health <= 0.0:
 		_die()
 
-func take_chip_damage(amount: float) -> void:
+func take_chip_damage(amount: int) -> void:
 	health -= amount
 	
 	var hud = get_tree().get_first_node_in_group(

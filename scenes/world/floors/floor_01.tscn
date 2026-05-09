@@ -1,19 +1,21 @@
 [gd_scene format=3 uid="uid://b11tac7gh5078"]
 
 [ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="1_qf3yd"]
-[ext_resource type="Shape3D" uid="uid://g8kouvkl5dkj" path="res://scenes/room col & nav/pitroom_collsion.tres" id="4_f00m5"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="4_ylf5x"]
 [ext_resource type="PackedScene" uid="uid://t8f7dhhvhttw" path="res://scenes/world/Mechanics/door.tscn" id="5_3boyv"]
 [ext_resource type="PackedScene" uid="uid://d2rwltgubu8wc" path="res://assets/models and textures/RoomPitsBake.glb" id="5_e7u35"]
 [ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="7_7sxwm"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="7_ea6u0"]
+[ext_resource type="PackedScene" uid="uid://k15i2nb8iv8n" path="res://assets/models and textures/RoomEmptyBake.glb" id="8_cdfud"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="9_clh36"]
+[ext_resource type="PackedScene" uid="uid://bet3csgwf764f" path="res://assets/models and textures/RoomPillarBake.glb" id="9_qsdem"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="10_8i2al"]
 [ext_resource type="PackedScene" uid="uid://c8f5ytcmsmsef" path="res://assets/models and textures/StairsBake.glb" id="10_f00m5"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="11_agmiw"]
 [ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="13_f00m5"]
 [ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="13_f6sku"]
 [ext_resource type="PackedScene" uid="uid://c0ujdr87ul7no" path="res://scenes/world/floors/floor_02.tscn" id="14_f00m5"]
+[ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="15_lmaod"]
 
 [sub_resource type="Sky" id="Sky_f00m5"]
 
@@ -37,6 +39,30 @@ vertices = PackedVector3Array(-22.915365, 5.01, -14.826115, -23.165365, 5.01, -2
 polygons = [PackedInt32Array(1, 7, 8), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 6), PackedInt32Array(9, 6, 10), PackedInt32Array(10, 6, 5), PackedInt32Array(10, 5, 11), PackedInt32Array(11, 5, 4), PackedInt32Array(11, 4, 12), PackedInt32Array(12, 4, 3), PackedInt32Array(12, 3, 2), PackedInt32Array(2, 3, 0), PackedInt32Array(15, 20, 13), PackedInt32Array(13, 20, 19), PackedInt32Array(13, 19, 18), PackedInt32Array(13, 18, 17), PackedInt32Array(13, 17, 16), PackedInt32Array(13, 16, 14), PackedInt32Array(2, 0, 21), PackedInt32Array(21, 0, 22), PackedInt32Array(23, 40, 41), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 39), PackedInt32Array(42, 39, 43), PackedInt32Array(43, 39, 38), PackedInt32Array(43, 38, 44), PackedInt32Array(44, 38, 37), PackedInt32Array(44, 37, 45), PackedInt32Array(45, 37, 36), PackedInt32Array(45, 36, 46), PackedInt32Array(46, 36, 35), PackedInt32Array(46, 35, 47), PackedInt32Array(47, 35, 48), PackedInt32Array(48, 35, 49), PackedInt32Array(49, 35, 50), PackedInt32Array(50, 35, 51), PackedInt32Array(51, 35, 52), PackedInt32Array(52, 35, 34), PackedInt32Array(52, 34, 13), PackedInt32Array(13, 34, 33), PackedInt32Array(13, 33, 24), PackedInt32Array(24, 33, 32), PackedInt32Array(24, 32, 25), PackedInt32Array(25, 32, 31), PackedInt32Array(25, 31, 26), PackedInt32Array(26, 31, 30), PackedInt32Array(26, 30, 27), PackedInt32Array(27, 30, 29), PackedInt32Array(27, 29, 28), PackedInt32Array(28, 29, 22), PackedInt32Array(13, 24, 15), PackedInt32Array(15, 24, 25), PackedInt32Array(15, 25, 26), PackedInt32Array(15, 26, 27), PackedInt32Array(15, 27, 0), PackedInt32Array(0, 27, 28), PackedInt32Array(0, 28, 22), PackedInt32Array(56, 55, 53), PackedInt32Array(53, 55, 54), PackedInt32Array(59, 65, 60), PackedInt32Array(60, 65, 61), PackedInt32Array(61, 63, 62), PackedInt32Array(62, 64, 57), PackedInt32Array(57, 64, 56), PackedInt32Array(56, 64, 55), PackedInt32Array(55, 64, 58), PackedInt32Array(58, 65, 59), PackedInt32Array(65, 63, 61), PackedInt32Array(63, 64, 62), PackedInt32Array(64, 65, 58), PackedInt32Array(65, 64, 63), PackedInt32Array(54, 66, 53), PackedInt32Array(53, 66, 67), PackedInt32Array(69, 68, 70), PackedInt32Array(70, 68, 71), PackedInt32Array(72, 68, 73), PackedInt32Array(73, 68, 74), PackedInt32Array(74, 68, 69), PackedInt32Array(78, 81, 79), PackedInt32Array(79, 81, 80), PackedInt32Array(79, 80, 77), PackedInt32Array(79, 77, 76), PackedInt32Array(79, 76, 75), PackedInt32Array(67, 66, 70), PackedInt32Array(71, 83, 82), PackedInt32Array(78, 84, 81), PackedInt32Array(81, 84, 80), PackedInt32Array(80, 84, 77), PackedInt32Array(77, 84, 82), PackedInt32Array(66, 85, 70), PackedInt32Array(87, 86, 67), PackedInt32Array(70, 97, 67), PackedInt32Array(67, 93, 87), PackedInt32Array(87, 93, 84), PackedInt32Array(84, 92, 82), PackedInt32Array(82, 92, 71), PackedInt32Array(71, 90, 70), PackedInt32Array(97, 96, 67), PackedInt32Array(70, 94, 97), PackedInt32Array(67, 91, 93), PackedInt32Array(93, 89, 84), PackedInt32Array(84, 89, 92), PackedInt32Array(92, 88, 71), PackedInt32Array(90, 94, 70), PackedInt32Array(71, 88, 90), PackedInt32Array(96, 95, 67), PackedInt32Array(97, 94, 96), PackedInt32Array(91, 94, 93), PackedInt32Array(67, 95, 91), PackedInt32Array(93, 94, 89), PackedInt32Array(89, 88, 92), PackedInt32Array(90, 89, 94), PackedInt32Array(88, 89, 90), PackedInt32Array(96, 91, 95), PackedInt32Array(94, 91, 96), PackedInt32Array(98, 103, 99), PackedInt32Array(99, 103, 102), PackedInt32Array(99, 102, 101), PackedInt32Array(99, 101, 100), PackedInt32Array(98, 72, 103), PackedInt32Array(103, 72, 102), PackedInt32Array(102, 72, 101), PackedInt32Array(101, 72, 73), PackedInt32Array(107, 106, 104), PackedInt32Array(104, 106, 105), PackedInt32Array(108, 110, 109), PackedInt32Array(83, 122, 113), PackedInt32Array(113, 126, 108), PackedInt32Array(108, 111, 110), PackedInt32Array(111, 108, 114), PackedInt32Array(114, 127, 115), PackedInt32Array(115, 127, 116), PackedInt32Array(116, 127, 117), PackedInt32Array(117, 124, 112), PackedInt32Array(112, 124, 83), PackedInt32Array(122, 126, 113), PackedInt32Array(83, 119, 122), PackedInt32Array(126, 121, 108), PackedInt32Array(108, 121, 114), PackedInt32Array(114, 125, 127), PackedInt32Array(127, 123, 117), PackedInt32Array(117, 123, 124), PackedInt32Array(124, 128, 83), PackedInt32Array(122, 120, 126), PackedInt32Array(119, 125, 122), PackedInt32Array(83, 118, 119), PackedInt32Array(126, 120, 121), PackedInt32Array(121, 125, 114), PackedInt32Array(125, 123, 127), PackedInt32Array(123, 118, 124), PackedInt32Array(128, 118, 83), PackedInt32Array(124, 118, 128), PackedInt32Array(122, 125, 120), PackedInt32Array(119, 123, 125), PackedInt32Array(118, 123, 119), PackedInt32Array(120, 125, 121), PackedInt32Array(111, 114, 129), PackedInt32Array(129, 130, 100), PackedInt32Array(100, 112, 99), PackedInt32Array(112, 130, 117), PackedInt32Array(117, 130, 116), PackedInt32Array(116, 130, 115), PackedInt32Array(115, 130, 114), PackedInt32Array(114, 130, 129), PackedInt32Array(130, 112, 100), PackedInt32Array(132, 136, 108), PackedInt32Array(108, 137, 113), PackedInt32Array(113, 138, 131), PackedInt32Array(131, 139, 132), PackedInt32Array(136, 135, 108), PackedInt32Array(132, 140, 136), PackedInt32Array(137, 138, 113), PackedInt32Array(108, 133, 137), PackedInt32Array(138, 139, 131), PackedInt32Array(139, 140, 132), PackedInt32Array(135, 133, 108), PackedInt32Array(136, 133, 135), PackedInt32Array(140, 134, 136), PackedInt32Array(137, 139, 138), PackedInt32Array(133, 134, 137), PackedInt32Array(139, 134, 140), PackedInt32Array(136, 134, 133), PackedInt32Array(137, 134, 139), PackedInt32Array(113, 82, 83), PackedInt32Array(144, 143, 141), PackedInt32Array(141, 143, 142), PackedInt32Array(145, 131, 132), PackedInt32Array(146, 149, 150), PackedInt32Array(150, 149, 148), PackedInt32Array(150, 148, 76), PackedInt32Array(76, 148, 75), PackedInt32Array(75, 148, 147), PackedInt32Array(146, 151, 149), PackedInt32Array(149, 151, 148), PackedInt32Array(148, 151, 147), PackedInt32Array(147, 151, 145), PackedInt32Array(147, 145, 132), PackedInt32Array(152, 154, 155), PackedInt32Array(155, 154, 156), PackedInt32Array(156, 154, 157), PackedInt32Array(157, 154, 158), PackedInt32Array(158, 154, 159), PackedInt32Array(159, 154, 153), PackedInt32Array(162, 167, 160), PackedInt32Array(160, 167, 166), PackedInt32Array(160, 166, 165), PackedInt32Array(160, 165, 164), PackedInt32Array(160, 164, 163), PackedInt32Array(160, 163, 161), PackedInt32Array(168, 154, 152), PackedInt32Array(162, 160, 152), PackedInt32Array(152, 160, 168), PackedInt32Array(169, 181, 182), PackedInt32Array(182, 181, 183), PackedInt32Array(183, 181, 180), PackedInt32Array(183, 180, 184), PackedInt32Array(184, 180, 179), PackedInt32Array(184, 179, 185), PackedInt32Array(185, 179, 178), PackedInt32Array(185, 178, 186), PackedInt32Array(186, 178, 177), PackedInt32Array(186, 177, 187), PackedInt32Array(187, 177, 176), PackedInt32Array(187, 176, 188), PackedInt32Array(188, 176, 189), PackedInt32Array(189, 176, 190), PackedInt32Array(190, 176, 191), PackedInt32Array(191, 176, 192), PackedInt32Array(192, 176, 193), PackedInt32Array(193, 176, 175), PackedInt32Array(193, 175, 160), PackedInt32Array(160, 175, 174), PackedInt32Array(160, 174, 173), PackedInt32Array(160, 173, 172), PackedInt32Array(160, 172, 171), PackedInt32Array(160, 171, 170), PackedInt32Array(160, 170, 168), PackedInt32Array(195, 194, 110), PackedInt32Array(110, 194, 109), PackedInt32Array(194, 195, 196), PackedInt32Array(196, 195, 199), PackedInt32Array(196, 199, 198), PackedInt32Array(196, 198, 197)]
 cell_height = 0.01
 agent_height = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e7u35"]
+size = Vector3(20.49646, 1, 19.97757)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_asrad"]
+size = Vector3(20.49646, 1, 19.97757)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cdfud"]
+size = Vector3(8.781746, 1, 3.7563477)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qsdem"]
+size = Vector3(5.3762207, 1, 3.159668)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7qvwk"]
+size = Vector3(8.786011, 1, 30.207031)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a61ib"]
+size = Vector3(10.837463, 1, 9.903564)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2hsrv"]
+size = Vector3(9.74588, 1, 3.9922485)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tr5lg"]
+size = Vector3(5.707901, 1, 3.9922485)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_es6r5"]
 radius = 0.2
@@ -68,46 +94,116 @@ shadow_enabled = true
 omni_range = 20.0
 omni_attenuation = 1.3
 
-[node name="Room" type="Node3D" parent="." unique_id=1381049443 node_paths=PackedStringArray("doors")]
+[node name="LastRoomF1" type="Node3D" parent="." unique_id=1381049443 node_paths=PackedStringArray("doors")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 script = ExtResource("1_qf3yd")
 doors = [NodePath("Door"), NodePath("Door2")]
 
-[node name="Boundary" type="Area3D" parent="Room" unique_id=523234198]
+[node name="Boundary" type="Area3D" parent="LastRoomF1" unique_id=523234198]
 collision_mask = 14
 monitorable = false
 script = ExtResource("4_ylf5x")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Boundary" unique_id=1622471572]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/Boundary" unique_id=1622471572]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.745474, 0, 0.72088623)
 shape = SubResource("BoxShape3D_l4n5r")
 debug_color = Color(0.98829025, 0, 0.099605866, 1)
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Room" unique_id=1415303655]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="LastRoomF1" unique_id=1415303655]
 navigation_mesh = SubResource("NavigationMesh_f6sku")
 metadata/_edit_lock_ = true
 
-[node name="RoomPitsBake" parent="Room/NavigationRegion3D" unique_id=735930657 instance=ExtResource("5_e7u35")]
+[node name="RoomPitsBake" parent="LastRoomF1/NavigationRegion3D" unique_id=735930657 instance=ExtResource("5_e7u35")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.200611, 0, 11)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Room/NavigationRegion3D/RoomPitsBake" unique_id=172925856]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+[node name="Colliders" type="Node3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake" unique_id=343820469]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room/NavigationRegion3D/RoomPitsBake/StaticBody3D" unique_id=1841336882]
-shape = ExtResource("4_f00m5")
+[node name="floor1" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=1984098944]
 
-[node name="Door" parent="Room" unique_id=1117087749 instance=ExtResource("5_3boyv")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/floor1" unique_id=275890397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.816887, 0, -5.339241)
+shape = SubResource("BoxShape3D_e7u35")
+debug_color = Color(0.99086326, 0, 0.27254647, 1)
+
+[node name="floor8" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=1867550062]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/floor8" unique_id=1551227727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.450035, 0, 13.764519)
+shape = SubResource("BoxShape3D_asrad")
+debug_color = Color(0.99086326, 0, 0.27254647, 1)
+
+[node name="floor2" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=1915367951]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/floor2" unique_id=1444922120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.839226, 0, 2.7518835)
+shape = SubResource("BoxShape3D_cdfud")
+debug_color = Color(0.7607843, 0.4509804, 1, 1)
+
+[node name="floor3" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=19215038]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/floor3" unique_id=1287761560]
+transform = Transform3D(0.014154157, 0, -0.9998998, 0, 1, 0, 0.9998998, 0, 0.014154157, -12.652424, 0, -1.8329654)
+shape = SubResource("BoxShape3D_qsdem")
+
+[node name="floor4" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=1777053820]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/floor4" unique_id=1749946583]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.833736, 0, -19.654037)
+shape = SubResource("BoxShape3D_7qvwk")
+
+[node name="floor5" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=1218154165]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/floor5" unique_id=147117385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020648956, 0, -20.255234)
+shape = SubResource("BoxShape3D_a61ib")
+debug_color = Color(0.80784315, 0.003921569, 0.99215686, 1)
+
+[node name="floor6" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=1997849072]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/floor6" unique_id=88273182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.269945, 0, -22.768082)
+shape = SubResource("BoxShape3D_2hsrv")
+
+[node name="floor7" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=1347487660]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/floor7" unique_id=180985304]
+transform = Transform3D(-0.021534536, -0.016299265, -0.9996353, -0.00013826473, 0.99986714, -0.016300065, 0.99976826, -0.00021280005, -0.02153393, 13.07757, -0.00027915504, -18.02409)
+shape = SubResource("BoxShape3D_tr5lg")
+
+[node name="wall1" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=362560392]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/wall1" unique_id=407697636]
+
+[node name="wall2" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=130859041]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/wall2" unique_id=1168982162]
+
+[node name="wall3" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=1681911165]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/wall3" unique_id=584902850]
+
+[node name="wall4" type="StaticBody3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders" unique_id=1029429902]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/NavigationRegion3D/RoomPitsBake/Colliders/wall4" unique_id=83712228]
+
+[node name="Door" parent="LastRoomF1" unique_id=1117087749 instance=ExtResource("5_3boyv")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.061249256, 0, 15.842262)
 
-[node name="Door2" parent="Room" unique_id=242091245 instance=ExtResource("5_3boyv")]
+[node name="Door2" parent="LastRoomF1" unique_id=242091245 instance=ExtResource("5_3boyv")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20.00279, 0, -14.171829)
 
-[node name="Enemies" type="Node3D" parent="Room" unique_id=1127079401]
+[node name="Enemies" type="Node3D" parent="LastRoomF1" unique_id=1127079401]
 
-[node name="EnemySpawner" parent="Room" unique_id=707684176 instance=ExtResource("7_ea6u0")]
+[node name="EnemySpawner" parent="LastRoomF1" unique_id=707684176 instance=ExtResource("7_ea6u0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.607407, 0, 0)
 enemies_to_spawn = 3
 enemy_scenes = Array[PackedScene]([ExtResource("7_7sxwm")])
+
+[node name="RoomEmptyBake" parent="." unique_id=424819798 instance=ExtResource("8_cdfud")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.793, 0, 106.031)
+
+[node name="RoomPillarBake" parent="." unique_id=291506542 instance=ExtResource("9_qsdem")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.591, 0, 36.216)
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=158692642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.555918)
@@ -167,6 +263,8 @@ pivot = NodePath("../../PlayerEntity/SpringArmPivot")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Lava/KillZone" unique_id=1446418737]
 shape = SubResource("WorldBoundaryShape3D_ntfmh")
 
+[node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("15_lmaod")]
+
 [connection signal="body_entered" from="Lava/KillZone" to="Lava/KillZone" method="_on_body_entered"]
 
-[editable path="Room/NavigationRegion3D/RoomPitsBake"]
+[editable path="LastRoomF1/NavigationRegion3D/RoomPitsBake"]
