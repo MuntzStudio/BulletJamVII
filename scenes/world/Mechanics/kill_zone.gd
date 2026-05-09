@@ -12,6 +12,8 @@ var dialogs = [
 	"Keep trying.. You still might not win."
 ]
 
+var is_respawning : bool = false
+
 func _ready() -> void:
 	randomize()
 	if label:
@@ -22,15 +24,17 @@ func _on_body_entered(body: Node3D) -> void:
 		await get_tree().create_timer(1.5).timeout
 		body.queue_free()
 		# TODO: give points to player maybe
-	
+
 	elif body.is_in_group("player"):
-		if body:
-			pivot.stop_following()
+		if body and not body.is_respawning:
 			body.take_chip_damage(1)
-			var random_text = dialogs.pick_random()
-			label.text = random_text
+			body.is_respawning = true
+			pivot.stop_following()
+			body.collision.disabled = true
+			label.text = dialogs.pick_random()
 			await get_tree().create_timer(1.0).timeout
 			label.show()
 			await get_tree().create_timer(1.5).timeout
-			body.respawn()
+			await body.respawn()
+			body.is_respawning = false
 			label.hide()

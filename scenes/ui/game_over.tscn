@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://eld1iurb3w6y"]
+
+[ext_resource type="Theme" uid="uid://byl8xpb6p1vvy" path="res://assets/font/BulletBoyTheme.tres" id="1_o6b8n"]
+[ext_resource type="Script" uid="uid://bljps02le3xeu" path="res://scenes/ui/game_over.gd" id="1_y26ei"]
+[ext_resource type="Shader" uid="uid://bvb46kn7r7ky3" path="res://shaders/scrollable bkgd.gdshader" id="2_vfrx6"]
+[ext_resource type="Texture2D" uid="uid://djagq5xw24dwd" path="res://assets/sprites/bullet boy.png" id="3_o6b8n"]
+[ext_resource type="Shader" uid="uid://cf62f447v7q1a" path="res://shaders/animated rainbow.gdshader" id="4_4583b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6b8n"]
+shader = ExtResource("4_4583b")
+shader_parameter/speed = 0.0999999977648
+shader_parameter/saturation = 1.0
+shader_parameter/brightness = 1.0
+shader_parameter/opacity = 0.4499999899416
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b6337"]
+shader = ExtResource("2_vfrx6")
+shader_parameter/speed_x = 0.19999988376959976
+shader_parameter/speed_y = 0.0
+shader_parameter/scale = 6.99999984726132
+shader_parameter/rotation_deg = 0.0
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/opacity = 1.0
+
+[node name="GameOver" type="Control" unique_id=2054142928]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_o6b8n")
+script = ExtResource("1_y26ei")
+
+[node name="Bg" type="ColorRect" parent="." unique_id=793314876]
+material = SubResource("ShaderMaterial_o6b8n")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3019608)
+
+[node name="Bg2" type="ColorRect" parent="Bg" unique_id=1523945623]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.11111111
+anchor_right = 0.34375
+anchor_bottom = 0.34444445
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Bg3" type="ColorRect" parent="Bg" unique_id=423453972]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65625
+anchor_top = 0.11111111
+anchor_right = 1.0
+anchor_bottom = 0.34444445
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollabeBkgd" type="TextureRect" parent="." unique_id=2139239795]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("ShaderMaterial_b6337")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 439.99997
+offset_top = -1.5258789e-05
+offset_right = -268.57153
+offset_bottom = 308.5714
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_o6b8n")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="AnimatedColorRect" type="ColorRect" parent="ScrollabeBkgd" unique_id=1782847209]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.296875, 0.17040162, 0.14472656, 0.762)
+
+[node name="BG" type="Panel" parent="." unique_id=1281858872]
+self_modulate = Color(1, 1, 1, 0.5)
+custom_minimum_size = Vector2(400, 720)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="BG" unique_id=1239197440]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 37.5
+offset_right = -37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="GameOver" type="Label" parent="BG/HBoxContainer" unique_id=107200377]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/HBoxContainer" unique_id=1108826244]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Restart" type="Button" parent="BG/HBoxContainer/VBoxContainer" unique_id=1646484957]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(0.15294118, 0.15686275, 0.13725491, 1)
+theme_override_colors/icon_hover_color = Color(0.6873571, 0.7025804, 0.6576216, 1)
+theme_override_font_sizes/font_size = 50
+text = "Restart"
+
+[node name="Quit" type="Button" parent="BG/HBoxContainer/VBoxContainer" unique_id=1470267106]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(0.15294118, 0.15686275, 0.13725491, 1)
+theme_override_colors/icon_hover_color = Color(0.654902, 0.67058825, 0.62352943, 1)
+theme_override_font_sizes/font_size = 50
+text = "Quit
+"

@@ -15,9 +15,11 @@ signal shot_fired
 #endregion SIGNALS
 
 #region EXPORTS 
+@export var bullet_scene: PackedScene
+const GAME_OVER = "res://scenes/ui/game_over.tscn"
+
 @export var base_radius := 0.8
 @export var base_height := 3.0
-@export var bullet_scene: PackedScene
 @export var max_health : int = 6
 @export var fire_rate  : float = 0.2
 @export var max_bullets: int = 8
@@ -25,6 +27,7 @@ signal shot_fired
 #endregion EXPORTS 
 
 #region NODE REFS 
+@onready var collision: CollisionShape3D = $CollisionShape3D
 @onready var bullet_spawn : Node3D = $BulletBoy/Armature/Skeleton3D/Nose/BulletSpawn
 @onready var hsm          : LimboHSM = $LimboHSM
 @onready var hurtbox      : Hurtbox = $Hurtbox
@@ -44,11 +47,12 @@ signal shot_fired
 var dodge_cooldown_timer    : float = 0.0
 var current_speed           : float = BASE_SPEED
 var current_dodge_speed     : float= BASE_DODGE_SPEED
-var waiting_for_mouse_input : bool = false
 var last_safe_position      : Vector3
 var knockback               : Vector3 = Vector3.ZERO
 var health                  : int = max_health
 var fire_timer              : float = 0.0
+var is_respawning           : bool = false
+var waiting_for_mouse_input : bool = false
 var can_rotate_to_mouse     : bool = true
 #endregion VARIABLES
 
@@ -71,14 +75,20 @@ func _ready() -> void:
 	if hud:
 		hud.update_hearts(health, max_health) 
 
-func _on_load()-> void:
+func _on_load() -> void:
+	# Bullets
 	current_bullets = SaveManager.get_value("bullets", max_bullets) as int
 	bullet_boy.update_bullets(current_bullets)
-	
 	if current_bullets > 0:
 		bullet_boy._scale_Boy(bullet_boy.bulletSize[current_bullets - 1])
 	else:
-		bullet_boy._scale_Boy(bullet_boy.bulletSize[0]) 
+		bullet_boy._scale_Boy(bullet_boy.bulletSize[0])
+	
+	# Health
+	health = SaveManager.get_value("health", max_health) as int
+	var hud = get_tree().get_first_node_in_group("health_hud")
+	if hud:
+		hud.update_hearts(health, max_health)
 
 func _setup_hsm() -> void:
 	# Transitions only 
@@ -98,7 +108,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Floor check
 	if is_on_floor():
-		last_safe_position = global_position
+		last_safe_position = global_position + Vector3(0, 3.0, 0) 
 	
 	# Decay knockback
 	knockback = knockback.lerp(Vector3.ZERO, 10.0 * delta)
@@ -119,7 +129,7 @@ func _physics_process(delta: float) -> void:
 
 #region DAMAGE/ DEATH/ RESPAWN HANDLING
 func _on_damage_taken(hitbox: Hitbox) -> void:
-	health -= hitbox.damage
+	health -= int(hitbox.damage)
 	
 	var hud = get_tree().get_first_node_in_group(
 	"health_hud"
@@ -145,39 +155,39 @@ func _on_damage_taken(hitbox: Hitbox) -> void:
 	if health <= 0.0:
 		_die()
 
-func take_chip_damage(amount: float) -> void:
+func take_chip_damage(amount: int) -> void:
+	Events.screen_shake.emit(0.2, 0.2)
 	health -= amount
 	
 	var hud = get_tree().get_first_node_in_group(
 	"health_hud"
 	)
-
 	if hud:
 		hud.update_hearts(health, max_health)
 	
 	hit_taken.emit()
 	hurtbox.make_invulnerable(0.5)
-	Events.screen_shake.emit(0.1, 0.1)  # lighter shake for chip
 	if health <= 0.0:
 		_die()
 
-func respawn():
-	print(health)
+func respawn() -> void:
 	waiting_for_mouse_input = true
 	can_rotate_to_mouse = false
 	set_physics_process(false)
+	collision.call_deferred("set", "disabled", false)
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 	global_position = last_safe_position
 	velocity = Vector3.ZERO
-	pivot.is_returning = true 
-	await get_tree().physics_frame
+	pivot.is_returning = true
+	velocity = Vector3.ZERO
 	set_physics_process(true)
 
 func _die() -> void:
 	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)  
 	hurtbox.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
 	await get_tree().process_frame  
-	SaveManager.delete_save()
-	get_tree().reload_current_scene() # TODO replace with GAMEOVER
+	LoadManager.load_scene(GAME_OVER)
 #endregion DAMAGE HANDLING
 
 #region SHOOTING / SCALING
@@ -282,7 +292,7 @@ func _input(event: InputEvent) -> void:
 	if not OS.is_debug_build():
 		return
 	
-	if event.is_action_pressed("ui_cancel") and not event.echo:
+	if event.is_action_pressed("invincible") and not event.echo:
 		hurtbox.is_invulnerable = !hurtbox.is_invulnerable
 		print("HULK SMASH? : ", hurtbox.is_invulnerable)
 #endregion INPUT DEBUG

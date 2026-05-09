@@ -4,12 +4,13 @@ extends Node3D
 @export var start_scene : PackedScene
 @export var credits_scene : PackedScene
 @export var sound_track : AudioStream
+@export var anim_player : AnimationPlayer
 
+@onready var timer: Timer = %Timer
 @onready var start: Button = %Start
 @onready var credits: Button = %Credits
 @onready var quit: Button = %Quit
 var has_focused := false
-
 
 func _ready() -> void:
 	start.pressed.connect(_on_start_pressed)
@@ -25,17 +26,41 @@ func _ready() -> void:
 	quit.mouse_entered.connect(_on_quit_mouse_entered)
 	
 	play_track()
+	
+	#region ANIMATION
+	anim_player.play("Idle1")
+	timer.timeout.connect(_play_idle2)
+	anim_player.animation_finished.connect(_on_animation_finished)
+
+func _play_idle2() -> void:
+	anim_player.play("Idle2")
+
+func _on_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "Idle2":
+		anim_player.play("Idle1")
+		timer.wait_time = randf_range(6.0, 10.0)
+		timer.start()
+	#endregion ANIMATION
 
 func play_track() -> void:
 	Audio.fade_in_first_track(sound_track, -2.0)
 
 func _on_start_pressed() -> void:
 	Audio.ui_select()
-	LoadManager.load_scene(start_scene.resource_path)
+	if SaveManager.has_save():
+		SaveManager.load_game()
+		var saved_scene = SaveManager.get_value("current_scene", start_scene.resource_path)
+		LoadManager.load_scene(saved_scene)
+	else:
+		SaveManager.delete_save()
+		if start_scene:
+			LoadManager.load_scene(start_scene.resource_path)
+	pass
 
 func _on_credits_pressed() -> void:
 	Audio.ui_select()
-	LoadManager.load_scene(credits_scene.resource_path)
+	if credits_scene: 
+		LoadManager.load_scene(credits_scene.resource_path)
 
 func _on_quit_pressed() -> void:
 	Audio.ui_select()
@@ -48,7 +73,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		start.grab_focus()
 		has_focused = true
-
 
 func _on_start_focus_entered() -> void:
 	Audio.ui_focus_change()

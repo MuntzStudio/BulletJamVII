@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://5q8no6itgs0t"]
+
+[ext_resource type="Theme" uid="uid://byl8xpb6p1vvy" path="res://assets/font/BulletBoyTheme.tres" id="1_0lmf7"]
+[ext_resource type="Script" uid="uid://btgnm70klpdly" path="res://scenes/ui/pause_menu.gd" id="1_6tw0m"]
+[ext_resource type="Shader" uid="uid://bvb46kn7r7ky3" path="res://shaders/scrollable bkgd.gdshader" id="3_f6eus"]
+[ext_resource type="Texture2D" uid="uid://djagq5xw24dwd" path="res://assets/sprites/bullet boy.png" id="4_8uki6"]
+[ext_resource type="Shader" uid="uid://cf62f447v7q1a" path="res://shaders/animated rainbow.gdshader" id="5_0bnpd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8uki6"]
+shader = ExtResource("3_f6eus")
+shader_parameter/speed_x = 0.19999988376959976
+shader_parameter/speed_y = 0.0
+shader_parameter/scale = 6.99999984726132
+shader_parameter/rotation_deg = 0.0
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/opacity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4inpj"]
+shader = ExtResource("5_0bnpd")
+shader_parameter/speed = 0.0999999977648
+shader_parameter/saturation = 0.3999999910592
+shader_parameter/brightness = 1.0
+shader_parameter/opacity = 0.6999999843536
+
+[node name="PauseMenu" type="Control" unique_id=1369771253]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0lmf7")
+script = ExtResource("1_6tw0m")
+
+[node name="Bg" type="ColorRect" parent="." unique_id=1085721433]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3019608)
+
+[node name="Bg2" type="ColorRect" parent="Bg" unique_id=379849838]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.11111111
+anchor_right = 0.34375
+anchor_bottom = 0.34444445
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3019608)
+metadata/_edit_use_anchors_ = true
+
+[node name="Bg3" type="ColorRect" parent="Bg" unique_id=1623356486]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65625
+anchor_top = 0.11111111
+anchor_right = 1.0
+anchor_bottom = 0.34444445
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.3019608)
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollabeBkgd" type="TextureRect" parent="." unique_id=156904973]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("ShaderMaterial_8uki6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 439.99997
+offset_top = -1.5258789e-05
+offset_right = -268.57153
+offset_bottom = 308.5714
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_8uki6")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="AnimatedColorRect" type="ColorRect" parent="ScrollabeBkgd" unique_id=755934449]
+material = SubResource("ShaderMaterial_4inpj")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.89375, 0.039101552, 0.039101552, 0.3019608)
+
+[node name="BG" type="Panel" parent="." unique_id=1725374083]
+custom_minimum_size = Vector2(400, 720)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -360.0
+offset_right = 200.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="BG" unique_id=282610929]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 37.5
+offset_right = -37.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="Pause" type="Label" parent="BG/HBoxContainer" unique_id=151758182]
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/HBoxContainer" unique_id=1109131587]
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Resume" type="Button" parent="BG/HBoxContainer/VBoxContainer" unique_id=209739535]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(0.15294118, 0.15686275, 0.13725491, 1)
+theme_override_colors/icon_hover_color = Color(0.6873571, 0.7025804, 0.6576216, 1)
+theme_override_font_sizes/font_size = 50
+text = "Resume"
+
+[node name="Quit" type="Button" parent="BG/HBoxContainer/VBoxContainer" unique_id=1298947337]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(0.15294118, 0.15686275, 0.13725491, 1)
+theme_override_colors/icon_hover_color = Color(0.654902, 0.67058825, 0.62352943, 1)
+theme_override_font_sizes/font_size = 50
+text = "Save & Quit
+"

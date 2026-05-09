@@ -10,8 +10,9 @@ func _on_body_entered(body: Node) -> void:
 	if not body.is_in_group("player"):
 		return
 	
-	# Save current state before leaving
-	SaveManager.set_value("current_scene", next_scene)
+	SaveManager.set_value("current_scene", next_scene.resource_path)
 	SaveManager.set_value("bullets", body.current_bullets)
+	SaveManager.set_value("health", body.health)
+	SaveManager.save_game()
 	
 	LoadManager.load_scene(next_scene.resource_path)

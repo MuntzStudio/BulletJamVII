@@ -58,3 +58,5 @@ blackboard_plan = SubResource("BlackboardPlan_uy27c")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
 visible = false
 texture = SubResource("ViewportTexture_mqy2i")
+
+[editable path="BoomerangBoy"]

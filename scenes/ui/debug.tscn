@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://b5lr5kkg18wv5"]
+
+[ext_resource type="Script" uid="uid://d2plgyvhyypyg" path="res://debug/Debug.gd" id="1_tkgol"]
+
+[node name="Debug" type="Control" unique_id=1025848202]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_tkgol")
+
+[node name="KeyStatus" type="Panel" parent="." unique_id=927916443]
+custom_minimum_size = Vector2(350, 150)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -166.0
+offset_right = 366.0
+offset_bottom = -16.0
+grow_vertical = 0
+
+[node name="W" type="ColorRect" parent="KeyStatus" unique_id=1821960409]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 31.0
+offset_right = 113.0
+offset_bottom = 71.0
+
+[node name="Label" type="Label" parent="KeyStatus/W" unique_id=1286320173]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S" type="ColorRect" parent="KeyStatus" unique_id=281101191]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 79.0
+offset_right = 113.0
+offset_bottom = 119.0
+
+[node name="Label" type="Label" parent="KeyStatus/S" unique_id=1573560634]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A" type="ColorRect" parent="KeyStatus" unique_id=1172914006]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 79.0
+offset_right = 65.0
+offset_bottom = 119.0
+
+[node name="Label" type="Label" parent="KeyStatus/A" unique_id=528620773]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="D" type="ColorRect" parent="KeyStatus" unique_id=2088442579]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 79.0
+offset_right = 161.0
+offset_bottom = 119.0
+
+[node name="Label" type="Label" parent="KeyStatus/D" unique_id=1976285047]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Space" type="ColorRect" parent="KeyStatus" unique_id=2094261881]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 79.0
+offset_right = 316.0
+offset_bottom = 119.0
+
+[node name="Label" type="Label" parent="KeyStatus/Space" unique_id=1401140811]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Space"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shift" type="ColorRect" parent="KeyStatus" unique_id=1500472012]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 31.0
+offset_right = 301.0
+offset_bottom = 71.0
+
+[node name="Label" type="Label" parent="KeyStatus/Shift" unique_id=91874804]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Shift"
+horizontal_alignment = 1
+vertical_alignment = 1

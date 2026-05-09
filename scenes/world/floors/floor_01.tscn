@@ -14,6 +14,8 @@
 [ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="13_f00m5"]
 [ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="13_f6sku"]
 [ext_resource type="PackedScene" uid="uid://c0ujdr87ul7no" path="res://scenes/world/floors/floor_02.tscn" id="14_f00m5"]
+[ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="16_cdfud"]
+[ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="16_e7u35"]
 
 [sub_resource type="Sky" id="Sky_f00m5"]
 
@@ -128,6 +130,30 @@ spring_length = 10.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 cull_mask = 1
 
+[node name="StairsBake" parent="." unique_id=1344172858 instance=ExtResource("10_f00m5")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.777473, -3.2063909, -42.355755)
+
+[node name="SceneTrigger" parent="StairsBake" unique_id=1971274356 instance=ExtResource("13_f6sku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.887802, 4.99655, -0.6112938)
+next_scene = ExtResource("14_f00m5")
+
+[node name="Lava" type="MeshInstance3D" parent="." unique_id=552789682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.508404, -1, -2)
+mesh = SubResource("PlaneMesh_cdfud")
+
+[node name="KillZone" type="Area3D" parent="Lava" unique_id=1111400563 node_paths=PackedStringArray("label", "pivot")]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("11_agmiw")
+label = NodePath("../../DialogBox/Label")
+pivot = NodePath("../../PlayerEntity/SpringArmPivot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lava/KillZone" unique_id=1446418737]
+shape = SubResource("WorldBoundaryShape3D_ntfmh")
+
+[node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("16_e7u35")]
+
 [node name="DialogBox" type="CanvasLayer" parent="." unique_id=1690873290]
 
 [node name="Label" type="Label" parent="DialogBox" unique_id=675592571]
@@ -145,27 +171,8 @@ text = "Get rekked bozo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StairsBake" parent="." unique_id=1344172858 instance=ExtResource("10_f00m5")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.777473, -3.2063909, -42.355755)
-
-[node name="SceneTrigger" parent="StairsBake" unique_id=1971274356 instance=ExtResource("13_f6sku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.161915, 2.8330667, -0.6112938)
-next_scene = ExtResource("14_f00m5")
-
-[node name="Lava" type="MeshInstance3D" parent="." unique_id=552789682]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.508404, -1, -2)
-mesh = SubResource("PlaneMesh_cdfud")
-
-[node name="KillZone" type="Area3D" parent="Lava" unique_id=1111400563 node_paths=PackedStringArray("label", "pivot")]
-collision_layer = 0
-collision_mask = 6
-monitorable = false
-script = ExtResource("11_agmiw")
-label = NodePath("../../DialogBox/Label")
-pivot = NodePath("../../PlayerEntity/SpringArmPivot")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Lava/KillZone" unique_id=1446418737]
-shape = SubResource("WorldBoundaryShape3D_ntfmh")
+[node name="PauseMenu" parent="." unique_id=1369771253 instance=ExtResource("16_cdfud")]
+visible = false
 
 [connection signal="body_entered" from="Lava/KillZone" to="Lava/KillZone" method="_on_body_entered"]
 
