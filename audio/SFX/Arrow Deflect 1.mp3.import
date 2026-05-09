@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxjgiyke1ckym"
+path="res://.godot/imported/Arrow Deflect 1.mp3-0c9dc5add7f1e8980fcc01c6e733e7b2.mp3str"
+
+[deps]
+
+source_file="res://audio/SFX/Arrow Deflect 1.mp3"
+dest_files=["res://.godot/imported/Arrow Deflect 1.mp3-0c9dc5add7f1e8980fcc01c6e733e7b2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

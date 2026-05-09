@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dg3nbaly5febn"
+path="res://.godot/imported/Bullet Drop 1.mp3-6b4bb3bed93a1e8832f2367fcfc0822b.mp3str"
+
+[deps]
+
+source_file="res://audio/SFX/Bullet Drop 1.mp3"
+dest_files=["res://.godot/imported/Bullet Drop 1.mp3-6b4bb3bed93a1e8832f2367fcfc0822b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bn1v7gqhal4kt"
+path="res://.godot/imported/Boomerang Hit 1.mp3-8dfdd053920e438bd473c35d950c82f8.mp3str"
+
+[deps]
+
+source_file="res://audio/SFX/Boomerang Hit 1.mp3"
+dest_files=["res://.godot/imported/Boomerang Hit 1.mp3-8dfdd053920e438bd473c35d950c82f8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

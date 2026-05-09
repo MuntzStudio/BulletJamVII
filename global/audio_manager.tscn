@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://baqxn432oxoqc"]
 
 [ext_resource type="Script" uid="uid://cdfbl2tiaxrr6" path="res://global/audio_manager.gd" id="1_siwhy"]
+[ext_resource type="AudioStream" uid="uid://bddsafi64eii2" path="res://audio/UI AUDIO/Menu Hover 1.mp3" id="2_hjth8"]
+[ext_resource type="AudioStream" uid="uid://cm43i8tp6g1u2" path="res://audio/UI AUDIO/Menu Hover 2.mp3" id="3_hd106"]
+[ext_resource type="AudioStream" uid="uid://5215lb2xw34a" path="res://audio/UI AUDIO/Menu Select 3.mp3" id="4_2gpri"]
 
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_dwr6l"]
 polyphony = 16
@@ -8,6 +11,9 @@ polyphony = 16
 [node name="Audio" type="Node" unique_id=1467223168]
 process_mode = 3
 script = ExtResource("1_siwhy")
+ui_focus_audio = ExtResource("2_hjth8")
+ui_hover_audio = ExtResource("3_hd106")
+ui_select_audio = ExtResource("4_2gpri")
 
 [node name="Ambience1" type="AudioStreamPlayer" parent="." unique_id=1541862854]
 unique_name_in_owner = true

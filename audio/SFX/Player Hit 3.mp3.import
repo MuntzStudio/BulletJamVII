@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bvc6luv6bql5e"
+path="res://.godot/imported/Player Hit 3.mp3-c9a7adf5db41a7203135542509b37dba.mp3str"
+
+[deps]
+
+source_file="res://audio/SFX/Player Hit 3.mp3"
+dest_files=["res://.godot/imported/Player Hit 3.mp3-c9a7adf5db41a7203135542509b37dba.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

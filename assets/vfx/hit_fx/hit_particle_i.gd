@@ -5,6 +5,7 @@ extends Node3D
 @onready var shockwave: CPUParticles3D = $Shockwave
 
 func _ready() -> void:
+	await get_tree().process_frame
 	flash.emitting = true
 	flare.emitting = true
 	shockwave.emitting = true

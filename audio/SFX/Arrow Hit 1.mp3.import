@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bcl42l8ug4knc"
+path="res://.godot/imported/Arrow Hit 1.mp3-24b8256d91d657b847995d5ef23b816c.mp3str"
+
+[deps]
+
+source_file="res://audio/SFX/Arrow Hit 1.mp3"
+dest_files=["res://.godot/imported/Arrow Hit 1.mp3-24b8256d91d657b847995d5ef23b816c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

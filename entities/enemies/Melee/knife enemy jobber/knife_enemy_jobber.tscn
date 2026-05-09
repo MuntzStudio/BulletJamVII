@@ -22,6 +22,9 @@ var/attack_range/value = 0.0
 var/attack_range/hint = 0
 var/attack_range/hint_string = ""
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_edgxb"]
+height = 2.3081055
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_edgxb"]
 viewport_path = NodePath("SubViewport")
 
@@ -83,8 +86,8 @@ knockback_multiplier = 0.5
 metadata/_custom_type_script = "uid://cppim11crlu1t"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1512768893]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_svub2")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1540527, 0)
+shape = SubResource("CapsuleShape3D_edgxb")
 
 [node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("6_o3sf3")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)

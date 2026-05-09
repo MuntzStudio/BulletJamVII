@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dbhpugwbrfvhb"
+path="res://.godot/imported/Bow Twang 3.mp3-4d920cb1daeb45e8ba3ebc220ca283c9.mp3str"
+
+[deps]
+
+source_file="res://audio/SFX/Bow Twang 3.mp3"
+dest_files=["res://.godot/imported/Bow Twang 3.mp3-4d920cb1daeb45e8ba3ebc220ca283c9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

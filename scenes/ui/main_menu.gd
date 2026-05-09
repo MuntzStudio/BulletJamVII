@@ -1,20 +1,41 @@
-extends Control
+extends Node3D
 
-@onready var start: Button = $VBoxContainer/Start
+
+@export var start_scene : PackedScene
+@export var credits_scene : PackedScene
+@export var sound_track : AudioStream
+
+@onready var start: Button = %Start
+@onready var credits: Button = %Credits
+@onready var quit: Button = %Quit
 var has_focused := false
 
-@export var track : AudioStream
+
+func _ready() -> void:
+	start.pressed.connect(_on_start_pressed)
+	credits.pressed.connect(_on_credits_pressed)
+	quit.pressed.connect(_on_quit_pressed)
+	
+	start.focus_entered.connect(_on_start_focus_entered)
+	credits.focus_entered.connect(_on_credits_focus_entered)
+	quit.focus_entered.connect(_on_quit_focus_entered)
+	
+	start.mouse_entered.connect(_on_start_mouse_entered)
+	credits.mouse_entered.connect(_on_credits_mouse_entered)
+	quit.mouse_entered.connect(_on_quit_mouse_entered)
+	
+	play_track()
 
 func play_track() -> void:
-	Audio.fade_in_first_track(track, -2.0)
+	Audio.fade_in_first_track(sound_track, -2.0)
 
 func _on_start_pressed() -> void:
 	Audio.ui_select()
-	LoadManager.load_scene("res://opening_cutscene.tscn")
+	LoadManager.load_scene(start_scene.resource_path)
 
 func _on_credits_pressed() -> void:
 	Audio.ui_select()
-	LoadManager.load_scene("res://Scenes/credits_3d.tscn")
+	LoadManager.load_scene(credits_scene.resource_path)
 
 func _on_quit_pressed() -> void:
 	Audio.ui_select()

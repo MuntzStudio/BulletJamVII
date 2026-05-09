@@ -1,23 +1,26 @@
 extends Node3D
 
+@onready var eyes = $Armature/Skeleton3D/Eyes
+@onready var closed_eyes = $Armature/Skeleton3D/ClosedEyes
 
+var blink_states = [
+	"Hit",
+	"Dodge",
+	"Throw",
+	"Fire",
+	"Throw1",
+	"Throw2"
+]
 
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
-	print(anim_name)
-	if anim_name in ["Hit", "Dodge", "Throw", "Fire", "Throw1", "Throw2"]:
-		print(anim_name)
-		$Armature/Skeleton3D/Eyes.visible = false
-		$Armature/Skeleton3D/ClosedEyes.visible = true
-	else:
-		$Armature/Skeleton3D/Eyes.visible = true
-		$Armature/Skeleton3D/ClosedEyes.visible = false
-		
+	update_eyes(anim_name)
 
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	eyes.visible = true
+	closed_eyes.visible = false
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name in ["Hit", "Dodge", "Throw", "Fire", "Throw1", "Throw2"]:
-		$Armature/Skeleton3D/Eyes.visible = true
-		$Armature/Skeleton3D/ClosedEyes.visible = false
-	else:
-		$Armature/Skeleton3D/Eyes.visible = true
-		$Armature/Skeleton3D/ClosedEyes.visible = false
+func update_eyes(anim_name: String) -> void:
+	var blinking = anim_name in blink_states
+
+	eyes.visible = not blinking
+	closed_eyes.visible = blinking

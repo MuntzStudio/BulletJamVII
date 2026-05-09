@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dwop3pdl76t3w"]
+
+[ext_resource type="Shader" uid="uid://da8er8tggovkv" path="res://shaders/Wind waker water (procedural).gdshader" id="1_243dc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_243dc")
+shader_parameter/albedo = Color(0.81875, 0.80589306, 0.30447266, 1)
+shader_parameter/emission_color = Color(1, 0.5, 0, 1)
+shader_parameter/emission_energy = 2.0
+shader_parameter/WATER_COL = Color(0.8784314, 0.46406865, 0.039215695, 1)
+shader_parameter/WATER2_COL = Color(0.78039217, 0.3032598, 0.03921568, 1)
+shader_parameter/FOAM_COL = Color(0.24687499, 0.1686465, 0.11649414, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(25, 25)
+shader_parameter/height = 2.0
+shader_parameter/wave_size = Vector2(2, 2)
+shader_parameter/wave_speed = 1.5

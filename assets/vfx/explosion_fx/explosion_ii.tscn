@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blpwpqgpxu1u1"]
 
-[ext_resource type="Script" uid="uid://2om0x7y0ka0i" path="res://assets/vfx/explosion_fx/explosion_i.gd" id="1_y10b7"]
+[ext_resource type="Script" uid="uid://2om0x7y0ka0i" path="res://assets/vfx/explosion_fx/explosion.gd" id="1_y10b7"]
 [ext_resource type="Texture2D" uid="uid://conke0y088r4g" path="res://assets/vfx/explosion_fx/Explosion texture.png" id="2_7sq0n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gaqk"]
@@ -8,7 +8,7 @@ transparency = 1
 cull_mode = 2
 no_depth_test = true
 shading_mode = 0
-albedo_color = Color(1.2262905, 0, 3.1350002, 1)
+vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("2_7sq0n")
 texture_filter = 0
 billboard_mode = 3
@@ -65,7 +65,7 @@ script = ExtResource("1_y10b7")
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 emitting = false
-lifetime = 3.0
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
@@ -82,12 +82,13 @@ angular_velocity_max = 480.0
 damping_max = 0.5
 damping_curve = SubResource("Curve_wwtdv")
 scale_amount_curve = SubResource("Curve_7gaqk")
+color = Color(2.928, 1.5843877, 0.64099985, 1)
 
 [node name="Smoke" type="CPUParticles3D" parent="." unique_id=465742014]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 emitting = false
-lifetime = 3.0
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
@@ -104,5 +105,5 @@ damping_min = 1.0
 damping_max = 1.0
 damping_curve = SubResource("Curve_comcm")
 scale_amount_curve = SubResource("Curve_7gaqk")
-color = Color(0.54742545, 0.074101545, 0.846875, 1)
+color = Color(2.927582, 0.6405938, 0.6405938, 1)
 color_initial_ramp = SubResource("Gradient_7gaqk")

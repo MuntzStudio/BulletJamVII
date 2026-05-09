@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://t8f7dhhvhttw"]
 
-[ext_resource type="Script" uid="uid://dias67eeu5hh4" path="res://scenes/world/door.gd" id="1_qatcg"]
+[ext_resource type="Script" uid="uid://dias67eeu5hh4" path="res://scenes/world/Mechanics/door.gd" id="1_qatcg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qatcg"]
 albedo_color = Color(0.30624998, 0.30055562, 0.17609373, 1)

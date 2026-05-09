@@ -4,6 +4,11 @@
 // as well as vertex displacement
 
 shader_type spatial;
+
+uniform vec4 albedo : source_color = vec4(1.0);
+uniform vec4 emission_color : source_color = vec4(0.2, 0.6, 1.0, 1.0);
+uniform float emission_energy = 2.0;
+
 uniform vec4 WATER_COL : source_color = vec4(0.04, 0.38, 0.88, 1.0);
 uniform vec4 WATER2_COL : source_color = vec4(0.04, 0.35, 0.78, 1.0);
 uniform vec4 FOAM_COL : source_color = vec4(0.8125, 0.9609, 0.9648, 1.0);
@@ -189,9 +194,14 @@ void vertex(){
 	VERTEX.y += dist.y * height;
 }
 
+
 void fragment()
 {
 	vec2 uv = UV;
 	
-    ALBEDO = vec3(water(uv * tile, vec3(0,1,0), TIME * distortion_speed));
+	vec3 col = vec3(water(uv * tile, vec3(0,1,0), TIME * distortion_speed));
+
+	ALBEDO = col * albedo.rgb;
+
+	EMISSION = col * emission_color.rgb * emission_energy;
 }

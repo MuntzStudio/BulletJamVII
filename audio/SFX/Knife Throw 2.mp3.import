@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4mcd7wf56jeq"
+path="res://.godot/imported/Knife Throw 2.mp3-520c775cad7da9e49000df8cf96d3e91.mp3str"
+
+[deps]
+
+source_file="res://audio/SFX/Knife Throw 2.mp3"
+dest_files=["res://.godot/imported/Knife Throw 2.mp3-520c775cad7da9e49000df8cf96d3e91.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

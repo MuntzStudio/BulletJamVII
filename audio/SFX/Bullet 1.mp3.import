@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fdai1upfw2hu"
+path="res://.godot/imported/Bullet 1.mp3-b4ca173e0b10501b5b2d0d075b44c1b0.mp3str"
+
+[deps]
+
+source_file="res://audio/SFX/Bullet 1.mp3"
+dest_files=["res://.godot/imported/Bullet 1.mp3-b4ca173e0b10501b5b2d0d075b44c1b0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

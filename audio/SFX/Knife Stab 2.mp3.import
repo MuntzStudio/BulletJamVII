@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dtguqyv4acofk"
+path="res://.godot/imported/Knife Stab 2.mp3-baa04d7dafaa73747af4f8000f9c889f.mp3str"
+
+[deps]
+
+source_file="res://audio/SFX/Knife Stab 2.mp3"
+dest_files=["res://.godot/imported/Knife Stab 2.mp3-baa04d7dafaa73747af4f8000f9c889f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

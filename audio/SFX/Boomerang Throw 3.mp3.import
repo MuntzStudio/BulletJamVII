@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dsfyrkm2swymo"
+path="res://.godot/imported/Boomerang Throw 3.mp3-a0f67b8a8f9964acef3f3d4623a2657a.mp3str"
+
+[deps]
+
+source_file="res://audio/SFX/Boomerang Throw 3.mp3"
+dest_files=["res://.godot/imported/Boomerang Throw 3.mp3-a0f67b8a8f9964acef3f3d4623a2657a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

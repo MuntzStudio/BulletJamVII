@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1mh1jvh8bmhd"]
 
 [ext_resource type="Texture2D" uid="uid://conke0y088r4g" path="res://assets/vfx/explosion_fx/Explosion texture.png" id="1_7gaqk"]
-[ext_resource type="Script" uid="uid://2om0x7y0ka0i" path="res://assets/vfx/explosion_fx/explosion_i.gd" id="1_comcm"]
+[ext_resource type="Script" uid="uid://2om0x7y0ka0i" path="res://assets/vfx/explosion_fx/explosion.gd" id="1_comcm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gaqk"]
 transparency = 1

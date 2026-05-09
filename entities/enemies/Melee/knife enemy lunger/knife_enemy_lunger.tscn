@@ -12,7 +12,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akotg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j6f8p"]
-size = Vector3(0.50878906, 3.1742249, 1.0566711)
+size = Vector3(0.50878906, 3.850296, 1.0566711)
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_14y0h"]
 var/attack_range/name = &"attack_range"
@@ -59,7 +59,7 @@ hit_type = 2
 metadata/_custom_type_script = "uid://3u303es7vhe4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KnifeBoy/Armature/Skeleton3D/BoneAttachment3D/Hitbox" unique_id=471821468]
-transform = Transform3D(1, 6.2350125e-13, 1.2647661e-12, -6.039613e-14, 1, 0, 0, 0, 1, 9.313226e-10, 1.5059547, -0.00061665475)
+transform = Transform3D(1, 1.0182703e-08, 5.0931703e-09, 2.3756002e-09, 1, 0, 4.612957e-09, 0, 1, 4.656613e-09, 1.1679192, -0.00061640143)
 shape = SubResource("BoxShape3D_j6f8p")
 debug_color = Color(0.3882353, 0, 0.7019608, 1)
 

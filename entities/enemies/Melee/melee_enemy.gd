@@ -71,7 +71,7 @@ func _die() -> void:
 	if health_bar:
 		health_bar.hide()
 	if death_vfx:
-		VFX.spawn(death_vfx, self)
+		VFX.spawn(death_vfx, self, false)
 	await _launch_goofy()
 	queue_free()
 
