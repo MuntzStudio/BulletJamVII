@@ -26,7 +26,7 @@ func _on_body_entered(body: Node3D) -> void:
 	elif body.is_in_group("player"):
 		if body:
 			pivot.stop_following()
-			body.take_chip_damage(5.0)
+			body.take_chip_damage(1)
 			var random_text = dialogs.pick_random()
 			label.text = random_text
 			await get_tree().create_timer(1.0).timeout
