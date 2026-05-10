@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://vqoc4ru6uoc7"]
+
+[ext_resource type="PackedScene" uid="uid://qctbqlrhdqcr" path="res://assets/models and textures/RoomDoor.blend" id="1_75yok"]
+[ext_resource type="Script" uid="uid://cfdvbbpxg7hb2" path="res://scripts/room_door.gd" id="2_6vklp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x63jb"]
+size = Vector3(0.2770996, 5.0075684, 5.27771)
+
+[node name="RoomDoor" unique_id=1106590504 instance=ExtResource("1_75yok")]
+script = ExtResource("2_6vklp")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=323807953]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1383361499]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015869141, 2.0148926, 0.07562256)
+shape = SubResource("BoxShape3D_x63jb")
