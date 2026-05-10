@@ -22,30 +22,23 @@ var blink_states = [
 func _on_animation_player_animation_started(
 	anim_name: StringName
 ) -> void:
-
 	update_eyes(anim_name)
 
 
 func _on_animation_player_animation_finished(
 	_anim_name: StringName
 ) -> void:
-
 	if eyes:
 		eyes.visible = true
-
 	if closed_eyes:
 		closed_eyes.visible = false
 
 
 func update_eyes(anim_name: String) -> void:
-
 	# Safety
 	if eyes == null or closed_eyes == null:
 		return
 
-
 	var blinking = anim_name in blink_states
-
 	eyes.visible = not blinking
-
 	closed_eyes.visible = blinking

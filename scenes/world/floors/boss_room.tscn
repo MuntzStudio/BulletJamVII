@@ -130,13 +130,12 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 
 [node name="BossMan" parent="BossRoom/Enemies" unique_id=1566125082 instance=ExtResource("7_v5lco")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -14)
-max_hp = 100
 
 [node name="EnemySpawner" parent="BossRoom" unique_id=707684176 instance=ExtResource("6_2ejxh")]
 enemies_to_spawn = 20
 maintain_count = 4
 spawn_interval = 10.0
-spawn_percentages = PackedFloat32Array(50, 100, 50, 50)
+spawn_percentages = PackedFloat32Array(0, 0, 0, 100)
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=384623855]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.555918)
@@ -201,7 +200,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 
 curve = SubResource("Curve3D_6qwl8")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="BossPath" unique_id=1122110057 groups=["path"]]
-transform = Transform3D(-0.9999749, 0, 0.0045247762, 0, 1, 0, -0.0045247762, 0, -0.9999749, -0.05841446, 0, -8.11507)
+transform = Transform3D(-0.99997485, 0, 0.004524776, 0, 1, 0, -0.004524776, 0, -0.99997485, -0.05841446, 0, -8.11507)
 
 [node name="Lava" type="MeshInstance3D" parent="." unique_id=1973651251]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
