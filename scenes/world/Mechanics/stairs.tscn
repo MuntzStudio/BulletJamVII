@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://c3l745in56lc2"]
+
+[ext_resource type="PackedScene" uid="uid://c8f5ytcmsmsef" path="res://assets/models and textures/StairsBake.glb" id="1_dnytm"]
+[ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="2_l7q4y"]
+[ext_resource type="PackedScene" uid="uid://c0ujdr87ul7no" path="res://scenes/world/floors/floor_02.tscn" id="3_jend3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qqihh"]
+size = Vector3(10.122444, 5.682129, 1.0452576)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_558dq"]
+size = Vector3(1.1491323, 1.6374512, 6.920494)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qqncq"]
+size = Vector3(1.5977689, 1.6374512, 6.920494)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ig6mi"]
+size = Vector3(1.7813063, 1.6374512, 6.920494)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bq8cv"]
+size = Vector3(1.7813063, 1.6374512, 6.920494)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_njg2g"]
+size = Vector3(1.7813063, 1.6374512, 6.920494)
+
+[node name="StairsBake" unique_id=721316286 instance=ExtResource("1_dnytm")]
+
+[node name="SceneTrigger" parent="." index="2" unique_id=1971274356 instance=ExtResource("2_l7q4y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.887802, 4.99655, -0.6112938)
+next_scene = ExtResource("3_jend3")
+
+[node name="CollisionShape3D" parent="SceneTrigger" index="0" unique_id=769118532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3520927, -1.517273, 0.4887551)
+debug_color = Color(0.8052152, 0.16901684, 0.58607405, 1)
+
+[node name="Colliders" type="Node3D" parent="." index="3" unique_id=2118822073]
+
+[node name="Wall1" type="StaticBody3D" parent="Colliders" index="0" unique_id=507056865]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall1" index="0" unique_id=919557425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.006593, 2.3410645, 3.2821774)
+shape = SubResource("BoxShape3D_qqihh")
+
+[node name="Wall2" type="StaticBody3D" parent="Colliders" index="1" unique_id=1760919041]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall2" index="0" unique_id=1220669634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.006593, 2.3410645, -3.269755)
+shape = SubResource("BoxShape3D_qqihh")
+
+[node name="Stair1" type="StaticBody3D" parent="Colliders" index="2" unique_id=1855896000]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Stair1" index="0" unique_id=714199867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.40147, 2.2329388, -0.295)
+shape = SubResource("BoxShape3D_558dq")
+debug_color = Color(0.6509804, 0, 0.16470589, 0.8666667)
+
+[node name="Stair2" type="StaticBody3D" parent="Colliders" index="3" unique_id=1114827532]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Stair2" index="0" unique_id=524368521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.291811, 1.7963917, -0.295)
+shape = SubResource("BoxShape3D_558dq")
+debug_color = Color(0.6509804, 0, 0.16470589, 0.8666667)
+
+[node name="Stair3" type="StaticBody3D" parent="Colliders" index="4" unique_id=269910712]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Stair3" index="0" unique_id=1624021448]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.955665, 1.2989922, -0.295)
+shape = SubResource("BoxShape3D_qqncq")
+debug_color = Color(0.6509804, 0, 0.16470589, 0.8666667)
+
+[node name="Stair4" type="StaticBody3D" parent="Colliders" index="5" unique_id=1300482810]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Stair4" index="0" unique_id=658297282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.286846, 0.78911495, -0.295)
+shape = SubResource("BoxShape3D_ig6mi")
+debug_color = Color(0.6509804, 0, 0.16470589, 0.8666667)
+
+[node name="Stair5" type="StaticBody3D" parent="Colliders" index="6" unique_id=435741157]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Stair5" index="0" unique_id=462999677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.171108, 0.23113847, -0.295)
+shape = SubResource("BoxShape3D_bq8cv")
+debug_color = Color(0.6509804, 0, 0.16470589, 0.8666667)
+
+[node name="Stair6" type="StaticBody3D" parent="Colliders" index="7" unique_id=6237602]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Stair6" index="0" unique_id=969124128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.058472, -0.27282357, -0.295)
+shape = SubResource("BoxShape3D_njg2g")
+debug_color = Color(0.6509804, 0, 0.16470589, 0.8666667)
+
+[editable path="SceneTrigger"]

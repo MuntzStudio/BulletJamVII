@@ -1,6 +1,7 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://dbi88u1mf3vea"]
 
 [ext_resource type="BlackboardPlan" uid="uid://ceiq6u70vhs8f" path="res://entities/enemies/Melee/melee_enemy_plan.tres" id="1_xnhnc"]
+[ext_resource type="Script" uid="uid://bwfrghui6nodp" path="res://ai/tasks/enemy/set_anim_state.gd" id="2_1d6c5"]
 [ext_resource type="Script" uid="uid://cg2pj2vo7nxgj" path="res://ai/tasks/enemy/get_first_in_group.gd" id="2_hs50e"]
 [ext_resource type="Script" uid="uid://cb6ckirrwukq5" path="res://ai/tasks/enemy/is_hit.gd" id="3_1d6c5"]
 [ext_resource type="Script" uid="uid://cqaraqtoaguyy" path="res://ai/tasks/enemy/in_range.gd" id="3_trpm4"]
@@ -11,6 +12,11 @@
 [ext_resource type="Script" uid="uid://bnhnirfbd8bpd" path="res://ai/tasks/enemy/back_away.gd" id="6_pch13"]
 [ext_resource type="Script" uid="uid://ds2e6kyx764x5" path="res://ai/tasks/enemy/strafe.gd" id="8_hs50e"]
 [ext_resource type="Script" uid="uid://dnuus4ch0mqyf" path="res://ai/tasks/enemy/navigate_to_target.gd" id="8_lysta"]
+[ext_resource type="Script" uid="uid://d0lc102u33tb4" path="res://ai/tasks/enemy/set_anim_tree_param.gd" id="8_pch13"]
+
+[sub_resource type="BTAction" id="BTAction_pch13"]
+script = ExtResource("2_1d6c5")
+state = "Idle1"
 
 [sub_resource type="BTAction" id="BTAction_r54s6"]
 script = ExtResource("2_hs50e")
@@ -22,6 +28,10 @@ children = [SubResource("BTRandomWait_mdx4i")]
 
 [sub_resource type="BTAlwaysSucceed" id="BTAlwaysSucceed_wdq44"]
 children = [SubResource("BTRunLimit_j8i6x")]
+
+[sub_resource type="BTParallel" id="BTParallel_pch13"]
+custom_name = "Summon"
+children = [SubResource("BTAction_pch13"), SubResource("BTAction_r54s6"), SubResource("BTAlwaysSucceed_wdq44")]
 
 [sub_resource type="BTCondition" id="BTCondition_yqkld"]
 script = ExtResource("3_1d6c5")
@@ -43,6 +53,13 @@ range_max = 20.0
 script = ExtResource("4_hs50e")
 ray_offset = Vector3(0, 1, 0)
 
+[sub_resource type="BTAction" id="BTAction_wcrsx"]
+script = ExtResource("8_pch13")
+
+[sub_resource type="BTAction" id="BTAction_1n2rx"]
+script = ExtResource("2_1d6c5")
+state = "Throw1"
+
 [sub_resource type="BTAction" id="BTAction_wdq44"]
 script = ExtResource("5_1d6c5")
 bullet_scene = ExtResource("4_yqkld")
@@ -51,9 +68,15 @@ burst_count = 2
 
 [sub_resource type="BTWait" id="BTWait_mdx4i"]
 
+[sub_resource type="BTSequence" id="BTSequence_wjk1b"]
+children = [SubResource("BTAction_1n2rx"), SubResource("BTAction_wdq44"), SubResource("BTWait_mdx4i")]
+
+[sub_resource type="BTParallel" id="BTParallel_ey7bv"]
+children = [SubResource("BTAction_wcrsx"), SubResource("BTSequence_wjk1b")]
+
 [sub_resource type="BTSequence" id="BTSequence_pflie"]
 custom_name = "Fire Cycle"
-children = [SubResource("BTCondition_j8i6x"), SubResource("BTCondition_trpm4"), SubResource("BTAction_wdq44"), SubResource("BTWait_mdx4i")]
+children = [SubResource("BTCondition_j8i6x"), SubResource("BTCondition_trpm4"), SubResource("BTParallel_ey7bv")]
 
 [sub_resource type="BTRepeat" id="BTRepeat_ovte8"]
 times = 3
@@ -75,9 +98,16 @@ range_max = 12.0
 script = ExtResource("6_pch13")
 safe_distance = 12.0
 
+[sub_resource type="BTAction" id="BTAction_er4ql"]
+script = ExtResource("2_1d6c5")
+state = "RunForward"
+
+[sub_resource type="BTParallel" id="BTParallel_lysta"]
+children = [SubResource("BTAction_gexpw"), SubResource("BTAction_er4ql")]
+
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_mdx4i"]
 custom_name = "Back Away"
-children = [SubResource("BTCondition_mdx4i"), SubResource("BTAction_gexpw")]
+children = [SubResource("BTCondition_mdx4i"), SubResource("BTParallel_lysta")]
 
 [sub_resource type="BTCondition" id="BTCondition_pflie"]
 script = ExtResource("3_trpm4")
@@ -88,9 +118,16 @@ range_max = 18.0
 script = ExtResource("8_hs50e")
 pause_duration = 1.0
 
+[sub_resource type="BTAction" id="BTAction_lysta"]
+script = ExtResource("2_1d6c5")
+state = "RunForward"
+
+[sub_resource type="BTParallel" id="BTParallel_wcrsx"]
+children = [SubResource("BTAction_trpm4"), SubResource("BTAction_lysta")]
+
 [sub_resource type="BTSequence" id="BTSequence_mdx4i"]
 custom_name = "Stay"
-children = [SubResource("BTCondition_pflie"), SubResource("BTAction_trpm4")]
+children = [SubResource("BTCondition_pflie"), SubResource("BTParallel_wcrsx")]
 
 [sub_resource type="BTAction" id="BTAction_j8i6x"]
 script = ExtResource("8_lysta")
@@ -100,9 +137,17 @@ ring_max = 18.0
 approach_after_offset = false
 metadata/_weight_ = 9.000000000000002
 
+[sub_resource type="BTAction" id="BTAction_wjk1b"]
+script = ExtResource("2_1d6c5")
+state = "RunForward"
+
+[sub_resource type="BTParallel" id="BTParallel_1n2rx"]
+custom_name = "Chase"
+children = [SubResource("BTAction_j8i6x"), SubResource("BTAction_wjk1b")]
+
 [sub_resource type="BTSelector" id="BTSelector_ovte8"]
 custom_name = "Move"
-children = [SubResource("BTDynamicSequence_mdx4i"), SubResource("BTSequence_mdx4i"), SubResource("BTAction_j8i6x")]
+children = [SubResource("BTDynamicSequence_mdx4i"), SubResource("BTSequence_mdx4i"), SubResource("BTParallel_1n2rx")]
 
 [sub_resource type="BTParallel" id="BTParallel_wicvo"]
 num_successes_required = 2
@@ -115,7 +160,7 @@ children = [SubResource("BTSequence_lysta"), SubResource("BTParallel_wicvo")]
 
 [sub_resource type="BTSequence" id="BTSequence_wdq44"]
 custom_name = "Main"
-children = [SubResource("BTAction_r54s6"), SubResource("BTAlwaysSucceed_wdq44"), SubResource("BTDynamicSelector_wcrsx")]
+children = [SubResource("BTParallel_pch13"), SubResource("BTDynamicSelector_wcrsx")]
 
 [resource]
 blackboard_plan = ExtResource("1_xnhnc")
