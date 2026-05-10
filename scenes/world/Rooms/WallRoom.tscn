@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://c1qcxqt1vn2s8"]
+
+[ext_resource type="PackedScene" uid="uid://dqcm1vmwyafro" path="res://assets/models and textures/RoomWallBake.glb" id="1_hhho2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ktpt4"]
+size = Vector3(29.454544, 0.04, 29.580574)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i8dmw"]
+size = Vector3(9.973702, 0.04, 5.6083593)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r7ipe"]
+size = Vector3(22.269289, 5.682129, 10.180853)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w60eb"]
+size = Vector3(2.9412851, 5.682129, 10.180853)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yexl1"]
+size = Vector3(1.7381592, 5.2458496, 40.149963)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gsiqe"]
+size = Vector3(2.882698, 5.682129, 1.0438656)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjdmu"]
+size = Vector3(1.3716128, 5.682129, 1.0555843)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5yygh"]
+size = Vector3(1.00037, 5.682129, 18.441875)
+
+[node name="RoomWallBake" unique_id=215420672 instance=ExtResource("1_hhho2")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=967733521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07397604, 2.4667063, -23.18756)
+light_color = Color(0.802211, 0.821875, 0.19262695, 1)
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 20.0
+omni_attenuation = 1.3
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." index="4" unique_id=2089263122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08271694, 2.4667063, 3.4568796)
+light_color = Color(0.802211, 0.821875, 0.19262695, 1)
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 20.0
+omni_attenuation = 1.3
+
+[node name="Colliders" type="Node3D" parent="." index="5" unique_id=2138732031]
+
+[node name="Floor1" type="StaticBody3D" parent="Colliders" index="0" unique_id=571905707]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Floor1" index="0" unique_id=242621378]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3376155, 0, -10.184998)
+shape = SubResource("BoxShape3D_ktpt4")
+debug_color = Color(0.99086326, 0, 0.27254647, 1)
+
+[node name="Floor2" type="StaticBody3D" parent="Colliders" index="1" unique_id=840812912]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Floor2" index="0" unique_id=172058362]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -9.559, 0, -29.966)
+shape = SubResource("BoxShape3D_i8dmw")
+debug_color = Color(0.9019608, 0.22352941, 0.53333336, 0.7529412)
+
+[node name="Floor3" type="StaticBody3D" parent="Colliders" index="2" unique_id=611792953]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Floor3" index="0" unique_id=742649303]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 10.252, 0, 9.598)
+shape = SubResource("BoxShape3D_i8dmw")
+debug_color = Color(0.9019608, 0.22352941, 0.53333336, 0.7529412)
+
+[node name="Wall1" type="StaticBody3D" parent="Colliders" index="3" unique_id=1152869524]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall1" index="0" unique_id=240981364]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4875112, 2.3410645, 9.680732)
+shape = SubResource("BoxShape3D_r7ipe")
+
+[node name="Wall2" type="StaticBody3D" parent="Colliders" index="4" unique_id=183397431]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27.249466)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall2" index="0" unique_id=1732456220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2131777, 2.3410645, -2.6451092)
+shape = SubResource("BoxShape3D_r7ipe")
+
+[node name="Wall3" type="StaticBody3D" parent="Colliders" index="5" unique_id=2139882705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27.249466)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall3" index="0" unique_id=195495495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.821717, 2.3410645, -2.8333302)
+shape = SubResource("BoxShape3D_w60eb")
+
+[node name="Wall4" type="StaticBody3D" parent="Colliders" index="6" unique_id=170664898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.966469, 0, 0.22218323)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall4" index="0" unique_id=1493336875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.319563, 2.3410645, 9.442937)
+shape = SubResource("BoxShape3D_w60eb")
+
+[node name="Wall5" type="StaticBody3D" parent="Colliders" index="7" unique_id=1450919659]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall5" index="0" unique_id=1634771200]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.009804, 2.4742432, -14.986589)
+shape = SubResource("BoxShape3D_yexl1")
+
+[node name="Wall6" type="StaticBody3D" parent="Colliders" index="8" unique_id=494968043]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall6" index="0" unique_id=621317851]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.847234, 2.4742432, -14.986589)
+shape = SubResource("BoxShape3D_yexl1")
+
+[node name="Wall7" type="StaticBody3D" parent="Colliders" index="9" unique_id=2117905012]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall7" index="0" unique_id=1308369264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.0505, 2.3410645, 5.1027327)
+shape = SubResource("BoxShape3D_gsiqe")
+
+[node name="Wall8" type="StaticBody3D" parent="Colliders" index="10" unique_id=2096959326]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall8" index="0" unique_id=198086896]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.927127, 2.3410645, 5.0996175)
+shape = SubResource("BoxShape3D_tjdmu")
+
+[node name="Wall9" type="StaticBody3D" parent="Colliders" index="11" unique_id=2089330761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -19.288296)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall9" index="0" unique_id=87181174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.897021, 2.3410645, -6.0352993)
+shape = SubResource("BoxShape3D_gsiqe")
+
+[node name="Wall10" type="StaticBody3D" parent="Colliders" index="12" unique_id=294211468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.957512)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall10" index="0" unique_id=23078316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.065604, 2.3410645, 1.6317921)
+shape = SubResource("BoxShape3D_tjdmu")
+
+[node name="Wall11" type="StaticBody3D" parent="Colliders" index="13" unique_id=1380239857]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.957512)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall11" index="0" unique_id=1131224399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.388958, 2.345833, 10.286211)
+shape = SubResource("BoxShape3D_5yygh")
+
+[node name="Wall12" type="StaticBody3D" parent="Colliders" index="14" unique_id=405901561]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.957512)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall12" index="0" unique_id=1440225101]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.837798, 2.345833, 23.24826)
+shape = SubResource("BoxShape3D_5yygh")
