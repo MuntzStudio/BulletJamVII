@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="4_44xyj"]
 [ext_resource type="PackedScene" uid="uid://36snc0ndulya" path="res://assets/vfx/hit_fx/hit_particle_i.tscn" id="5_j6f8p"]
 [ext_resource type="PackedScene" uid="uid://c2gdsj4fui0n4" path="res://scripts/health_bar.tscn" id="6_j6f8p"]
+[ext_resource type="AudioStream" uid="uid://btwwaptecrcnh" path="res://audio/SFX/Enemy Hit 2.mp3" id="7_mcyh2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akotg"]
 
@@ -23,7 +24,7 @@ var/attack_range/hint_string = ""
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j6f8p"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4f0jk"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_brhm1"]
 viewport_path = NodePath("SubViewport")
 
 [node name="KnifeEnemyLunger" type="CharacterBody3D" unique_id=110487065 groups=["enemy"]]
@@ -44,7 +45,7 @@ debug_enabled = true
 [node name="KnifeBoy" parent="." unique_id=384132466 instance=ExtResource("3_4f0jk")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 914027470) index="5" unique_id=1068246538]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 835099683) index="5" unique_id=1068246538]
 transform = Transform3D(0.9999945, -0.0031029352, -0.0011590092, 0.0033089535, 0.95161414, 0.30727723, 0.00014946835, -0.30727938, 0.9516192, -0.009226737, 4.8939576, -1.0949928)
 bone_name = "ScaleBone"
 bone_idx = 1
@@ -73,6 +74,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("4_44xyj")
 mesh = NodePath("../KnifeBoy/Armature/Skeleton3D/Cube")
+audio = ExtResource("7_mcyh2")
 hit_vfx = ExtResource("5_j6f8p")
 metadata/_custom_type_script = "uid://cppim11crlu1t"
 
@@ -83,6 +85,6 @@ shape = SubResource("CapsuleShape3D_j6f8p")
 [node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("6_j6f8p")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
 visible = false
-texture = SubResource("ViewportTexture_4f0jk")
+texture = SubResource("ViewportTexture_brhm1")
 
 [editable path="KnifeBoy"]

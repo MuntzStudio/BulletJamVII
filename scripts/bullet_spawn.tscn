@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dq81bc5ggwaig"]
+
+[ext_resource type="Script" uid="uid://0pl7nggqlr3h" path="res://scripts/bullet_spawn.gd" id="1_kexwd"]
+[ext_resource type="PackedScene" uid="uid://negmobx436c4" path="res://entities/bullets/enemy_bullet.tscn" id="2_486ni"]
+
+[node name="BulletSpawn" type="Node3D" unique_id=1724750768]
+script = ExtResource("1_kexwd")
+bullet_scene = ExtResource("2_486ni")

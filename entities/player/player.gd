@@ -215,6 +215,7 @@ func _shoot():
 	bullet.global_position = bullet_spawn.global_position
 	bullet.velocity = dir * 25.0
 	bullet.look_at(bullet.global_position + dir, Vector3.UP)
+	bullet.rotate_y(deg_to_rad(180))
 
 func collect_bullet(amount: int):
 	current_bullets = clamp(current_bullets + amount, 0, max_bullets)

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bhh6vyxhqfvne" path="res://assets/models and textures/Opening Room Bake.glb" id="2_fe2o3"]
 [ext_resource type="PackedScene" uid="uid://b11tac7gh5078" path="res://scenes/world/floors/floor_01.tscn" id="2_x2yvf"]
 [ext_resource type="PackedScene" uid="uid://dyvoskgmn0gaj" path="res://assets/models and textures/bullet_boy.tscn" id="3_1g8jr"]
+[ext_resource type="AudioStream" uid="uid://pf3nuyh153eq" path="res://audio/SONGS/Failed Circuit.mp3" id="3_uhagc"]
 [ext_resource type="Theme" uid="uid://byl8xpb6p1vvy" path="res://assets/font/BulletBoyTheme.tres" id="3_x2yvf"]
 
 [sub_resource type="Sky" id="Sky_fe2o3"]
@@ -20,6 +21,7 @@ tonemap_mode = 2
 [node name="MainMenuScene" type="Node3D" unique_id=1863901884 node_paths=PackedStringArray("anim_player")]
 script = ExtResource("1_sl1te")
 start_scene = ExtResource("2_x2yvf")
+sound_track = ExtResource("3_uhagc")
 anim_player = NodePath("Scene/BulletBoy/AnimationPlayer")
 
 [node name="MainMenu" type="Control" parent="." unique_id=831940314]

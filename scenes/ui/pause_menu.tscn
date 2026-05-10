@@ -3,24 +3,16 @@
 [ext_resource type="Theme" uid="uid://byl8xpb6p1vvy" path="res://assets/font/BulletBoyTheme.tres" id="1_0lmf7"]
 [ext_resource type="Script" uid="uid://btgnm70klpdly" path="res://scenes/ui/pause_menu.gd" id="1_6tw0m"]
 [ext_resource type="Shader" uid="uid://bvb46kn7r7ky3" path="res://shaders/scrollable bkgd.gdshader" id="3_f6eus"]
-[ext_resource type="Texture2D" uid="uid://djagq5xw24dwd" path="res://assets/sprites/bullet boy.png" id="4_8uki6"]
-[ext_resource type="Shader" uid="uid://cf62f447v7q1a" path="res://shaders/animated rainbow.gdshader" id="5_0bnpd"]
+[ext_resource type="Texture2D" uid="uid://wtm54tg5114f" path="res://assets/sprites/tile.png" id="4_0bnpd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8uki6"]
 shader = ExtResource("3_f6eus")
-shader_parameter/speed_x = 0.19999988376959976
-shader_parameter/speed_y = 0.0
+shader_parameter/speed_x = -0.2000001072896005
+shader_parameter/speed_y = -0.2000001072896005
 shader_parameter/scale = 6.99999984726132
 shader_parameter/rotation_deg = 0.0
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/opacity = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4inpj"]
-shader = ExtResource("5_0bnpd")
-shader_parameter/speed = 0.0999999977648
-shader_parameter/saturation = 0.3999999910592
-shader_parameter/brightness = 1.0
-shader_parameter/opacity = 0.6999999843536
 
 [node name="PauseMenu" type="Control" unique_id=1369771253]
 process_mode = 3
@@ -80,19 +72,17 @@ offset_bottom = 308.5714
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
-texture = ExtResource("4_8uki6")
-expand_mode = 1
+texture = ExtResource("4_0bnpd")
 stretch_mode = 1
 
-[node name="AnimatedColorRect" type="ColorRect" parent="ScrollabeBkgd" unique_id=755934449]
-material = SubResource("ShaderMaterial_4inpj")
+[node name="ColorRect" type="ColorRect" parent="ScrollabeBkgd" unique_id=755934449]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.89375, 0.039101552, 0.039101552, 0.3019608)
+color = Color(0.728125, 0.29807618, 0.71794623, 0.8235294)
 
 [node name="BG" type="Panel" parent="." unique_id=1725374083]
 custom_minimum_size = Vector2(400, 720)

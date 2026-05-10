@@ -31,6 +31,7 @@ var _hit : bool = false
 # =========================
 @onready var hitbox: Hitbox = $Hitbox
 @onready var pickup_area: Area3D = $PickupArea
+@onready var trail: CPUParticles3D = $Trail
 
 # =========================
 # READY
@@ -44,13 +45,11 @@ func _ready():
 	if player:
 		add_collision_exception_with(player)
 
-
 # =========================
 # PHYSICS LOOP
 # =========================
 func _physics_process(delta):
 	#print("STATE: ", state)
-
 	match state:
 		BulletState.FLYING:
 			_handle_flying(delta)
@@ -66,8 +65,8 @@ func _physics_process(delta):
 # FLYING
 # =========================
 func _handle_flying(delta):
-
 	velocity.y = 0.0
+	trail.emitting = true
 
 	var collision = move_and_collide(velocity * delta)
 
@@ -95,6 +94,7 @@ func _on_collision(collision: KinematicCollision3D):
 		if hurtbox:
 			hurtbox.take_damage(hitbox)
 
+
 # =========================
 # FALLING
 # =========================
@@ -114,6 +114,7 @@ func _handle_falling(delta):
 # DROP
 # =========================
 func _drop():
+	trail.emitting = false
 
 	state = BulletState.DROPPED
 

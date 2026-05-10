@@ -16,11 +16,11 @@
 [ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="16_cdfud"]
 [ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="16_e7u35"]
 
-[sub_resource type="Sky" id="Sky_f00m5"]
+[sub_resource type="Sky" id="Sky_lmaod"]
 
 [sub_resource type="Environment" id="Environment_mrpq7"]
 background_mode = 2
-sky = SubResource("Sky_f00m5")
+sky = SubResource("Sky_lmaod")
 ambient_light_source = 2
 ambient_light_color = Color(0.6375, 0.6375, 0.6375, 1)
 ambient_light_energy = 0.34

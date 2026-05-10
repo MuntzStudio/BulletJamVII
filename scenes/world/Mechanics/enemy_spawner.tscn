@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfwqmldkivqdl"]
 
-[ext_resource type="Script" uid="uid://clco08emvbwwo" path="res://scenes/world/enemy_spawner.gd" id="1_2s8lo"]
+[ext_resource type="Script" uid="uid://clco08emvbwwo" path="res://scenes/world/Mechanics/enemy_spawner.gd" id="1_2s8lo"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_k461a"]
 radius = 0.5053709
@@ -10,6 +10,7 @@ radius = 0.5053709
 [node name="EnemySpawner" type="StaticBody3D" unique_id=707684176]
 collision_layer = 0
 script = ExtResource("1_2s8lo")
+spawn_percentages = PackedFloat32Array()
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1664152757]
 shape = SubResource("SphereShape3D_k461a")
@@ -17,9 +18,11 @@ debug_color = Color(0.9764706, 0, 0.40784314, 0.92156863)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=3510761]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+visible = false
 mesh = SubResource("SphereMesh_ocnay")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=921154415]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0.70020425, 0)
 
 [node name="Timer" type="Timer" parent="." unique_id=84370234]
+wait_time = 2.0

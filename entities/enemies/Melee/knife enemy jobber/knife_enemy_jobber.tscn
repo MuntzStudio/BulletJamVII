@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="4_3e0it"]
 [ext_resource type="PackedScene" uid="uid://c2gdsj4fui0n4" path="res://scripts/health_bar.tscn" id="6_o3sf3"]
 [ext_resource type="PackedScene" uid="uid://36snc0ndulya" path="res://assets/vfx/hit_fx/hit_particle_i.tscn" id="6_qe6p6"]
+[ext_resource type="AudioStream" uid="uid://dhgobqtl3lchu" path="res://audio/SFX/Enemy Hit 3.mp3" id="7_e65u0"]
 [ext_resource type="PackedScene" uid="uid://dsts8v3bewoj0" path="res://assets/models and textures/knife_boy.tscn" id="8_edgxb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_svub2"]
@@ -25,7 +26,7 @@ var/attack_range/hint_string = ""
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_edgxb"]
 height = 2.3081055
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_edgxb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_rx81y"]
 viewport_path = NodePath("SubViewport")
 
 [node name="KnifeEnemyJobber" type="CharacterBody3D" unique_id=110487065 groups=["enemy"]]
@@ -47,7 +48,7 @@ debug_path_custom_color = Color(2.2140146e-06, 0.48953462, 0.48982888, 1)
 
 [node name="KnifeBoy" parent="." unique_id=384132466 instance=ExtResource("8_edgxb")]
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 914027470) index="5" unique_id=1297624662]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 835099683) index="5" unique_id=1297624662]
 transform = Transform3D(0.9999945, -0.0031029352, -0.0011590092, 0.0033089535, 0.95161414, 0.30727723, 0.00014946835, -0.30727938, 0.9516192, -0.009226737, 4.8939576, -1.0949928)
 bone_name = "ScaleBone"
 bone_idx = 1
@@ -68,7 +69,7 @@ transform = Transform3D(0.99999994, 0, 0, 0, 1, 1.4901161e-08, 2.842171e-14, 0, 
 shape = SubResource("CylinderShape3D_qe6p6")
 debug_color = Color(0.34859782, 0.023593755, 0.471875, 1)
 
-[node name="AnimationPlayer" parent="KnifeBoy" index="1" unique_id=1999566224]
+[node name="AnimationPlayer" parent="KnifeBoy" index="1" unique_id=1703011212]
 autoplay = &""
 
 [node name="BTPlayer" type="BTPlayer" parent="." unique_id=1966809227]
@@ -81,6 +82,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("4_3e0it")
 mesh = NodePath("../KnifeBoy/Armature/Skeleton3D/Cube")
+audio = ExtResource("7_e65u0")
 hit_vfx = ExtResource("6_qe6p6")
 knockback_multiplier = 0.5
 metadata/_custom_type_script = "uid://cppim11crlu1t"
@@ -92,6 +94,6 @@ shape = SubResource("CapsuleShape3D_edgxb")
 [node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("6_o3sf3")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
 visible = false
-texture = SubResource("ViewportTexture_edgxb")
+texture = SubResource("ViewportTexture_rx81y")
 
 [editable path="KnifeBoy"]

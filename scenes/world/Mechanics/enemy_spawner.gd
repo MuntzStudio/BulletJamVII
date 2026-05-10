@@ -54,15 +54,16 @@ func spawn_enemy():
 
 
 func get_random_enemy():
-	match rng.rand_weighted(spawn_percentages):
-		0:
-			return knife_enemy_lunger.instantiate()
-		1:
-			return ranged_enemy_kite.instantiate()
-		2:
-			return knife_enemy_jobber.instantiate()
-		3:
-			return boomerang_shooter_enemy.instantiate()
+	if spawn_percentages:
+		match rng.rand_weighted(spawn_percentages):
+			0:
+				return knife_enemy_lunger.instantiate()
+			1:
+				return ranged_enemy_kite.instantiate()
+			2:
+				return knife_enemy_jobber.instantiate()
+			3:
+				return boomerang_shooter_enemy.instantiate()
 
 
 func launch_enemy(enemy, direction: Vector3):

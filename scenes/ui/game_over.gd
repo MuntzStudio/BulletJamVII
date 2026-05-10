@@ -3,9 +3,10 @@ extends Control
 const restart_scene = "res://scenes/ui/main_menu.tscn"
 @onready var restart: Button = %Restart
 @onready var quit: Button = %Quit
-
+@export var gameover_song : AudioStream
 
 func _ready() -> void:
+	Audio.play_ambience(gameover_song,-1.0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	restart.pressed.connect(_on_restart_pressed)
 	quit.pressed.connect(_on_quit_pressed)

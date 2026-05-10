@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dpwsco6p65pjy" path="res://entities/bullets/enemy_bullet.gd" id="1_tirjj"]
 [ext_resource type="PackedScene" uid="uid://dro0pgwk47vkk" path="res://assets/models and textures/arrow.tscn" id="2_a2rgv"]
+[ext_resource type="PackedScene" uid="uid://dyxsamyfn5f7i" path="res://assets/vfx/fire trail/firetrail.tscn" id="3_uwwsu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a2rgv"]
 radius = 0.14746094
@@ -21,3 +22,6 @@ shape = SubResource("CapsuleShape3D_a2rgv")
 debug_color = Color(0.61388963, 0, 0.7021107, 1)
 
 [node name="Arrow" parent="." unique_id=2035061417 instance=ExtResource("2_a2rgv")]
+
+[node name="Firetrail" parent="." unique_id=754888036 instance=ExtResource("3_uwwsu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6471682)

@@ -43,24 +43,24 @@ func take_damage(hitbox: Hitbox) -> void:
 		return
 	damage_taken.emit(hitbox)   # owner gets full hitbox data
 	if audio:
-		Audio.play_spatial_sound(audio, global_position)
+		Audio.play_sound_3d(audio, global_position)
 	if hit_vfx:
 		VFX.spawn(hit_vfx, self)
-	_flash_color()
+	#_flash_color()
 
 func make_invulnerable(duration : float = 1.0)-> void:
 	is_invulnerable = true
 	await get_tree().create_timer(duration).timeout
 	is_invulnerable = false
 
-func _flash_color() -> void:
+#func _flash_color() -> void:
 	#var mat: StandardMaterial3D = mesh.get_active_material(0).duplicate()
 	#mat.albedo_color = hit_color
 	#mesh.set_surface_override_material(0, mat)
 	#
 	#var timer := get_tree().create_timer(flash_duration, true, false, true)
 	#timer.timeout.connect(_on_flash_done)
-	pass
+	#pass
 
 #func _on_flash_done() -> void:
 	#mesh.set_surface_override_material(0, null)

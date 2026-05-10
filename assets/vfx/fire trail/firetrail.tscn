@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dyxsamyfn5f7i"]
+
+[ext_resource type="ArrayMesh" uid="uid://bqyty4rqu2uqe" path="res://assets/vfx/fire trail/fire_ball_mesh.obj" id="1_x2qmo"]
+[ext_resource type="Shader" uid="uid://cr47q3a20mk2" path="res://assets/vfx/fire trail/firetrail.tres" id="1_xntxu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h1l7i"]
+render_priority = 0
+shader = ExtResource("1_xntxu")
+shader_parameter/FireColor = Color(7.9112988, 2.729244, 0.89331603, 1)
+shader_parameter/Speed = Vector2(0.1, 3)
+
+[node name="Firetrail" type="Node3D" unique_id=754888036]
+
+[node name="FireBallMesh" type="MeshInstance3D" parent="." unique_id=740397934]
+transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_h1l7i")
+cast_shadow = 0
+mesh = ExtResource("1_x2qmo")

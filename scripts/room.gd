@@ -13,7 +13,7 @@ var _cleared: bool = false
 
 func _ready() -> void:
 	# Freeze all pre-placed enemies
-	for enemy in get_children():
+	for enemy in $Enemies.get_children():
 		if enemy.is_in_group("enemy"):
 			enemy.process_mode = Node.PROCESS_MODE_DISABLED
 	
@@ -33,7 +33,7 @@ func _on_player_entered() -> void:
 	_lock_doors()
 	
 	# Unfreeze pre-placed enemies
-	for enemy in get_children():
+	for enemy in $Enemies.get_children():
 		if enemy.is_in_group("enemy"):
 			enemy.process_mode = Node.PROCESS_MODE_INHERIT
 	
