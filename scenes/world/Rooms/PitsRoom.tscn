@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cegbb50od3r3y"]
 
 [ext_resource type="PackedScene" uid="uid://d2rwltgubu8wc" path="res://assets/models and textures/RoomPitsBake.glb" id="1_rjtrw"]
-[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_b38dc"]
+[ext_resource type="PackedScene" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_b38dc"]
+[ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="3_bgvov"]
+[ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="4_b7r3t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b38dc"]
 size = Vector3(20.496, 0.04, 19.978)
@@ -44,6 +46,22 @@ size = Vector3(3.144558, 5.2458496, 10.160187)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4bftn"]
 size = Vector3(3.144558, 5.2458496, 10.160187)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_mhcgx"]
+vertices = PackedVector3Array(-13.659584, 0.5321202, -3.5042858, -11.409584, 0.5321202, -3.0042858, -11.159584, 0.5321202, -5.004286, 4.840416, 0.5321202, -21.004286, 7.090416, 0.5321202, -21.254286, 7.090416, 0.5321202, -24.254286, -13.659584, 0.5321202, -24.254286, -5.409584, 0.5321202, -5.004286, 5.340416, 0.5321202, -15.004286, 4.840416, 0.5321202, -15.254286, 11.340416, 0.5321202, -21.254286, 14.340416, 0.5321202, -24.254286, 11.590416, 0.5321202, -16.754286, 14.340416, 0.5321202, -16.504286, 11.340416, 0.5321202, -15.004286, -4.909584, 0.5321202, -4.754286, -4.909584, 0.5321202, 0.7457142, -4.659584, 0.5321202, 3.9957142, 14.340416, 0.5321202, 3.9957142, -5.159584, 0.5321202, 1.2457142, -11.159584, 0.5321202, 1.2457142, -13.659584, 0.5321202, 3.9957142)
+polygons = [PackedInt32Array(0, 2, 1), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(8, 7, 9), PackedInt32Array(9, 7, 2), PackedInt32Array(0, 6, 2), PackedInt32Array(2, 6, 9), PackedInt32Array(9, 6, 3), PackedInt32Array(4, 5, 10), PackedInt32Array(10, 5, 11), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 11), PackedInt32Array(14, 12, 13), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(18, 15, 14), PackedInt32Array(18, 14, 13), PackedInt32Array(7, 8, 15), PackedInt32Array(15, 8, 14), PackedInt32Array(19, 16, 17), PackedInt32Array(1, 20, 0), PackedInt32Array(0, 20, 21), PackedInt32Array(19, 17, 20), PackedInt32Array(20, 17, 21)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0f4io"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tjxqm"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hm3ji"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ncefs"]
+material = ExtResource("3_bgvov")
+size = Vector2(25, 25)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ddyas"]
 
 [node name="RoomPitsBake" unique_id=1933254657 instance=ExtResource("1_rjtrw")]
 
@@ -153,14 +171,59 @@ shadow_enabled = true
 omni_range = 20.0
 omni_attenuation = 1.3
 
-[node name="RoomDoor" parent="." index="6" unique_id=1106590504 instance=ExtResource("2_b38dc")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="6" unique_id=1946898942]
+navigation_mesh = SubResource("NavigationMesh_mhcgx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" index="0" unique_id=1108315785]
+transform = Transform3D(14.466941, 0, 0, 0, 1, 0, 0, 0, 1.8471438, 0.36622667, 0.032120228, 2.707007)
+mesh = SubResource("PlaneMesh_0f4io")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D" index="1" unique_id=438543159]
+transform = Transform3D(14.47424, 0, 0, 0, 1, 0, 0, 0, 1.9164778, 0.36622667, 0.032120228, -22.837809)
+mesh = SubResource("PlaneMesh_0f4io")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D" index="2" unique_id=1465619863]
+transform = Transform3D(-6.3268914e-07, 0, 1.5205954, 0, 1, 0, -14.47424, 0, -6.6467344e-08, -12.638988, 0.032120228, -10.259269)
+mesh = SubResource("PlaneMesh_tjxqm")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D" index="3" unique_id=801960470]
+transform = Transform3D(-6.3268914e-07, 0, 1.9097787, 0, 1, 0, -14.47424, 0, -8.347908e-08, 13.04251, 0.032120228, -10.259269)
+mesh = SubResource("PlaneMesh_tjxqm")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="NavigationRegion3D" index="4" unique_id=797820738]
+transform = Transform3D(-3.6293002e-07, 0, 8.386241, 0, 1, 0, -8.302872, 0, -3.6657423e-07, -3.0489779, 0.032120228, -12.927323)
+mesh = SubResource("PlaneMesh_hm3ji")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="NavigationRegion3D" index="5" unique_id=360538668]
+transform = Transform3D(-3.6293002e-07, 0, 8.386241, 0, 1, 0, -8.302872, 0, -3.6657423e-07, 3.0098968, 0.032120228, -6.980193)
+mesh = SubResource("PlaneMesh_hm3ji")
+
+[node name="RoomDoor" parent="." index="7" unique_id=1106590504 instance=ExtResource("2_b38dc")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.489509, 0.41553354, 4.9215307)
 
-[node name="RoomDoor2" parent="." index="7" unique_id=91719548 instance=ExtResource("2_b38dc")]
+[node name="RoomDoor2" parent="." index="8" unique_id=91719548 instance=ExtResource("2_b38dc")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.619476, 0.508935, -25.123598)
 
-[node name="AnimationPlayer" parent="RoomDoor2" index="1" unique_id=335098306]
+[node name="AnimationPlayer" parent="RoomDoor2" index="1" unique_id=1818843406]
 root_node = NodePath("../../RoomDoor2")
+
+[node name="Lava" type="MeshInstance3D" parent="." index="9" unique_id=940558366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.39655113, -1, -8.636988)
+mesh = SubResource("PlaneMesh_ncefs")
+
+[node name="KillZone" type="Area3D" parent="Lava" index="0" unique_id=1886471687 node_paths=PackedStringArray("label", "pivot")]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("4_b7r3t")
+label = NodePath("")
+pivot = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lava/KillZone" index="0" unique_id=774185986]
+shape = SubResource("WorldBoundaryShape3D_ddyas")
+debug_color = Color(0.2864342, 0.75965345, 7.70092e-07, 1)
+
+[connection signal="body_entered" from="Lava/KillZone" to="Lava/KillZone" method="_on_body_entered"]
 
 [editable path="RoomDoor"]
 [editable path="RoomDoor2"]

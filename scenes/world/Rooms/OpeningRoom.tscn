@@ -1,8 +1,10 @@
-[gd_scene format=3 uid="uid://c1qvwpa2fownu"]
+[gd_scene format=3 uid="uid://dplsxme5st77"]
 
 [ext_resource type="PackedScene" uid="uid://bhh6vyxhqfvne" path="res://assets/models and textures/Opening Room Bake.glb" id="1_jydf0"]
 [ext_resource type="PackedScene" uid="uid://iqudkhf8mrmx" path="res://assets/models and textures/JailDoor.blend" id="2_3ejv1"]
-[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="3_801jj"]
+[ext_resource type="PackedScene" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="3_801jj"]
+[ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="4_801jj"]
+[ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="5_hkb3n"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkb3n"]
 size = Vector3(29.454544, 0.04, 23.346794)
@@ -27,6 +29,12 @@ size = Vector3(1.7381592, 5.2458496, 40.149963)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pt2mb"]
 size = Vector3(12.726325, 5.2458496, 9.904023)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_831b4"]
+material = ExtResource("4_801jj")
+size = Vector2(25, 25)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ood2s"]
 
 [node name="Opening Room Bake" unique_id=276392845 instance=ExtResource("1_jydf0")]
 
@@ -104,10 +112,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055741787, 1.8200139, -3.0
 [node name="RoomDoor" parent="." index="6" unique_id=1106590504 instance=ExtResource("3_801jj")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.10361689, 0.18778992, -35.474354)
 
-[node name="Door" parent="RoomDoor" index="0" unique_id=1279436798]
+[node name="Door" parent="RoomDoor" index="0" unique_id=106750330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="AnimationPlayer" parent="RoomDoor" index="1" unique_id=335098306]
+[node name="AnimationPlayer" parent="RoomDoor" index="1" unique_id=1818843406]
 autoplay = &"Open"
+
+[node name="Lava" type="MeshInstance3D" parent="." index="7" unique_id=45911308]
+transform = Transform3D(1.2091126, 0, 0, 0, 1, 0, 0, 0, 1, 0.75092316, -1, -19.725449)
+mesh = SubResource("PlaneMesh_831b4")
+
+[node name="KillZone" type="Area3D" parent="Lava" index="0" unique_id=1190307294]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("5_hkb3n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lava/KillZone" index="0" unique_id=484646675]
+shape = SubResource("WorldBoundaryShape3D_ood2s")
+debug_color = Color(0.2864342, 0.75965345, 7.70092e-07, 1)
+
+[connection signal="body_entered" from="Lava/KillZone" to="Lava/KillZone" method="_on_body_entered"]
 
 [editable path="RoomDoor"]

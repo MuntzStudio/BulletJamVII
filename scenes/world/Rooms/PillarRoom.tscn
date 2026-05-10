@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://mtw8u2vv2bcc"]
 
 [ext_resource type="PackedScene" uid="uid://bet3csgwf764f" path="res://assets/models and textures/RoomPillarBake.glb" id="1_8afxx"]
+[ext_resource type="PackedScene" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_jd382"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jd382"]
 size = Vector3(29.454544, 0.04, 29.580574)
@@ -25,6 +26,18 @@ size = Vector3(1.3716128, 5.682129, 1.0174186)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32vtn"]
 size = Vector3(0.97496223, 5.682129, 1.0174186)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_8afxx"]
+vertices = PackedVector3Array(-13.582912, 0.6853335, -18.453302, -8.832912, 0.6853335, -18.453302, -8.832912, 0.6853335, -19.453302, -7.5829124, 0.6853335, -19.703302, -7.5829124, 0.6853335, -24.203302, -13.582912, 0.6853335, -24.203302, 6.4170876, 0.6853335, -19.453302, 7.4170876, 0.6853335, -19.703302, 7.4170876, 0.6853335, -24.203302, -6.5829124, 0.6853335, -19.453302, 0.91708755, 0.6853335, -11.203302, 6.9170876, 0.6853335, -17.453302, 6.4170876, 0.6853335, -17.703302, -0.83291245, 0.6853335, -11.453302, -6.8329124, 0.6853335, -17.453302, 8.417088, 0.6853335, -19.453302, 14.417088, 0.6853335, -18.453302, 14.417088, 0.6853335, -24.203302, 8.417088, 0.6853335, -18.453302, -13.582912, 0.6853335, -2.7033024, -8.832912, 0.6853335, -2.7033024, -8.582912, 0.6853335, -3.4533024, -8.582912, 0.6853335, -17.453302, -6.8329124, 0.6853335, -3.4533024, -0.83291245, 0.6853335, -9.453302, 8.167088, 0.6853335, -3.4533024, 8.417088, 0.6853335, -2.7033024, 14.417088, 0.6853335, -2.7033024, 8.167088, 0.6853335, -17.453302, 0.91708755, 0.6853335, -9.703302, 6.9170876, 0.6853335, -3.4533024, -6.5829124, 0.6853335, -1.9533024, -7.5829124, 0.6853335, -1.7033024, -7.5829124, 0.6853335, 4.0466976, 7.4170876, 0.6853335, 4.0466976, 7.4170876, 0.6853335, -1.7033024, 6.4170876, 0.6853335, -1.9533024, 6.4170876, 0.6853335, -3.2033024, -8.582912, 0.6853335, -1.7033024, -13.582912, 0.6853335, 4.0466976, 8.167088, 0.6853335, -1.7033024, 14.417088, 0.6853335, 4.0466976)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 2), PackedInt32Array(0, 5, 2), PackedInt32Array(2, 5, 4), PackedInt32Array(8, 7, 6), PackedInt32Array(4, 9, 3), PackedInt32Array(12, 11, 10), PackedInt32Array(10, 13, 12), PackedInt32Array(12, 13, 6), PackedInt32Array(13, 14, 9), PackedInt32Array(9, 4, 13), PackedInt32Array(13, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(7, 8, 15), PackedInt32Array(15, 8, 17), PackedInt32Array(15, 17, 16), PackedInt32Array(16, 18, 15), PackedInt32Array(21, 20, 19), PackedInt32Array(0, 1, 22), PackedInt32Array(24, 23, 21), PackedInt32Array(22, 14, 13), PackedInt32Array(24, 21, 13), PackedInt32Array(13, 21, 19), PackedInt32Array(13, 19, 22), PackedInt32Array(22, 19, 0), PackedInt32Array(27, 26, 25), PackedInt32Array(16, 28, 18), PackedInt32Array(25, 30, 29), PackedInt32Array(10, 11, 28), PackedInt32Array(10, 28, 29), PackedInt32Array(29, 28, 16), PackedInt32Array(29, 16, 25), PackedInt32Array(25, 16, 27), PackedInt32Array(33, 32, 31), PackedInt32Array(36, 35, 34), PackedInt32Array(29, 30, 37), PackedInt32Array(31, 23, 24), PackedInt32Array(29, 37, 36), PackedInt32Array(29, 36, 24), PackedInt32Array(24, 36, 34), PackedInt32Array(24, 34, 31), PackedInt32Array(31, 34, 33), PackedInt32Array(20, 38, 19), PackedInt32Array(19, 38, 39), PackedInt32Array(39, 38, 33), PackedInt32Array(38, 32, 33), PackedInt32Array(34, 35, 40), PackedInt32Array(26, 27, 40), PackedInt32Array(40, 27, 41), PackedInt32Array(40, 41, 34)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jd382"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3mpqp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3sxx4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_acy30"]
 
 [node name="RoomPillarBake" unique_id=455061718 instance=ExtResource("1_8afxx")]
 
@@ -166,3 +179,72 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.957512)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Pillar5" index="0" unique_id=1958168565]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6879797, 2.3410647, 24.362436)
 shape = SubResource("BoxShape3D_32vtn")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="6" unique_id=1085302828]
+navigation_mesh = SubResource("NavigationMesh_8afxx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D" index="0" unique_id=124132748]
+transform = Transform3D(14.440528, 0, 0, 0, 1, 0, 0, 0, 3.2736323, 0.4141283, 0.18533349, 1.2519083)
+visible = false
+mesh = SubResource("PlaneMesh_jd382")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D" index="1" unique_id=1138377288]
+transform = Transform3D(14.416043, 0, 0, 0, 1, 0, 0, 0, 3.3392582, 0.44824076, 0.18533349, -6.535229)
+visible = false
+mesh = SubResource("PlaneMesh_jd382")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D" index="2" unique_id=1394878201]
+transform = Transform3D(14.451309, 0, 0, 0, 1, 0, 0, 0, 3.3574524, 0.36839724, 0.18533349, -14.551672)
+visible = false
+mesh = SubResource("PlaneMesh_jd382")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="NavigationRegion3D" index="3" unique_id=344115217]
+transform = Transform3D(14.451309, 0, 0, 0, 1, 0, 0, 0, 2.7330537, 0.36839724, 0.18533349, -21.97025)
+visible = false
+mesh = SubResource("PlaneMesh_jd382")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="NavigationRegion3D" index="4" unique_id=674284197]
+transform = Transform3D(-6.3168676e-07, 0, 3.4527056, 0, 1, 0, -14.451309, 0, -1.5092256e-07, 11.422579, 0.18533349, -10.164146)
+visible = false
+mesh = SubResource("PlaneMesh_3mpqp")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="NavigationRegion3D" index="5" unique_id=1427826158]
+transform = Transform3D(-6.3168676e-07, 0, 3.0634456, 0, 1, 0, -14.451309, 0, -1.3390746e-07, 3.6471043, 0.18533349, -10.164146)
+visible = false
+mesh = SubResource("PlaneMesh_3sxx4")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="NavigationRegion3D" index="6" unique_id=1013694772]
+transform = Transform3D(-6.3168676e-07, 0, 3.0634456, 0, 1, 0, -14.451309, 0, -1.3390746e-07, -3.891303, 0.18533349, -10.164146)
+visible = false
+mesh = SubResource("PlaneMesh_3sxx4")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="NavigationRegion3D" index="7" unique_id=230562239]
+transform = Transform3D(-6.3168676e-07, 0, 2.8541112, 0, 1, 0, -14.451309, 0, -1.2475716e-07, -11.210556, 0.18533349, -10.164146)
+visible = false
+mesh = SubResource("PlaneMesh_3sxx4")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="NavigationRegion3D" index="8" unique_id=312039147]
+transform = Transform3D(-4.13146e-08, 0, 0.9706325, 0, 1, 0, -0.94516796, 0, -4.2427693e-08, -7.7173886, 0.18533349, -10.489461)
+visible = false
+mesh = SubResource("PlaneMesh_acy30")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="NavigationRegion3D" index="9" unique_id=1811250554]
+transform = Transform3D(-4.13146e-08, 0, 0.9706325, 0, 1, 0, -0.94516796, 0, -4.2427693e-08, 7.347426, 0.18533349, -10.489461)
+visible = false
+mesh = SubResource("PlaneMesh_acy30")
+
+[node name="MeshInstance3D12" type="MeshInstance3D" parent="NavigationRegion3D" index="10" unique_id=79187080]
+transform = Transform3D(-4.13146e-08, 0, 0.9706325, 0, 1, 0, -0.94516796, 0, -4.2427693e-08, -0.02016592, 0.18533349, -18.458199)
+visible = false
+mesh = SubResource("PlaneMesh_acy30")
+
+[node name="MeshInstance3D13" type="MeshInstance3D" parent="NavigationRegion3D" index="11" unique_id=1342156354]
+transform = Transform3D(-4.13146e-08, 0, 0.9706325, 0, 1, 0, -0.94516796, 0, -4.2427693e-08, -0.02016592, 0.18533349, -2.4383698)
+visible = false
+mesh = SubResource("PlaneMesh_acy30")
+
+[node name="RoomDoor" parent="." index="7" unique_id=1106590504 instance=ExtResource("2_jd382")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.321021, -2.060807, 4.816074)
+
+[node name="RoomDoor2" parent="." index="8" unique_id=1338813727 instance=ExtResource("2_jd382")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.627652, -2.0220332, -25.157774)
