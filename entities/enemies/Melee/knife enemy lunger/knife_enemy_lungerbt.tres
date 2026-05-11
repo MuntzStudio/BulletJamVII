@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dmmmrhligr5rg" path="res://ai/tasks/enemy/face_target.gd" id="4_pw3ih"]
 [ext_resource type="Script" uid="uid://dvqemhh4pku1d" path="res://ai/tasks/enemy/melee_attack.gd" id="6_btg7i"]
 [ext_resource type="Script" uid="uid://dnuus4ch0mqyf" path="res://ai/tasks/enemy/navigate_to_target.gd" id="7_bypa1"]
+[ext_resource type="AudioStream" uid="uid://cn0m2vvwrk2bs" path="res://audio/SFX/Knife Throw 2-1.mp3" id="8_pw3ih"]
 
 [sub_resource type="BBNode" id="BBNode_btg7i"]
 saved_value = NodePath("KnifeBoy/AnimationPlayer")
@@ -95,6 +96,7 @@ resource_local_to_scene = true
 script = ExtResource("6_btg7i")
 lunge_speed = 150.0
 lunge_duration = 1.0
+attack_sfx = ExtResource("8_pw3ih")
 
 [sub_resource type="BTParallel" id="BTParallel_pw3ih"]
 num_successes_required = 2

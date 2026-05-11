@@ -32,7 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.3019608)
+color = Color(0.4358523, 0.14682618, 0.484375, 0.3019608)
 
 [node name="Bg2" type="ColorRect" parent="Bg" unique_id=379849838]
 layout_mode = 1
@@ -42,8 +42,7 @@ anchor_right = 0.34375
 anchor_bottom = 0.34444445
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.3019608)
-metadata/_edit_use_anchors_ = true
+color = Color(0.4358523, 0.14682618, 0.484375, 0.3019608)
 
 [node name="Bg3" type="ColorRect" parent="Bg" unique_id=1623356486]
 layout_mode = 1
@@ -54,8 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 0.34444445
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.3019608)
-metadata/_edit_use_anchors_ = true
+color = Color(0.4358523, 0.14682618, 0.484375, 0.3019608)
 
 [node name="ScrollabeBkgd" type="TextureRect" parent="." unique_id=156904973]
 light_mask = 2

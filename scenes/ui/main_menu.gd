@@ -4,8 +4,9 @@ extends Node3D
 @export var start_scene : PackedScene
 @export var credits_scene : PackedScene
 @export var sound_track : AudioStream
-@export var anim_player : AnimationPlayer
+@export var player_anim : AnimationPlayer
 
+@onready var cutscene_anim: AnimationPlayer = $Scene/AnimationPlayer
 @onready var timer: Timer = %Timer
 @onready var start: Button = %Start
 @onready var credits: Button = %Credits
@@ -28,16 +29,16 @@ func _ready() -> void:
 	play_track()
 	
 	#region ANIMATION
-	anim_player.play("Idle1")
+	player_anim.play("Idle1")
 	timer.timeout.connect(_play_idle2)
-	anim_player.animation_finished.connect(_on_animation_finished)
+	player_anim.animation_finished.connect(_on_animation_finished)
 
 func _play_idle2() -> void:
-	anim_player.play("Idle2")
+	player_anim.play("Idle2")
 
 func _on_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "Idle2":
-		anim_player.play("Idle1")
+		player_anim.play("Idle1")
 		timer.wait_time = randf_range(6.0, 10.0)
 		timer.start()
 	#endregion ANIMATION
@@ -53,6 +54,8 @@ func _on_start_pressed() -> void:
 		LoadManager.load_scene(saved_scene)
 	else:
 		SaveManager.delete_save()
+		cutscene_anim.play("start_scene")
+		await cutscene_anim.animation_finished
 		if start_scene:
 			LoadManager.load_scene(start_scene.resource_path)
 	pass

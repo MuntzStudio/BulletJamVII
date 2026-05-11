@@ -166,6 +166,8 @@ func take_chip_damage(amount: int) -> void:
 		hud.update_hearts(health, max_health)
 	
 	hit_taken.emit()
+	hurtbox.play_hit_sound()
+	hurtbox.play_hit_vfx()
 	hurtbox.make_invulnerable(0.5)
 	if health <= 0.0:
 		_die()
@@ -182,6 +184,7 @@ func respawn() -> void:
 	pivot.is_returning = true
 	velocity = Vector3.ZERO
 	set_physics_process(true)
+	audio_controller.play_respawn()
 
 func _die() -> void:
 	set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)  
@@ -200,6 +203,7 @@ func _handle_shooting(delta: float) -> void:
 func _shoot():
 	if current_bullets <= 0:
 		return
+	audio_controller.play_shoot()
 	shot_fired.emit()
 	await get_tree().create_timer(0.1).timeout  
 	

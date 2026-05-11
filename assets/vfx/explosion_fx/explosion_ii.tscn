@@ -3,13 +3,42 @@
 [ext_resource type="Script" uid="uid://2om0x7y0ka0i" path="res://assets/vfx/explosion_fx/explosion.gd" id="1_y10b7"]
 [ext_resource type="Texture2D" uid="uid://conke0y088r4g" path="res://assets/vfx/explosion_fx/Explosion texture.png" id="2_7sq0n"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_comcm"]
+transparency = 1
+cull_mode = 2
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(2.566168, 1.0533632, 4.2165008, 1)
+albedo_texture = ExtResource("2_7sq0n")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_7gaqk"]
+lightmap_size_hint = Vector2i(4, 4)
+material = SubResource("StandardMaterial3D_comcm")
+
+[sub_resource type="Curve" id="Curve_comcm"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7gaqk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_7gaqk"]
+colors = PackedColorArray(1, 1, 1, 1, 0.471875, 0.471875, 0.471875, 0.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7gaqk"]
 transparency = 1
 cull_mode = 2
 no_depth_test = true
 shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(2.5709999, 1.482019, 0, 1)
+albedo_color = Color(0.99255323, 0, 3.294, 1)
 albedo_texture = ExtResource("2_7sq0n")
 texture_filter = 0
 billboard_mode = 3
@@ -28,62 +57,9 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10.590086), 0.0, 0.0, 0, 0]
 point_count = 2
 metadata/_snap_enabled = true
 
-[sub_resource type="Curve" id="Curve_7gaqk"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_comcm"]
-transparency = 1
-cull_mode = 2
-no_depth_test = true
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(2.0120451, 0.92887735, 3.1823645, 1)
-albedo_texture = ExtResource("2_7sq0n")
-texture_filter = 0
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="QuadMesh" id="QuadMesh_7gaqk"]
-lightmap_size_hint = Vector2i(4, 4)
-material = SubResource("StandardMaterial3D_comcm")
-
-[sub_resource type="Curve" id="Curve_comcm"]
-_limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_7gaqk"]
-colors = PackedColorArray(1, 1, 1, 1, 0.471875, 0.471875, 0.471875, 0.5)
-
 [node name="ExplosionII" type="Node3D" unique_id=2080390735]
 process_mode = 3
 script = ExtResource("1_y10b7")
-
-[node name="Spark" type="CPUParticles3D" parent="." unique_id=519734990]
-process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-emitting = false
-lifetime = 2.0
-one_shot = true
-explosiveness = 1.0
-fixed_fps = 60
-mesh = SubResource("QuadMesh_wwtdv")
-emission_shape = 1
-emission_sphere_radius = 1.0
-direction = Vector3(0, 0, 0)
-spread = 180.0
-gravity = Vector3(0, 1, 0)
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
-angular_velocity_min = 45.0
-angular_velocity_max = 480.0
-damping_max = 0.5
-damping_curve = SubResource("Curve_wwtdv")
-scale_amount_curve = SubResource("Curve_7gaqk")
 
 [node name="Smoke" type="CPUParticles3D" parent="." unique_id=465742014]
 process_mode = 3
@@ -93,6 +69,7 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
+draw_order = 2
 mesh = SubResource("QuadMesh_7gaqk")
 emission_shape = 1
 emission_sphere_radius = 1.0
@@ -107,3 +84,26 @@ damping_max = 1.0
 damping_curve = SubResource("Curve_comcm")
 scale_amount_curve = SubResource("Curve_7gaqk")
 color_initial_ramp = SubResource("Gradient_7gaqk")
+
+[node name="Spark" type="CPUParticles3D" parent="." unique_id=519734990]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+draw_order = 2
+mesh = SubResource("QuadMesh_wwtdv")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+angular_velocity_min = 45.0
+angular_velocity_max = 480.0
+damping_max = 0.5
+damping_curve = SubResource("Curve_wwtdv")
+scale_amount_curve = SubResource("Curve_7gaqk")

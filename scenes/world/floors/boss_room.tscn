@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="15_4twfe"]
 [ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="16_fj7gp"]
 [ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="16_hyrir"]
+[ext_resource type="Script" uid="uid://0sgqj10s5jau" path="res://scenes/ui/cinematic_camera.gd" id="16_oskdh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hyrir"]
 size = Vector3(31.851563, 8.982422, 33)
@@ -200,7 +201,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 
 curve = SubResource("Curve3D_6qwl8")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="BossPath" unique_id=1122110057 groups=["path"]]
-transform = Transform3D(-0.99997485, 0, 0.004524776, 0, 1, 0, -0.004524776, 0, -0.99997485, -0.05841446, 0, -8.11507)
+transform = Transform3D(-0.9999725, 0, 0.0045247655, 0, 1, 0, -0.0045247655, 0, -0.9999725, -0.05841446, 0, -8.11507)
 
 [node name="Lava" type="MeshInstance3D" parent="." unique_id=1973651251]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -236,5 +237,15 @@ light_bake_mode = 1
 shadow_enabled = true
 omni_range = 20.0
 omni_attenuation = 1.3
+
+[node name="CinematicCamera" type="Node" parent="." unique_id=430912863]
+
+[node name="Camera3D" type="Camera3D" parent="CinematicCamera" unique_id=1703995908]
+transform = Transform3D(0.89687324, 0.14945634, -0.41627064, 0, 0.9411761, 0.33791655, 0.4422877, -0.3030683, 0.8441157, -12.748569, 9.065087, 7.2753644)
+script = ExtResource("16_oskdh")
+
+[node name="Camera3D2" type="Camera3D" parent="CinematicCamera" unique_id=862755652]
+transform = Transform3D(0.85263944, -0.1041696, 0.51201046, 0, 0.97992474, 0.19936775, -0.5224998, -0.1699888, 0.8355225, 3.9528208, 4.302427, -6.959512)
+script = ExtResource("16_oskdh")
 
 [connection signal="body_entered" from="Lava/KillZone" to="Lava/KillZone" method="_on_body_entered"]

@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/Shoe Walk 3.mp3-c06f41fc3b9840b68dee13b3b2eaf
 
 [params]
 
-loop=false
-loop_offset=0
+loop=true
+loop_offset=0.3
 bpm=0
 beat_count=0
 bar_beats=4

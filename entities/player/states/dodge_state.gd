@@ -7,11 +7,13 @@ var dodge_height    : float = 6.0
 var dodge_timer     : float = 0.0
 var dodge_direction : Vector3 = Vector3.ZERO
 var player: CharacterBody3D
+@onready var audio_controller: Node = $"../../AudioController"
 
 func _enter() -> void:
 	player = agent as CharacterBody3D
 	player.dodge_cooldown_timer = player.DODGE_COOLDOWN
 	dodge_started.emit()
+	audio_controller.play_dodge()
 	player.can_rotate_to_mouse= false
 	dodge_timer     = player.DODGE_DURATION
 	dodge_direction = player.get_input_dir()

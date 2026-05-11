@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dyvoskgmn0gaj" path="res://assets/models and textures/bullet_boy.tscn" id="3_1g8jr"]
 [ext_resource type="AudioStream" uid="uid://pf3nuyh153eq" path="res://audio/SONGS/Failed Circuit.mp3" id="3_uhagc"]
 [ext_resource type="Theme" uid="uid://byl8xpb6p1vvy" path="res://assets/font/BulletBoyTheme.tres" id="3_x2yvf"]
+[ext_resource type="Script" uid="uid://0sgqj10s5jau" path="res://scenes/ui/cinematic_camera.gd" id="7_btxxm"]
+[ext_resource type="PackedScene" uid="uid://iqudkhf8mrmx" path="res://assets/models and textures/JailDoor.blend" id="8_wb0q5"]
 
 [sub_resource type="Sky" id="Sky_fe2o3"]
 
@@ -18,11 +20,72 @@ ambient_light_energy = 1.8
 reflected_light_source = 1
 tonemap_mode = 2
 
-[node name="MainMenuScene" type="Node3D" unique_id=1863901884 node_paths=PackedStringArray("anim_player")]
+[sub_resource type="Animation" id="Animation_q85j6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wb0q5"]
+resource_name = "start_scene"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 2),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainMenu:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q85j6"]
+_data = {
+&"RESET": SubResource("Animation_q85j6"),
+&"start_scene": SubResource("Animation_wb0q5")
+}
+
+[node name="MainMenuScene" type="Node3D" unique_id=1863901884 node_paths=PackedStringArray("player_anim")]
 script = ExtResource("1_sl1te")
 start_scene = ExtResource("2_x2yvf")
 sound_track = ExtResource("3_uhagc")
-anim_player = NodePath("Scene/BulletBoy/AnimationPlayer")
+player_anim = NodePath("Scene/BulletBoy/AnimationPlayer")
 
 [node name="MainMenu" type="Control" parent="." unique_id=831940314]
 layout_mode = 3
@@ -154,5 +217,27 @@ visible = false
 unique_name_in_owner = true
 wait_time = 5.0
 autostart = true
+
+[node name="JailDoorPivot" type="Node3D" parent="Scene" unique_id=1337057882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6056316, 0.35372245, -2.9112868)
+
+[node name="JailDoor" parent="Scene/JailDoorPivot" unique_id=397732716 instance=ExtResource("8_wb0q5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6056316, 1.6462775, -0.08871317)
+
+[node name="CinematicCamera" type="Node" parent="Scene" unique_id=1123381735]
+
+[node name="Camera3D" type="Camera3D" parent="Scene/CinematicCamera" unique_id=1358092263]
+transform = Transform3D(-0.723596, 0.33618423, -0.6028176, 0, 0.8733654, 0.48706558, 0.69022375, 0.3524387, -0.63196373, -5.2169847, 4.445214, -5.7530355)
+fov = 67.0
+script = ExtResource("7_btxxm")
+
+[node name="Camera3D2" type="Camera3D" parent="Scene/CinematicCamera" unique_id=1203562439]
+transform = Transform3D(0.97590953, -0.16428927, -0.14356056, 0, 0.6580047, -0.7530139, 0.2181756, 0.7348734, 0.642153, -0.1328572, 1.9198208, -11.434025)
+fov = 67.0
+script = ExtResource("7_btxxm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Scene" unique_id=577197825]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_q85j6")
 
 [editable path="Scene/BulletBoy"]

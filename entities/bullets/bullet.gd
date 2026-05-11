@@ -66,12 +66,13 @@ func _physics_process(delta):
 # =========================
 func _handle_flying(delta):
 	velocity.y = 0.0
-	trail.emitting = true
-
 	var collision = move_and_collide(velocity * delta)
-
+	
 	if collision:
 		_on_collision(collision)
+	
+	await get_tree().process_frame
+	trail.emitting = true
 
 
 # =========================

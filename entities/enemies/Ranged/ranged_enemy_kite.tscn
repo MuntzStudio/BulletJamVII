@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://hjwrlh2lg4i5" path="res://entities/enemies/Ranged/ranged_enemy.gd" id="1_uy27c"]
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="2_8b2ox"]
-[ext_resource type="PackedScene" uid="uid://c1mh1jvh8bmhd" path="res://assets/vfx/explosion_fx/explosion_i.tscn" id="3_cgugl"]
+[ext_resource type="PackedScene" uid="uid://blpwpqgpxu1u1" path="res://assets/vfx/explosion_fx/explosion_ii.tscn" id="2_ktlkm"]
 [ext_resource type="PackedScene" uid="uid://43lef5fhxpsf" path="res://assets/models and textures/bow_boy.tscn" id="3_l0aa2"]
 [ext_resource type="PackedScene" uid="uid://36snc0ndulya" path="res://assets/vfx/hit_fx/hit_particle_i.tscn" id="4_cgugl"]
 [ext_resource type="BehaviorTree" uid="uid://d21f3kuc0b3fb" path="res://entities/enemies/Ranged/ranged_enemy_kite.tres" id="4_uy27c"]
 [ext_resource type="PackedScene" uid="uid://c2gdsj4fui0n4" path="res://scripts/health_bar.tscn" id="5_8b2ox"]
 [ext_resource type="AudioStream" uid="uid://gg6pl78vq8ey" path="res://audio/SFX/Enemy Hit 1.mp3" id="5_nmw68"]
+[ext_resource type="AudioStream" uid="uid://btwwaptecrcnh" path="res://audio/SFX/Enemy Hit 2.mp3" id="6_ktlkm"]
+[ext_resource type="AudioStream" uid="uid://dhgobqtl3lchu" path="res://audio/SFX/Enemy Hit 3.mp3" id="7_sjpjk"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l0aa2"]
 
@@ -92,7 +94,7 @@ height = 2.7016602
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_uy27c"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_rw4vo"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_l0aa2"]
 viewport_path = NodePath("SubViewport")
 
 [node name="ArrowShooter" type="CharacterBody3D" unique_id=63386032 groups=["enemy"]]
@@ -101,7 +103,7 @@ script = ExtResource("1_uy27c")
 friction = 0.1
 acceleration = 0.7
 max_health = 20.0
-death_vfx = ExtResource("3_cgugl")
+death_vfx = ExtResource("2_ktlkm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1380756014]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -208,7 +210,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("2_8b2ox")
 mesh = NodePath("../BowBoy/Armature/Skeleton3D/Bow")
-audio = ExtResource("5_nmw68")
+hit_audio = Array[AudioStream]([ExtResource("5_nmw68"), ExtResource("6_ktlkm"), ExtResource("7_sjpjk")])
 hit_vfx = ExtResource("4_cgugl")
 metadata/_custom_type_script = "uid://cppim11crlu1t"
 
@@ -223,6 +225,6 @@ blackboard_plan = SubResource("BlackboardPlan_uy27c")
 [node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("5_8b2ox")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
 visible = false
-texture = SubResource("ViewportTexture_rw4vo")
+texture = SubResource("ViewportTexture_l0aa2")
 
 [editable path="BowBoy"]

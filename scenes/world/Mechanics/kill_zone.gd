@@ -5,11 +5,26 @@ extends Area3D
 @export var pivot : Node3D
 
 var dialogs = [
-	"You fell off bozo!",
-	"Skill issue lol",
-	"Try again... or not!",
-	"There's fall damage.. isnt't that shocking!!",
-	"Keep trying.. You still might not win."
+	"You fell... but not for long.",
+	"One more try.",
+	"That looked painful.",
+	"The dungeon claims another victim.",
+	"Careful where you step.",
+	"Even the best miss a jump sometimes.",
+	"Back to the action.",
+	"Watch your footing next time.",
+	"You were so close.",
+	"Every fall is a lesson.",
+	"The dungeon shows no mercy.",
+	"Take a breath and try again.",
+	"That trap got you good.",
+	"Stay focused Bullet boy.",
+	"Not the ending you hoped for.",
+	"Somewhere, the enemies are celebrating.",
+	"Respawning...",
+	"That could have gone better.",
+	"Don't give up yet.",
+	"Another attempt begins."
 ]
 
 var is_respawning : bool = false
@@ -32,7 +47,7 @@ func _on_body_entered(body: Node3D) -> void:
 			pivot.stop_following()
 			body.collision.disabled = true
 			label.text = dialogs.pick_random()
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(0.5).timeout
 			label.show()
 			await get_tree().create_timer(1.5).timeout
 			await body.respawn()

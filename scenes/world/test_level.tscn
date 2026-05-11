@@ -6,7 +6,11 @@
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="2_swvrr"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="3_gb1m8"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="4_7gmxp"]
+[ext_resource type="PackedScene" uid="uid://vwpquu77p65u" path="res://entities/enemies/Ranged/ranged_enemy_kite.tscn" id="4_k461a"]
+[ext_resource type="PackedScene" uid="uid://ny26riyk4c1s" path="res://entities/enemies/Melee/knife enemy jobber/knife_enemy_jobber.tscn" id="5_2b8qx"]
+[ext_resource type="PackedScene" uid="uid://o35g241g04fh" path="res://entities/enemies/Melee/knife enemy lunger/knife_enemy_lunger.tscn" id="6_vu5l7"]
 [ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="7_1rplp"]
+[ext_resource type="PackedScene" uid="uid://cs5p2da550xgv" path="res://entities/enemies/Ranged/boomerang_shooter_enemy.tscn" id="7_vu5l7"]
 [ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="8_gb1m8"]
 [ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="11_ocnay"]
 
@@ -43,6 +47,7 @@ size = Vector3(31.851563, 8.982422, 33.03125)
 environment = SubResource("Environment_7lndr")
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=272726580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
 
 [node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("1_2x7fr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.175939)
@@ -75,6 +80,14 @@ script = ExtResource("4_7gmxp")
 shape = SubResource("WorldBoundaryShape3D_7lndr")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=976467393]
+
+[node name="ArrowShooter" parent="Enemies" unique_id=63386032 instance=ExtResource("4_k461a")]
+
+[node name="KnifeEnemyJobber" parent="Enemies" unique_id=110487065 instance=ExtResource("5_2b8qx")]
+
+[node name="KnifeEnemyLunger" parent="Enemies" unique_id=1746626332 instance=ExtResource("6_vu5l7")]
+
+[node name="BoomerangShooter" parent="Enemies" unique_id=1476147249 instance=ExtResource("7_vu5l7")]
 
 [node name="DialogBox" type="CanvasLayer" parent="." unique_id=498254453]
 

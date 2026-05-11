@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://cdt3cwyb33lx8" path="res://scripts/health_bar.gd" id="3_4414n"]
 [ext_resource type="AudioStream" uid="uid://cpacraowwf55w" path="res://audio/SONGS/Unyielding.mp3" id="3_hqysp"]
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="3_m86g3"]
-[ext_resource type="AudioStream" uid="uid://btwwaptecrcnh" path="res://audio/SFX/Enemy Hit 2.mp3" id="6_8eet7"]
 [ext_resource type="PackedScene" uid="uid://c1mh1jvh8bmhd" path="res://assets/vfx/explosion_fx/explosion_i.tscn" id="7_8eet7"]
 
 [sub_resource type="Animation" id="Animation_c5o42"]
@@ -196,7 +195,6 @@ collision_layer = 4
 collision_mask = 2
 script = ExtResource("3_m86g3")
 mesh = NodePath("../MeshInstance3D")
-audio = ExtResource("6_8eet7")
 hit_vfx = ExtResource("7_8eet7")
 metadata/_custom_type_script = "uid://cppim11crlu1t"
 

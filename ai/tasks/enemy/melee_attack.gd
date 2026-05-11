@@ -8,6 +8,7 @@ extends BTAction
 @export var damage: float = 10.0
 @export var lunge_speed: float = 50.0
 @export var lunge_duration: float = 0.4  # how long it holds the lunge before SUCCESS
+@export var attack_sfx = AudioStream
 
 var _lunge_dir: Vector3 = Vector3.ZERO
 var _locked_basis: Basis
@@ -17,6 +18,9 @@ var _damage_dealt: bool = false
 func _enter() -> void:
 	_elapsed = 0.0
 	_damage_dealt = false
+
+	if attack_sfx:
+		Audio.play_sound_3d(attack_sfx,agent.global_position)
 
 	# Snapshots the forward direction at the moment of attack
 	_lunge_dir = agent.basis.z

@@ -3,7 +3,8 @@ class_name Hurtbox extends Area3D
 signal damage_taken(hitbox)
 
 @export var mesh: MeshInstance3D 
-@export var audio : AudioStream
+@export var hit_audio : Array[AudioStream]
+@export_range(-20.0, 60.0) var audio_volume : float = 0.0
 @export var hit_vfx: PackedScene               # which vfx to spawn on hit
 @export var hit_color: Color = Color.WHITE     # flash color
 @export var flash_duration: float = 0.1
@@ -38,20 +39,31 @@ func _on_area_exited(area: Area3D) -> void:
 	if area is Hitbox:
 		_overlapping_hitboxes.erase(area)
 
-func take_damage(hitbox: Hitbox) -> void:
-	if is_invulnerable:
-		return
-	damage_taken.emit(hitbox)   # owner gets full hitbox data
-	if audio:
-		Audio.play_sound_3d(audio, global_position)
-	if hit_vfx:
-		VFX.spawn(hit_vfx, self)
-	#_flash_color()
-
 func make_invulnerable(duration : float = 1.0)-> void:
 	is_invulnerable = true
 	await get_tree().create_timer(duration).timeout
 	is_invulnerable = false
+
+func take_damage(hitbox: Hitbox) -> void:
+	if is_invulnerable:
+		return
+	damage_taken.emit(hitbox)   # owner gets full hitbox data
+	play_hit_sound()
+	play_hit_vfx()
+	#_flash_color()
+
+func play_hit_vfx()-> void:
+	if hit_vfx:
+		VFX.spawn(hit_vfx, self)
+
+func play_hit_sound()-> void:
+	if !hit_audio.is_empty():
+		Audio.play_sound_3d(
+			hit_audio.pick_random(),
+			self.global_position,
+			audio_volume
+		)
+
 
 #func _flash_color() -> void:
 	#var mat: StandardMaterial3D = mesh.get_active_material(0).duplicate()
