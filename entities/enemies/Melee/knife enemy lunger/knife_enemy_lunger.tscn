@@ -13,6 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://dhgobqtl3lchu" path="res://audio/SFX/Enemy Hit 3.mp3" id="10_7xm4c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_akotg"]
+radius = 0.6870117
+height = 2.4458008
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_j6f8p"]
 size = Vector3(0.50878906, 3.850296, 1.0566711)
@@ -40,7 +42,7 @@ max_health = 30.0
 death_vfx = ExtResource("2_mmn88")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=989533886]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1, 0)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 1.4523088, 0)
 shape = SubResource("CapsuleShape3D_akotg")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=900290344]
@@ -49,7 +51,7 @@ debug_enabled = true
 [node name="KnifeBoy" parent="." unique_id=384132466 instance=ExtResource("3_4f0jk")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 1024298257) index="5" unique_id=1068246538]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 835099683) index="5" unique_id=1068246538]
 transform = Transform3D(0.9999945, -0.0031029352, -0.0011590092, 0.0033089535, 0.95161414, 0.30727723, 0.00014946835, -0.30727938, 0.9516192, -0.009226737, 4.8939576, -1.0949928)
 bone_name = "ScaleBone"
 bone_idx = 1

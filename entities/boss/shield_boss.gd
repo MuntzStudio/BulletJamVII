@@ -159,7 +159,7 @@ func _on_attack_timer_timeout() -> void:
 	if is_dead:
 		return
 	is_attacking = true
-	hurtbox.make_invulnerable(1.0)
+	#hurtbox.make_invulnerable()
 	shield_boss.play_attack()
 	await get_tree().create_timer(0.43).timeout
 	if is_dead: return
@@ -175,6 +175,7 @@ func _shield_boss_fire_bullet() -> void:
 
 #region DEATH
 func _die() -> void:
+	label.text = "YOU FINALLY GOT OUT BULLET BOT!!"
 	health_bar.hide()
 	is_dead = true
 

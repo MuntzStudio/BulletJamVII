@@ -146,13 +146,13 @@ visible = false
 enemies_to_spawn = 20
 maintain_count = 4
 spawn_interval = 10.0
-spawn_percentages = PackedFloat32Array(0, 100, 50, 50)
+spawn_percentages = PackedFloat32Array(50, 100, 50)
 
 [node name="EnemySpawner2" parent="BossRoomBake" index="9" unique_id=1795209552]
 enemies_to_spawn = 20
 maintain_count = 4
 spawn_interval = 10.0
-spawn_percentages = PackedFloat32Array(0, 100, 50, 50)
+spawn_percentages = PackedFloat32Array(50, 100, 50)
 
 [node name="ShieldBossMan" parent="BossRoomBake/Enemies" parent_id_path=PackedInt32Array(789895977, 37879407) index="0" unique_id=1661003103 instance=ExtResource("7_v5lco")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -19)
