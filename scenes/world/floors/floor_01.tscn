@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b11tac7gh5078"]
 
 [ext_resource type="PackedScene" uid="uid://cegbb50od3r3y" path="res://scenes/world/Rooms/PitsRoom.tscn" id="3_c0puv"]
-[ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="7_ea6u0"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="9_clh36"]
 [ext_resource type="FontFile" uid="uid://d0btsupvineqj" path="res://assets/font/Batolah.otf" id="10_3k635"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="10_8i2al"]
@@ -50,51 +49,46 @@ shadow_enabled = true
 omni_range = 20.0
 omni_attenuation = 1.3
 
-[node name="Opening Room Bake" parent="." unique_id=276392845 node_paths=PackedStringArray("doors") instance=ExtResource("15_e7u35")]
+[node name="Opening Room Bake" parent="." unique_id=276392845 instance=ExtResource("15_e7u35")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.18, 0, 164.352)
-doors = []
+
+[node name="EnemySpawner" parent="Opening Room Bake" index="8" unique_id=707684176]
+enemies_to_spawn = 3
+spawn_percentages = PackedFloat32Array(0, 100, 0, 0)
 
 [node name="KillZone" parent="Opening Room Bake/Lava" parent_id_path=PackedInt32Array(276392845, 45911308) index="0" unique_id=1190307294 node_paths=PackedStringArray("kill_label", "camera")]
 kill_label = NodePath("../../../DialogBox/KillLabel")
 camera = NodePath("../../../PlayerEntity/SpringArmPivot")
 
-[node name="RoomPitsBake" parent="." unique_id=1933254657 node_paths=PackedStringArray("doors") instance=ExtResource("3_c0puv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2, 0, 7)
-doors = []
+[node name="RoomEmptyBake" parent="." unique_id=1735910708 instance=ExtResource("13_f6sku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8, 0, 105.43)
 
-[node name="AnimationPlayer" parent="RoomPitsBake/RoomDoor2" parent_id_path=PackedInt32Array(1933254657, 91719548) index="1" unique_id=1456962866]
-root_node = NodePath("..")
+[node name="EnemySpawner" parent="RoomEmptyBake" index="9" unique_id=707684176]
+spawn_percentages = PackedFloat32Array(100, 0, 0, 0)
+
+[node name="Enemies2" type="Node3D" parent="RoomEmptyBake" unique_id=685259894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2, 0, -11)
+
+[node name="RoomPillarBake" parent="." unique_id=455061718 instance=ExtResource("16_qsdem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.791, 0, 56.2655)
+
+[node name="EnemySpawner" parent="RoomPillarBake" index="9" unique_id=707684176]
+enemies_to_spawn = 8
+spawn_percentages = PackedFloat32Array(100, 50, 0, 0)
+
+[node name="Enemies2" type="Node3D" parent="RoomPillarBake" unique_id=957071607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.200001, 0, -11)
+
+[node name="RoomPitsBake" parent="." unique_id=1933254657 instance=ExtResource("3_c0puv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2, 0, 7)
 
 [node name="KillZone" parent="RoomPitsBake/Lava" parent_id_path=PackedInt32Array(1933254657, 940558366) index="0" unique_id=1886471687 node_paths=PackedStringArray("kill_label", "camera")]
 kill_label = NodePath("../../../DialogBox/KillLabel")
 camera = NodePath("../../../PlayerEntity/SpringArmPivot")
 
-[node name="EnemySpawner" parent="RoomPitsBake" unique_id=707684176 instance=ExtResource("7_ea6u0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4074068, 0, -11)
-enemies_to_spawn = 6
-spawn_percentages = PackedFloat32Array(50, 50)
-
-[node name="RoomPillarBake" parent="." unique_id=455061718 node_paths=PackedStringArray("doors") instance=ExtResource("16_qsdem")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.791, 0, 56.2655)
-doors = []
-
-[node name="Enemies2" type="Node3D" parent="RoomPillarBake" unique_id=957071607]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.200001, 0, -11)
-
-[node name="EnemySpawner" parent="RoomPillarBake" unique_id=986272266 instance=ExtResource("7_ea6u0")]
-spawn_percentages = PackedFloat32Array(75, 25)
-
-[node name="RoomEmptyBake" parent="." unique_id=1735910708 node_paths=PackedStringArray("doors") instance=ExtResource("13_f6sku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8, 0, 105.43)
-doors = []
-
-[node name="Enemies2" type="Node3D" parent="RoomEmptyBake" unique_id=685259894]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2, 0, -11)
-
-[node name="EnemySpawner" parent="RoomEmptyBake" unique_id=878161542 instance=ExtResource("7_ea6u0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.191299)
-maintain_count = 2
-spawn_percentages = PackedFloat32Array(100)
+[node name="EnemySpawner" parent="RoomPitsBake" index="10" unique_id=707684176]
+enemies_to_spawn = 7
+spawn_percentages = PackedFloat32Array(100, 100, 0, 0)
 
 [node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("12_f6sku")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.777, -3.206, -42.356)
@@ -143,12 +137,12 @@ visible = false
 
 [editable path="Opening Room Bake"]
 [editable path="Opening Room Bake/RoomDoor"]
-[editable path="RoomPitsBake"]
-[editable path="RoomPitsBake/RoomDoor"]
-[editable path="RoomPitsBake/RoomDoor2"]
-[editable path="RoomPillarBake"]
 [editable path="RoomEmptyBake"]
 [editable path="RoomEmptyBake/RoomDoor"]
 [editable path="RoomEmptyBake/RoomDoor2"]
+[editable path="RoomPillarBake"]
+[editable path="RoomPitsBake"]
+[editable path="RoomPitsBake/RoomDoor"]
+[editable path="RoomPitsBake/RoomDoor2"]
 [editable path="StairsBake"]
 [editable path="StairsBake/SceneTrigger"]

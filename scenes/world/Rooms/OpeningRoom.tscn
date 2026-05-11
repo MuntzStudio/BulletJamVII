@@ -53,9 +53,8 @@ size = Vector3(33.017273, 10.730957, 42.582573)
 [sub_resource type="BoxShape3D" id="BoxShape3D_sv3d7"]
 size = Vector3(30.315231, 10.730957, 20)
 
-[node name="Opening Room Bake" unique_id=276392845 node_paths=PackedStringArray("doors") instance=ExtResource("1_jydf0")]
+[node name="Opening Room Bake" unique_id=276392845 instance=ExtResource("1_jydf0")]
 script = ExtResource("2_hkb3n")
-doors = [NodePath("RoomDoor")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="2" unique_id=1570744623]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6828146, 3.2957954, -31.763489)
@@ -137,17 +136,11 @@ mesh = SubResource("PlaneMesh_8caqu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.055741787, 1.8200139, -3.0604649)
 
 [node name="RoomDoor" parent="." index="7" unique_id=1106590504 instance=ExtResource("3_801jj")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.10361689, 0.18778992, -35.474354)
-
-[node name="Door" parent="RoomDoor" index="0" unique_id=994154429]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.083023, 0)
-
-[node name="AnimationPlayer" parent="RoomDoor" index="1" unique_id=1456962866]
-autoplay = &"Open"
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.10361689, -0.6843331, -35.474354)
 
 [node name="EnemySpawner" parent="." index="8" unique_id=707684176 instance=ExtResource("9_8caqu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2456336, -27.854227)
-spawn_percentages = PackedFloat32Array(0, 100)
+spawn_percentages = PackedFloat32Array(0, 0, 0, 0)
 
 [node name="Enemies" type="Node3D" parent="." index="9" unique_id=1958767695]
 
@@ -188,5 +181,3 @@ shape = SubResource("BoxShape3D_sv3d7")
 debug_color = Color(0.69803923, 0.51044124, 0, 1)
 
 [connection signal="body_entered" from="Lava/KillZone" to="Lava/KillZone" method="_on_body_entered"]
-
-[editable path="RoomDoor"]

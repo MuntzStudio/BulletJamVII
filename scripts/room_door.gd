@@ -7,7 +7,6 @@ var _locked: bool = false
 
 func _ready() -> void:
 	DoorCollider.disabled = true
-	
 	anim_player.animation_finished.connect(_on_animation_player_animation_finished)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="2_pt0hs"]
 [ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_ylhqm"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="4_2wlll"]
+[ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="4_8x5sf"]
 [ext_resource type="Script" uid="uid://btvg1d814w72f" path="res://scripts/room_trigger.gd" id="5_uurbt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ylhqm"]
@@ -39,9 +40,8 @@ size = Vector3(33.227875, 10.730957, 33.438545)
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0wvv"]
 size = Vector3(28.867111, 10.730957, 24.186092)
 
-[node name="RoomEmptyBake" unique_id=1735910708 node_paths=PackedStringArray("doors") instance=ExtResource("1_8y68g")]
+[node name="RoomEmptyBake" unique_id=1735910708 instance=ExtResource("1_8y68g")]
 script = ExtResource("2_pt0hs")
-doors = [NodePath("RoomDoor"), NodePath("RoomDoor2")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=175310077]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.799503, 3.6961155, -19.220865)
@@ -156,14 +156,18 @@ visible = false
 mesh = SubResource("PlaneMesh_ylhqm")
 
 [node name="RoomDoor" parent="." index="7" unique_id=1106590504 instance=ExtResource("2_ylhqm")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.658397, -2.0110037, -25.631752)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.658397, -0.5457611, -25.631752)
 
 [node name="RoomDoor2" parent="." index="8" unique_id=2090918675 instance=ExtResource("2_ylhqm")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.489509, -2.0195403, 4.9215307)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.489509, -0.563851, 4.9215307)
 
-[node name="Enemies" type="Node3D" parent="." index="9" unique_id=966538331]
+[node name="EnemySpawner" parent="." index="9" unique_id=707684176 instance=ExtResource("4_8x5sf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2456336, -10.884138)
+spawn_percentages = PackedFloat32Array(0, 0, 0, 0)
 
-[node name="Boundary" type="Area3D" parent="." index="10" unique_id=477930400]
+[node name="Enemies" type="Node3D" parent="." index="10" unique_id=966538331]
+
+[node name="Boundary" type="Area3D" parent="." index="11" unique_id=477930400]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("4_2wlll")
@@ -174,7 +178,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34068298, 2.3342285, -10.18
 shape = SubResource("BoxShape3D_5lu6s")
 debug_color = Color(0.59769595, 0, 0.69803923, 1)
 
-[node name="RoomTrigger" type="Area3D" parent="." index="11" unique_id=38148701]
+[node name="RoomTrigger" type="Area3D" parent="." index="12" unique_id=38148701]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1114521)
 collision_layer = 0
 collision_mask = 2
@@ -185,6 +189,3 @@ metadata/_custom_type_script = "uid://gucr20tfj01x"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06549835, 2.3342285, -10.424494)
 shape = SubResource("BoxShape3D_t0wvv")
 debug_color = Color(0.69803923, 0.51044124, 0, 1)
-
-[editable path="RoomDoor"]
-[editable path="RoomDoor2"]

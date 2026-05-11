@@ -1,4 +1,3 @@
-@tool
 extends StaticBody3D
 
 @export var enemies_to_spawn: int = 5     # total budget
@@ -57,11 +56,11 @@ func get_random_enemy():
 	if spawn_percentages:
 		match rng.rand_weighted(spawn_percentages):
 			0:
-				return knife_enemy_lunger.instantiate()
+				return knife_enemy_jobber.instantiate()
 			1:
 				return ranged_enemy_kite.instantiate()
 			2:
-				return knife_enemy_jobber.instantiate()
+				return knife_enemy_lunger.instantiate()
 			3:
 				return boomerang_shooter_enemy.instantiate()
 

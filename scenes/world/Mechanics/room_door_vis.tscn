@@ -6,11 +6,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_x63jb"]
 size = Vector3(0.2770996, 5.0075684, 5.27771)
 
-[node name="RoomDoor" unique_id=1106590504 instance=ExtResource("1_75yok")]
+[node name="RoomDoor" unique_id=1106590504 groups=["doors"] instance=ExtResource("1_75yok")]
 script = ExtResource("2_6vklp")
 
 [node name="Door" parent="." index="0" unique_id=994154429]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1456962866]
+autoplay = &"Open"
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=323807953]
 
