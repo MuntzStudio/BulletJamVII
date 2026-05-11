@@ -59,6 +59,7 @@ omni_attenuation = 1.3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.18, 0, 164.352)
 
 [node name="EnemySpawner" parent="Opening Room Bake" index="8" unique_id=707684176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2456336, -34.48619)
 enemies_to_spawn = 3
 spawn_percentages = PackedFloat32Array(0, 100, 0, 0)
 
