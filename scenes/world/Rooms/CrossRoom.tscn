@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://cmbqduhpbjkr0"]
+[gd_scene format=3 uid="uid://bummp6vxk0nmi"]
 
 [ext_resource type="PackedScene" uid="uid://dftyiranbtu6b" path="res://assets/models and textures/RoomCrossBake.glb" id="1_7f8vb"]
-[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door.tscn" id="2_aod8x"]
+[ext_resource type="PackedScene" path="res://scenes/world/Mechanics/room_door.tscn" id="2_aod8x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aod8x"]
 size = Vector3(13.7558365, 0.04, 13.308336)
@@ -38,6 +38,14 @@ size = Vector3(3.144558, 5.2458496, 10.160187)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t2e3q"]
 size = Vector3(3.144558, 5.2458496, 10.160187)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_aod8x"]
+vertices = PackedVector3Array(-13.521845, 0.5371561, -24.1736, -13.521845, 0.5371561, -11.923599, -1.7718449, 0.5371561, -11.923599, -1.7718449, 0.5371561, -24.1736, 1.9781551, 0.5371561, -24.1736, 1.9781551, 0.5371561, -11.923599, 14.478155, 0.5371561, -11.923599, 14.478155, 0.5371561, -24.1736, 1.9781551, 0.5371561, -8.173599, 1.9781551, 0.5371561, 3.8264008, 14.478155, 0.5371561, 3.8264008, 14.478155, 0.5371561, -8.173599, -13.521845, 0.5371561, -7.9235992, -13.521845, 0.5371561, 3.8264008, -1.7718449, 0.5371561, 3.8264008, -1.7718449, 0.5371561, -7.9235992)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(7, 6, 4), PackedInt32Array(4, 6, 5), PackedInt32Array(11, 10, 8), PackedInt32Array(8, 10, 9), PackedInt32Array(15, 14, 12), PackedInt32Array(12, 14, 13)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aod8x"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1rjsl"]
 
 [node name="RoomCrossBake" unique_id=1391139470 instance=ExtResource("1_7f8vb")]
 
@@ -146,6 +154,25 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.6
 
 [node name="CollisionShape3D" parent="RoomDoor2/StaticBody3D" parent_id_path=PackedInt32Array(1688442077, 323807953) index="0" unique_id=1383361499]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.892046, 2.0037842, 0.07562256)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="8" unique_id=1241584340]
+navigation_mesh = SubResource("NavigationMesh_aod8x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" index="0" unique_id=1990796267]
+transform = Transform3D(6.701765, 0, 0, 0, 1, 0, 0, 0, 6.4528575, 8.195483, 0.037156105, -2.0485182)
+mesh = SubResource("PlaneMesh_aod8x")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D" index="1" unique_id=855066552]
+transform = Transform3D(6.701765, 0, 0, 0, 1, 0, 0, 0, 6.5547647, 8.195483, 0.037156105, -18.118835)
+mesh = SubResource("PlaneMesh_aod8x")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D" index="2" unique_id=1563905837]
+transform = Transform3D(6.2545953, 0, 0, 0, 1, 0, 0, 0, 6.5547647, -7.767249, 0.037156105, -18.118835)
+mesh = SubResource("PlaneMesh_1rjsl")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D" index="3" unique_id=1606269252]
+transform = Transform3D(6.2545953, 0, 0, 0, 1, 0, 0, 0, 6.3266063, -7.767249, 0.037156105, -2.02911)
+mesh = SubResource("PlaneMesh_1rjsl")
 
 [editable path="RoomDoor"]
 [editable path="RoomDoor2"]
