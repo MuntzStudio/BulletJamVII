@@ -19,7 +19,7 @@ class_name Boss extends CharacterBody3D
 @onready var bullet_spawn: Node3D = $ShieldBoss/BulletSpawnPoint/BulletSpawn
 @onready var attack_timer : Timer = $AttackTimer
 @onready var path_follow: PathFollow3D = get_tree().get_first_node_in_group("path")
-@onready var hurtbox : Hurtbox = $Hurtbox
+@onready var hurtbox: Hurtbox = $ShieldBoss/Armature/Shield2/Shield/Hurtbox
 #endregion NODE REFS
 
 #region STATE
@@ -93,13 +93,13 @@ func _check_phase() -> void:
 	var ratio := float(current_hp) / float(max_hp)
 	if current_phase == Phase.ONE and ratio <= phase2_threshold:
 		_apply_phase(Phase.TWO)
-		label.text = "|| PHASE 2 STARETD ||"
+		label.text = "||     PHASE 2 STARETD     ||"
 		label.show()
 		await get_tree().create_timer(2.0).timeout
 		label.hide()
 	elif current_phase == Phase.TWO and ratio <= phase3_threshold:
 		_apply_phase(Phase.THREE)
-		label.text = "|| PHASE 3 STARTED ||"
+		label.text = "||     PHASE 3 STARTED     ||"
 		label.show()
 		await get_tree().create_timer(2.0).timeout
 		label.hide()

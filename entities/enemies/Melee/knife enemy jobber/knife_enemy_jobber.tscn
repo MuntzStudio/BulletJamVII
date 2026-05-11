@@ -25,7 +25,7 @@ var/attack_range/value = 0.0
 var/attack_range/hint = 0
 var/attack_range/hint_string = ""
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_edgxb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_uubb0"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kwyxy"]
@@ -60,7 +60,6 @@ bone_idx = 1
 transform = Transform3D(3.030303, -2.1316282e-14, -1.1368684e-13, -1.4210855e-14, 3.0303035, -2.9802322e-08, 0, 2.9802322e-08, 3.0303035, 1.4306872e-07, -2.89453, -0.03556621)
 collision_layer = 4
 collision_mask = 2
-monitorable = false
 script = ExtResource("3_sej5f")
 damage = 2.0
 knockback_force = 20.0
@@ -82,7 +81,7 @@ blackboard_plan = SubResource("BlackboardPlan_nqw3a")
 [node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("6_o3sf3")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
 visible = false
-texture = SubResource("ViewportTexture_edgxb")
+texture = SubResource("ViewportTexture_uubb0")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=83133855 node_paths=PackedStringArray("mesh") groups=["enemy"]]
 collision_layer = 4
