@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="9_clh36"]
 [ext_resource type="FontFile" uid="uid://d0btsupvineqj" path="res://assets/font/Batolah.otf" id="10_3k635"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="10_8i2al"]
+[ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="11_3k635"]
 [ext_resource type="PackedScene" uid="uid://c3l745in56lc2" path="res://scenes/world/Mechanics/stairs.tscn" id="12_f6sku"]
 [ext_resource type="PackedScene" uid="uid://b7yjnjqdrt24d" path="res://scenes/world/Rooms/EmptyRoom.tscn" id="13_f6sku"]
 [ext_resource type="PackedScene" uid="uid://c1qvwpa2fownu" path="res://scenes/world/Rooms/OpeningRoom.tscn" id="15_e7u35"]
@@ -11,11 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="16_e7u35"]
 [ext_resource type="PackedScene" uid="uid://mtw8u2vv2bcc" path="res://scenes/world/Rooms/PillarRoom.tscn" id="16_qsdem"]
 
-[sub_resource type="Sky" id="Sky_lmaod"]
+[sub_resource type="Sky" id="Sky_4t3i2"]
 
 [sub_resource type="Environment" id="Environment_mrpq7"]
 background_mode = 2
-sky = SubResource("Sky_lmaod")
+sky = SubResource("Sky_4t3i2")
 ambient_light_source = 2
 ambient_light_color = Color(0.6375, 0.6375, 0.6375, 1)
 ambient_light_energy = 0.34
@@ -30,6 +31,8 @@ size = Vector3(5.4814453, 1, 4.329468)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_es6r5"]
 radius = 0.2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_c0puv"]
 
 [node name="Floor01" type="Node3D" unique_id=1187036097]
 
@@ -104,12 +107,6 @@ spawn_percentages = PackedFloat32Array(100, 100, 0, 0)
 [node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("12_f6sku")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.777, -3.206, -42.356)
 
-[node name="CollisionShape3D" parent="StairsBake/Colliders/Stair1" parent_id_path=PackedInt32Array(721316286, 1855896000) index="0" unique_id=714199867]
-debug_color = Color(0.6509804, 0, 0.16470589, 1)
-
-[node name="CollisionShape3D" parent="StairsBake/Colliders/Stair2" parent_id_path=PackedInt32Array(721316286, 1114827532) index="0" unique_id=524368521]
-debug_color = Color(0.6509804, 0, 0.16470589, 1)
-
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=158692642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.87316, 0, 163.42366)
 
@@ -151,6 +148,22 @@ vertical_alignment = 1
 
 [node name="PauseMenu" parent="." unique_id=1369771253 instance=ExtResource("16_cdfud")]
 visible = false
+
+[node name="KillZone" type="Area3D" parent="." unique_id=1107081902 node_paths=PackedStringArray("kill_label", "camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -44, 0)
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("11_3k635")
+kill_label = NodePath("../DialogBox/KillLabel")
+camera = NodePath("../PlayerEntity/SpringArmPivot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone" unique_id=992181621]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+shape = SubResource("WorldBoundaryShape3D_c0puv")
+debug_color = Color(0.2864342, 0.75965345, 7.70092e-07, 1)
+
+[connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
 
 [editable path="Opening Room Bake"]
 [editable path="Opening Room Bake/RoomDoor"]

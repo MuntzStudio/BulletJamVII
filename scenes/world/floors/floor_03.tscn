@@ -3,12 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://b7yjnjqdrt24d" path="res://scenes/world/Rooms/EmptyRoom.tscn" id="1_8103l"]
 [ext_resource type="PackedScene" uid="uid://mtw8u2vv2bcc" path="res://scenes/world/Rooms/PillarRoom.tscn" id="2_6dq5v"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="2_opj21"]
-[ext_resource type="PackedScene" uid="uid://bummp6vxk0nmi" path="res://scenes/world/Rooms/CrossRoom.tscn" id="3_7w1tv"]
+[ext_resource type="PackedScene" uid="uid://cmbqduhpbjkr0" path="res://scenes/world/Rooms/CrossRoom.tscn" id="3_7w1tv"]
 [ext_resource type="PackedScene" uid="uid://c3l745in56lc2" path="res://scenes/world/Mechanics/stairs.tscn" id="5_7w1tv"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="6_dju42"]
-[ext_resource type="Script" path="res://scripts/room_trigger.gd" id="6_scnkl"]
+[ext_resource type="Script" uid="uid://btvg1d814w72f" path="res://scripts/room_trigger.gd" id="6_scnkl"]
 [ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="7_4xmx3"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="8_tkuj4"]
+[ext_resource type="PackedScene" uid="uid://drj81x68gcgsl" path="res://scenes/world/floors/boss_room.tscn" id="10_8dq7e"]
+[ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="10_nerxp"]
+[ext_resource type="FontFile" uid="uid://d0btsupvineqj" path="res://assets/font/Batolah.otf" id="11_dd5tc"]
+[ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="12_opj21"]
+[ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="13_opj21"]
+[ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="14_8dq7e"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5lu6s"]
 size = Vector3(33.227875, 10.730957, 33.438545)
@@ -25,6 +31,25 @@ size = Vector3(3.152359, 1, 24.548843)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dd5tc"]
 size = Vector3(3.152359, 1, 25.889297)
+
+[sub_resource type="Sky" id="Sky_lmaod"]
+
+[sub_resource type="Environment" id="Environment_8dq7e"]
+background_mode = 2
+sky = SubResource("Sky_lmaod")
+ambient_light_source = 2
+ambient_light_color = Color(0.6375, 0.6375, 0.6375, 1)
+ambient_light_energy = 0.34
+reflected_light_source = 1
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.8
+glow_hdr_scale = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jh6yf"]
+radius = 0.2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_8dq7e"]
 
 [node name="Floor03" type="Node3D" unique_id=1187036097]
 
@@ -77,11 +102,13 @@ debug_color = Color(0.69803923, 0.51044124, 0, 1)
 transform = Transform3D(1.2718577, 0, 0, 0, 1, 0, 0, 0, 1.4144329, 0.39654922, -1, -8.636986)
 mesh = SubResource("PlaneMesh_y04rt")
 
-[node name="KillZone" type="Area3D" parent="RoomCrossBake/Lava" unique_id=1999106036]
+[node name="KillZone" type="Area3D" parent="RoomCrossBake/Lava" unique_id=1999106036 node_paths=PackedStringArray("kill_label", "camera")]
 collision_layer = 0
 collision_mask = 6
 monitorable = false
 script = ExtResource("8_tkuj4")
+kill_label = NodePath("../../../DialogBox/KillLabel")
+camera = NodePath("../../../PlayerEntity/SpringArmPivot")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCrossBake/Lava/KillZone" unique_id=1407722957]
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -0.36126328, -0.28070664, -1.5949173)
@@ -104,7 +131,70 @@ spawn_percentages = PackedFloat32Array(25, 25, 25, 25)
 [node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("5_7w1tv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -69.6048, -3.0404768, -197.78842)
 
+[node name="SceneTrigger" parent="StairsBake" index="2" unique_id=1971274356]
+next_scene = ExtResource("10_8dq7e")
+
+[node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("10_nerxp")]
+
+[node name="DialogBox" type="CanvasLayer" parent="." unique_id=2011531151]
+
+[node name="KillLabel" type="Label" parent="DialogBox" unique_id=1808316836 groups=["kill_label"]]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 160.0
+offset_right = 63.5
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_dd5tc")
+theme_override_font_sizes/font_size = 30
+text = "Get rekked bozo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseMenu" parent="." unique_id=1369771253 instance=ExtResource("12_opj21")]
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1675037346]
+environment = SubResource("Environment_8dq7e")
+
+[node name="PlayerEntity" type="Node3D" parent="." unique_id=1618123020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.711581, 0.28788853, 12.176802)
+
+[node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("13_opj21")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=723631439 groups=["camera"]]
+script = ExtResource("14_8dq7e")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerEntity/SpringArmPivot" unique_id=1500239141]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 0, 0)
+collision_mask = 0
+shape = SubResource("SphereShape3D_jh6yf")
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="PlayerEntity/SpringArmPivot/SpringArm3D" unique_id=464496331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+cull_mask = 1
+
+[node name="KillZone" type="Area3D" parent="." unique_id=1767131557 node_paths=PackedStringArray("kill_label", "camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -44, 0)
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("8_tkuj4")
+kill_label = NodePath("../DialogBox/KillLabel")
+camera = NodePath("../PlayerEntity/SpringArmPivot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone" unique_id=341649039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+shape = SubResource("WorldBoundaryShape3D_8dq7e")
+debug_color = Color(0.2864342, 0.75965345, 7.70092e-07, 1)
+
 [connection signal="body_entered" from="RoomCrossBake/Lava/KillZone" to="RoomCrossBake/Lava/KillZone" method="_on_body_entered"]
+[connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
 
 [editable path="RoomEmptyBake"]
 [editable path="RoomPillarBake"]
@@ -112,3 +202,5 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -69.
 [editable path="RoomCrossBake/RoomDoor"]
 [editable path="RoomCrossBake/RoomDoor2"]
 [editable path="RoomEmptyBake2"]
+[editable path="StairsBake"]
+[editable path="StairsBake/SceneTrigger"]

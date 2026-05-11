@@ -6,11 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://cegbb50od3r3y" path="res://scenes/world/Rooms/PitsRoom.tscn" id="3_5xd41"]
 [ext_resource type="PackedScene" uid="uid://c3l745in56lc2" path="res://scenes/world/Mechanics/stairs.tscn" id="4_5xd41"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="5_ad1cp"]
-[ext_resource type="Script" path="res://scripts/room_trigger.gd" id="5_db46k"]
+[ext_resource type="Script" uid="uid://btvg1d814w72f" path="res://scripts/room_trigger.gd" id="5_db46k"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="6_o64hx"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="6_rnnp0"]
 [ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="7_rnnp0"]
+[ext_resource type="PackedScene" uid="uid://csm0h7wmld68e" path="res://scenes/world/floors/floor_03.tscn" id="8_0q37b"]
 [ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="8_ky4hu"]
+[ext_resource type="FontFile" uid="uid://d0btsupvineqj" path="res://assets/font/Batolah.otf" id="12_ldagw"]
+[ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="14_x6l7d"]
 
 [sub_resource type="Sky" id="Sky_wjfvl"]
 
@@ -29,6 +32,8 @@ size = Vector3(28.867111, 10.730957, 24.186092)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ky4hu"]
 radius = 0.2
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ddyas"]
 
 [node name="Floor02" type="Node3D" unique_id=1187036097]
 
@@ -76,7 +81,8 @@ debug_color = Color(0.69803923, 0.51044124, 0, 1)
 [node name="RoomPitsBake" parent="." unique_id=1933254657 instance=ExtResource("3_5xd41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.675, 0, -99.063)
 
-[node name="KillZone" parent="RoomPitsBake/Lava" parent_id_path=PackedInt32Array(1933254657, 940558366) index="0" unique_id=1886471687 node_paths=PackedStringArray("camera")]
+[node name="KillZone" parent="RoomPitsBake/Lava" parent_id_path=PackedInt32Array(1933254657, 940558366) index="0" unique_id=1886471687 node_paths=PackedStringArray("kill_label", "camera")]
+kill_label = NodePath("../../../DialogBox/KillLabel")
 camera = NodePath("../../../PlayerEntity/SpringArmPivot")
 
 [node name="EnemySpawner" parent="RoomPitsBake" index="10" unique_id=707684176]
@@ -84,6 +90,9 @@ spawn_percentages = PackedFloat32Array(50, 30, 20, 0)
 
 [node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("4_5xd41")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -49.269, -3.0421293, -148.887)
+
+[node name="SceneTrigger" parent="StairsBake" index="2" unique_id=1971274356]
+next_scene = ExtResource("8_0q37b")
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=1045903518]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.711581, 0.28788853, 12.176802)
@@ -108,6 +117,40 @@ cull_mask = 1
 
 [node name="PauseMenu" parent="." unique_id=1369771253 instance=ExtResource("8_ky4hu")]
 visible = false
+
+[node name="DialogBox" type="CanvasLayer" parent="." unique_id=617901355]
+
+[node name="KillLabel" type="Label" parent="DialogBox" unique_id=1137380360 groups=["kill_label"]]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_top = 160.0
+offset_right = 63.5
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("12_ldagw")
+theme_override_font_sizes/font_size = 30
+text = "Get rekked bozo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KillZone" type="Area3D" parent="." unique_id=255421493 node_paths=PackedStringArray("kill_label", "camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -44, 0)
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("14_x6l7d")
+kill_label = NodePath("../DialogBox/KillLabel")
+camera = NodePath("../PlayerEntity/SpringArmPivot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillZone" unique_id=1472065295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60, 0)
+shape = SubResource("WorldBoundaryShape3D_ddyas")
+debug_color = Color(0.2864342, 0.75965345, 7.70092e-07, 1)
+
+[connection signal="body_entered" from="KillZone" to="KillZone" method="_on_body_entered"]
 
 [editable path="RoomEmptyBake"]
 [editable path="RoomWallBake"]
