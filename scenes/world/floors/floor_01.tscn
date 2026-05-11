@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b11tac7gh5078"]
 
 [ext_resource type="PackedScene" uid="uid://cegbb50od3r3y" path="res://scenes/world/Rooms/PitsRoom.tscn" id="3_c0puv"]
+[ext_resource type="PackedScene" uid="uid://c0ujdr87ul7no" path="res://scenes/world/floors/floor_02.tscn" id="6_c0puv"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="9_clh36"]
 [ext_resource type="FontFile" uid="uid://d0btsupvineqj" path="res://assets/font/Batolah.otf" id="10_3k635"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="10_8i2al"]
@@ -107,6 +108,9 @@ spawn_percentages = PackedFloat32Array(100, 100, 0, 0)
 
 [node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("12_f6sku")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.777, -3.206, -42.356)
+
+[node name="SceneTrigger" parent="StairsBake" index="2" unique_id=1971274356]
+next_scene = ExtResource("6_c0puv")
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=158692642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.87316, 0, 163.42366)

@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://c8f5ytcmsmsef" path="res://assets/models and textures/StairsBake.glb" id="1_dnytm"]
 [ext_resource type="PackedScene" uid="uid://cjeyqajw8fi0" path="res://scenes/world/Mechanics/scene_trigger.tscn" id="2_l7q4y"]
-[ext_resource type="PackedScene" uid="uid://bkigiv7men3fw" path="res://scenes/world/floors/RoomPitsBake.glb" id="3_jend3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qqihh"]
 size = Vector3(10.122444, 5.682129, 1.0452576)
@@ -25,11 +24,9 @@ size = Vector3(1.7813063, 1.6374512, 6.920494)
 [node name="StairsBake" unique_id=721316286 instance=ExtResource("1_dnytm")]
 
 [node name="SceneTrigger" parent="." index="2" unique_id=1971274356 instance=ExtResource("2_l7q4y")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.887802, 4.99655, -0.6112938)
-next_scene = ExtResource("3_jend3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.351247, 3.248314, -0.6112938)
 
 [node name="CollisionShape3D" parent="SceneTrigger" index="0" unique_id=769118532]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.3520927, -1.517273, 0.4887551)
 debug_color = Color(0.8052152, 0.16901684, 0.58607405, 1)
 
 [node name="Colliders" type="Node3D" parent="." index="3" unique_id=2118822073]
