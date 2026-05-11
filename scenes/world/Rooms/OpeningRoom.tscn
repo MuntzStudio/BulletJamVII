@@ -48,7 +48,7 @@ size = Vector2(25, 25)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ood2s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4i36w"]
-size = Vector3(33.017273, 10.730957, 42.582573)
+size = Vector3(33.017273, 10.730957, 29.67654)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sv3d7"]
 size = Vector3(30.315231, 10.730957, 20)
