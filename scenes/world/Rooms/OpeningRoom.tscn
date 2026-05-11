@@ -45,7 +45,8 @@ size = Vector2(2, 4)
 material = ExtResource("4_801jj")
 size = Vector2(25, 25)
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ood2s"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yuvy7"]
+size = Vector3(24.251038, 1, 3.2536697)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4i36w"]
 size = Vector3(33.017273, 10.730957, 29.67654)
@@ -155,7 +156,8 @@ monitorable = false
 script = ExtResource("5_hkb3n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Lava/KillZone" index="0" unique_id=484646675]
-shape = SubResource("WorldBoundaryShape3D_ood2s")
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999794, 0, 0, 0, 0.9999794, -0.24160853, -0.41212362, -0.23908806)
+shape = SubResource("BoxShape3D_yuvy7")
 debug_color = Color(0.2864342, 0.75965345, 7.70092e-07, 1)
 
 [node name="Boundary" type="Area3D" parent="." index="11" unique_id=986488140]
