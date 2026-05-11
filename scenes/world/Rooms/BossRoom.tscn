@@ -1,7 +1,11 @@
-[gd_scene format=3 uid="uid://cp1eiwn4qf8ky"]
+[gd_scene format=3 uid="uid://cpphm7vg6x4mf"]
 
 [ext_resource type="PackedScene" uid="uid://41agkvip02ql" path="res://assets/models and textures/BossRoomBake.glb" id="1_613f5"]
 [ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door.tscn" id="2_apk2i"]
+[ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="2_ard6w"]
+[ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="4_kuku1"]
+[ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="5_gga2c"]
+[ext_resource type="Script" uid="uid://btvg1d814w72f" path="res://scripts/room_trigger.gd" id="6_vvdjd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_apk2i"]
 size = Vector3(3.7321444, 0.04, 29.653679)
@@ -39,7 +43,21 @@ size = Vector3(22.186287, 5.2458496, 10.160187)
 [sub_resource type="BoxShape3D" id="BoxShape3D_32okh"]
 size = Vector3(0.70274353, 5.595825, 0.78642654)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nuxoy"]
+size = Vector3(53, 10.730957, 33)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wgesm"]
+size = Vector3(28.867111, 10.730957, 18)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_kuku1"]
+vertices = PackedVector3Array(-7.5, 0.5, -23.5, -7.5, 0.5, 3.5, 27.5, 0.5, 3.5, 27.5, 0.5, -23.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kuku1"]
+size = Vector2(36, 28)
+
 [node name="BossRoomBake" unique_id=789895977 instance=ExtResource("1_613f5")]
+script = ExtResource("2_ard6w")
 
 [node name="Collisions" type="Node3D" parent="." index="4" unique_id=20839287]
 
@@ -193,6 +211,47 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.7
 
 [node name="CollisionShape3D" parent="RoomDoor2/StaticBody3D" parent_id_path=PackedInt32Array(899800485, 323807953) index="0" unique_id=1383361499]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.892046, 2.0037842, 0.07562256)
+
+[node name="EnemySpawner" parent="." index="8" unique_id=707684176 instance=ExtResource("4_kuku1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.472759, -0.2456336, -10.512171)
+spawn_percentages = PackedFloat32Array(0, 0, 0, 0)
+
+[node name="EnemySpawner2" parent="." index="9" unique_id=1795209552 instance=ExtResource("4_kuku1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4727592, -0.2456336, -9.512171)
+spawn_percentages = PackedFloat32Array(0, 0, 0, 0)
+
+[node name="Enemies" type="Node3D" parent="." index="10" unique_id=37879407]
+
+[node name="Boundary" type="Area3D" parent="." index="11" unique_id=1832196087]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("5_gga2c")
+metadata/_custom_type_script = "uid://gucr20tfj01x"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary" index="0" unique_id=1052272551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.226746, 2.3342285, -9.969927)
+shape = SubResource("BoxShape3D_nuxoy")
+debug_color = Color(0.59769595, 0, 0.69803923, 1)
+
+[node name="RoomTrigger" type="Area3D" parent="." index="12" unique_id=1974694220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1114521)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("6_vvdjd")
+metadata/_custom_type_script = "uid://gucr20tfj01x"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomTrigger" index="0" unique_id=2017807745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -16.093046)
+shape = SubResource("BoxShape3D_wgesm")
+debug_color = Color(0.69803923, 0.51044124, 0, 1)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="13" unique_id=362377447]
+navigation_mesh = SubResource("NavigationMesh_kuku1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" index="0" unique_id=1691824132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -10)
+visible = false
+mesh = SubResource("PlaneMesh_kuku1")
 
 [editable path="RoomDoor"]
 [editable path="RoomDoor2"]

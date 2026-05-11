@@ -9,8 +9,6 @@ extends BTAction
 @export var bullet_scene: PackedScene
 @export var fire_rate: float = 1.0
 @export var burst_count: int = 3
-@export var boomerang_sfx = AudioStream
-@export var bullet_sfx = AudioStream
 
 # Max active boomerangs per enemy
 @export var max_boomerangs: int = 4
@@ -111,8 +109,7 @@ func _tick(delta: float) -> Status:
 			spawn.global_position
 		)
 
-		if boomerang_sfx:
-			Audio.play_sound_3d(boomerang_sfx,agent.global_position)
+		agent.get_node("AudioController").play_boomerang()
 
 		left_boomerang.setup(
 			agent,
@@ -133,8 +130,7 @@ func _tick(delta: float) -> Status:
 			spawn.global_position
 		)
 
-		if boomerang_sfx:
-			Audio.play_sound_3d(boomerang_sfx,agent.global_position)
+		agent.get_node("AudioController").play_boomerang()
 
 		right_boomerang.setup(
 			agent,
@@ -158,8 +154,7 @@ func _tick(delta: float) -> Status:
 
 		bullet.global_position = spawn.global_position
 
-		if bullet_sfx:
-			Audio.play_sound_3d(bullet_sfx,agent.global_position)
+		agent.get_node("AudioController").play_bullet()
 
 		var dir := target.global_position - spawn.global_position
 		dir.y = 0.0

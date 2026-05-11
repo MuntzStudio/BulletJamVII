@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://dnuus4ch0mqyf" path="res://ai/tasks/enemy/navigate_to_target.gd" id="7_mdx4i"]
 [ext_resource type="Script" uid="uid://d0lc102u33tb4" path="res://ai/tasks/enemy/set_anim_tree_param.gd" id="7_wicvo"]
 [ext_resource type="Script" uid="uid://ds2e6kyx764x5" path="res://ai/tasks/enemy/strafe.gd" id="9_6o4qy"]
-[ext_resource type="AudioStream" uid="uid://dcgcib54ewt7y" path="res://audio/SFX/Knife Throw 1-1.mp3" id="10_pu6fi"]
 [ext_resource type="Script" uid="uid://bwfrghui6nodp" path="res://ai/tasks/enemy/set_anim_state.gd" id="11_ovte8"]
 
 [sub_resource type="BTAction" id="BTAction_tq22l"]
@@ -70,11 +69,6 @@ duration = 0.9
 resource_local_to_scene = true
 script = ExtResource("2_n4gd4")
 bullet_scene = ExtResource("4_j8i6x")
-fire_rate = 0.2
-burst_count = 1
-boomerang_sfx = Object(GDScriptNativeClass,"script":null)
-
-bullet_sfx = ExtResource("10_pu6fi")
 
 [sub_resource type="BTWait" id="BTWait_wicvo"]
 duration = 0.6

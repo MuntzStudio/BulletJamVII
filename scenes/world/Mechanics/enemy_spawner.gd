@@ -78,11 +78,12 @@ func launch_enemy(enemy, direction: Vector3):
 	
 	while true:
 		var _position = spawn_point.global_position + v0 * t + 0.5 * Vector3(0, -g, 0)* pow(t, 2)
-		enemy.global_position = _position
-		if _position.y <= 0:
-			break
-		await get_tree().process_frame
-		t += get_process_delta_time()
+		if enemy:
+			enemy.global_position = _position
+			if _position.y <= 0:
+				break
+			await get_tree().process_frame
+			t += get_process_delta_time()
 
 func is_done() -> bool:
 	return enemies_spawned >= enemies_to_spawn and enemies.get_child_count() == 0
