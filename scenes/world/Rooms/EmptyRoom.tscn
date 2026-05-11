@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b7yjnjqdrt24d"]
 
 [ext_resource type="PackedScene" uid="uid://k15i2nb8iv8n" path="res://assets/models and textures/RoomEmptyBake.glb" id="1_8y68g"]
+[ext_resource type="PackedScene" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_ylhqm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ylhqm"]
 size = Vector3(29.454544, 0.04, 29.580574)
@@ -22,6 +23,12 @@ size = Vector3(0.96852124, 5.682129, 1.0174186)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8x5sf"]
 size = Vector3(1.3716128, 5.682129, 1.0174186)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_8y68g"]
+vertices = PackedVector3Array(-13.446021, 0.6095276, -24.31931, -13.446021, 0.6095276, 3.9306908, 14.303979, 0.6095276, 3.9306908, 14.303979, 0.6095276, -24.31931)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ylhqm"]
 
 [node name="RoomEmptyBake" unique_id=1735910708 instance=ExtResource("1_8y68g")]
 
@@ -128,3 +135,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.957512)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall10" index="0" unique_id=166619320]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0512404, 2.3410645, 1.4697247)
 shape = SubResource("BoxShape3D_8x5sf")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="6" unique_id=1806594934]
+navigation_mesh = SubResource("NavigationMesh_8y68g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" index="0" unique_id=799338282]
+transform = Transform3D(14.356654, 0, 0, 0, 1, 0, 0, 0, 14.650989, 0.4106331, 0.10952759, -10.16832)
+mesh = SubResource("PlaneMesh_ylhqm")
+
+[node name="RoomDoor" parent="." index="7" unique_id=1106590504 instance=ExtResource("2_ylhqm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.658397, -2.0110037, -25.631752)
+
+[node name="RoomDoor2" parent="." index="8" unique_id=2090918675 instance=ExtResource("2_ylhqm")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.489509, -2.0195403, 4.9215307)
+
+[editable path="RoomDoor"]
+[editable path="RoomDoor2"]
