@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://b7yjnjqdrt24d" path="res://scenes/world/Rooms/EmptyRoom.tscn" id="1_8103l"]
 [ext_resource type="PackedScene" uid="uid://mtw8u2vv2bcc" path="res://scenes/world/Rooms/PillarRoom.tscn" id="2_6dq5v"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="2_opj21"]
-[ext_resource type="PackedScene" uid="uid://cmbqduhpbjkr0" path="res://scenes/world/Rooms/CrossRoom.tscn" id="3_7w1tv"]
+[ext_resource type="PackedScene" uid="uid://bummp6vxk0nmi" path="res://scenes/world/Rooms/CrossRoom.tscn" id="3_7w1tv"]
+[ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="4_jh6yf"]
 [ext_resource type="PackedScene" uid="uid://c3l745in56lc2" path="res://scenes/world/Mechanics/stairs.tscn" id="5_7w1tv"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="6_dju42"]
 [ext_resource type="Script" uid="uid://btvg1d814w72f" path="res://scripts/room_trigger.gd" id="6_scnkl"]
@@ -67,6 +68,7 @@ spawn_percentages = PackedFloat32Array(50, 25, 25, 0)
 
 [node name="RoomCrossBake" parent="." unique_id=1391139470 instance=ExtResource("3_7w1tv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.002224, 0, -98.59121)
+script = ExtResource("4_jh6yf")
 
 [node name="EnemySpawner" parent="RoomCrossBake" unique_id=1520350047 instance=ExtResource("6_dju42")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2456336, -10.135351)
