@@ -74,7 +74,7 @@ func launch_enemy(enemy, direction: Vector3):
 	var speed = sqrt((d*g)/sin(2*launch_angle))
 
 	# var launch_angle = .5 * arcsin((g*d)/speed)
-	var v0 = Vector3(speed * cos(launch_angle) * dir.x, speed * sin(launch_angle), speed * cos(launch_angle) * dir.x)
+	var v0 = Vector3(speed * cos(launch_angle) * dir.x, speed * sin(launch_angle), speed * cos(launch_angle) * dir.z)
 	
 	while true:
 		var _position = spawn_point.global_position + v0 * t + 0.5 * Vector3(0, -g, 0)* pow(t, 2)
