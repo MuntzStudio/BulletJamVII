@@ -61,15 +61,15 @@ func _notification(what):
 		health_bar.show()
 		label.text = "|| BOSS AWAKENED ||"
 		label.show()
-		await get_tree().create_timer(2.0).timeout
-		label.hide()
-		
 		# boss starts with enter sequence, movement is stopped until it finishes
 		is_attacking = true
 		shield_boss.play_enter()
 		await get_tree().create_timer(0.73).timeout
 		if is_dead: return
 		_shield_boss_fire_bullet()
+		await get_tree().create_timer(2.0).timeout
+		label.hide()
+		
 
 func _process(delta: float) -> void:
 	if is_dead:
