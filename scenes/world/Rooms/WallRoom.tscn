@@ -26,6 +26,16 @@ size = Vector3(1.3716128, 5.682129, 1.0555843)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5yygh"]
 size = Vector3(1.00037, 5.682129, 18.441875)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_hhho2"]
+vertices = PackedVector3Array(-5.3444405, 0.51797247, -8.480263, -5.3444405, 0.51797247, -24.230263, -13.59444, 0.51797247, -24.230263, -13.59444, 0.51797247, -8.230263, -3.3444405, 0.51797247, -12.230263, 3.9055595, 0.51797247, -11.980263, 3.9055595, 0.51797247, -13.480263, 4.9055595, 0.51797247, -13.730263, 4.9055595, 0.51797247, -24.230263, -3.3444405, 0.51797247, -24.230263, 5.9055595, 0.51797247, -13.480263, 5.9055595, 0.51797247, -11.480263, 14.40556, 0.51797247, -11.480263, 14.40556, 0.51797247, -24.230263, -3.3444405, 0.51797247, -8.480263, 3.9055595, 0.51797247, -8.230263, 5.9055595, 0.51797247, 4.0197372, 14.40556, 0.51797247, 4.0197372, -5.3444405, 0.51797247, -6.9802628, -4.3444405, 0.51797247, -6.7302628, -13.59444, 0.51797247, 4.0197372, -4.3444405, 0.51797247, 4.0197372, -3.3444405, 0.51797247, -6.9802628, 3.9055595, 0.51797247, 4.0197372)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(6, 4, 7), PackedInt32Array(7, 4, 8), PackedInt32Array(8, 4, 9), PackedInt32Array(12, 11, 10), PackedInt32Array(10, 7, 12), PackedInt32Array(12, 7, 8), PackedInt32Array(12, 8, 13), PackedInt32Array(4, 5, 14), PackedInt32Array(14, 5, 15), PackedInt32Array(17, 16, 12), PackedInt32Array(12, 16, 11), PackedInt32Array(3, 0, 18), PackedInt32Array(18, 19, 3), PackedInt32Array(3, 19, 21), PackedInt32Array(3, 21, 20), PackedInt32Array(22, 14, 15), PackedInt32Array(22, 15, 19), PackedInt32Array(19, 15, 21), PackedInt32Array(21, 15, 23)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ktpt4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_i8dmw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r7ipe"]
+
 [node name="RoomWallBake" unique_id=215420672 instance=ExtResource("1_hhho2")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=967733521]
@@ -145,3 +155,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -26.957512)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Colliders/Wall12" index="0" unique_id=1440225101]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.837798, 2.345833, 23.24826)
 shape = SubResource("BoxShape3D_5yygh")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." index="6" unique_id=498465036]
+navigation_mesh = SubResource("NavigationMesh_hhho2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" index="0" unique_id=95507307]
+transform = Transform3D(4.03308, 0, 0, 0, 1, 0, 0, 0, 14.565108, 0.23365688, 0.01797247, -10.129474)
+mesh = SubResource("PlaneMesh_ktpt4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D" index="1" unique_id=1963944031]
+transform = Transform3D(4.509552, 0, 0, 0, 1, 0, 0, 0, 14.565108, -9.584888, 0.01797247, -10.129474)
+mesh = SubResource("PlaneMesh_ktpt4")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D" index="2" unique_id=614019532]
+transform = Transform3D(4.6438727, 0, 0, 0, 1, 0, 0, 0, 14.565108, 10.242313, 0.01797247, -10.129474)
+mesh = SubResource("PlaneMesh_i8dmw")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D" index="3" unique_id=827629943]
+transform = Transform3D(4.6438727, 0, 0, 0, 1, 0, 0, 0, 5.6966677, 4.4863586, 0.01797247, -19.033596)
+mesh = SubResource("PlaneMesh_r7ipe")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="NavigationRegion3D" index="4" unique_id=802363881]
+transform = Transform3D(4.6438727, 0, 0, 0, 1, 0, 0, 0, 5.6966677, -5.6180515, 0.01797247, -1.3391409)
+mesh = SubResource("PlaneMesh_r7ipe")

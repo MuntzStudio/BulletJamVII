@@ -1,6 +1,6 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://bkra5iil0mp4h"]
 
-[ext_resource type="Script" uid="uid://bnhnirfbd8bpd" path="res://ai/tasks/enemy/back_away.gd" id="1_1j20i"]
+[ext_resource type="Script" path="res://ai/tasks/enemy/back_away.gd" id="1_1j20i"]
 [ext_resource type="BlackboardPlan" uid="uid://ceiq6u70vhs8f" path="res://entities/enemies/Melee/melee_enemy_plan.tres" id="1_gexpw"]
 [ext_resource type="Script" uid="uid://cg2pj2vo7nxgj" path="res://ai/tasks/enemy/get_first_in_group.gd" id="1_n4gd4"]
 [ext_resource type="Script" uid="uid://5k8aql14su2b" path="res://ai/tasks/enemy/shoot.gd" id="2_n4gd4"]
@@ -35,7 +35,6 @@ script = ExtResource("2_n4gd4")
 bullet_scene = ExtResource("4_j8i6x")
 fire_rate = 0.2
 burst_count = 5
-
 
 [sub_resource type="BTWait" id="BTWait_mdx4i"]
 duration = 0.6
