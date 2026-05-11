@@ -9,7 +9,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node) -> void:
 	if not body.is_in_group("player"):
 		return
-	
+	body.health = 6
 	SaveManager.set_value("current_scene", next_scene.resource_path)
 	SaveManager.set_value("bullets", body.current_bullets)
 	SaveManager.set_value("health", body.health)
