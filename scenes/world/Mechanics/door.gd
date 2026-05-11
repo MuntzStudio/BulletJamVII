@@ -1,4 +1,3 @@
-class_name Door
 extends StaticBody3D
 
 @export var open_position: Vector3 = Vector3(0, 4.5, 0)

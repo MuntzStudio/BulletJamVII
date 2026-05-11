@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://mtw8u2vv2bcc"]
 
 [ext_resource type="PackedScene" uid="uid://bet3csgwf764f" path="res://assets/models and textures/RoomPillarBake.glb" id="1_8afxx"]
-[ext_resource type="PackedScene" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_jd382"]
+[ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="2_3mpqp"]
+[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_jd382"]
+[ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="4_3sxx4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jd382"]
 size = Vector3(29.454544, 0.04, 29.580574)
@@ -39,7 +41,12 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 2), PackedInt32Arr
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_acy30"]
 
-[node name="RoomPillarBake" unique_id=455061718 instance=ExtResource("1_8afxx")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_gcgvy"]
+size = Vector3(33.017273, 10.730957, 31.93263)
+
+[node name="RoomPillarBake" unique_id=455061718 node_paths=PackedStringArray("doors") instance=ExtResource("1_8afxx")]
+script = ExtResource("2_3mpqp")
+doors = [null, null]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=660896242]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.733009, 3.421781, -9.904164)
@@ -248,3 +255,16 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.3
 
 [node name="RoomDoor2" parent="." index="8" unique_id=1338813727 instance=ExtResource("2_jd382")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.627652, -2.0220332, -25.157774)
+
+[node name="Enemies" type="Node3D" parent="." index="9" unique_id=1089081200]
+
+[node name="Boundary" type="Area3D" parent="." index="10" unique_id=187303513]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("4_3sxx4")
+metadata/_custom_type_script = "uid://gucr20tfj01x"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Boundary" index="0" unique_id=1139873720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23538208, 2.3342285, -9.826285)
+shape = SubResource("BoxShape3D_gcgvy")
+debug_color = Color(0.59769595, 0, 0.69803923, 1)

@@ -13,10 +13,12 @@ var _cleared: bool = false
 
 func _ready() -> void:
 	# Freeze all pre-placed enemies
+	if !$Enemies:
+		return print("$Enemies Node null")
+
 	for enemy in $Enemies.get_children():
 		if enemy.is_in_group("enemy"):
 			enemy.process_mode = Node.PROCESS_MODE_DISABLED
-	
 	# Keep check if all enemies are dead
 	var timer := Timer.new()
 	timer.wait_time = 0.5

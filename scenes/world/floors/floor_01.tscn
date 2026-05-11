@@ -1,15 +1,12 @@
 [gd_scene format=3 uid="uid://b11tac7gh5078"]
 
-[ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="1_qf3yd"]
 [ext_resource type="PackedScene" uid="uid://cegbb50od3r3y" path="res://scenes/world/Rooms/PitsRoom.tscn" id="3_c0puv"]
-[ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="4_ylf5x"]
-[ext_resource type="PackedScene" uid="uid://t8f7dhhvhttw" path="res://scenes/world/Mechanics/door.tscn" id="5_3boyv"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="7_ea6u0"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="9_clh36"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="10_8i2al"]
 [ext_resource type="PackedScene" uid="uid://c3l745in56lc2" path="res://scenes/world/Mechanics/stairs.tscn" id="12_f6sku"]
 [ext_resource type="PackedScene" uid="uid://b7yjnjqdrt24d" path="res://scenes/world/Rooms/EmptyRoom.tscn" id="13_f6sku"]
-[ext_resource type="PackedScene" uid="uid://dplsxme5st77" path="res://scenes/world/Rooms/OpeningRoom.tscn" id="15_e7u35"]
+[ext_resource type="PackedScene" uid="uid://c1qvwpa2fownu" path="res://scenes/world/Rooms/OpeningRoom.tscn" id="15_e7u35"]
 [ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="16_cdfud"]
 [ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="16_e7u35"]
 [ext_resource type="PackedScene" uid="uid://mtw8u2vv2bcc" path="res://scenes/world/Rooms/PillarRoom.tscn" id="16_qsdem"]
@@ -27,9 +24,6 @@ tonemap_mode = 2
 glow_enabled = true
 glow_intensity = 0.8
 glow_hdr_scale = 0.5
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_l4n5r"]
-size = Vector3(30.46582, 8.982422, 29.371948)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_es6r5"]
 radius = 0.2
@@ -55,42 +49,45 @@ shadow_enabled = true
 omni_range = 20.0
 omni_attenuation = 1.3
 
-[node name="LastRoomF1" type="Node3D" parent="." unique_id=1381049443 node_paths=PackedStringArray("doors")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
-script = ExtResource("1_qf3yd")
-doors = [NodePath("Door"), NodePath("Door2")]
+[node name="Opening Room Bake" parent="." unique_id=276392845 instance=ExtResource("15_e7u35")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.18, 0, 164.352)
 
-[node name="Boundary" type="Area3D" parent="LastRoomF1" unique_id=523234198]
-collision_mask = 14
-monitorable = false
-script = ExtResource("4_ylf5x")
+[node name="RoomPitsBake" parent="." unique_id=1933254657 instance=ExtResource("3_c0puv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2, 0, 7)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LastRoomF1/Boundary" unique_id=1622471572]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.745474, 0, 0.72088623)
-shape = SubResource("BoxShape3D_l4n5r")
-debug_color = Color(0.98829025, 0, 0.099605866, 1)
-
-[node name="RoomPitsBake" parent="LastRoomF1" unique_id=1933254657 instance=ExtResource("3_c0puv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2, 0, 11)
-
-[node name="AnimationPlayer" parent="LastRoomF1/RoomPitsBake/RoomDoor2" parent_id_path=PackedInt32Array(1933254657, 91719548) index="1" unique_id=1818843406]
+[node name="AnimationPlayer" parent="RoomPitsBake/RoomDoor2" parent_id_path=PackedInt32Array(1933254657, 91719548) index="1" unique_id=1456962866]
 root_node = NodePath("..")
 
-[node name="EnemySpawner" parent="LastRoomF1/RoomPitsBake" unique_id=707684176 instance=ExtResource("7_ea6u0")]
+[node name="EnemySpawner" parent="RoomPitsBake" unique_id=707684176 instance=ExtResource("7_ea6u0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4074068, 0, -11)
 enemies_to_spawn = 6
 spawn_percentages = PackedFloat32Array(50, 50)
 
-[node name="Enemies" type="Node3D" parent="LastRoomF1" unique_id=1127079401]
+[node name="RoomPillarBake" parent="." unique_id=455061718 instance=ExtResource("16_qsdem")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.791, 0, 56.2655)
 
-[node name="Door" parent="LastRoomF1" unique_id=1117087749 instance=ExtResource("5_3boyv")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.061249256, 0, 15.842262)
+[node name="Enemies2" type="Node3D" parent="RoomPillarBake" unique_id=957071607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.200001, 0, -11)
 
-[node name="Door2" parent="LastRoomF1" unique_id=242091245 instance=ExtResource("5_3boyv")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20.00279, 0, -14.171829)
+[node name="EnemySpawner" parent="RoomPillarBake" unique_id=986272266 instance=ExtResource("7_ea6u0")]
+spawn_percentages = PackedFloat32Array(75, 25)
+
+[node name="RoomEmptyBake" parent="." unique_id=1735910708 instance=ExtResource("13_f6sku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8, 0, 105.43)
+
+[node name="Enemies2" type="Node3D" parent="RoomEmptyBake" unique_id=685259894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2, 0, -11)
+
+[node name="EnemySpawner" parent="RoomEmptyBake" unique_id=878161542 instance=ExtResource("7_ea6u0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.191299)
+maintain_count = 2
+spawn_percentages = PackedFloat32Array(100)
+
+[node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("12_f6sku")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.777, -3.206, -42.356)
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=158692642]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 19.555918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.87316, 0, 163.42366)
 
 [node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("9_clh36")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -130,40 +127,14 @@ vertical_alignment = 1
 [node name="PauseMenu" parent="." unique_id=1369771253 instance=ExtResource("16_cdfud")]
 visible = false
 
-[node name="Opening Room Bake" parent="." unique_id=276392845 instance=ExtResource("15_e7u35")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.18, 0, 164.352)
-
-[node name="RoomPillarBake" parent="." unique_id=455061718 instance=ExtResource("16_qsdem")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.791, 0, 56.2655)
-
-[node name="Enemies" type="Node3D" parent="RoomPillarBake" unique_id=957071607]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.200001, 0, -11)
-
-[node name="EnemySpawner" parent="RoomPillarBake" unique_id=986272266 instance=ExtResource("7_ea6u0")]
-spawn_percentages = PackedFloat32Array(75, 25)
-
-[node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("12_f6sku")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.777, -3.206, -42.356)
-
-[node name="RoomEmptyBake" parent="." unique_id=1735910708 instance=ExtResource("13_f6sku")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8, 0, 105.43)
-
-[node name="Enemies" type="Node3D" parent="RoomEmptyBake" unique_id=685259894]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2, 0, -11)
-
-[node name="EnemySpawner" parent="RoomEmptyBake" unique_id=878161542 instance=ExtResource("7_ea6u0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.191299)
-maintain_count = 2
-spawn_percentages = PackedFloat32Array(100)
-
-[editable path="LastRoomF1/RoomPitsBake"]
-[editable path="LastRoomF1/RoomPitsBake/RoomDoor"]
-[editable path="LastRoomF1/RoomPitsBake/RoomDoor2"]
 [editable path="Opening Room Bake"]
 [editable path="Opening Room Bake/RoomDoor"]
+[editable path="RoomPitsBake"]
+[editable path="RoomPitsBake/RoomDoor"]
+[editable path="RoomPitsBake/RoomDoor2"]
 [editable path="RoomPillarBake"]
-[editable path="StairsBake"]
-[editable path="StairsBake/SceneTrigger"]
 [editable path="RoomEmptyBake"]
 [editable path="RoomEmptyBake/RoomDoor"]
 [editable path="RoomEmptyBake/RoomDoor2"]
+[editable path="StairsBake"]
+[editable path="StairsBake/SceneTrigger"]
