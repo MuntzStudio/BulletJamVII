@@ -24,11 +24,11 @@ var/attack_range/value = 5.0
 var/attack_range/hint = 0
 var/attack_range/hint_string = ""
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mc58e"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8lxvn"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j2qkg"]
-radius = 0.6
+radius = 0.8413086
 height = 2.7016602
 
 [node name="KnifeEnemyLunger" type="CharacterBody3D" unique_id=110487065 groups=["enemy"]]
@@ -49,7 +49,7 @@ debug_enabled = true
 [node name="KnifeBoy" parent="." unique_id=384132466 instance=ExtResource("3_4f0jk")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 835099683) index="5" unique_id=1068246538]
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="KnifeBoy/Armature/Skeleton3D" parent_id_path=PackedInt32Array(384132466, 1024298257) index="5" unique_id=1068246538]
 transform = Transform3D(0.9999945, -0.0031029352, -0.0011590092, 0.0033089535, 0.95161414, 0.30727723, 0.00014946835, -0.30727938, 0.9516192, -0.009226737, 4.8939576, -1.0949928)
 bone_name = "ScaleBone"
 bone_idx = 1
@@ -75,7 +75,7 @@ blackboard_plan = SubResource("BlackboardPlan_14y0h")
 [node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("6_j6f8p")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
 visible = false
-texture = SubResource("ViewportTexture_mc58e")
+texture = SubResource("ViewportTexture_8lxvn")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=2070203859 node_paths=PackedStringArray("mesh") groups=["enemy"]]
 collision_layer = 4
