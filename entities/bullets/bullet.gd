@@ -74,7 +74,6 @@ func _handle_flying(delta):
 	await get_tree().process_frame
 	trail.emitting = true
 
-
 # =========================
 # COLLISION
 # =========================
@@ -82,6 +81,7 @@ func _on_collision(collision: KinematicCollision3D):
 	if _hit:
 		return
 	_hit = true
+	trail.emitting = false
 	var hit = collision.get_collider()
 	global_position += collision.get_normal() * 0.3
 	velocity = Vector3.ZERO
@@ -116,7 +116,6 @@ func _handle_falling(delta):
 # =========================
 func _drop():
 	trail.emitting = false
-
 	state = BulletState.DROPPED
 
 	velocity = Vector3.ZERO

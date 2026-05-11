@@ -29,6 +29,7 @@ func fire():
 		get_tree().current_scene.add_child(bullet)
 		bullet.global_position = global_position
 		bullet.launch(bullet.direction)
+		print("spawn global_pos: ", global_position)
 
 func _get_direction(index: int) -> Vector3:
 	if bullet_count == 1:

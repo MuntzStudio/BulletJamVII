@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://cgn25sj2i5bcy" path="res://entities/enemies/Ranged/audio_controller.gd" id="11_sjpjk"]
 [ext_resource type="AudioStream" uid="uid://dpd1xhblvnxh4" path="res://audio/SFX/Bow Twang 1.mp3" id="12_4duyq"]
 [ext_resource type="AudioStream" uid="uid://crycjhp5fh2ub" path="res://audio/SFX/Bow Twang 2.mp3" id="13_mv2pc"]
-[ext_resource type="AudioStream" uid="uid://dbhpugwbrfvhb" path="res://audio/SFX/Bow Twang 3.mp3" id="14_b0woh"]
+[ext_resource type="AudioStream" uid="uid://yaq1nvr368xy" path="res://audio/SFX/Bow Twang 3.mp3" id="14_b0woh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l0aa2"]
 
@@ -98,7 +98,7 @@ height = 2.7016602
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_uy27c"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ktlkm"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4duyq"]
 viewport_path = NodePath("SubViewport")
 
 [node name="ArrowShooter" type="CharacterBody3D" unique_id=63386032 groups=["enemy"]]
@@ -121,11 +121,11 @@ debug_path_custom_color = Color(0.49019608, 0.48713237, 0, 1)
 [node name="BowBoy" parent="." unique_id=447102159 instance=ExtResource("3_l0aa2")]
 
 [node name="Skeleton3D" parent="BowBoy/Armature" parent_id_path=PackedInt32Array(447102159, 490196506) index="0" unique_id=280918057]
-bones/0/position = Vector3(0, 1.9938669, 0)
+bones/0/position = Vector3(0, 1.9551848, 0)
 bones/1/rotation = Quaternion(0.46976095, 6.437809e-09, 9.7707776e-08, 0.8827938)
 bones/2/position = Vector3(-1.8663521, -1.3440448, -1.1335354)
-bones/3/rotation = Quaternion(-0.32003558, 0.4122873, -0.44846871, 0.72558415)
-bones/4/rotation = Quaternion(9.440352e-06, -4.5470765e-07, 0.8171525, 0.5764217)
+bones/3/rotation = Quaternion(-0.32544312, 0.40674013, -0.44675344, 0.7273656)
+bones/4/rotation = Quaternion(9.347853e-06, -4.64606e-07, 0.81023467, 0.5861057)
 bones/6/rotation = Quaternion(7.4505815e-09, 1.8626451e-09, -7.450581e-09, 1)
 bones/7/position = Vector3(2.0861626e-07, 0.98964435, -0.0055107474)
 bones/7/rotation = Quaternion(-0.7800745, -1.6714452e-07, 1.4326672e-07, 0.6256867)
@@ -139,14 +139,14 @@ bones/12/rotation = Quaternion(-0.7800745, -1.4326675e-07, 1.6714453e-07, 0.6256
 bones/13/rotation = Quaternion(-0.02668257, -0.096458465, 0.48859102, 0.8667542)
 bones/14/rotation = Quaternion(-0.44386733, 0.110992596, -0.21570787, 0.8626313)
 bones/15/rotation = Quaternion(-0.4575338, -0.00064134423, 0.0012463972, 0.8891912)
-bones/16/position = Vector3(0.21449757, 3.642717, -0.80905133)
+bones/16/position = Vector3(0.20456696, 3.6605568, -0.8525216)
 bones/17/position = Vector3(2.3469172, 2.851, -4.791965)
 bones/17/rotation = Quaternion(-6.6731104e-07, 3.6765967e-14, 1, -3.9316295e-14)
 bones/18/position = Vector3(1.8663528, -1.3440453, -1.1335349)
 bones/18/scale = Vector3(1, 1.0000004, 1)
-bones/19/rotation = Quaternion(-0.3671681, -0.45670614, 0.66429293, 0.46402812)
+bones/19/rotation = Quaternion(-0.36538655, -0.44737378, 0.67279416, 0.4622741)
 bones/19/scale = Vector3(0.9999998, 1, 0.99999994)
-bones/20/rotation = Quaternion(-1.1827264e-06, -9.108219e-08, -0.6701514, 0.74222445)
+bones/20/rotation = Quaternion(-1.2408402e-06, -1.04426555e-07, -0.70379514, 0.710403)
 bones/22/rotation = Quaternion(9.313226e-09, -3.7252894e-09, 9.313224e-09, 1)
 bones/23/rotation = Quaternion(-0.7688636, -1.7503248e-07, 5.45084e-08, 0.6394128)
 bones/24/rotation = Quaternion(-0.7688636, -1.767359e-07, 6.662136e-08, 0.6394128)
@@ -157,19 +157,19 @@ bones/28/rotation = Quaternion(-0.7688636, -1.767359e-07, 6.662136e-08, 0.639412
 bones/29/rotation = Quaternion(-0.017710982, 0.22190264, -0.52960753, 0.8185117)
 bones/30/rotation = Quaternion(-0.46074978, -0.115213275, 0.21348318, 0.8537333)
 bones/31/rotation = Quaternion(-0.47493684, 0.0006650256, -0.0012338848, 0.88001883)
-bones/32/position = Vector3(-1.0545659, 2.8538592, -2.138842)
+bones/32/position = Vector3(-1.0545669, 2.8372188, -2.0131125)
 bones/32/scale = Vector3(1, 0.99999994, 0.9999997)
 bones/33/position = Vector3(0.8821678, -1.2655761, -3.888471e-06)
 bones/33/scale = Vector3(1, 0.9999997, 0.99999994)
 bones/35/position = Vector3(-2.2895148, 0.062400937, -1.8289367)
-bones/36/rotation = Quaternion(0.7679333, -0.46165696, 0.17514257, -0.40801507)
-bones/37/rotation = Quaternion(0.30239397, 0.010216609, -0.01202006, 0.9530525)
-bones/38/rotation = Quaternion(-0.6425426, 0.1418549, 0.06346809, 0.7503254)
+bones/36/rotation = Quaternion(0.77361804, -0.4646986, 0.16775736, -0.39677182)
+bones/37/rotation = Quaternion(0.33105832, 0.010113834, -0.013159455, 0.9434643)
+bones/38/rotation = Quaternion(-0.65400016, 0.14275783, 0.061630752, 0.74034154)
 bones/39/rotation = Quaternion(5.209695e-07, 2.997702e-09, -3.5227285e-07, 1)
 bones/41/position = Vector3(1.4047589, 0.36771935, -1.9460349)
-bones/42/rotation = Quaternion(0.71547145, 0.41844866, -0.31138682, -0.4648007)
-bones/43/rotation = Quaternion(0.36741748, -0.009968338, 0.014604792, 0.929888)
-bones/44/rotation = Quaternion(-0.7937967, -0.04999703, -0.061898734, 0.60295564)
+bones/42/rotation = Quaternion(0.72015136, 0.42255577, -0.30740094, -0.4564356)
+bones/43/rotation = Quaternion(0.39135635, -0.0098629445, 0.015556367, 0.92005485)
+bones/44/rotation = Quaternion(-0.80271345, -0.04943192, -0.061586075, 0.59111327)
 bones/45/rotation = Quaternion(2.3288299e-06, 1.4843136e-09, 7.9674635e-07, 1)
 bones/48/rotation = Quaternion(-0.29893115, -1.1012737e-14, -7.127075e-08, 0.9542748)
 bones/50/rotation = Quaternion(0.3141854, -4.7739594e-15, 7.490761e-08, 0.94936174)
@@ -189,7 +189,7 @@ bones/67/position = Vector3(-1.2863505, 0.0053335875, -2.2026324)
 bones/67/rotation = Quaternion(0, -0.15664774, 0, 0.9876545)
 
 [node name="BowMain" parent="BowBoy/Armature/Skeleton3D" index="0" unique_id=1551759503]
-transform = Transform3D(1, 2.2062537e-08, 1.2872326e-07, 1.305052e-07, -0.13120663, -0.9913549, -4.982489e-09, 0.9913549, -0.13120663, 4.766426e-08, 5.8186245, 1.2637521)
+transform = Transform3D(1, 2.2062537e-08, 1.2872326e-07, 1.305052e-07, -0.13120663, -0.9913549, -4.982489e-09, 0.9913549, -0.13120663, 4.766426e-08, 5.779942, 1.2637521)
 
 [node name="ClosedEyes" parent="BowBoy/Armature/Skeleton3D" index="3" unique_id=1505240710]
 visible = false
@@ -223,7 +223,7 @@ blackboard_plan = SubResource("BlackboardPlan_uy27c")
 [node name="HealthBar" parent="." unique_id=321722528 instance=ExtResource("5_8b2ox")]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 2.3274758, 0)
 visible = false
-texture = SubResource("ViewportTexture_ktlkm")
+texture = SubResource("ViewportTexture_4duyq")
 
 [node name="AudioController" type="Node3D" parent="." unique_id=830640661]
 script = ExtResource("11_sjpjk")

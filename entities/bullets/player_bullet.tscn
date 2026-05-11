@@ -3,13 +3,15 @@
 [ext_resource type="Script" uid="uid://bw834i4vkj36u" path="res://entities/bullets/bullet.gd" id="1_sek1o"]
 [ext_resource type="PackedScene" uid="uid://cx5f52mvdcqcf" path="res://assets/models and textures/bullet.tscn" id="2_u6q3n"]
 [ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="3_qf7n0"]
+[ext_resource type="Shader" uid="uid://cr47q3a20mk2" path="res://assets/vfx/fire trail/firetrail.tres" id="4_qf7n0"]
+[ext_resource type="ArrayMesh" uid="uid://bqyty4rqu2uqe" path="res://assets/vfx/fire trail/fire_ball_mesh.obj" id="5_u0f5x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sek1o"]
-radius = 0.2006836
-height = 0.8366699
+radius = 0.41308594
+height = 1.1952515
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_33ckv"]
-radius = 0.58807635
+radius = 0.61717856
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_a3f0k"]
 radius = 0.70135254
@@ -28,13 +30,19 @@ outer_radius = 0.14
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.65203863), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p8p2w"]
+render_priority = 0
+shader = ExtResource("4_qf7n0")
+shader_parameter/FireColor = Color(2.200488, 10.158964, 18.892157, 1)
+shader_parameter/Speed = Vector2(0.1, 3)
+
 [node name="PlayerBullet" type="CharacterBody3D" unique_id=1932519837 groups=["bullet"]]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_sek1o")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1319153479]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -5.3945572e-09, 0.123413086)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -8.106509e-09, 0.18545532)
 shape = SubResource("CapsuleShape3D_sek1o")
 
 [node name="Hitbox" type="Area3D" parent="." unique_id=910296199]
@@ -45,7 +53,7 @@ damage = 10.0
 metadata/_custom_type_script = "uid://3u303es7vhe4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1741861491]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.21479931)
 shape = SubResource("SphereShape3D_33ckv")
 debug_color = Color(0.68002445, 0, 0.70196074, 0.41960785)
 
@@ -60,9 +68,12 @@ shape = SubResource("SphereShape3D_a3f0k")
 
 [node name="Bullet" parent="." unique_id=890272238 instance=ExtResource("2_u6q3n")]
 
+[node name="Cube" parent="Bullet" index="0" unique_id=1591679081]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
 [node name="Trail" type="CPUParticles3D" parent="." unique_id=25109331]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.3)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -0.39158604)
 emitting = false
 amount = 2
 lifetime = 0.3
@@ -72,5 +83,11 @@ mesh = SubResource("TorusMesh_sek1o")
 direction = Vector3(0, 0, 0)
 gravity = Vector3(0, 0, 0)
 scale_amount_curve = SubResource("Curve_sek1o")
+
+[node name="FireBallMesh" type="MeshInstance3D" parent="." unique_id=1350331649]
+transform = Transform3D(-1.0927847e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.0927847e-08, 0, 0, 0.50222087)
+material_override = SubResource("ShaderMaterial_p8p2w")
+cast_shadow = 0
+mesh = ExtResource("5_u0f5x")
 
 [editable path="Bullet"]

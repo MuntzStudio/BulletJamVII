@@ -9,7 +9,9 @@ class_name Boss extends CharacterBody3D
 @export var path_speed : float = 3.0
 @export var health_bar: HealthBar
 @export var death_vfx : PackedScene
-@export var boss_music : AudioStream
+@export var phase1: AudioStream
+@export var phase2: AudioStream
+@export var phase3: AudioStream
 #endregion EXPORTS
 
 #region NODE REFS
@@ -37,39 +39,36 @@ signal boss_died
 
 #region READY & PROCESS
 func _ready() -> void:
-	print("hurtbox found: ", hurtbox)
 	health_bar.show()
 	health_bar.init_health(max_hp)
 	current_hp = max_hp
-	_apply_phase(Phase.ONE)
 	
-	# anim controls signals
-	shield_boss.fire_bullets.connect(_shield_boss_fire_bullet)
+	# wired signals
 	shield_boss.attack_finished.connect(_on_attack_finished)
+	shield_boss.fire_bullets.connect(_shield_boss_fire_bullet)
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	hurtbox.damage_taken.connect(_on_damage_taken)
-	
 
 func _notification(what):
 	if what == NOTIFICATION_DISABLED:
 		visible = false
 		health_bar.hide()
-		
+		attack_timer.stop() 
+	
 	elif what == NOTIFICATION_ENABLED:
-		Audio.play_ambience(boss_music, -5.0)
 		visible = true
 		health_bar.show()
 		label.text = "|| BOSS AWAKENED ||"
 		label.show()
 		# boss starts with enter sequence, movement is stopped until it finishes
+		_apply_phase(Phase.ONE)
 		is_attacking = true
 		shield_boss.play_enter()
 		await get_tree().create_timer(0.73).timeout
 		if is_dead: return
 		_shield_boss_fire_bullet()
-		await get_tree().create_timer(2.0).timeout
 		label.hide()
-		
+
 
 func _process(delta: float) -> void:
 	if is_dead:
@@ -124,11 +123,13 @@ func _apply_phase(phase: Phase) -> void:
 	current_phase = phase
 	match phase:
 		Phase.ONE:
+			Audio.play_ambience(phase1)
 			bullet_spawn.fire_rate    = 1.0
 			bullet_spawn.bullet_count = 6
 			bullet_spawn.spread_angle = 30.0
 			attack_timer.wait_time    = 3.0
 		Phase.TWO:
+			Audio.play_ambience(phase2)
 			bullet_spawn.fire_rate    = 3.0
 			bullet_spawn.bullet_count = 12
 			bullet_spawn.spread_angle = 60.0
@@ -139,6 +140,7 @@ func _apply_phase(phase: Phase) -> void:
 			is_attacking = true
 			hurtbox.make_invulnerable(2.0)  #TODO add blink effect on phase transition
 		Phase.THREE:
+			Audio.play_ambience(phase3)
 			bullet_spawn.fire_rate    = 6.0
 			bullet_spawn.bullet_count = 24
 			bullet_spawn.spread_angle = 180.0
@@ -157,7 +159,7 @@ func _on_attack_timer_timeout() -> void:
 	if is_dead:
 		return
 	is_attacking = true
-	hurtbox.make_invulnerable(0.6)
+	hurtbox.make_invulnerable(1.0)
 	shield_boss.play_attack()
 	await get_tree().create_timer(0.43).timeout
 	if is_dead: return

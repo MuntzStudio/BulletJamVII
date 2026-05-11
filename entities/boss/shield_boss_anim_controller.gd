@@ -48,7 +48,6 @@ func play_idle() -> void:
 
 func play_enter() -> void:
 	animation.play("Enter")
-	
 
 func play_enter_idle() -> void:
 	animation.play("EnterIdle")
