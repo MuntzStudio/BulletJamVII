@@ -80,7 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.675, 0, -99.063)
 camera = NodePath("../../../PlayerEntity/SpringArmPivot")
 
 [node name="EnemySpawner" parent="RoomPitsBake" index="10" unique_id=707684176]
-spawn_percentages = PackedFloat32Array(50, 30, 0, 0)
+spawn_percentages = PackedFloat32Array(50, 30, 20, 0)
 
 [node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("4_5xd41")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -49.269, -3.0421293, -148.887)

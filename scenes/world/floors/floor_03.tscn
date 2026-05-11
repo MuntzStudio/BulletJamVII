@@ -7,12 +7,24 @@
 [ext_resource type="PackedScene" uid="uid://c3l745in56lc2" path="res://scenes/world/Mechanics/stairs.tscn" id="5_7w1tv"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="6_dju42"]
 [ext_resource type="Script" path="res://scripts/room_trigger.gd" id="6_scnkl"]
+[ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="7_4xmx3"]
+[ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="8_tkuj4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5lu6s"]
 size = Vector3(33.227875, 10.730957, 33.438545)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0wvv"]
 size = Vector3(28.867111, 10.730957, 24.186092)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y04rt"]
+material = ExtResource("7_4xmx3")
+size = Vector2(25, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nerxp"]
+size = Vector3(3.152359, 1, 24.548843)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dd5tc"]
+size = Vector3(3.152359, 1, 25.889297)
 
 [node name="Floor03" type="Node3D" unique_id=1187036097]
 
@@ -61,6 +73,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06549835, 2.3342285, -10.42
 shape = SubResource("BoxShape3D_t0wvv")
 debug_color = Color(0.69803923, 0.51044124, 0, 1)
 
+[node name="Lava" type="MeshInstance3D" parent="RoomCrossBake" unique_id=1199821373]
+transform = Transform3D(1.2718577, 0, 0, 0, 1, 0, 0, 0, 1.4144329, 0.39654922, -1, -8.636986)
+mesh = SubResource("PlaneMesh_y04rt")
+
+[node name="KillZone" type="Area3D" parent="RoomCrossBake/Lava" unique_id=1999106036]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("8_tkuj4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomCrossBake/Lava/KillZone" unique_id=1407722957]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, -0.36126328, -0.28070664, -1.5949173)
+shape = SubResource("BoxShape3D_nerxp")
+debug_color = Color(0.2864342, 0.75965345, 7.70092e-07, 1)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RoomCrossBake/Lava/KillZone" unique_id=670890080]
+transform = Transform3D(-4.371139e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, 0.91513824, -0.5335438, -1.4913559)
+shape = SubResource("BoxShape3D_dd5tc")
+debug_color = Color(0.2864342, 0.75965345, 7.70092e-07, 1)
+
 [node name="RoomEmptyBake2" parent="." unique_id=447597698 instance=ExtResource("1_8103l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.99872, 0, -147.93834)
 
@@ -71,6 +103,8 @@ spawn_percentages = PackedFloat32Array(25, 25, 25, 25)
 
 [node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("5_7w1tv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -69.6048, -3.0404768, -197.78842)
+
+[connection signal="body_entered" from="RoomCrossBake/Lava/KillZone" to="RoomCrossBake/Lava/KillZone" method="_on_body_entered"]
 
 [editable path="RoomEmptyBake"]
 [editable path="RoomPillarBake"]
