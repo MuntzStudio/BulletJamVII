@@ -1,3 +1,69 @@
 [gd_scene format=3 uid="uid://c0ujdr87ul7no"]
 
+[ext_resource type="PackedScene" uid="uid://b7yjnjqdrt24d" path="res://scenes/world/Rooms/EmptyRoom.tscn" id="1_pk6d7"]
+[ext_resource type="PackedScene" uid="uid://c1qcxqt1vn2s8" path="res://scenes/world/Rooms/WallRoom.tscn" id="2_fbbhn"]
+[ext_resource type="PackedScene" uid="uid://cegbb50od3r3y" path="res://scenes/world/Rooms/PitsRoom.tscn" id="3_5xd41"]
+[ext_resource type="PackedScene" uid="uid://c3l745in56lc2" path="res://scenes/world/Mechanics/stairs.tscn" id="4_5xd41"]
+[ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="5_ad1cp"]
+[ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="6_rnnp0"]
+[ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="7_rnnp0"]
+[ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="8_ky4hu"]
+
+[sub_resource type="Sky" id="Sky_wjfvl"]
+
+[sub_resource type="Environment" id="Environment_pk6d7"]
+background_mode = 2
+sky = SubResource("Sky_wjfvl")
+ambient_light_source = 2
+ambient_light_color = Color(0.6392157, 0.6392157, 0.6392157, 1)
+ambient_light_energy = 0.34
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ky4hu"]
+radius = 0.2
+
 [node name="Floor02" type="Node3D" unique_id=1187036097]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1374529566]
+environment = SubResource("Environment_pk6d7")
+
+[node name="RoomEmptyBake" parent="." unique_id=1735910708 instance=ExtResource("1_pk6d7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.324, 0, -0.047)
+
+[node name="RoomWallBake" parent="." unique_id=215420672 instance=ExtResource("2_fbbhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.680595, 0, -49.63582)
+
+[node name="RoomPitsBake" parent="." unique_id=1933254657 instance=ExtResource("3_5xd41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.675, 0, -99.063)
+
+[node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("4_5xd41")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -49.269, -3.0421293, -148.887)
+
+[node name="PlayerEntity" type="Node3D" parent="." unique_id=1045903518]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.711581, 0.28788853, 12.176802)
+
+[node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("5_ad1cp")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="SpringArmPivot" type="Node3D" parent="PlayerEntity" unique_id=2101249036 groups=["camera"]]
+script = ExtResource("6_rnnp0")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="PlayerEntity/SpringArmPivot" unique_id=506207532]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, 0, 0, 0)
+collision_mask = 0
+shape = SubResource("SphereShape3D_ky4hu")
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="PlayerEntity/SpringArmPivot/SpringArm3D" unique_id=1661707344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+cull_mask = 1
+
+[node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("7_rnnp0")]
+
+[node name="PauseMenu" parent="." unique_id=1369771253 instance=ExtResource("8_ky4hu")]
+visible = false
+
+[editable path="RoomEmptyBake"]
+[editable path="RoomWallBake"]
+[editable path="RoomPitsBake"]
+[editable path="StairsBake"]
+[editable path="StairsBake/SceneTrigger"]
