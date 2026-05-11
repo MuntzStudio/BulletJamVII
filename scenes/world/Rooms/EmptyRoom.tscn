@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="2_pt0hs"]
 [ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_ylhqm"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="4_2wlll"]
+[ext_resource type="Script" uid="uid://btvg1d814w72f" path="res://scripts/room_trigger.gd" id="5_uurbt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ylhqm"]
 size = Vector3(29.454544, 0.04, 29.580574)
@@ -35,9 +36,12 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [sub_resource type="BoxShape3D" id="BoxShape3D_5lu6s"]
 size = Vector3(33.227875, 10.730957, 33.438545)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_t0wvv"]
+size = Vector3(28.867111, 10.730957, 24.186092)
+
 [node name="RoomEmptyBake" unique_id=1735910708 node_paths=PackedStringArray("doors") instance=ExtResource("1_8y68g")]
 script = ExtResource("2_pt0hs")
-doors = [null, null]
+doors = [NodePath("RoomDoor"), NodePath("RoomDoor2")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=175310077]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.799503, 3.6961155, -19.220865)
@@ -148,6 +152,7 @@ navigation_mesh = SubResource("NavigationMesh_8y68g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" index="0" unique_id=799338282]
 transform = Transform3D(14.356654, 0, 0, 0, 1, 0, 0, 0, 14.650989, 0.4106331, 0.10952759, -10.16832)
+visible = false
 mesh = SubResource("PlaneMesh_ylhqm")
 
 [node name="RoomDoor" parent="." index="7" unique_id=1106590504 instance=ExtResource("2_ylhqm")]
@@ -168,6 +173,18 @@ metadata/_custom_type_script = "uid://gucr20tfj01x"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34068298, 2.3342285, -10.189199)
 shape = SubResource("BoxShape3D_5lu6s")
 debug_color = Color(0.59769595, 0, 0.69803923, 1)
+
+[node name="RoomTrigger" type="Area3D" parent="." index="11" unique_id=38148701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1114521)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_uurbt")
+metadata/_custom_type_script = "uid://gucr20tfj01x"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomTrigger" index="0" unique_id=362688891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06549835, 2.3342285, -10.424494)
+shape = SubResource("BoxShape3D_t0wvv")
+debug_color = Color(0.69803923, 0.51044124, 0, 1)
 
 [editable path="RoomDoor"]
 [editable path="RoomDoor2"]

@@ -1,8 +1,8 @@
 @tool
 extends Area3D
 
-@export var label: Label
-@export var pivot : Node3D
+@export var kill_label: Label 
+@export var camera : Node3D
 
 var dialogs = [
 	"You fell... but not for long.",
@@ -30,9 +30,11 @@ var dialogs = [
 var is_respawning : bool = false
 
 func _ready() -> void:
+	kill_label = get_tree().get_first_node_in_group("kill_label")
+	camera = get_tree().get_first_node_in_group("camera")
 	randomize()
-	if label:
-		label.hide()
+	if kill_label:
+		kill_label.hide()
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemy"):
@@ -44,12 +46,12 @@ func _on_body_entered(body: Node3D) -> void:
 		if body and not body.is_respawning:
 			body.take_chip_damage(1)
 			body.is_respawning = true
-			pivot.stop_following()
+			camera.stop_following()
 			body.collision.disabled = true
-			label.text = dialogs.pick_random()
+			kill_label.text = dialogs.pick_random()
 			await get_tree().create_timer(0.5).timeout
-			label.show()
+			kill_label.show()
 			await get_tree().create_timer(1.5).timeout
 			await body.respawn()
 			body.is_respawning = false
-			label.hide()
+			kill_label.hide()

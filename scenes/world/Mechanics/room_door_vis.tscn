@@ -10,7 +10,7 @@ size = Vector3(0.2770996, 5.0075684, 5.27771)
 script = ExtResource("2_6vklp")
 
 [node name="Door" parent="." index="0" unique_id=994154429]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.57494, -5.083023, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=323807953]
 

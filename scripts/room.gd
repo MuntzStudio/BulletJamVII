@@ -3,7 +3,7 @@ extends Node3D
 
 signal room_cleared
 
-@export var doors: Array[Door] = []
+@export var doors: Array[Door]
 @export var enemy_group: StringName = &"enemy"
 @onready var camera: Node3D = get_tree().get_first_node_in_group("camera")
 @onready var spawner = get_node_or_null("EnemySpawner")

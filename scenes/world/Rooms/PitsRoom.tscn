@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="3_bgvov"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="4_b7r3t"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="6_mhcgx"]
+[ext_resource type="Script" uid="uid://btvg1d814w72f" path="res://scripts/room_trigger.gd" id="7_0f4io"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b38dc"]
 size = Vector3(20.496, 0.04, 19.978)
@@ -68,9 +69,12 @@ size = Vector2(25, 25)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2r04v"]
 size = Vector3(33.017273, 10.730957, 32.535698)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_rbjc2"]
+size = Vector3(28.867111, 10.730957, 24.186092)
+
 [node name="RoomPitsBake" unique_id=1933254657 node_paths=PackedStringArray("doors") instance=ExtResource("1_rjtrw")]
 script = ExtResource("2_b7r3t")
-doors = [null, null]
+doors = [NodePath("RoomDoor"), NodePath("RoomDoor2")]
 
 [node name="Colliders" type="Node3D" parent="." index="3" unique_id=929679947]
 
@@ -183,26 +187,32 @@ navigation_mesh = SubResource("NavigationMesh_mhcgx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" index="0" unique_id=1108315785]
 transform = Transform3D(14.466941, 0, 0, 0, 1, 0, 0, 0, 1.8471438, 0.36622667, 0.032120228, 2.707007)
+visible = false
 mesh = SubResource("PlaneMesh_0f4io")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D" index="1" unique_id=438543159]
 transform = Transform3D(14.47424, 0, 0, 0, 1, 0, 0, 0, 1.9164778, 0.36622667, 0.032120228, -22.837809)
+visible = false
 mesh = SubResource("PlaneMesh_0f4io")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="NavigationRegion3D" index="2" unique_id=1465619863]
 transform = Transform3D(-6.3268914e-07, 0, 1.5205954, 0, 1, 0, -14.47424, 0, -6.6467344e-08, -12.638988, 0.032120228, -10.259269)
+visible = false
 mesh = SubResource("PlaneMesh_tjxqm")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="NavigationRegion3D" index="3" unique_id=801960470]
 transform = Transform3D(-6.3268914e-07, 0, 1.9097787, 0, 1, 0, -14.47424, 0, -8.347908e-08, 13.04251, 0.032120228, -10.259269)
+visible = false
 mesh = SubResource("PlaneMesh_tjxqm")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="NavigationRegion3D" index="4" unique_id=797820738]
 transform = Transform3D(-3.6293002e-07, 0, 8.386241, 0, 1, 0, -8.302872, 0, -3.6657423e-07, -3.0489779, 0.032120228, -12.927323)
+visible = false
 mesh = SubResource("PlaneMesh_hm3ji")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="NavigationRegion3D" index="5" unique_id=360538668]
 transform = Transform3D(-3.6293002e-07, 0, 8.386241, 0, 1, 0, -8.302872, 0, -3.6657423e-07, 3.0098968, 0.032120228, -6.980193)
+visible = false
 mesh = SubResource("PlaneMesh_hm3ji")
 
 [node name="RoomDoor" parent="." index="7" unique_id=1106590504 instance=ExtResource("2_b38dc")]
@@ -240,6 +250,18 @@ metadata/_custom_type_script = "uid://gucr20tfj01x"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23538208, 2.3342285, -10.127819)
 shape = SubResource("BoxShape3D_2r04v")
 debug_color = Color(0.59769595, 0, 0.69803923, 1)
+
+[node name="RoomTrigger" type="Area3D" parent="." index="12" unique_id=456501095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.44582748)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_0f4io")
+metadata/_custom_type_script = "uid://gucr20tfj01x"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomTrigger" index="0" unique_id=951531037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06549835, 2.3342285, -10.424494)
+shape = SubResource("BoxShape3D_rbjc2")
+debug_color = Color(0.69803923, 0.51044124, 0, 1)
 
 [connection signal="body_entered" from="Lava/KillZone" to="Lava/KillZone" method="_on_body_entered"]
 
