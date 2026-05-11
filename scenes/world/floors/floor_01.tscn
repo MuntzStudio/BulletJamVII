@@ -25,6 +25,9 @@ glow_enabled = true
 glow_intensity = 0.8
 glow_hdr_scale = 0.5
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_4t3i2"]
+size = Vector3(5.4814453, 1, 4.329468)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_es6r5"]
 radius = 0.2
 
@@ -60,6 +63,9 @@ spawn_percentages = PackedFloat32Array(0, 100, 0, 0)
 kill_label = NodePath("../../../DialogBox/KillLabel")
 camera = NodePath("../../../PlayerEntity/SpringArmPivot")
 
+[node name="CollisionShape3D" parent="Opening Room Bake/Boundary" parent_id_path=PackedInt32Array(276392845, 986488140) index="0" unique_id=1510368637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23538208, 2.3342285, -21.604279)
+
 [node name="RoomEmptyBake" parent="." unique_id=1735910708 instance=ExtResource("13_f6sku")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8, 0, 105.43)
 
@@ -86,12 +92,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2, 0, 7)
 kill_label = NodePath("../../../DialogBox/KillLabel")
 camera = NodePath("../../../PlayerEntity/SpringArmPivot")
 
+[node name="CollisionShape3D" parent="RoomPitsBake/Lava/KillZone" index="0" unique_id=774185986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.814067, -0.9822886, -9.073226)
+shape = SubResource("BoxShape3D_4t3i2")
+debug_color = Color(0.87058824, 0.40392157, 1, 1)
+
 [node name="EnemySpawner" parent="RoomPitsBake" index="10" unique_id=707684176]
 enemies_to_spawn = 7
 spawn_percentages = PackedFloat32Array(100, 100, 0, 0)
 
 [node name="StairsBake" parent="." unique_id=721316286 instance=ExtResource("12_f6sku")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -19.777, -3.206, -42.356)
+
+[node name="CollisionShape3D" parent="StairsBake/Colliders/Stair1" parent_id_path=PackedInt32Array(721316286, 1855896000) index="0" unique_id=714199867]
+debug_color = Color(0.6509804, 0, 0.16470589, 1)
+
+[node name="CollisionShape3D" parent="StairsBake/Colliders/Stair2" parent_id_path=PackedInt32Array(721316286, 1114827532) index="0" unique_id=524368521]
+debug_color = Color(0.6509804, 0, 0.16470589, 1)
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=158692642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.87316, 0, 163.42366)
