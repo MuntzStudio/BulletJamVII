@@ -35,9 +35,6 @@ script = ExtResource("2_n4gd4")
 bullet_scene = ExtResource("4_j8i6x")
 fire_rate = 0.2
 burst_count = 5
-boomerang_sfx = Object(GDScriptNativeClass,"script":null)
-
-bullet_sfx = Object(GDScriptNativeClass,"script":null)
 
 
 [sub_resource type="BTWait" id="BTWait_mdx4i"]

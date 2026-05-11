@@ -60,7 +60,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 
 curve = SubResource("Curve3D_6qwl8")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="BossPath" unique_id=1122110057 groups=["path"]]
-transform = Transform3D(-0.9999663, 0, 0.004524737, 0, 1, 0, -0.004524737, 0, -0.9999663, -0.05841446, 0, -8.11507)
+transform = Transform3D(-0.9999662, 0, 0.0045247367, 0, 1, 0, -0.0045247367, 0, -0.9999662, -0.05841446, 0, -8.11507)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1649919296]
 environment = SubResource("Environment_n78g6")
