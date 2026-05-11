@@ -39,5 +39,5 @@ func _get_direction(index: int) -> Vector3:
 	var step = spread_angle / (bullet_count - 1)
 	var angle = deg_to_rad(-half + step * index)
 	
-	var forward = global_transform.basis.z
+	var forward = - global_transform.basis.z
 	return forward.rotated(Vector3.UP, angle).normalized()

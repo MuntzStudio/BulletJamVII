@@ -7,10 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cpacraowwf55w" path="res://audio/SONGS/Unyielding.mp3" id="3_hqysp"]
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="3_m86g3"]
 [ext_resource type="Script" uid="uid://bkn883nac4qal" path="res://entities/boss/shield_boss_anim_controller.gd" id="5_poamk"]
-[ext_resource type="AudioStream" uid="uid://dcgcib54ewt7y" path="res://audio/SFX/Knife Throw 1-1.mp3" id="6_wq85k"]
-[ext_resource type="AudioStream" uid="uid://cn0m2vvwrk2bs" path="res://audio/SFX/Knife Throw 2-1.mp3" id="7_hmj27"]
 [ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="7_jcg2q"]
-[ext_resource type="AudioStream" uid="uid://iqai3agfi3x2" path="res://audio/SFX/Knife Throw 3-1.mp3" id="8_ap5ay"]
 [ext_resource type="PackedScene" uid="uid://43xpisxcp7xi" path="res://assets/models and textures/ShieldBoss.blend" id="8_hqysp"]
 [ext_resource type="AudioStream" uid="uid://gg6pl78vq8ey" path="res://audio/SFX/Enemy Hit 1.mp3" id="13_p68d0"]
 [ext_resource type="AudioStream" uid="uid://btwwaptecrcnh" path="res://audio/SFX/Enemy Hit 2.mp3" id="14_xo772"]
@@ -18,10 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://36snc0ndulya" path="res://assets/vfx/hit_fx/hit_particle_i.tscn" id="16_eiqsa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p68d0"]
-size = Vector3(1.8420887, 2.5774815, 0.12994304)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_v4t6b"]
-size = Vector3(1.8420887, 2.5774815, 0.20617513)
+size = Vector3(3.5517578, 4.95161, 0.12994304)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xo772"]
 size = Vector3(1.0883008, 4.214641, 0.23603621)
@@ -54,54 +48,39 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_v4t6b"]
+size = Vector3(1.8420887, 2.5774815, 0.34985352)
+
 [node name="ShieldBossMan" type="CharacterBody3D" unique_id=1661003103 node_paths=PackedStringArray("health_bar") groups=["enemy"]]
 collision_layer = 4
-collision_mask = 11
 script = ExtResource("1_m86g3")
 health_bar = NodePath("HealthBar")
 death_vfx = ExtResource("2_4414n")
 boss_music = ExtResource("3_hqysp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=902724650]
-transform = Transform3D(1.9999998, 0, -1.1641531e-09, 0, 2, 0, 1.1641531e-09, 0, 1.9999998, -1.0114623e-10, 2.5774817, 0.15549058)
+transform = Transform3D(1, 0, -5.820766e-10, 0, 1, 0, 5.820766e-10, 0, 1, 0, 2.5402582, 0)
 shape = SubResource("BoxShape3D_p68d0")
 debug_color = Color(1.988, 2.0089998, 0, 1)
 
-[node name="ShieldBoss" parent="." unique_id=504387822 instance=ExtResource("8_hqysp")]
+[node name="ShieldBoss" parent="." unique_id=833437970 instance=ExtResource("8_hqysp")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-script = ExtResource("5_poamk")
-attack_sounds = Array[AudioStream]([ExtResource("6_wq85k"), ExtResource("7_hmj27"), ExtResource("8_ap5ay")])
 
-[node name="BulletSpawn" parent="ShieldBoss/BulletSpawnPoint" parent_id_path=PackedInt32Array(504387822, 1724421458) index="0" unique_id=1724750768 instance=ExtResource("2_pou83")]
+[node name="BulletSpawn" parent="ShieldBoss/BulletSpawnPoint" parent_id_path=PackedInt32Array(833437970, 2101058221) index="0" unique_id=1724750768 instance=ExtResource("2_pou83")]
 
-[node name="Shield2" parent="ShieldBoss/Armature" parent_id_path=PackedInt32Array(504387822, 2069314074) index="0" unique_id=1934162269]
-transform = Transform3D(0.9999992, 0, 0.0011882778, 0, 1, 0, -0.0011882778, 0, 0.9999992, 0, 0, 0)
+[node name="Shield2" parent="ShieldBoss/Armature" parent_id_path=PackedInt32Array(833437970, 541413205) index="0" unique_id=1984769031]
+transform = Transform3D(0.7211487, 0.114834815, -0.68319637, -0.15250076, 0.98828995, 0.005143996, 0.67578685, 0.100478396, 0.73021644, 0, 0, 0)
 
-[node name="Eye" parent="ShieldBoss/Armature/Shield2" index="0" unique_id=915746515]
+[node name="Eye" parent="ShieldBoss/Armature/Shield2" index="0" unique_id=1374978093]
 transform = Transform3D(0.99999857, -0.0011881586, 0.001195982, 0.0011959828, 9.029419e-11, -0.9999993, 0.0011881578, 0.9999993, 1.4211076e-06, 0, 8.594057, 0)
 
-[node name="ClosedEye" parent="ShieldBoss/Armature/Shield2" index="1" unique_id=1223567769]
+[node name="ClosedEye" parent="ShieldBoss/Armature/Shield2" index="1" unique_id=1036574914]
 transform = Transform3D(0.09999989, -0.00011881589, 0.00011450799, 0.00011450807, 8.645119e-12, -0.09999996, 0.00011881581, 0.09999995, 1.3606241e-07, 0, 8.594057, 0)
 
-[node name="Hurtbox" type="Area3D" parent="ShieldBoss/Armature/Shield2/Shield" parent_id_path=PackedInt32Array(504387822, 1687082641) index="0" unique_id=1799589606 node_paths=PackedStringArray("mesh") groups=["enemy"]]
-transform = Transform3D(1, 0, 5.8207666e-10, 0, 1, 0, -5.8207666e-10, 0, 1, 0, 0, 0)
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("3_m86g3")
-mesh = NodePath("..")
-hit_audio = Array[AudioStream]([ExtResource("13_p68d0"), ExtResource("14_xo772"), ExtResource("15_v4t6b")])
-hit_vfx = ExtResource("16_eiqsa")
-metadata/_custom_type_script = "uid://cppim11crlu1t"
+[node name="Bone" parent="ShieldBoss/Armature" parent_id_path=PackedInt32Array(833437970, 541413205) index="1" unique_id=1785542097]
+transform = Transform3D(0.63069004, 0.10566047, 0.7688079, 0.77583665, -0.06347495, -0.62773246, -0.017526444, 0.99237436, -0.12200827, 0.5226191, 1.4185848, 6.6483917)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ShieldBoss/Armature/Shield2/Shield/Hurtbox" unique_id=520757310]
-transform = Transform3D(0.99999994, 0, -5.820766e-10, 0, 1, 0, 5.820766e-10, 0, 0.99999994, -7.2759576e-11, 1.2887409, 0.115861334)
-shape = SubResource("BoxShape3D_v4t6b")
-debug_color = Color(12.694407, 13.539555, 0, 1)
-
-[node name="Bone" parent="ShieldBoss/Armature" parent_id_path=PackedInt32Array(504387822, 2069314074) index="1" unique_id=1482748804]
-transform = Transform3D(-0.52539396, 0.4858818, -0.69848406, 0.77583665, -0.06347477, -0.6277326, -0.34933993, -0.8717166, -0.34361565, 6.156369, 1.4185848, -1.455537)
-
-[node name="Hitbox" type="Area3D" parent="ShieldBoss/Armature/Bone/Sword" parent_id_path=PackedInt32Array(504387822, 1067537230) index="0" unique_id=316923225]
+[node name="Hitbox" type="Area3D" parent="ShieldBoss/Armature/Bone/Sword" parent_id_path=PackedInt32Array(833437970, 616527316) index="0" unique_id=316923225]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("7_jcg2q")
@@ -162,6 +141,24 @@ metadata/_edit_use_anchors_ = true
 [node name="DamageTimer" type="Timer" parent="HealthBar" unique_id=639614999]
 wait_time = 0.6
 one_shot = true
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1799589606 node_paths=PackedStringArray("mesh") groups=["enemy"]]
+transform = Transform3D(1.9999999, 0, -1.1641532e-09, 0, 2, 0, 1.1641532e-09, 0, 1.9999999, 0, 0, 0)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_m86g3")
+mesh = NodePath("../ShieldBoss/Armature/Shield2/Shield")
+hit_audio = Array[AudioStream]([ExtResource("13_p68d0"), ExtResource("14_xo772"), ExtResource("15_v4t6b")])
+hit_vfx = ExtResource("16_eiqsa")
+metadata/_custom_type_script = "uid://cppim11crlu1t"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=520757310]
+transform = Transform3D(0.99999946, 0, -5.8207617e-10, 0, 1, 0, 5.8207617e-10, 0, 0.99999946, -7.275956e-11, 1.2887409, 0.11586132)
+shape = SubResource("BoxShape3D_v4t6b")
+debug_color = Color(12.694407, 13.539555, 0, 1)
+
+[node name="BossAnimPlayer" type="Node3D" parent="." unique_id=466116835]
+script = ExtResource("5_poamk")
 
 [connection signal="timeout" from="HealthBar/DamageTimer" to="HealthBar" method="_on_damage_timer_timeout"]
 
