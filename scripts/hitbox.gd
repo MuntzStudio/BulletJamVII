@@ -1,6 +1,6 @@
 class_name Hitbox extends Area3D
 
-@export var damage := 10.0
+@export var damage := 1.0
 @export var knockback_force := 50.0
 @export var hit_type : HitType = HitType.NORMAL  # enum for vfx/sound variation
 enum HitType { NORMAL, EXPLOSION, PIERCE, FIRE }

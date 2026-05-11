@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://k15i2nb8iv8n" path="res://assets/models and textures/RoomEmptyBake.glb" id="1_8y68g"]
 [ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="2_pt0hs"]
-[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_ylhqm"]
+[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door.tscn" id="2_ylhqm"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="4_2wlll"]
 [ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="4_8x5sf"]
 [ext_resource type="Script" uid="uid://btvg1d814w72f" path="res://scripts/room_trigger.gd" id="5_uurbt"]

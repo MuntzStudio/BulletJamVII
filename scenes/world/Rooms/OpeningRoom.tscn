@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bhh6vyxhqfvne" path="res://assets/models and textures/Opening Room Bake.glb" id="1_jydf0"]
 [ext_resource type="PackedScene" uid="uid://iqudkhf8mrmx" path="res://assets/models and textures/JailDoor.blend" id="2_3ejv1"]
 [ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="2_hkb3n"]
-[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="3_801jj"]
+[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door.tscn" id="3_801jj"]
 [ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="4_801jj"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="5_hkb3n"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="7_831b4"]

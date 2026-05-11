@@ -41,6 +41,7 @@ shape = SubResource("CapsuleShape3D_sek1o")
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("3_qf7n0")
+damage = 10.0
 metadata/_custom_type_script = "uid://3u303es7vhe4"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=1741861491]

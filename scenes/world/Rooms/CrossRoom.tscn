@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmbqduhpbjkr0"]
 
 [ext_resource type="PackedScene" uid="uid://dftyiranbtu6b" path="res://assets/models and textures/RoomCrossBake.glb" id="1_7f8vb"]
-[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_aod8x"]
+[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door.tscn" id="2_aod8x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aod8x"]
 size = Vector3(13.7558365, 0.04, 13.308336)

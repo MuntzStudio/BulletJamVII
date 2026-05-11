@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://vqoc4ru6uoc7"]
+
+[ext_resource type="PackedScene" uid="uid://qctbqlrhdqcr" path="res://assets/models and textures/RoomDoor.blend" id="1_75yok"]
+[ext_resource type="Script" uid="uid://cfdvbbpxg7hb2" path="res://scenes/world/Mechanics/room_door.gd" id="2_6vklp"]
+[ext_resource type="AudioStream" uid="uid://djcru1os0dyn6" path="res://audio/SFX/Door Close 1.mp3" id="3_afoca"]
+[ext_resource type="AudioStream" uid="uid://dxsugcjo11sw2" path="res://audio/SFX/Door Close 2.mp3" id="4_e3pon"]
+[ext_resource type="AudioStream" uid="uid://cl5vllll0psp" path="res://audio/SFX/Door Close 3.mp3" id="5_lvy5o"]
+[ext_resource type="AudioStream" uid="uid://by3o2rs4b1hnb" path="res://audio/SFX/Door Open 1.mp3" id="6_ri6kc"]
+[ext_resource type="AudioStream" uid="uid://dx26ewycby2wc" path="res://audio/SFX/Door Open 2.mp3" id="7_mmgua"]
+[ext_resource type="AudioStream" uid="uid://b344g243dqgal" path="res://audio/SFX/Door Open 3.mp3" id="8_dis6e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x63jb"]
+size = Vector3(0.2770996, 5.0075684, 5.27771)
+
+[node name="RoomDoor" unique_id=1106590504 groups=["doors"] instance=ExtResource("1_75yok")]
+script = ExtResource("2_6vklp")
+door_close = Array[AudioStream]([ExtResource("3_afoca"), ExtResource("4_e3pon"), ExtResource("5_lvy5o")])
+door_open = Array[AudioStream]([ExtResource("6_ri6kc"), ExtResource("7_mmgua"), ExtResource("8_dis6e")])
+
+[node name="Door" parent="." index="0" unique_id=994154429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1456962866]
+autoplay = &"Open"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=323807953]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1383361499]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015869141, 2.0148926, 0.07562256)
+shape = SubResource("BoxShape3D_x63jb")

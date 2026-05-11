@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d2rwltgubu8wc" path="res://assets/models and textures/RoomPitsBake.glb" id="1_rjtrw"]
 [ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="2_b7r3t"]
-[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door_vis.tscn" id="2_b38dc"]
+[ext_resource type="PackedScene" uid="uid://vqoc4ru6uoc7" path="res://scenes/world/Mechanics/room_door.tscn" id="2_b38dc"]
 [ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="3_bgvov"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="4_b7r3t"]
 [ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="6_mhcgx"]

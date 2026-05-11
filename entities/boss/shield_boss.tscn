@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://e8ltrm3u8ea1"]
+
+[ext_resource type="Script" uid="uid://8gdxe36qigy4" path="res://entities/boss/shield_boss.gd" id="1_m86g3"]
+[ext_resource type="PackedScene" uid="uid://blpwpqgpxu1u1" path="res://assets/vfx/explosion_fx/explosion_ii.tscn" id="2_4414n"]
+[ext_resource type="PackedScene" uid="uid://dq81bc5ggwaig" path="res://scripts/bullet_spawn.tscn" id="2_pou83"]
+[ext_resource type="Script" uid="uid://cdt3cwyb33lx8" path="res://scripts/health_bar.gd" id="3_4414n"]
+[ext_resource type="AudioStream" uid="uid://cpacraowwf55w" path="res://audio/SONGS/Unyielding.mp3" id="3_hqysp"]
+[ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="3_m86g3"]
+[ext_resource type="Script" uid="uid://bkn883nac4qal" path="res://entities/boss/shield_boss_anim_controller.gd" id="5_poamk"]
+[ext_resource type="AudioStream" uid="uid://dcgcib54ewt7y" path="res://audio/SFX/Knife Throw 1-1.mp3" id="6_wq85k"]
+[ext_resource type="AudioStream" uid="uid://cn0m2vvwrk2bs" path="res://audio/SFX/Knife Throw 2-1.mp3" id="7_hmj27"]
+[ext_resource type="Script" uid="uid://3u303es7vhe4" path="res://scripts/hitbox.gd" id="7_jcg2q"]
+[ext_resource type="AudioStream" uid="uid://iqai3agfi3x2" path="res://audio/SFX/Knife Throw 3-1.mp3" id="8_ap5ay"]
+[ext_resource type="PackedScene" uid="uid://43xpisxcp7xi" path="res://assets/models and textures/ShieldBoss.blend" id="8_hqysp"]
+[ext_resource type="AudioStream" uid="uid://gg6pl78vq8ey" path="res://audio/SFX/Enemy Hit 1.mp3" id="13_p68d0"]
+[ext_resource type="AudioStream" uid="uid://btwwaptecrcnh" path="res://audio/SFX/Enemy Hit 2.mp3" id="14_xo772"]
+[ext_resource type="AudioStream" uid="uid://dhgobqtl3lchu" path="res://audio/SFX/Enemy Hit 3.mp3" id="15_v4t6b"]
+[ext_resource type="PackedScene" uid="uid://36snc0ndulya" path="res://assets/vfx/hit_fx/hit_particle_i.tscn" id="16_eiqsa"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_67wwf"]
+radius = 1.1451335
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jcg2q"]
+size = Vector3(1, 3.9734497, 0.34570313)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xepog"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3q13n"]
+resource_local_to_scene = true
+bg_color = Color(0.7176471, 0.33639705, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nw5ts"]
+bg_color = Color(0.14911401, 0.14911404, 0.14911401, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymwxj"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lw6l2"]
+radius = 0.6
+height = 2.7016602
+
+[node name="ShieldBossMan" type="CharacterBody3D" unique_id=1661003103 node_paths=PackedStringArray("health_bar") groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_m86g3")
+health_bar = NodePath("HealthBar")
+death_vfx = ExtResource("2_4414n")
+boss_music = ExtResource("3_hqysp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1144957341]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2536286, 0)
+shape = SubResource("SphereShape3D_67wwf")
+
+[node name="ShieldBoss" parent="." unique_id=504387822 instance=ExtResource("8_hqysp")]
+script = ExtResource("5_poamk")
+attack_sounds = Array[AudioStream]([ExtResource("6_wq85k"), ExtResource("7_hmj27"), ExtResource("8_ap5ay")])
+
+[node name="BulletSpawn" parent="ShieldBoss/BulletSpawnPoint" parent_id_path=PackedInt32Array(504387822, 1724421458) index="0" unique_id=1724750768 instance=ExtResource("2_pou83")]
+
+[node name="Shield2" parent="ShieldBoss/Armature" parent_id_path=PackedInt32Array(504387822, 2069314074) index="0" unique_id=1934162269]
+transform = Transform3D(0.9999992, 0, 0.0011882778, 0, 1, 0, -0.0011882778, 0, 0.9999992, 0, 0, 0)
+
+[node name="Eye" parent="ShieldBoss/Armature/Shield2" index="0" unique_id=915746515]
+transform = Transform3D(0.99999857, -0.0011881586, 0.001195982, 0.0011959828, 9.029419e-11, -0.9999993, 0.0011881578, 0.9999993, 1.4211076e-06, 0, 8.594057, 0)
+
+[node name="ClosedEye" parent="ShieldBoss/Armature/Shield2" index="1" unique_id=1223567769]
+transform = Transform3D(0.09999989, -0.00011881589, 0.00011450799, 0.00011450807, 8.645119e-12, -0.09999996, 0.00011881581, 0.09999995, 1.3606241e-07, 0, 8.594057, 0)
+
+[node name="Bone" parent="ShieldBoss/Armature" parent_id_path=PackedInt32Array(504387822, 2069314074) index="1" unique_id=1482748804]
+transform = Transform3D(-0.52539396, 0.4858818, -0.69848406, 0.77583665, -0.06347477, -0.6277326, -0.34933993, -0.8717166, -0.34361565, 6.156369, 1.4185848, -1.455537)
+
+[node name="Hitbox" type="Area3D" parent="ShieldBoss/Armature/Bone/Sword" parent_id_path=PackedInt32Array(504387822, 1067537230) index="0" unique_id=316923225]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("7_jcg2q")
+damage = 2.0
+knockback_force = 200.0
+hit_type = 2
+metadata/_custom_type_script = "uid://3u303es7vhe4"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ShieldBoss/Armature/Bone/Sword/Hitbox" unique_id=58484090]
+transform = Transform3D(1, -1.19209275e-07, -2.16005e-12, 2.9802333e-08, 1, -4.2632564e-13, -3.808509e-12, 9.627854e-13, 0.999992, -1.4901161e-07, 2.0988464, 2.4158453e-13)
+shape = SubResource("BoxShape3D_jcg2q")
+
+[node name="AttackTimer" type="Timer" parent="." unique_id=52613693]
+wait_time = 2.0
+autostart = true
+ignore_time_scale = true
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=317473107]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -507.0
+offset_top = -63.0
+offset_right = 507.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/background = SubResource("StyleBoxEmpty_xepog")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3q13n")
+max_value = 50.0
+value = 25.0
+show_percentage = false
+script = ExtResource("3_4414n")
+color_full = Color(0.7176471, 0.3372549, 0, 1)
+color_empty = Color(0.31256613, 0.05876953, 0.36874998, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="DamageBar" type="ProgressBar" parent="HealthBar" unique_id=631895189]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_nw5ts")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ymwxj")
+max_value = 50.0
+value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="DamageTimer" type="Timer" parent="HealthBar" unique_id=639614999]
+wait_time = 0.6
+one_shot = true
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1799589606 groups=["enemy"]]
+collision_layer = 4
+collision_mask = 2
+monitoring = false
+script = ExtResource("3_m86g3")
+hit_audio = Array[AudioStream]([ExtResource("13_p68d0"), ExtResource("14_xo772"), ExtResource("15_v4t6b")])
+hit_vfx = ExtResource("16_eiqsa")
+metadata/_custom_type_script = "uid://cppim11crlu1t"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=1837039112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3508301, 0)
+shape = SubResource("CapsuleShape3D_lw6l2")
+
+[connection signal="timeout" from="HealthBar/DamageTimer" to="HealthBar" method="_on_damage_timer_timeout"]
+
+[editable path="ShieldBoss"]

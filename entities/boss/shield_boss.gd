@@ -14,9 +14,9 @@ class_name Boss extends CharacterBody3D
 #endregion EXPORTS
 
 #region NODE REFS
-@onready var label: Label = $"../../../DialogBox/bosslabel"
-@onready var anim : AnimationPlayer = $AnimationPlayer
-@onready var bullet_spawn : Node3D = $BulletSpawn
+@onready var shield_boss: Node3D = $ShieldBoss
+@onready var label: Label = get_tree().get_first_node_in_group("kill_label")
+@onready var bullet_spawn: Node3D = $ShieldBoss/BulletSpawnPoint/BulletSpawn
 @onready var attack_timer : Timer = $AttackTimer
 @onready var path_follow: PathFollow3D = get_tree().get_first_node_in_group("path")
 @onready var hurtbox : Hurtbox = $Hurtbox
@@ -41,7 +41,7 @@ func _ready() -> void:
 	health_bar.init_health(max_hp)
 	current_hp = max_hp
 	_apply_phase(Phase.ONE)
-	anim.play("idle")
+	shield_boss.play_enter()
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	hurtbox.damage_taken.connect(_on_damage_taken) 
 
@@ -136,9 +136,9 @@ func _apply_phase(phase: Phase) -> void:
 func _on_attack_timer_timeout() -> void:
 	if is_dead:
 		return
-	anim.play("attack")
+	shield_boss.play_attack()
 
-func _anim_fire_bullet() -> void:
+func _shield_boss_fire_bullet() -> void:
 	bullet_spawn.fire()
 #endregion ATTACK
 
@@ -155,7 +155,7 @@ func _die() -> void:
 	set_physics_process(false)
 	set_process(false)
 	
-	anim.play("idle") # TODO death anim
+	shield_boss.play_attack()
 	emit_signal("boss_died")
 	VFX.spawn(death_vfx, self)
 	await get_tree().create_timer(.5).timeout

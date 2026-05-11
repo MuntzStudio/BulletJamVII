@@ -1,33 +1,16 @@
 [gd_scene format=3 uid="uid://drj81x68gcgsl"]
 
-[ext_resource type="Script" uid="uid://l8cb3bl8r26t" path="res://scripts/room.gd" id="1_oskdh"]
-[ext_resource type="NavigationMesh" uid="uid://031kl026naxm" path="res://scenes/world/floors/floor_01nav.tres" id="3_l7y2v"]
-[ext_resource type="Texture2D" uid="uid://b72wlekl31oad" path="res://assets/prototype/ProtoWall.png" id="4_pmy13"]
-[ext_resource type="PackedScene" uid="uid://t8f7dhhvhttw" path="res://scenes/world/Mechanics/door.tscn" id="5_pa37w"]
-[ext_resource type="PackedScene" uid="uid://dfwqmldkivqdl" path="res://scenes/world/Mechanics/enemy_spawner.tscn" id="6_2ejxh"]
-[ext_resource type="PackedScene" uid="uid://e8ltrm3u8ea1" path="res://entities/boss/boss_man.tscn" id="7_v5lco"]
+[ext_resource type="PackedScene" uid="uid://e8ltrm3u8ea1" path="res://entities/boss/shield_boss.tscn" id="7_v5lco"]
 [ext_resource type="PackedScene" uid="uid://dwvnjjgdkrdyg" path="res://entities/player/player.tscn" id="8_2qvit"]
-[ext_resource type="Script" uid="uid://gucr20tfj01x" path="res://scenes/world/Mechanics/boundary.gd" id="8_oskdh"]
 [ext_resource type="Script" uid="uid://c253rr1u2him4" path="res://entities/player/spring_camera_top_down_unlocked.gd" id="9_s3ed5"]
-[ext_resource type="Theme" uid="uid://byl8xpb6p1vvy" path="res://assets/font/BulletBoyTheme.tres" id="11_v5lco"]
+[ext_resource type="FontFile" uid="uid://d0btsupvineqj" path="res://assets/font/Batolah.otf" id="11_g8ots"]
 [ext_resource type="FontFile" uid="uid://b71breaofkk2s" path="res://assets/font/Hackensack-SemiBold.otf" id="12_6qwl8"]
 [ext_resource type="Script" uid="uid://bewnqjtpo0qns" path="res://scenes/world/Mechanics/kill_zone.gd" id="13_oyrb2"]
 [ext_resource type="PackedScene" uid="uid://c8lfiqqi4jnox" path="res://assets/ui/Heart Bar/heart_HUD.tscn" id="15_4twfe"]
 [ext_resource type="PackedScene" uid="uid://5q8no6itgs0t" path="res://scenes/ui/pause_menu.tscn" id="16_fj7gp"]
 [ext_resource type="Material" uid="uid://dwop3pdl76t3w" path="res://shaders/water.tres" id="16_hyrir"]
 [ext_resource type="Script" uid="uid://0sgqj10s5jau" path="res://scenes/ui/cinematic_camera.gd" id="16_oskdh"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hyrir"]
-size = Vector3(31.851563, 8.982422, 33)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dju42"]
-albedo_color = Color(0.13437498, 1, 0.52931654, 1)
-albedo_texture = ExtResource("4_pmy13")
-uv1_triplanar = true
-uv1_world_triplanar = true
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_fdufd"]
-radius = 0.2
+[ext_resource type="PackedScene" uid="uid://b7yjnjqdrt24d" path="res://scenes/world/Rooms/EmptyRoom.tscn" id="17_l7y2v"]
 
 [sub_resource type="Curve3D" id="Curve3D_6qwl8"]
 closed = true
@@ -36,12 +19,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_l7y2v"]
-material = ExtResource("16_hyrir")
-size = Vector2(100, 100)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7bn8o"]
 
 [sub_resource type="Sky" id="Sky_f00m5"]
 
@@ -57,89 +34,67 @@ glow_enabled = true
 glow_intensity = 0.8
 glow_hdr_scale = 0.5
 
-[node name="Floor01" type="Node3D" unique_id=1187036097]
+[sub_resource type="PlaneMesh" id="PlaneMesh_l7y2v"]
+material = ExtResource("16_hyrir")
+size = Vector2(100, 100)
 
-[node name="BossRoom" type="Node3D" parent="." unique_id=1733835938 node_paths=PackedStringArray("doors")]
-script = ExtResource("1_oskdh")
-doors = [NodePath("Door"), NodePath("Door2")]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7bn8o"]
 
-[node name="Boundary" type="Area3D" parent="BossRoom" unique_id=912101988]
-collision_mask = 14
-monitorable = false
-script = ExtResource("8_oskdh")
+[sub_resource type="SphereShape3D" id="SphereShape3D_fdufd"]
+radius = 0.2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BossRoom/Boundary" unique_id=445034608]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.015625)
-shape = SubResource("BoxShape3D_hyrir")
-debug_color = Color(0.98829025, 0, 0.099605866, 1)
+[node name="BossRoom" type="Node3D" unique_id=1187036097]
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="BossRoom" unique_id=2146296626]
-navigation_mesh = ExtResource("3_l7y2v")
-metadata/_edit_lock_ = true
+[node name="CinematicCamera" type="Node" parent="." unique_id=430912863]
 
-[node name="GroundPivot" type="Node3D" parent="BossRoom/NavigationRegion3D" unique_id=1041048832]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="Camera3D" type="Camera3D" parent="CinematicCamera" unique_id=1703995908]
+transform = Transform3D(0.89687324, 0.14945634, -0.41627064, 0, 0.9411761, 0.33791655, 0.4422877, -0.3030683, 0.8441157, -12.748569, 9.065087, 7.2753644)
+script = ExtResource("16_oskdh")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="BossRoom/NavigationRegion3D/GroundPivot" unique_id=2088760069]
-use_collision = true
-size = Vector3(30, 1, 30)
-material = SubResource("StandardMaterial3D_dju42")
+[node name="Camera3D2" type="Camera3D" parent="CinematicCamera" unique_id=862755652]
+transform = Transform3D(0.85263944, -0.1041696, 0.51201046, 0, 0.97992474, 0.19936775, -0.5224998, -0.1699888, 0.8355225, 3.9528208, 4.302427, -6.959512)
+script = ExtResource("16_oskdh")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="BossRoom/NavigationRegion3D/GroundPivot" unique_id=671733574]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -6)
-use_collision = true
-size = Vector3(8, 3, 1)
-material = SubResource("StandardMaterial3D_dju42")
+[node name="BossPath" type="Path3D" parent="." unique_id=2007118636]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, -1, -17)
+curve = SubResource("Curve3D_6qwl8")
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="BossRoom/NavigationRegion3D/GroundPivot" unique_id=1177609918]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21)
-use_collision = true
-size = Vector3(3, 1, 12)
-material = SubResource("StandardMaterial3D_dju42")
+[node name="PathFollow3D" type="PathFollow3D" parent="BossPath" unique_id=1122110057 groups=["path"]]
+transform = Transform3D(-0.99997014, 0, 0.0045247544, 0, 1, 0, -0.0045247544, 0, -0.99997014, -0.05841446, 0, -8.11507)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="BossRoom/NavigationRegion3D/GroundPivot" unique_id=187119506]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
-use_collision = true
-size = Vector3(3, 1, 12)
-material = SubResource("StandardMaterial3D_dju42")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1649919296]
+environment = SubResource("Environment_n78g6")
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="BossRoom/NavigationRegion3D/GroundPivot" unique_id=179933778]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16, 2, 0)
-use_collision = true
-size = Vector3(30, 3, 2)
-material = SubResource("StandardMaterial3D_dju42")
+[node name="RoomEmptyBake" parent="." unique_id=1735910708 instance=ExtResource("17_l7y2v")]
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="BossRoom/NavigationRegion3D/GroundPivot" unique_id=305453418]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16, 2, 0)
-use_collision = true
-size = Vector3(30, 3, 2)
-material = SubResource("StandardMaterial3D_dju42")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="BossRoom/NavigationRegion3D/GroundPivot" unique_id=1464478324]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, 1)
-use_collision = true
-size = Vector3(8, 3, 1)
-material = SubResource("StandardMaterial3D_dju42")
-
-[node name="Door" parent="BossRoom" unique_id=1117087749 instance=ExtResource("5_pa37w")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 20)
-
-[node name="Door2" parent="BossRoom" unique_id=387050277 instance=ExtResource("5_pa37w")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -21)
-
-[node name="Enemies" type="Node3D" parent="BossRoom" unique_id=215244922]
-
-[node name="BossMan" parent="BossRoom/Enemies" unique_id=1566125082 instance=ExtResource("7_v5lco")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -14)
-
-[node name="EnemySpawner" parent="BossRoom" unique_id=707684176 instance=ExtResource("6_2ejxh")]
+[node name="EnemySpawner" parent="RoomEmptyBake" index="9" unique_id=707684176]
 enemies_to_spawn = 20
-maintain_count = 4
-spawn_interval = 10.0
-spawn_percentages = PackedFloat32Array(0, 0, 0, 100)
+spawn_percentages = PackedFloat32Array(50, 50, 20, 20)
+
+[node name="ShieldBossMan" parent="RoomEmptyBake/Enemies" parent_id_path=PackedInt32Array(1735910708, 966538331) index="0" unique_id=1661003103 instance=ExtResource("7_v5lco")]
+
+[node name="CollisionShape3D" parent="RoomEmptyBake/RoomTrigger" parent_id_path=PackedInt32Array(1735910708, 38148701) index="0" unique_id=362688891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06549835, 2.3342285, -12.02208)
+
+[node name="Lava" type="MeshInstance3D" parent="." unique_id=1973651251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+visible = false
+mesh = SubResource("PlaneMesh_l7y2v")
+
+[node name="KillZone" type="Area3D" parent="Lava" unique_id=1195824143 node_paths=PackedStringArray("kill_label", "camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.508404, 0, 2)
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("13_oyrb2")
+kill_label = NodePath("../../DialogBox/KillLabel")
+camera = NodePath("../../PlayerEntity/SpringArmPivot")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lava/KillZone" unique_id=114649244]
+shape = SubResource("WorldBoundaryShape3D_7bn8o")
 
 [node name="PlayerEntity" type="Node3D" parent="." unique_id=384623855]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23.555918)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.436047, 0, 10.783596)
 
 [node name="Player" parent="PlayerEntity" unique_id=1944527734 instance=ExtResource("8_2qvit")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -156,12 +111,13 @@ spring_length = 10.0
 [node name="Camera3D" type="Camera3D" parent="PlayerEntity/SpringArmPivot/SpringArm3D" unique_id=148764600]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 cull_mask = 1
+current = true
 
 [node name="HeartHud" parent="." unique_id=1609480675 instance=ExtResource("15_4twfe")]
 
-[node name="DialogBox" type="CanvasLayer" parent="." unique_id=188954343]
+[node name="DialogBox" type="CanvasLayer" parent="." unique_id=115132207]
 
-[node name="Label" type="Label" parent="DialogBox" unique_id=589477836]
+[node name="KillLabel" type="Label" parent="DialogBox" unique_id=2117138789 groups=["kill_label"]]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5
@@ -171,21 +127,21 @@ offset_top = 160.0
 offset_right = 63.5
 offset_bottom = 183.0
 grow_horizontal = 2
-theme = ExtResource("11_v5lco")
+theme_override_fonts/font = ExtResource("11_g8ots")
 theme_override_font_sizes/font_size = 30
 text = "Get rekked bozo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="bosslabel" type="Label" parent="DialogBox" unique_id=214431063]
+[node name="BossLabel" type="Label" parent="DialogBox" unique_id=214431063]
 visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -63.5
+offset_left = -152.5
 offset_top = 160.0
-offset_right = 63.5
-offset_bottom = 183.0
+offset_right = 152.5
+offset_bottom = 214.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("12_6qwl8")
 theme_override_font_sizes/font_size = 50
@@ -196,56 +152,6 @@ vertical_alignment = 1
 [node name="PauseMenu" parent="." unique_id=1369771253 instance=ExtResource("16_fj7gp")]
 visible = false
 
-[node name="BossPath" type="Path3D" parent="." unique_id=2007118636]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, -1, -17)
-curve = SubResource("Curve3D_6qwl8")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="BossPath" unique_id=1122110057 groups=["path"]]
-transform = Transform3D(-0.9999725, 0, 0.0045247655, 0, 1, 0, -0.0045247655, 0, -0.9999725, -0.05841446, 0, -8.11507)
-
-[node name="Lava" type="MeshInstance3D" parent="." unique_id=1973651251]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = SubResource("PlaneMesh_l7y2v")
-
-[node name="KillZone" type="Area3D" parent="Lava" unique_id=1195824143 node_paths=PackedStringArray("label", "pivot")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.508404, 0, 2)
-collision_layer = 0
-collision_mask = 6
-monitorable = false
-script = ExtResource("13_oyrb2")
-label = NodePath("../../DialogBox/Label")
-pivot = NodePath("../../PlayerEntity/SpringArmPivot")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Lava/KillZone" unique_id=114649244]
-shape = SubResource("WorldBoundaryShape3D_7bn8o")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1649919296]
-environment = SubResource("Environment_n78g6")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="WorldEnvironment" unique_id=661813858]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.350181, 3.2957954, 10.466256)
-light_color = Color(0.802211, 0.821875, 0.19262695, 1)
-light_bake_mode = 1
-shadow_enabled = true
-omni_range = 20.0
-omni_attenuation = 1.3
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="WorldEnvironment" unique_id=813117969]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.818982, 3.5135322, -6.5652637)
-light_color = Color(0.802211, 0.821875, 0.19262695, 1)
-light_bake_mode = 1
-shadow_enabled = true
-omni_range = 20.0
-omni_attenuation = 1.3
-
-[node name="CinematicCamera" type="Node" parent="." unique_id=430912863]
-
-[node name="Camera3D" type="Camera3D" parent="CinematicCamera" unique_id=1703995908]
-transform = Transform3D(0.89687324, 0.14945634, -0.41627064, 0, 0.9411761, 0.33791655, 0.4422877, -0.3030683, 0.8441157, -12.748569, 9.065087, 7.2753644)
-script = ExtResource("16_oskdh")
-
-[node name="Camera3D2" type="Camera3D" parent="CinematicCamera" unique_id=862755652]
-transform = Transform3D(0.85263944, -0.1041696, 0.51201046, 0, 0.97992474, 0.19936775, -0.5224998, -0.1699888, 0.8355225, 3.9528208, 4.302427, -6.959512)
-script = ExtResource("16_oskdh")
-
 [connection signal="body_entered" from="Lava/KillZone" to="Lava/KillZone" method="_on_body_entered"]
+
+[editable path="RoomEmptyBake"]
