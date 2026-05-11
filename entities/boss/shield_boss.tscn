@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://blpwpqgpxu1u1" path="res://assets/vfx/explosion_fx/explosion_ii.tscn" id="2_4414n"]
 [ext_resource type="PackedScene" uid="uid://dq81bc5ggwaig" path="res://scripts/bullet_spawn.tscn" id="2_pou83"]
 [ext_resource type="Script" uid="uid://cdt3cwyb33lx8" path="res://scripts/health_bar.gd" id="3_4414n"]
-[ext_resource type="AudioStream" uid="uid://cpacraowwf55w" path="res://audio/SONGS/Unyielding.mp3" id="3_hqysp"]
 [ext_resource type="Script" uid="uid://cppim11crlu1t" path="res://scripts/hurtbox.gd" id="3_m86g3"]
 [ext_resource type="AudioStream" uid="uid://dn4w2nahj5kco" path="res://audio/SONGS/Phasing Terror PHASE 1.mp3" id="4_eiqsa"]
 [ext_resource type="AudioStream" uid="uid://b6jm7v1jr1jgt" path="res://audio/SONGS/Phasing Terror PHASE 2.mp3" id="5_lw6l2"]
@@ -62,7 +61,6 @@ collision_layer = 4
 script = ExtResource("1_m86g3")
 health_bar = NodePath("HealthBar")
 death_vfx = ExtResource("2_4414n")
-boss_music = ExtResource("3_hqysp")
 phase1 = ExtResource("4_eiqsa")
 phase2 = ExtResource("5_lw6l2")
 phase3 = ExtResource("6_yu77b")
@@ -72,24 +70,22 @@ transform = Transform3D(1, 0, -5.820766e-10, 0, 1, 0, 5.820766e-10, 0, 1, 0, 2.5
 shape = SubResource("BoxShape3D_p68d0")
 debug_color = Color(1.988, 2.0089998, 0, 1)
 
-[node name="ShieldBoss" parent="." unique_id=191944752 instance=ExtResource("8_hqysp")]
+[node name="ShieldBoss" parent="." unique_id=30022203 instance=ExtResource("8_hqysp")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
-[node name="BulletSpawn" parent="ShieldBoss/BulletSpawnPoint" parent_id_path=PackedInt32Array(191944752, 121328683) index="0" unique_id=1724750768 instance=ExtResource("2_pou83")]
-
-[node name="Shield2" parent="ShieldBoss/Armature" parent_id_path=PackedInt32Array(191944752, 1306134655) index="0" unique_id=634784516]
+[node name="Shield2" parent="ShieldBoss/Armature" parent_id_path=PackedInt32Array(30022203, 875851208) index="0" unique_id=1864137160]
 transform = Transform3D(0.9999992, 0, 0.0011882778, 0, 0.99999994, 0, -0.0011882778, 0, 0.9999992, 0, 0, 0)
 
-[node name="Eye" parent="ShieldBoss/Armature/Shield2" index="0" unique_id=1930399851]
+[node name="Eye" parent="ShieldBoss/Armature/Shield2" index="0" unique_id=119274154]
 transform = Transform3D(0.99999857, -0.0011881586, 0.001195982, 0.0011959828, 9.029419e-11, -0.9999993, 0.0011881578, 0.9999993, 1.4211076e-06, 0, 8.594057, 0)
 
-[node name="ClosedEye" parent="ShieldBoss/Armature/Shield2" index="1" unique_id=1197448020]
+[node name="ClosedEye" parent="ShieldBoss/Armature/Shield2" index="1" unique_id=415789669]
 transform = Transform3D(0.09999989, -0.00011881589, 0.00011450799, 0.00011450807, 8.645119e-12, -0.09999996, 0.00011881581, 0.09999995, 1.3606241e-07, 0, 8.594057, 0)
 
-[node name="Bone" parent="ShieldBoss/Armature" parent_id_path=PackedInt32Array(191944752, 1306134655) index="1" unique_id=1258060040]
+[node name="Bone" parent="ShieldBoss/Armature" parent_id_path=PackedInt32Array(30022203, 875851208) index="1" unique_id=1515097297]
 transform = Transform3D(-0.6972775, 0.22553521, -0.6803952, 0.69455326, -0.022069765, -0.71910244, -0.17719908, -0.9739851, -0.14125745, 6.156369, 1.4185848, -1.4555371)
 
-[node name="Hitbox" type="Area3D" parent="ShieldBoss/Armature/Bone/Sword" parent_id_path=PackedInt32Array(191944752, 1979314301) index="0" unique_id=316923225]
+[node name="Hitbox" type="Area3D" parent="ShieldBoss/Armature/Bone/Sword" parent_id_path=PackedInt32Array(30022203, 564354072) index="0" unique_id=316923225]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("7_jcg2q")
@@ -100,6 +96,8 @@ metadata/_custom_type_script = "uid://3u303es7vhe4"
 transform = Transform3D(0.99999994, 5.9604645e-08, -3.7252903e-08, -2.9802322e-08, 0.99999994, 0, 0, 0, 0.99999994, 1.1920929e-07, 2.1073205, 0.0005719662)
 shape = SubResource("BoxShape3D_xo772")
 debug_color = Color(3.9738657, 0, 0, 1)
+
+[node name="BulletSpawn" parent="ShieldBoss/BulletSpawnPoint" parent_id_path=PackedInt32Array(30022203, 1488980634) index="0" unique_id=1724750768 instance=ExtResource("2_pou83")]
 
 [node name="AttackTimer" type="Timer" parent="." unique_id=52613693]
 wait_time = 2.0

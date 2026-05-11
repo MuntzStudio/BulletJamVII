@@ -38,7 +38,6 @@ script = ExtResource("3_1d6c5")
 
 [sub_resource type="BTAction" id="BTAction_1d6c5"]
 script = ExtResource("4_pch13")
-reaction_duration = 0.0
 
 [sub_resource type="BTSequence" id="BTSequence_lysta"]
 custom_name = "Hit reaction"
@@ -58,7 +57,11 @@ script = ExtResource("8_pch13")
 
 [sub_resource type="BTAction" id="BTAction_1n2rx"]
 script = ExtResource("2_1d6c5")
+state_machine_param = "parameters/Shoot/playback"
 state = "Throw1"
+
+[sub_resource type="BTWait" id="BTWait_pch13"]
+duration = 0.5
 
 [sub_resource type="BTAction" id="BTAction_wdq44"]
 script = ExtResource("5_1d6c5")
@@ -69,9 +72,10 @@ burst_count = 2
 [sub_resource type="BTWait" id="BTWait_mdx4i"]
 
 [sub_resource type="BTSequence" id="BTSequence_wjk1b"]
-children = [SubResource("BTAction_1n2rx"), SubResource("BTAction_wdq44"), SubResource("BTWait_mdx4i")]
+children = [SubResource("BTAction_1n2rx"), SubResource("BTWait_pch13"), SubResource("BTAction_wdq44"), SubResource("BTWait_mdx4i")]
 
 [sub_resource type="BTParallel" id="BTParallel_ey7bv"]
+num_failures_required = 0
 children = [SubResource("BTAction_wcrsx"), SubResource("BTSequence_wjk1b")]
 
 [sub_resource type="BTSequence" id="BTSequence_pflie"]
@@ -103,6 +107,8 @@ script = ExtResource("2_1d6c5")
 state = "RunForward"
 
 [sub_resource type="BTParallel" id="BTParallel_lysta"]
+num_successes_required = 2
+num_failures_required = 0
 children = [SubResource("BTAction_gexpw"), SubResource("BTAction_er4ql")]
 
 [sub_resource type="BTDynamicSequence" id="BTDynamicSequence_mdx4i"]
@@ -123,6 +129,8 @@ script = ExtResource("2_1d6c5")
 state = "RunForward"
 
 [sub_resource type="BTParallel" id="BTParallel_wcrsx"]
+num_successes_required = 2
+num_failures_required = 0
 children = [SubResource("BTAction_trpm4"), SubResource("BTAction_lysta")]
 
 [sub_resource type="BTSequence" id="BTSequence_mdx4i"]
@@ -142,6 +150,8 @@ script = ExtResource("2_1d6c5")
 state = "RunForward"
 
 [sub_resource type="BTParallel" id="BTParallel_1n2rx"]
+num_successes_required = 2
+num_failures_required = 0
 custom_name = "Chase"
 children = [SubResource("BTAction_j8i6x"), SubResource("BTAction_wjk1b")]
 
