@@ -36,7 +36,6 @@ mesh = SubResource("CapsuleMesh_tj6yx")
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("2_7g7ha")
-damage = 1.0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Hitbox" unique_id=385863030]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.00390625, 1.7074764e-10, 0)
