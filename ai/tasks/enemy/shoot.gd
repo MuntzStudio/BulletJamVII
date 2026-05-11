@@ -73,7 +73,9 @@ func _tick(delta: float) -> Status:
 	# BOOMERANG PROJECTILES
 	# ==================================================
 	if is_boomerang:
-
+		print("target: ", target)
+		print("bullet_scene: ", bullet_scene)
+		print("spawn: ", spawn)
 		# ----------------------------------------------
 		# COUNT ACTIVE BOOMERANGS
 		# ----------------------------------------------
